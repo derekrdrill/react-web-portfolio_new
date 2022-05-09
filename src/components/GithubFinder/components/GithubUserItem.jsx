@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 import { GithubContext } from '../context/GithubContext';
-import { getUser, getRepos } from '../context/GithubActions';
+import { getUserAndRepos } from '../context/GithubActions';
 
 export const GithubUserItem = ({ user: { login, avatar_url } }) => {
   const { githubDispatch } = useContext(GithubContext);
@@ -10,11 +10,8 @@ export const GithubUserItem = ({ user: { login, avatar_url } }) => {
   const handleGetUser = async () => {
     githubDispatch({ type: 'SET_LOADING' });
 
-    const user = await getUser(login);
-    const userRepos = await getRepos(login);
-
-    githubDispatch({ type: 'GET_REPOS', payload: userRepos });
-    githubDispatch({ type: 'GET_USER', payload: user });
+    const user = await getUserAndRepos(login);
+    githubDispatch({ type: 'GET_USER_AND_REPOS', payload: user });
   };
 
   return (
