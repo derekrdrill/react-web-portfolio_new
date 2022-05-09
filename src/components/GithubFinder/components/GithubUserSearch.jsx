@@ -40,7 +40,7 @@ export const GithubUserSearch = () => {
       alertDispatch({
         type: 'SET_ALERT',
         fadeOut: false,
-        payload: { alertMsg, alertTitle, alertType },
+        payload: { msg: alertMsg, title: alertTitle, type: alertType, fadeOut: true },
       });
 
       setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2000);
