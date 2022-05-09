@@ -1,0 +1,81 @@
+import { App } from './components/App';
+import { ApplicationComplete } from './components/JobApplications/components/ApplicationComplete';
+import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationsPage';
+import { Projects } from './components/Projects/components/Projects';
+import { AboutMe } from './components/AboutMe/components/AboutMe';
+import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
+import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
+import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
+import { LowesChallenge } from './components/LowesChallenge/LowesChallenge';
+import { Feedback } from './components/Feedback/Feedback';
+import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
+import { GithubUserProfile } from './components/GithubFinder/components/GithubUserProfile';
+
+export const routes = [
+  {
+    id: 1,
+    path: '/',
+    render: <App />,
+    exact: true,
+  },
+  {
+    id: 2,
+    path: '/job-apps-page',
+    render: <JobApplicationsPage />,
+  },
+  {
+    id: 3,
+    path: '/projects',
+    render: <Projects />,
+  },
+  {
+    id: 4,
+    path: '/about-me',
+    render: <AboutMe />,
+  },
+  {
+    id: 5,
+    path: '/connect-with-me',
+    render: <ConnectWithMe />,
+  },
+  {
+    id: 6,
+    path: '/job-apps-page',
+    render: <JobApplicationsPage />,
+  },
+  {
+    id: 7,
+    path: '/app-complete',
+    render: <ApplicationComplete />,
+  },
+  {
+    id: 8,
+    path: '/lead-input-page',
+    render: <LeadInputPage />,
+  },
+  {
+    id: 9,
+    path: '/data-reporting-tool',
+    render: <DataReportingTool />,
+  },
+  {
+    id: 10,
+    path: '/lowes-challenge',
+    render: <LowesChallenge />,
+  },
+  {
+    id: 11,
+    path: '/feedback-app',
+    render: <Feedback />,
+  },
+  {
+    id: 12,
+    path: '/github-finder',
+    render: <GithubFinder />,
+  },
+  {
+    id: 13,
+    path: '/github-user/:login',
+    render: <GithubUserProfile />,
+  },
+];
