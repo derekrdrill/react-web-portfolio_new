@@ -1,6 +1,5 @@
-import FontAwesomeIcon from '@fortawesome/fontawesome';
-import { faFileAlt, faTable, faSpaceShuttle, faDatabase } from '@fortawesome/fontawesome-free-solid';
-import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { faFileAlt, faTable, faDatabase } from '@fortawesome/fontawesome-free-solid';
+import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 
 export const PROJECTS = [
   {
@@ -18,14 +17,6 @@ export const PROJECTS = [
     icon: faTable,
     to: '/data-reporting-tool',
   },
-  // {
-  //     id: 3,
-  //     title: 'Spotify API Project',
-  //     description: `A dynamic reporting tool that will accept an uploaded excel or csv file to
-  //                   parse over and re-report that data in a dynamic, user-friendly manner`,
-  //     icon: faSpotify,
-  //     to: '/',
-  // },
   {
     id: 3,
     title: 'Lead Input Form/Report',
@@ -36,10 +27,9 @@ export const PROJECTS = [
   },
   {
     id: 4,
-    title: 'NASA API Project',
-    description: `A dynamic reporting tool that will accept an uploaded excel or csv file to 
-                      parse over and re-report that data in a dynamic, user-friendly manner`,
-    icon: faSpaceShuttle,
-    to: '/',
+    title: 'Github Finder Project',
+    description: `A tool that pulls data from the Github API and cleanly presents it in a user-friendly React UI`,
+    icon: faGithubSquare,
+    to: '/github-finder',
   },
 ];
