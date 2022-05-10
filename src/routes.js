@@ -7,10 +7,8 @@ import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWith
 import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
 import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
 import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
-import { LowesChallenge } from './components/LowesChallenge/LowesChallenge';
 import { Feedback } from './components/Feedback/Feedback';
 import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
-import { GithubUserProfile } from './components/GithubFinder/components/GithubUserProfile';
 
 export const routes = [
   {
@@ -65,22 +63,12 @@ export const routes = [
   },
   {
     id: 10,
-    path: '/lowes-challenge',
-    render: <LowesChallenge />,
-  },
-  {
-    id: 11,
     path: '/feedback-app',
     render: <Feedback />,
   },
   {
-    id: 12,
+    id: 11,
     path: '/github-finder',
     render: <GithubFinder />,
-  },
-  {
-    id: 13,
-    path: '/github-user/:login',
-    render: <GithubUserProfile />,
   },
 ];
