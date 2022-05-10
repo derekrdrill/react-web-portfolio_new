@@ -9,6 +9,7 @@ import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPa
 import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
 import { Feedback } from './components/Feedback/Feedback';
 import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
+import { Sandbox } from './components/Sandbox/Sandbox';
 
 export const routes = [
   {
@@ -70,5 +71,10 @@ export const routes = [
     id: 11,
     path: '/github-finder',
     render: <GithubFinder />,
+  },
+  {
+    id: 12,
+    path: '/sandbox',
+    render: <Sandbox />,
   },
 ];
