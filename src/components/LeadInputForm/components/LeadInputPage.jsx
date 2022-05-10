@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
+import { AppBar, Toolbar, Button, Tooltip, Typography } from '@mui/material';
+import { LeadInputContext } from '../context/LeadInputContext';
 import { LeadInputForm } from './LeadInputForm';
 import { LeadInputDataTable } from './LeadInputDataTable';
-import { AppBar, Toolbar, Button, Tooltip, Typography } from '@mui/material';
 
 export const LeadInputPage = () => {
-  const [page, setPage] = useState('form');
-  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const { leadInputDispatch, page, tooltipOpen } = useContext(LeadInputContext);
 
   const handlePageButtonClick = () => {
-    setTooltipOpen(false);
-    setPage(page === 'form' ? 'table' : 'form');
+    const newPage = page === 'form' ? 'table' : 'form';
+    leadInputDispatch({ type: 'SWITCH_PAGES', payload: { page: newPage, tooltipOpen: false } });
   };
-  const handleTooltipToggle = () => setTooltipOpen(!tooltipOpen);
+
+  const handleTooltipToggle = () => leadInputDispatch({ type: 'TOGGLE_TOOLTIP', payload: !tooltipOpen });
 
   return (
-    <div>
+    <>
       <PageBodyStyle />
       <LeadInputPageHeader>
         <Toolbar>
@@ -46,7 +47,7 @@ export const LeadInputPage = () => {
         {page === 'form' && <LeadInputForm />}
         {page === 'table' && <LeadInputDataTable />}
       </LeadInputPageContent>
-    </div>
+    </>
   );
 };
 

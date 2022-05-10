@@ -6,6 +6,7 @@ import { Typography, Button } from '@mui/material';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 import { LEAD_INFO_INPUTS } from '../constants/LEAD_INFO_INPUTS';
+import { addLeadInput } from '../context/LeadInputActions';
 
 export const LeadInputForm = () => {
   const [leads, setLeads] = useState({});
@@ -22,14 +23,10 @@ export const LeadInputForm = () => {
     }));
   };
 
-  const postApi = () => {
+  const postApi = async () => {
     setLoading(true);
     setTimeout(() => {
-      fetch('http://localhost:3001/addLeadInput', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leads),
-      });
+      addLeadInput(leads);
       setLoading(null);
       $('input').val('');
     }, 1000);

@@ -4,6 +4,7 @@ import { JobApplicationsPage } from './components/JobApplications/components/Job
 import { Projects } from './components/Projects/components/Projects';
 import { AboutMe } from './components/AboutMe/components/AboutMe';
 import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
+import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
 import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
 import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
 import { LowesChallenge } from './components/LowesChallenge/LowesChallenge';
@@ -51,7 +52,11 @@ export const routes = [
   {
     id: 8,
     path: '/lead-input-page',
-    render: <LeadInputPage />,
+    render: (
+      <LeadInputProvider>
+        <LeadInputPage />,
+      </LeadInputProvider>
+    ),
   },
   {
     id: 9,
