@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
+import { history } from '../../../index';
 import styled from 'styled-components';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { Button, Typography } from '@mui/material';
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { UserRegister } from './UserRegister';
+import { UserPasswordResetSend } from './UserPasswordResetSend';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
+import { ShowHideIcon } from '../../ShowHideIcon/ShowHideIcon';
 
 export const UserLogin = () => {
-  const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
-  const { alert, alertDispatch } = useContext(AlertContext);
-  const [signInItem, setSignInItem] = useState({});
+  const { isRegistering, forgotPassword, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
+  const { alertDispatch } = useContext(AlertContext);
+  const [signInItem, setSignInItem] = useState({ username: '', password: '' });
+  const allFieldsFilled = signInItem.username && signInItem.password;
 
   const handleAlert = msg => {
     alertDispatch({
@@ -34,13 +38,13 @@ export const UserLogin = () => {
   const handleSignIn = async () => {
     const { username, password } = signInItem;
 
-    const response = await fetch(`sign-in/${username}/${password}`, {
+    const response = await fetch(`../sign-in/${username}/${password}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).catch(e => console.warn(e));
 
     if (response.ok) {
-      const { userNameExists, passwordMatch } = await response.json();
+      const { userNameExists, passwordMatch, token } = await response.json();
 
       if (!userNameExists) {
         handleAlert('Username does not exist');
@@ -48,19 +52,28 @@ export const UserLogin = () => {
         if (!passwordMatch) {
           handleAlert('Password does not match');
         } else {
-          userAuthenticationDispatch({ type: 'SIGN_IN' });
+          userAuthenticationDispatch({ type: 'SIGNED_IN' });
+          sessionStorage.setItem('token', JSON.stringify(token));
+          history.push('/housing-marketplace/home');
         }
       }
     }
   };
 
+  const handleForgotPassword = async () => userAuthenticationDispatch({ type: 'FORGOT_PASSWORD' });
+
   const handlesetIsRegistering = () => userAuthenticationDispatch({ type: 'REGISTER' });
+
+  const handleBackToSignIn = () => userAuthenticationDispatch({ type: 'SIGN_IN' });
 
   return (
     <>
-      <UserLoginContainer>
+      {(isRegistering || forgotPassword) && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
+      <UserLoginContainer isRegistering={isRegistering}>
         {isRegistering ? (
           <UserRegister />
+        ) : forgotPassword ? (
+          <UserPasswordResetSend />
         ) : (
           <>
             <LoginTextContainer>
@@ -70,11 +83,11 @@ export const UserLogin = () => {
             </LoginTextContainer>
             <DynamicFormInputs inputs={USER_LOGIN_INPUTS} onChange={handleSetSignIn} />
             <ButtonContainer>
-              <Button fullWidth onClick={handleSignIn} variant='outlined'>
+              <Button disabled={!allFieldsFilled} fullWidth onClick={handleSignIn} variant='outlined'>
                 Sign in
               </Button>
             </ButtonContainer>
-            <Button>Forgot password?</Button>
+            <Button onClick={handleForgotPassword}>Forgot password?</Button>
             <Typography paragraph>
               Not a member?
               <Button onClick={handlesetIsRegistering}>Sign up now</Button>
@@ -94,10 +107,15 @@ const AlertContainer = styled.div({
   justifyContent: 'center',
 });
 
-const UserLoginContainer = styled.div({
-  margin: '9% 26% 0px 26%',
-  textAlign: 'center',
-});
+const UserLoginContainer = styled.div(({ isRegistering }) => [
+  {
+    margin: '10% 26% 0px 26%',
+    textAlign: 'center',
+  },
+  isRegistering && {
+    marginTop: '1%',
+  },
+]);
 
 const ButtonContainer = styled.div({
   margin: 10,
@@ -110,3 +128,5 @@ const LoginTextContainer = styled.div({
 const LoginText = styled(Typography)({
   margin: '10px 0',
 });
+
+const ShowHidePasswordIcon = styled(ShowHideIcon)({});

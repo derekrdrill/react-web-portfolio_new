@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Grid, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Grid, IconButton, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { ShowHideIcon } from '../ShowHideIcon/ShowHideIcon';
 
 // TODO: condense this all to one style using emotion
 
@@ -8,7 +9,9 @@ import { Grid, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui
 
 const FormInput = ({ input, onChange }) => {
   const [selectValue, setSelectValue] = useState('');
+  const [passwordHidden, setPasswordHidden] = useState(true);
   const selectChange = event => setSelectValue(event.target.value);
+  const handleSetPasswordHidden = () => setPasswordHidden(!passwordHidden);
 
   return (
     <Grid item xs={input.xs} sm={input.sm} md={input.md}>
@@ -47,7 +50,8 @@ const FormInput = ({ input, onChange }) => {
           minRows={input.multiline && input.minRows}
           maxRows={input.multiline && input.maxRows}
           onChange={onChange}
-          type={input.type}
+          size={input.size || 'medium'}
+          type={input.type === 'password' ? (passwordHidden ? 'password' : 'text') : input.type}
           color={input.color || 'secondary'}
           inputbackgroundcolor={input.inputBackgroundColor}
           inputborderradius={input.inputborderRadius}
@@ -55,6 +59,9 @@ const FormInput = ({ input, onChange }) => {
           inputfontfamily={input.fontFamily || input.inputFontFamily}
           labelcolor={input.labelColor}
           labelfontfamily={input.fontFamily || input.labelFontFamily}
+          InputProps={{
+            endAdornment: input.type === 'password' && <ShowHideIcon onClick={handleSetPasswordHidden} />,
+          }}
         />
       )}
     </Grid>
@@ -102,7 +109,6 @@ const StyledTextField = styled(TextField)(
     '.MuiInputLabel-root': {
       color: labelcolor,
       fontFamily: labelfontfamily,
-      // zIndex: 1,
     },
   }),
 );
@@ -118,7 +124,6 @@ const StyledSelect = styled(Select)(
     '.MuiInputLabel-root': {
       color: labelcolor,
       fontFamily: labelfontfamily,
-      // zIndex: 1,
     },
   }),
 );

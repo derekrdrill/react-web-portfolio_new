@@ -12,6 +12,8 @@ import { GithubFinder } from './components/GithubFinder/components/GithubFinder'
 import { Sandbox } from './components/Sandbox/Sandbox';
 import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
 import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
+import { UserLogin } from './components/HousingMarketplace/components/UserLogin';
+import { UserPasswordReset } from './components/HousingMarketplace/components/UserPasswordReset';
 import { AlertProvider } from './components/Alert/context/AlertContext';
 
 export const routes = [
@@ -82,11 +84,33 @@ export const routes = [
   },
   {
     id: 13,
-    path: '/housing-marketplace',
+    path: '/housing-marketplace/auth',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <UserLogin />
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 14,
+    path: '/housing-marketplace/home',
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
           <HousingMarketplace />
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 15,
+    path: '/housing-marketplace/reset-password/:token/:userID',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <UserPasswordReset />
         </AlertProvider>
       </UserAuthenticationProvider>
     ),

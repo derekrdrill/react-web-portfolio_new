@@ -1,19 +1,15 @@
-import React, { useContext } from 'react';
-import { UserAuthenticationContext } from './context/UserAuthenticationContext';
-import { UserLogin } from './components/UserLogin';
+import React from 'react';
+import { history } from '../../index';
+import { Navbar } from './components/Navbar';
 
 export const HousingMarketplace = () => {
-  const { signedIn } = useContext(UserAuthenticationContext);
+  const token = sessionStorage.getItem('token');
+
+  !token && history.push('/housing-marketplace/auth');
 
   return (
-    <>
-      {!signedIn ? (
-        <UserLogin />
-      ) : (
-        <>
-          <h6>Logged in</h6>
-        </>
-      )}
-    </>
+    <Navbar>
+      <h6>Logged in</h6>
+    </Navbar>
   );
 };
