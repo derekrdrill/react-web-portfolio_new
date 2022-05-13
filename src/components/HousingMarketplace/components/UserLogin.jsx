@@ -11,7 +11,9 @@ import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 export const UserLogin = () => {
   const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
-  const [signInItem, setSignInItem] = useState({});
+  const [signInItem, setSignInItem] = useState({ username: '', password: '' });
+
+  const allFieldsFilled = signInItem.username && signInItem.password;
 
   const handleAlert = msg => {
     alertDispatch({
@@ -73,7 +75,7 @@ export const UserLogin = () => {
             </LoginTextContainer>
             <DynamicFormInputs inputs={USER_LOGIN_INPUTS} onChange={handleSetSignIn} />
             <ButtonContainer>
-              <Button fullWidth onClick={handleSignIn} variant='outlined'>
+              <Button disabled={!allFieldsFilled} fullWidth onClick={handleSignIn} variant='outlined'>
                 Sign in
               </Button>
             </ButtonContainer>
@@ -90,7 +92,7 @@ export const UserLogin = () => {
       </AlertContainer>
     </>
   );
-};
+};;
 
 const AlertContainer = styled.div({
   display: 'flex',

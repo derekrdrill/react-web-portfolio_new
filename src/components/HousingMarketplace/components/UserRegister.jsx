@@ -10,7 +10,22 @@ import { USER_REGISTER_INPUTS } from '../constants/USER_REGISTER_INPUTS';
 export const UserRegister = () => {
   const { userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
-  const [userItem, setUserItem] = useState({});
+  const [userItem, setUserItem] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const allFieldsFilled =
+    userItem.firstName &&
+    userItem.lastName &&
+    userItem.email &&
+    userItem.username &&
+    userItem.password &&
+    userItem.confirmPassword;
 
   const handleAlert = (msg, title, type) => {
     alertDispatch({
@@ -100,7 +115,7 @@ export const UserRegister = () => {
       </RegisterText>
       <DynamicFormInputs inputs={USER_REGISTER_INPUTS} onChange={handleUserItemChange} />
       <ButtonContainer>
-        <Button color='info' fullWidth onClick={handleSubmit} variant='contained'>
+        <Button disabled={!allFieldsFilled} color='info' fullWidth onClick={handleSubmit} variant='contained'>
           Submit
         </Button>
       </ButtonContainer>
