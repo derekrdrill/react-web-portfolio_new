@@ -45,13 +45,23 @@ export const UserRegister = () => {
     setUserItem({ ...userItem, [itemID]: itemValue });
   };
 
+  const validateEmail = email => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      );
+  };
+
   const validateUserItem = async userItem => {
     const { email, username, password, confirmPassword } = userItem;
 
     if (password !== confirmPassword) {
       return 'Passwords do not match';
+    } else if (!validateEmail(email)) {
+      return 'Email entered is not valid';
     } else {
-      const response = await fetch(`checkForUser/${email}/${username}`, {
+      const response = await fetch(`../checkForUser/${email}/${username}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       }).catch(e => console.warn(e));
@@ -69,7 +79,7 @@ export const UserRegister = () => {
   };
 
   const addUserItem = async userItem => {
-    const response = await fetch('addUser', {
+    const response = await fetch('../addUser', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userItem),
