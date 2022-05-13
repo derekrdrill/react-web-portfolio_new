@@ -10,6 +10,8 @@ import { DataReportingTool } from './components/DataReportingTool/DataReportingT
 import { Feedback } from './components/Feedback/Feedback';
 import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
 import { Sandbox } from './components/Sandbox/Sandbox';
+import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
+import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
 
 export const routes = [
   {
@@ -76,5 +78,14 @@ export const routes = [
     id: 12,
     path: '/sandbox',
     render: <Sandbox />,
+  },
+  {
+    id: 13,
+    path: '/housing-marketplace',
+    render: (
+      <UserAuthenticationProvider>
+        <HousingMarketplace />
+      </UserAuthenticationProvider>
+    ),
   },
 ];
