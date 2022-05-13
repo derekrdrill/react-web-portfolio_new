@@ -47,6 +47,7 @@ const FormInput = ({ input, onChange }) => {
           minRows={input.multiline && input.minRows}
           maxRows={input.multiline && input.maxRows}
           onChange={onChange}
+          size={input.size || 'medium'}
           type={input.type}
           color={input.color || 'secondary'}
           inputbackgroundcolor={input.inputBackgroundColor}

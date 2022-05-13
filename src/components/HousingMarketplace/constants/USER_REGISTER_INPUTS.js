@@ -5,6 +5,7 @@ export const USER_REGISTER_INPUTS = [
     variant: 'outlined',
     xs: 12,
     fullWidth: true,
+    size: 'small',
   },
   {
     id: 'lastName',
@@ -12,6 +13,7 @@ export const USER_REGISTER_INPUTS = [
     variant: 'outlined',
     xs: 12,
     fullWidth: true,
+    size: 'small',
   },
   {
     id: 'email',
@@ -20,6 +22,7 @@ export const USER_REGISTER_INPUTS = [
     xs: 12,
     fullWidth: true,
     type: 'email',
+    size: 'small',
   },
   {
     id: 'username',
@@ -27,6 +30,7 @@ export const USER_REGISTER_INPUTS = [
     variant: 'outlined',
     xs: 12,
     fullWidth: true,
+    size: 'small',
   },
   {
     id: 'password',
@@ -35,6 +39,7 @@ export const USER_REGISTER_INPUTS = [
     xs: 12,
     fullWidth: true,
     type: 'password',
+    size: 'small',
   },
   {
     id: 'confirmPassword',
@@ -43,5 +48,6 @@ export const USER_REGISTER_INPUTS = [
     xs: 12,
     fullWidth: true,
     type: 'password',
+    size: 'small',
   },
 ];
