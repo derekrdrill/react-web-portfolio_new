@@ -37,6 +37,8 @@ const addUserItem = async userItem => {
 
   if (!response.ok) {
     console.warn(Promise.reject(response));
+  } else {
+    $('input').val('');
   }
 };
 
@@ -52,7 +54,6 @@ export const UserRegister = () => {
 
   const handleSubmit = async () => {
     const validationMsg = await validateUserItem(userItem);
-    console.log(userItem);
 
     if (validationMsg) {
       alert(validationMsg);
@@ -69,10 +70,8 @@ export const UserRegister = () => {
     }
   };
 
-  console.log(userItem);
-
   return (
-    <UserRegisterContainer>
+    <>
       <RegisterTextContainer>
         <RegisterText component='h4' variant='h4'>
           Sign up
@@ -87,14 +86,9 @@ export const UserRegister = () => {
           Submit
         </Button>
       </ButtonContainer>
-    </UserRegisterContainer>
+    </>
   );
 };
-
-const UserRegisterContainer = styled.div({
-  margin: '10% 26% 0px 26%',
-  textAlign: 'center',
-});
 
 const RegisterTextContainer = styled.div({
   marginTop: '100px',
