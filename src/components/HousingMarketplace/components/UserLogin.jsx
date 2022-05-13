@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { history } from '../../../index';
 import styled from 'styled-components';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { Button, Typography } from '@mui/material';
@@ -12,7 +13,6 @@ export const UserLogin = () => {
   const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
   const [signInItem, setSignInItem] = useState({ username: '', password: '' });
-
   const allFieldsFilled = signInItem.username && signInItem.password;
 
   const handleAlert = msg => {
@@ -36,13 +36,15 @@ export const UserLogin = () => {
   const handleSignIn = async () => {
     const { username, password } = signInItem;
 
-    const response = await fetch(`sign-in/${username}/${password}`, {
+    const response = await fetch(`../sign-in/${username}/${password}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).catch(e => console.warn(e));
 
     if (response.ok) {
-      const { userNameExists, passwordMatch } = await response.json();
+      const { userNameExists, passwordMatch, token } = await response.json();
+
+      console.log(token);
 
       if (!userNameExists) {
         handleAlert('Username does not exist');
@@ -51,6 +53,8 @@ export const UserLogin = () => {
           handleAlert('Password does not match');
         } else {
           userAuthenticationDispatch({ type: 'SIGNED_IN' });
+          sessionStorage.setItem('token', JSON.stringify(token));
+          history.push('/housing-marketplace/home');
         }
       }
     }
