@@ -5,13 +5,14 @@ import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { Button, Typography } from '@mui/material';
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { UserRegister } from './UserRegister';
+import { UserPasswordResetSend } from './UserPasswordResetSend';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 import { ShowHideIcon } from '../../ShowHideIcon/ShowHideIcon';
 
 export const UserLogin = () => {
-  const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
+  const { isRegistering, forgotPassword, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
   const [signInItem, setSignInItem] = useState({ username: '', password: '' });
   const allFieldsFilled = signInItem.username && signInItem.password;
@@ -59,16 +60,20 @@ export const UserLogin = () => {
     }
   };
 
+  const handleForgotPassword = async () => userAuthenticationDispatch({ type: 'FORGOT_PASSWORD' });
+
   const handlesetIsRegistering = () => userAuthenticationDispatch({ type: 'REGISTER' });
 
   const handleBackToSignIn = () => userAuthenticationDispatch({ type: 'SIGN_IN' });
 
   return (
     <>
-      {isRegistering && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
+      {(isRegistering || forgotPassword) && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
       <UserLoginContainer isRegistering={isRegistering}>
         {isRegistering ? (
           <UserRegister />
+        ) : forgotPassword ? (
+          <UserPasswordResetSend />
         ) : (
           <>
             <LoginTextContainer>
@@ -82,7 +87,7 @@ export const UserLogin = () => {
                 Sign in
               </Button>
             </ButtonContainer>
-            <Button>Forgot password?</Button>
+            <Button onClick={handleForgotPassword}>Forgot password?</Button>
             <Typography paragraph>
               Not a member?
               <Button onClick={handlesetIsRegistering}>Sign up now</Button>

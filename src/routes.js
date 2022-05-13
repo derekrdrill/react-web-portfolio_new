@@ -103,4 +103,15 @@ export const routes = [
       </UserAuthenticationProvider>
     ),
   },
+  {
+    id: 15,
+    path: '/housing-marketplace/reset-password/:token/:userID',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <h2>Hi</h2>
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
 ];

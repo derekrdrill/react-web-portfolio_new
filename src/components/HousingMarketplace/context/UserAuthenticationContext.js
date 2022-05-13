@@ -7,6 +7,7 @@ export const UserAuthenticationProvider = ({ children }) => {
   const initialState = {
     signedIn: false,
     isRegistering: false,
+    forgotPassword: false,
   };
 
   const [state, userAuthenticationDispatch] = useReducer(userAuthenticationReducer, initialState);
