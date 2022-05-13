@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { AlertContext } from '../../Alert/context/AlertContext';
-import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { USER_REGISTER_INPUTS } from '../constants/USER_REGISTER_INPUTS';
 
 export const UserRegister = () => {
@@ -70,7 +69,6 @@ export const UserRegister = () => {
     const validationMsg = await validateUserItem(userItem);
 
     if (validationMsg) {
-      // alert(validationMsg);
       handleAlert(validationMsg);
     } else {
       const { firstName, lastName, email, username, password } = userItem;
@@ -101,17 +99,9 @@ export const UserRegister = () => {
           Submit
         </Button>
       </ButtonContainer>
-      <AlertContainer>
-        <Alert />
-      </AlertContainer>
     </>
   );
 };
-
-const AlertContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-});
 
 const RegisterTextContainer = styled.div({
   marginTop: '100px',
