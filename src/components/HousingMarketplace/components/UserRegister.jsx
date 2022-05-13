@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import $ from 'jquery';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
