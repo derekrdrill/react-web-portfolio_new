@@ -4,9 +4,13 @@ export const userAuthenticationReducer = (state, action) => {
       return {
         ...state,
         isRegistering: true,
-        signedIn: false,
       };
     case 'SIGN_IN':
+      return {
+        ...state,
+        isRegistering: false,
+      };
+    case 'SIGNED_IN':
       return {
         ...state,
         signedIn: true,

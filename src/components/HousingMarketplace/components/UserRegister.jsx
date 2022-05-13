@@ -3,18 +3,20 @@ import $ from 'jquery';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { USER_REGISTER_INPUTS } from '../constants/USER_REGISTER_INPUTS';
 
 export const UserRegister = () => {
+  const { userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
   const [userItem, setUserItem] = useState({});
 
-  const handleAlert = msg => {
+  const handleAlert = (msg, title, type) => {
     alertDispatch({
       type: 'SET_ALERT',
       fadeOut: false,
-      payload: { msg: msg, title: 'Sign-up error', type: 'error' },
+      payload: { msg: msg, title: title, type: type },
     });
 
     setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2000);
@@ -61,7 +63,12 @@ export const UserRegister = () => {
     if (!response.ok) {
       console.warn(Promise.reject(response));
     } else {
-      $('input').val('');
+      const { email } = await response.json();
+
+      const msg = `An account has been created under the email of ${email}`;
+
+      userAuthenticationDispatch({ type: 'SIGN_IN' });
+      handleAlert(msg, 'Successful sign-up', 'success');
     }
   };
 
@@ -69,7 +76,7 @@ export const UserRegister = () => {
     const validationMsg = await validateUserItem(userItem);
 
     if (validationMsg) {
-      handleAlert(validationMsg);
+      handleAlert(validationMsg, 'Sign-up error', 'error');
     } else {
       const { firstName, lastName, email, username, password } = userItem;
 
@@ -85,14 +92,12 @@ export const UserRegister = () => {
 
   return (
     <>
-      <RegisterTextContainer>
-        <RegisterText component='h4' variant='h4'>
-          Sign up
-        </RegisterText>
-        <RegisterText component='p' variant='p'>
-          Fill in all information below to sign up today!
-        </RegisterText>
-      </RegisterTextContainer>
+      <RegisterText component='h4' variant='h4'>
+        Sign up
+      </RegisterText>
+      <RegisterText component='p' variant='p'>
+        Fill in all information below to sign up today!
+      </RegisterText>
       <DynamicFormInputs inputs={USER_REGISTER_INPUTS} onChange={handleUserItemChange} />
       <ButtonContainer>
         <Button color='info' fullWidth onClick={handleSubmit} variant='contained'>
@@ -102,10 +107,6 @@ export const UserRegister = () => {
     </>
   );
 };
-
-const RegisterTextContainer = styled.div({
-  marginTop: '100px',
-});
 
 const RegisterText = styled(Typography)({
   margin: '10px 0',

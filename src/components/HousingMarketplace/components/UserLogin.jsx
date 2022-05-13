@@ -10,7 +10,7 @@ import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 
 export const UserLogin = () => {
   const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
-  const { alert, alertDispatch } = useContext(AlertContext);
+  const { alertDispatch } = useContext(AlertContext);
   const [signInItem, setSignInItem] = useState({});
 
   const handleAlert = msg => {
@@ -48,7 +48,7 @@ export const UserLogin = () => {
         if (!passwordMatch) {
           handleAlert('Password does not match');
         } else {
-          userAuthenticationDispatch({ type: 'SIGN_IN' });
+          userAuthenticationDispatch({ type: 'SIGNED_IN' });
         }
       }
     }
@@ -56,9 +56,12 @@ export const UserLogin = () => {
 
   const handlesetIsRegistering = () => userAuthenticationDispatch({ type: 'REGISTER' });
 
+  const handleBackToSignIn = () => userAuthenticationDispatch({ type: 'SIGN_IN' });
+
   return (
     <>
-      <UserLoginContainer>
+      {isRegistering && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
+      <UserLoginContainer isRegistering={isRegistering}>
         {isRegistering ? (
           <UserRegister />
         ) : (
@@ -94,10 +97,15 @@ const AlertContainer = styled.div({
   justifyContent: 'center',
 });
 
-const UserLoginContainer = styled.div({
-  margin: '9% 26% 0px 26%',
-  textAlign: 'center',
-});
+const UserLoginContainer = styled.div(({ isRegistering }) => [
+  {
+    margin: '10% 26% 0px 26%',
+    textAlign: 'center',
+  },
+  isRegistering && {
+    marginTop: '1%',
+  },
+]);
 
 const ButtonContainer = styled.div({
   margin: 10,
