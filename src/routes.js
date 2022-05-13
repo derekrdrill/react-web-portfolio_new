@@ -12,6 +12,7 @@ import { GithubFinder } from './components/GithubFinder/components/GithubFinder'
 import { Sandbox } from './components/Sandbox/Sandbox';
 import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
 import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
+import { AlertProvider } from './components/Alert/context/AlertContext';
 
 export const routes = [
   {
@@ -84,7 +85,9 @@ export const routes = [
     path: '/housing-marketplace',
     render: (
       <UserAuthenticationProvider>
-        <HousingMarketplace />
+        <AlertProvider>
+          <HousingMarketplace />
+        </AlertProvider>
       </UserAuthenticationProvider>
     ),
   },

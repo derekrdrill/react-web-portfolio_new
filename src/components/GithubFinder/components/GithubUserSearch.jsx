@@ -30,8 +30,6 @@ export const GithubUserSearch = () => {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-
     if (text === '') {
       const alertMsg = 'You must enter something for the search to fire 🔥';
       const alertTitle = 'Empty Search';
@@ -40,7 +38,7 @@ export const GithubUserSearch = () => {
       alertDispatch({
         type: 'SET_ALERT',
         fadeOut: false,
-        payload: { msg: alertMsg, title: alertTitle, type: alertType, fadeOut: true },
+        payload: { msg: alertMsg, title: alertTitle, type: alertType },
       });
 
       setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2000);
