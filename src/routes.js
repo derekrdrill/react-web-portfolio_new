@@ -13,6 +13,7 @@ import { Sandbox } from './components/Sandbox/Sandbox';
 import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
 import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
 import { UserLogin } from './components/HousingMarketplace/components/UserLogin';
+import { UserPasswordReset } from './components/HousingMarketplace/components/UserPasswordReset';
 import { AlertProvider } from './components/Alert/context/AlertContext';
 
 export const routes = [
@@ -109,7 +110,7 @@ export const routes = [
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
-          <h2>Hi</h2>
+          <UserPasswordReset />
         </AlertProvider>
       </UserAuthenticationProvider>
     ),
