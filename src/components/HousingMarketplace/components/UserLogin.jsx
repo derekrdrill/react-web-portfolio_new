@@ -8,6 +8,7 @@ import { UserRegister } from './UserRegister';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
+import { ShowHideIcon } from '../../ShowHideIcon/ShowHideIcon';
 
 export const UserLogin = () => {
   const { isRegistering, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
@@ -94,7 +95,7 @@ export const UserLogin = () => {
       </AlertContainer>
     </>
   );
-};;
+};
 
 const AlertContainer = styled.div({
   display: 'flex',
@@ -122,3 +123,5 @@ const LoginTextContainer = styled.div({
 const LoginText = styled(Typography)({
   margin: '10px 0',
 });
+
+const ShowHidePasswordIcon = styled(ShowHideIcon)({});
