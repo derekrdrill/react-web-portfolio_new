@@ -44,8 +44,6 @@ export const UserLogin = () => {
     if (response.ok) {
       const { userNameExists, passwordMatch, token } = await response.json();
 
-      console.log(token);
-
       if (!userNameExists) {
         handleAlert('Username does not exist');
       } else {
