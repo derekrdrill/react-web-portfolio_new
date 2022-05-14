@@ -10,6 +10,11 @@ export const userAuthenticationReducer = (state, action) => {
         ...state,
         forgotPassword: true,
       };
+    case 'PASSWORD_RESET':
+      return {
+        ...state,
+        passwordIsReset: true,
+      };
     case 'SIGN_IN':
       return {
         ...state,
