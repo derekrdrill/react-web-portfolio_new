@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppBar, Button, Toolbar } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,16 +8,22 @@ import { faCompass, faTag, faUser } from '@fortawesome/fontawesome-free-solid';
 export const Navbar = ({ children }) => {
   return (
     <>
-      {children}
       <FooterBar>
         <Toolbar>
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-            <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faCompass} />}>Explore</FooterBarButton>
-            <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}>Offer</FooterBarButton>
-            <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faUser} />}>Profile</FooterBarButton>
+            <StyledLink to='/housing-marketplace/explore'>
+              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faCompass} />}>Explore</FooterBarButton>
+            </StyledLink>
+            <StyledLink to='/housing-marketplace/offer'>
+              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}>Offer</FooterBarButton>
+            </StyledLink>
+            <StyledLink to='/housing-marketplace/profile'>
+              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faUser} />}>Profile</FooterBarButton>
+            </StyledLink>
           </div>
         </Toolbar>
       </FooterBar>
+      {children}
     </>
   );
 };
@@ -41,4 +48,10 @@ const FooterBarButton = styled(Button)({
     },
   },
   color: 'grey',
+});
+
+const StyledLink = styled(Link)({
+  textDecoration: 'none',
+  margin: 15,
+  padding: 2,
 });

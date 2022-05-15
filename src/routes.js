@@ -12,8 +12,13 @@ import { GithubFinder } from './components/GithubFinder/components/GithubFinder'
 import { Sandbox } from './components/Sandbox/Sandbox';
 import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
 import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
+import { Navbar } from './components/HousingMarketplace/components/Navbar';
+import { Explore } from './components/HousingMarketplace/components/Explore';
+import { Offer } from './components/HousingMarketplace/components/Offer';
+import { Profile } from './components/HousingMarketplace/components/Profile';
 import { UserLogin } from './components/HousingMarketplace/components/UserLogin';
 import { UserPasswordReset } from './components/HousingMarketplace/components/UserPasswordReset';
+import { Category } from './components/HousingMarketplace/components/Category';
 import { AlertProvider } from './components/Alert/context/AlertContext';
 
 export const routes = [
@@ -93,24 +98,76 @@ export const routes = [
       </UserAuthenticationProvider>
     ),
   },
+  // {
+  //   id: 14,
+  //   path: '/housing-marketplace',
+  //   render: (
+  //     <UserAuthenticationProvider>
+  //       <AlertProvider>
+  //         <HousingMarketplace />
+  //       </AlertProvider>
+  //     </UserAuthenticationProvider>
+  //   ),
+  // },
   {
-    id: 14,
-    path: '/housing-marketplace/home',
+    id: 15,
+    path: '/housing-marketplace/explore',
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
-          <HousingMarketplace />
+          <Navbar>
+            <Explore />
+          </Navbar>
         </AlertProvider>
       </UserAuthenticationProvider>
     ),
   },
   {
-    id: 15,
-    path: '/housing-marketplace/reset-password/:token/:userID',
+    id: 16,
+    path: '/housing-marketplace/offer',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <Navbar>
+            <Offer />
+          </Navbar>
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 17,
+    path: '/housing-marketplace/profile',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <Navbar>
+            <Profile />
+          </Navbar>
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 18,
+    path: '/housing-marketplace/reset-password/:token',
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
           <UserPasswordReset />
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 19,
+    path: '/housing-marketplace/category/:category',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <Navbar>
+            <Category />
+          </Navbar>
         </AlertProvider>
       </UserAuthenticationProvider>
     ),
