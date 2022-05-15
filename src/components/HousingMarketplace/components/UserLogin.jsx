@@ -33,7 +33,8 @@ export const UserLogin = () => {
     }).catch(e => console.warn(e));
 
     if (response.ok) {
-      const { userNameExists, passwordMatch, token } = await response.json();
+      const { userNameExists, passwordMatch, token, userReturnData } = await response.json();
+      const { username, firstName, lastName, email } = userReturnData;
 
       if (!userNameExists) {
         handleAlert('Username does not exist', 'Sign in error', 'error', alertDispatch);
@@ -43,6 +44,10 @@ export const UserLogin = () => {
         } else {
           userAuthenticationDispatch({ type: 'SIGNED_IN' });
           sessionStorage.setItem('token', JSON.stringify(token));
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('firstName', firstName);
+          sessionStorage.setItem('lastName', lastName);
           history.push('/housing-marketplace/explore');
         }
       }
