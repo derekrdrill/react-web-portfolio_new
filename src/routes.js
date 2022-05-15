@@ -124,7 +124,7 @@ export const routes = [
   },
   {
     id: 16,
-    path: '/housing-marketplace/offer',
+    path: '/housing-marketplace/offers',
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
