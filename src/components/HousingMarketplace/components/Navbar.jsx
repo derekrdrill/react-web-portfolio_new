@@ -1,4 +1,5 @@
 import React from 'react';
+import { history } from '../../../index';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppBar, Button, Toolbar } from '@mui/material';
@@ -6,19 +7,40 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompass, faTag, faUser } from '@fortawesome/fontawesome-free-solid';
 
 export const Navbar = ({ children }) => {
+  const pathName = history.location.pathname;
+  const currentPage = pathName.slice(pathName.indexOf('place/') + 6, pathName.length);
+
   return (
     <>
       <FooterBar>
         <Toolbar>
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
             <StyledLink to='/housing-marketplace/explore'>
-              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faCompass} />}>Explore</FooterBarButton>
+              <FooterBarButton
+                currentPage={currentPage}
+                page='explore'
+                startIcon={<FontAwesomeIcon color='grey' icon={faCompass} />}
+              >
+                Explore
+              </FooterBarButton>
             </StyledLink>
-            <StyledLink to='/housing-marketplace/offer'>
-              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}>Offers</FooterBarButton>
+            <StyledLink to='/housing-marketplace/offers'>
+              <FooterBarButton
+                currentPage={currentPage}
+                page='offers'
+                startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}
+              >
+                Offers
+              </FooterBarButton>
             </StyledLink>
             <StyledLink to='/housing-marketplace/profile'>
-              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faUser} />}>Profile</FooterBarButton>
+              <FooterBarButton
+                currentPage={currentPage}
+                page='profile'
+                startIcon={<FontAwesomeIcon color='grey' icon={faUser} />}
+              >
+                Profile
+              </FooterBarButton>
             </StyledLink>
           </div>
         </Toolbar>
@@ -36,7 +58,7 @@ const FooterBar = styled(AppBar)({
   top: '90%',
 });
 
-const FooterBarButton = styled(Button)({
+const FooterBarButton = styled(Button)(({ currentPage, page }) => ({
   ':hover': {
     background: 'none',
     color: '#5a5a5a',
@@ -47,8 +69,14 @@ const FooterBarButton = styled(Button)({
       },
     },
   },
-  color: 'grey',
-});
+  color: currentPage === page ? '#5a5a5a' : 'grey',
+  fontWeight: currentPage === page ? 'bold' : 'normal',
+  svg: {
+    path: {
+      fill: currentPage === page ? '#5a5a5a' : 'grey',
+    },
+  },
+}));
 
 const StyledLink = styled(Link)({
   textDecoration: 'none',
