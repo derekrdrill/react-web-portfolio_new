@@ -7,9 +7,5 @@ export const HousingMarketplace = () => {
 
   !token && history.push('/housing-marketplace/auth');
 
-  return (
-    <Navbar>
-      <h6>Logged in</h6>
-    </Navbar>
-  );
+  return <Navbar></Navbar>;
 };
