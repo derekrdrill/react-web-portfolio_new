@@ -15,7 +15,7 @@ export const Navbar = ({ children }) => {
               <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faCompass} />}>Explore</FooterBarButton>
             </StyledLink>
             <StyledLink to='/housing-marketplace/offer'>
-              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}>Offer</FooterBarButton>
+              <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faTag} />}>Offers</FooterBarButton>
             </StyledLink>
             <StyledLink to='/housing-marketplace/profile'>
               <FooterBarButton startIcon={<FontAwesomeIcon color='grey' icon={faUser} />}>Profile</FooterBarButton>

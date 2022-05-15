@@ -23,8 +23,6 @@ export const Category = () => {
     }
   };
 
-  console.log(listings);
-
   useEffect(() => {
     fetchListings();
     setLoading(false);
@@ -40,7 +38,7 @@ export const Category = () => {
       {loading ? (
         <LoaderSpinner open />
       ) : listings && listings.length > 0 ? (
-        <Grid container>
+        <Grid container spacing={3}>
           {listings.map(listing => (
             <ListingItem key={listing._id} listing={listing} />
           ))}
