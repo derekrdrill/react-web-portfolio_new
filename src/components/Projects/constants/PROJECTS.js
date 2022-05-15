@@ -36,8 +36,8 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Housing Marketplace App',
-    description: `A tool that pulls data from the Github API and cleanly presents it in a user-friendly React UI`,
+    description: `An application that...`,
     icon: faBuilding,
-    to: '/github-finder',
+    to: '/housing-marketplace/auth',
   },
 ];
