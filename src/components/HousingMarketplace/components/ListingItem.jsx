@@ -1,10 +1,14 @@
 import React from 'react';
+import { history } from '../../../index';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBath, faBed, faParking, faPaw } from '@fortawesome/fontawesome-free-solid';
 
 export const ListingItem = ({ listing }) => {
+  const token = sessionStorage.getItem('token');
+  !token && history.push('/housing-marketplace/auth');
+
   const { bathrooms, bedrooms, discountedPrice, imageUrls, location, name, offer, parking, pets, regularPrice, type } =
     listing;
 

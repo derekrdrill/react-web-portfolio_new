@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { history } from '../../../index';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { ListingItem } from './ListingItem';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 export const Offer = () => {
+  const token = sessionStorage.getItem('token');
+  !token && history.push('/housing-marketplace/auth');
+
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
 
