@@ -8,25 +8,14 @@ import { UserRegister } from './UserRegister';
 import { UserPasswordResetSend } from './UserPasswordResetSend';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
+import { handleAlert } from '../../Alert/context/AlertActions';
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
-import { ShowHideIcon } from '../../ShowHideIcon/ShowHideIcon';
 
 export const UserLogin = () => {
   const { isRegistering, forgotPassword, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
   const [signInItem, setSignInItem] = useState({ username: '', password: '' });
   const allFieldsFilled = signInItem.username && signInItem.password;
-
-  const handleAlert = msg => {
-    alertDispatch({
-      type: 'SET_ALERT',
-      fadeOut: false,
-      payload: { msg: msg, title: 'Sign-in error', type: 'error' },
-    });
-
-    setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2000);
-    setTimeout(() => alertDispatch({ type: 'REMOVE_ALERT' }), 2400);
-  };
 
   const handleSetSignIn = e => {
     const itemID = e.currentTarget.id;
@@ -47,20 +36,20 @@ export const UserLogin = () => {
       const { userNameExists, passwordMatch, token } = await response.json();
 
       if (!userNameExists) {
-        handleAlert('Username does not exist');
+        handleAlert('Username does not exist', 'Sign in error', 'error', alertDispatch);
       } else {
         if (!passwordMatch) {
-          handleAlert('Password does not match');
+          handleAlert('Password does not match', 'Sign in error', 'error', alertDispatch);
         } else {
           userAuthenticationDispatch({ type: 'SIGNED_IN' });
           sessionStorage.setItem('token', JSON.stringify(token));
-          history.push('/housing-marketplace/home');
+          history.push('/housing-marketplace/explore');
         }
       }
     }
   };
 
-  const handleForgotPassword = async () => userAuthenticationDispatch({ type: 'FORGOT_PASSWORD' });
+  const handleForgotPassword = () => userAuthenticationDispatch({ type: 'FORGOT_PASSWORD' });
 
   const handlesetIsRegistering = () => userAuthenticationDispatch({ type: 'REGISTER' });
 
@@ -128,5 +117,3 @@ const LoginTextContainer = styled.div({
 const LoginText = styled(Typography)({
   margin: '10px 0',
 });
-
-const ShowHidePasswordIcon = styled(ShowHideIcon)({});
