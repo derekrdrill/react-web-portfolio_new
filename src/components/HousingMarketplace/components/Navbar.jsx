@@ -15,7 +15,7 @@ export const Navbar = ({ children }) => {
       <FooterBar>
         <Toolbar>
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-            <StyledLink to='/housing-marketplace/explore'>
+            <StyledLink to='./explore'>
               <FooterBarButton
                 currentPage={currentPage}
                 page='explore'
@@ -24,7 +24,7 @@ export const Navbar = ({ children }) => {
                 Explore
               </FooterBarButton>
             </StyledLink>
-            <StyledLink to='/housing-marketplace/offers'>
+            <StyledLink to='./offers'>
               <FooterBarButton
                 currentPage={currentPage}
                 page='offers'
@@ -33,7 +33,7 @@ export const Navbar = ({ children }) => {
                 Offers
               </FooterBarButton>
             </StyledLink>
-            <StyledLink to='/housing-marketplace/profile'>
+            <StyledLink to='./profile'>
               <FooterBarButton
                 currentPage={currentPage}
                 page='profile'
