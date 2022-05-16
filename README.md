@@ -11,7 +11,7 @@ This app is heavily dependent on React JS, while also relying on the following l
   <li>Font Awesome</li>
 </ul>
 
-This application is currently comprised of 21 total components that are thoughtfully created to handle the many states a user may experience throughout the app.
+This application is currently comprised of 24 total components that are thoughtfully created to handle the many states a user may experience throughout the app.
 This initiative is still in progress, but this repository can be downloaded locally, and then 'npm start' can be run from the terminal to fire up this app in its current state
 
 Here is the breakdown of completed and pending work on this app:
@@ -70,10 +70,11 @@ Here is the breakdown of completed and pending work on this app:
     </ul>
   </li>
   <li>
-    Github API app
+    Housing marketplace app
     <ul>
       <li>
-        An app built to pull data from the Github API, allowing someone to search Github users and pull up a personal profile that displays their metrics. 
+        An app that allows users to see current listings, current offers on listings and create new listings.
+        This app pull asll dat a from a MongoDB via an Express backend.
       </li> 
       <li>
         Status: <em>In Progress</em>
