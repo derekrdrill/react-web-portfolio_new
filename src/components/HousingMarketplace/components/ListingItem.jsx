@@ -7,7 +7,7 @@ import { faBath, faBed, faParking, faPaw } from '@fortawesome/fontawesome-free-s
 
 export const ListingItem = ({ listing }) => {
   const token = sessionStorage.getItem('token');
-  !token && history.push('/housing-marketplace/auth');
+  !token && history.push('./auth');
 
   const { bathrooms, bedrooms, discountedPrice, imageUrls, location, name, offer, parking, pets, regularPrice, type } =
     listing;

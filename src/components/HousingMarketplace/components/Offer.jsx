@@ -7,7 +7,7 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 export const Offer = () => {
   const token = sessionStorage.getItem('token');
-  !token && history.push('/housing-marketplace/auth');
+  !token && history.push('./auth');
 
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
