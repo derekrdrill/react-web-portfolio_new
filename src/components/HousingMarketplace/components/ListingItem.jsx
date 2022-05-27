@@ -18,7 +18,14 @@ export const ListingItem = ({ listing }) => {
     <Grid item xs={12} md={6} lg={4}>
       <Grid container spacing={1}>
         <Grid item xs={4}>
-          <ListingImage src={imageUrls[0]} alt={name} />
+          <ListingImage
+            src={
+              imageUrls
+                ? imageUrls[0]
+                : 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
+            }
+            alt={name}
+          />
         </Grid>
         <Grid item xs={8}>
           <Typography component='h6' variant='subtitle2'>
