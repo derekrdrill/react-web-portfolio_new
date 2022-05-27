@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Button, ButtonGroup, Grid, InputLabel, TextField, Typography } from '@mui/material';
+import { AlertContext } from '../../Alert/context/AlertContext';
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
+import { handleAlert } from '../../Alert/context/AlertActions';
 import { DynamicList } from '../../DynamicList/DynamicList';
+import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
+const formDataDefaults = {
+  bathrooms: 1,
+  bedrooms: 1,
+  discountedPrice: 0,
+  furnished: false,
+  images: [],
+  latitude: 0,
+  longitude: 0,
+  location: '',
+  name: '',
+  offer: false,
+  parking: true,
+  pets: false,
+  regularPrice: 0,
+  type: 'rent',
+};
 
 export const CreateListing = () => {
+  const { alertDispatch } = useContext(AlertContext);
   const username = sessionStorage.getItem('username');
+  const [loading, setLoading] = useState(false);
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
-  const [formData, setFormData] = useState({
-    bathrooms: 1,
-    bedrooms: 1,
-    discountedPrice: 0,
-    furnished: false,
-    images: {},
-    latitude: 0,
-    longitude: 0,
-    location: '',
-    name: '',
-    offer: false,
-    parking: false,
-    pets: false,
-    regularPrice: 0,
-    type: 'rent',
-  });
+
+  const [formData, setFormData] = useState(formDataDefaults);
 
   const {
     bathrooms,
@@ -45,12 +55,77 @@ export const CreateListing = () => {
     setFormData({ ...formData, [item]: value });
   };
 
+  const handleGeoLocation = async () => {
+    if (geoLocationEnabled && location) {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_GEOCODE_TOKEN}`,
+      ).catch(e => console.warn(e));
+
+      const { results } = await response.json();
+
+      setFormData({
+        ...formData,
+        longitude: results[0].geometry.location.lng,
+        latitude: results[0].geometry.location.lat,
+      });
+    }
+  };
+
   const handleButtonGroupChange = (item, value) => {
     setFormData({ ...formData, [item]: value });
   };
 
+  const handleImageUpload = e => {
+    if (e.target.files) {
+      const imageFile = e.target.files[0];
+      setFormData({ ...formData, images: [...images, imageFile] });
+    }
+  };
+
+  const handleCreateListing = async () => {
+    setLoading(true);
+    const imageData = new FormData();
+    Object.values(formData.images).forEach(image => {
+      imageData.append('uploadImages', image);
+    });
+
+    const uploadImagesResponse = await axios
+      .post('../../upload-images', imageData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .catch(e => console.warn(e));
+
+    const { data } = uploadImagesResponse;
+
+    if (data.uploadSuccess) {
+      const insertFormDataResponse = await axios
+        .post(
+          `../../create-listing`,
+          { formData, username: username, images: data.filePaths },
+          {
+            headers: { 'Content-Type': 'application/json' },
+          },
+        )
+        .catch(e => console.warn(e));
+
+      if (insertFormDataResponse.status !== 200) {
+        console.log('error');
+      }
+
+      setLoading(false);
+      setFormData(formDataDefaults);
+      handleAlert('New listing added', 'Success', 'success', alertDispatch);
+    }
+  };
+
   return (
     <MainContainer>
+      {loading && <LoaderSpinner open={true} />}
+      <AlertContainer>
+        <Alert />
+      </AlertContainer>
       <TitleContainer>
         <Typography component='h6' variant='h4'>
           Create a Listing
@@ -75,6 +150,9 @@ export const CreateListing = () => {
             multiline
             maxRows={3}
             value={location}
+            onBlur={e => {
+              handleGeoLocation(e);
+            }}
             onChange={e => {
               handleFormInputChange(e, 'location');
             }}
@@ -117,7 +195,7 @@ export const CreateListing = () => {
             <SelectorButton
               size='small'
               selected={type === 'sell'}
-              onClick={() => handleButtonGroupChange('type', 'sell')}
+              onClick={() => handleButtonGroupChange('type', 'sale')}
             >
               Sell
             </SelectorButton>
@@ -153,17 +231,19 @@ export const CreateListing = () => {
             </SelectorButton>
           </ButtonGroup>
         </Grid>
-        <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-          <InputLabel shrink>Pets Allowed</InputLabel>
-          <ButtonGroup fullWidth>
-            <SelectorButton size='small' selected={pets} onClick={() => handleButtonGroupChange('pets', true)}>
-              Yes
-            </SelectorButton>
-            <SelectorButton size='small' selected={!pets} onClick={() => handleButtonGroupChange('pets', false)}>
-              No
-            </SelectorButton>
-          </ButtonGroup>
-        </Grid>
+        {type === 'rent' && (
+          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+            <InputLabel shrink>Pets Allowed</InputLabel>
+            <ButtonGroup fullWidth>
+              <SelectorButton size='small' selected={pets} onClick={() => handleButtonGroupChange('pets', true)}>
+                Yes
+              </SelectorButton>
+              <SelectorButton size='small' selected={!pets} onClick={() => handleButtonGroupChange('pets', false)}>
+                No
+              </SelectorButton>
+            </ButtonGroup>
+          </Grid>
+        )}
         <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
           <InputLabel shrink>Offer</InputLabel>
           <ButtonGroup fullWidth>
@@ -178,10 +258,21 @@ export const CreateListing = () => {
         <Grid item xs={12} sm={8} md={5} lg={6}>
           <TextField
             fullWidth
-            label='Rate/Price'
+            label='Regular Price'
             value={regularPrice}
             onChange={e => {
               handleFormInputChange(e, 'regularPrice');
+            }}
+            size='small'
+          />
+        </Grid>
+        <Grid item xs={12} sm={8} md={5} lg={6}>
+          <TextField
+            fullWidth
+            label='Discounted Price'
+            value={discountedPrice}
+            onChange={e => {
+              handleFormInputChange(e, 'discountedPrice');
             }}
             size='small'
           />
@@ -194,7 +285,16 @@ export const CreateListing = () => {
               <DynamicList
                 addColor='forestgreen'
                 removeColor='maroon'
-                children={<TextField type='file' variant='filled' />}
+                children={
+                  <FileUploadField
+                    disabled={!name || !location || !regularPrice || !discountedPrice}
+                    inputProps={{ accept: '.jpg, .png, .jpeg' }}
+                    onChange={handleImageUpload}
+                    size='small'
+                    type='file'
+                    variant='filled'
+                  />
+                }
                 maxRows={5}
               />
             </Grid>
@@ -203,7 +303,13 @@ export const CreateListing = () => {
       </Grid>
       <Grid container>
         <Grid item xs={12} md={5} xl={3}>
-          <Button color='info' fullWidth variant='contained'>
+          <Button
+            color='info'
+            disabled={!name || !location || !regularPrice || !discountedPrice}
+            fullWidth
+            onClick={handleCreateListing}
+            variant='contained'
+          >
             Create Listing
           </Button>
         </Grid>
@@ -220,6 +326,11 @@ const TitleContainer = styled.div({
   padding: '10px 0',
 });
 
+const AlertContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+});
+
 const SelectorButton = styled(Button)(({ selected }) => [
   selected && {
     ':hover': {
@@ -228,5 +339,11 @@ const SelectorButton = styled(Button)(({ selected }) => [
     },
     backgroundColor: 'navy',
     color: 'white',
+  },
+]);
+
+const FileUploadField = styled(TextField)(({ disabled }) => [
+  disabled && {
+    pointerEvents: 'none',
   },
 ]);
