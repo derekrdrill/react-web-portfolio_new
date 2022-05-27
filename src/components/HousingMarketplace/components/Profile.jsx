@@ -27,7 +27,7 @@ export const Profile = () => {
       </Typography>
       <PersonalDetailsContainer container>
         <Grid item xs={12} md={6}>
-          <Card backgroundColor='gainsboro' spacing={false}>
+          <Card backgroundColor='gainsboro' hasSpacing={false}>
             <Typography component='h6' variant='subtitle1'>
               {`${firstName} ${lastName}`}
             </Typography>
