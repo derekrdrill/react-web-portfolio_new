@@ -189,6 +189,19 @@ export const routes = [
     ),
   },
   {
+    id: 21,
+    path: '/housing-marketplace/listing',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <Navbar>
+            <Listing />
+          </Navbar>
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
     id: 22,
     path: '/file-uploader',
     render: <FileUploader />,
