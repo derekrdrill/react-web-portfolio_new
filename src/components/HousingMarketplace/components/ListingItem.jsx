@@ -1,66 +1,103 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { history } from '../../../index';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBath, faBed, faParking, faPaw } from '@fortawesome/fontawesome-free-solid';
+import { faBath, faBed, faParking, faPaw, faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
 
 export const ListingItem = ({ listing }) => {
   const token = sessionStorage.getItem('token');
   !token && history.push('./auth');
 
-  const { bathrooms, bedrooms, discountedPrice, imageUrls, location, name, offer, parking, pets, regularPrice, type } =
-    listing;
+  const {
+    _id,
+    bathrooms,
+    bedrooms,
+    discountedPrice,
+    imageUrls,
+    location,
+    name,
+    offer,
+    parking,
+    pets,
+    regularPrice,
+    type,
+  } = listing;
 
   const price = (offer ? discountedPrice : regularPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return (
-    <Grid item xs={12} md={6} lg={4}>
-      <Grid container spacing={1}>
-        <Grid item xs={4}>
-          <ListingImage
-            src={
-              imageUrls
-                ? imageUrls[0]
-                : 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
-            }
-            alt={name}
-          />
-        </Grid>
-        <Grid item xs={8}>
-          <Typography component='h6' variant='subtitle2'>
-            {location}
-          </Typography>
-          <ListingTitle component='h6' variant='subtitle1'>
-            {name}
-          </ListingTitle>
-          <ListingPrice component='h6' variant='subtitle1'>
-            ${price}
-            {type === 'rent' && ' / month'}
-          </ListingPrice>
-          <Grid container>
-            <ListingStatNumbersContainer item>
-              <FontAwesomeIcon icon={faBed} />
-              <ListingStatNumbers component='span' variant='subtitle2'>
-                {bedrooms}
-              </ListingStatNumbers>
-            </ListingStatNumbersContainer>
-            <ListingStatNumbersContainer item>
-              <FontAwesomeIcon icon={faBath} />
-              <ListingStatNumbers component='span' variant='subtitle2'>
-                {bathrooms}
-              </ListingStatNumbers>
-            </ListingStatNumbersContainer>
-            <ListingStatNumbersContainer item>
-              {parking && <FontAwesomeIcon icon={faParking} />}
-            </ListingStatNumbersContainer>
-            <ListingStatNumbersContainer item>{pets && <FontAwesomeIcon icon={faPaw} />}</ListingStatNumbersContainer>
+    <LisitingItemContainer item xs={12} md={6} lg={4}>
+      <ListItemLink to={`/housing-marketplace/listing/${_id}`}>
+        <Grid container spacing={1}>
+          <Grid item xs={4}>
+            <ListingImage
+              src={
+                imageUrls
+                  ? imageUrls[0]
+                  : 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
+              }
+              alt={name}
+            />
+          </Grid>
+          <Grid item xs={7}>
+            <Typography component='h6' variant='subtitle2'>
+              {location}
+            </Typography>
+            <ListingTitle component='h6' variant='subtitle1'>
+              {name}
+            </ListingTitle>
+            <ListingPrice component='h6' variant='subtitle1'>
+              ${price}
+              {type === 'rent' && ' / month'}
+            </ListingPrice>
+            <Grid container>
+              <ListingStatNumbersContainer item>
+                <FontAwesomeIcon icon={faBed} />
+                <ListingStatNumbers component='span' variant='subtitle2'>
+                  {bedrooms}
+                </ListingStatNumbers>
+              </ListingStatNumbersContainer>
+              <ListingStatNumbersContainer item>
+                <FontAwesomeIcon icon={faBath} />
+                <ListingStatNumbers component='span' variant='subtitle2'>
+                  {bathrooms}
+                </ListingStatNumbers>
+              </ListingStatNumbersContainer>
+              <ListingStatNumbersContainer item>
+                {parking && <FontAwesomeIcon icon={faParking} />}
+              </ListingStatNumbersContainer>
+              <ListingStatNumbersContainer item>{pets && <FontAwesomeIcon icon={faPaw} />}</ListingStatNumbersContainer>
+            </Grid>
+          </Grid>
+          <Grid item xs={1}>
+            <ListingDeleteIcon color='red' icon={faTrash} onClick={() => console.log('hey')} />
+            <br />
+            <ListingEditIcon color='#8f8f8f' icon={faPencilAlt} onClick={() => console.log('hey')} />
           </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </ListItemLink>
+    </LisitingItemContainer>
   );
 };
+
+const ListItemLink = styled(Link)({
+  ':hover': {
+    color: '#404040',
+  },
+  textDecoration: 'none',
+  color: '#404040',
+});
+
+const LisitingItemContainer = styled(Grid)({
+  ':hover': {
+    backgroundColor: '#ebf0f7',
+  },
+  borderRadius: 5,
+  cursor: 'pointer',
+  padding: 15,
+});
 
 const ListingTitle = styled(Typography)({
   fontWeight: 'bold',
@@ -68,8 +105,8 @@ const ListingTitle = styled(Typography)({
 
 const ListingImage = styled.img({
   borderRadius: 15,
-  height: '100%',
-  width: '100%',
+  maxHeight: '95%',
+  maxWidth: '95%',
 });
 
 const ListingPrice = styled(Typography)({
@@ -83,4 +120,20 @@ const ListingStatNumbers = styled(Typography)({
 
 const ListingStatNumbersContainer = styled(Grid)({
   margin: '0 5px',
+});
+
+const ListingDeleteIcon = styled(FontAwesomeIcon)({
+  ':hover': {
+    path: {
+      fill: '#ad0031',
+    },
+  },
+});
+
+const ListingEditIcon = styled(FontAwesomeIcon)({
+  ':hover': {
+    path: {
+      fill: '#4a4a4a',
+    },
+  },
 });
