@@ -37,9 +37,9 @@ export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubm
 
 const ModalContainer = styled.div({
   backgroundColor: 'white',
-  marginLeft: '32%',
+  marginLeft: '25%',
   marginTop: '18%',
-  maxWidth: '35%',
+  maxWidth: '50%',
   padding: 15,
   borderRadius: 5,
 });

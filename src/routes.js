@@ -22,7 +22,7 @@ import { Category } from './components/HousingMarketplace/components/Category';
 import { AlertProvider } from './components/Alert/context/AlertContext';
 import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
 import { FileUploader } from './components/FileUploader/FileUploader';
-import { Listing } from './components/HousingMarketplace/components/Listing';
+import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
 
 export const routes = [
   {
@@ -190,12 +190,12 @@ export const routes = [
   },
   {
     id: 21,
-    path: '/housing-marketplace/listing',
+    path: '/housing-marketplace/listing/:listingID',
     render: (
       <UserAuthenticationProvider>
         <AlertProvider>
           <Navbar>
-            <Listing />
+            <ListingInfo />
           </Navbar>
         </AlertProvider>
       </UserAuthenticationProvider>
