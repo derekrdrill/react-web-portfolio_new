@@ -195,7 +195,7 @@ export const ListingInfo = () => {
           <MapContainer>
             <GoogleMapReact
               bootstrapURLKeys={{
-                key: 'AIzaSyAkShezaj-m7K5mNUjyivbVJyXrXfzKGNM',
+                key: process.env.REACT_APP_GOOGLE_MAPS_TOKEN,
                 language: 'en',
               }}
               defaultCenter={{ lat: listingInfo.latitude, lng: listingInfo.longitude }}
