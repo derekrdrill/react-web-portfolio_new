@@ -21,6 +21,8 @@ import { UserPasswordReset } from './components/HousingMarketplace/components/Us
 import { Category } from './components/HousingMarketplace/components/Category';
 import { AlertProvider } from './components/Alert/context/AlertContext';
 import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
+import { FileUploader } from './components/FileUploader/FileUploader';
+import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
 
 export const routes = [
   {
@@ -185,5 +187,23 @@ export const routes = [
         </AlertProvider>
       </UserAuthenticationProvider>
     ),
+  },
+  {
+    id: 21,
+    path: '/housing-marketplace/listing/:listingID',
+    render: (
+      <UserAuthenticationProvider>
+        <AlertProvider>
+          <Navbar>
+            <ListingInfo />
+          </Navbar>
+        </AlertProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 22,
+    path: '/file-uploader',
+    render: <FileUploader />,
   },
 ];

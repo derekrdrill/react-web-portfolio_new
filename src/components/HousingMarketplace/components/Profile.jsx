@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { history } from '../../../index';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { Card } from '../../Card/Card';
+import { ListingItem } from './ListingItem';
 import HouseIcon from '@mui/icons-material/House';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -14,6 +16,27 @@ export const Profile = () => {
   const email = sessionStorage.getItem('email');
   const firstName = sessionStorage.getItem('firstName');
   const lastName = sessionStorage.getItem('lastName');
+  const username = sessionStorage.getItem('username');
+
+  const [listings, setListings] = useState([]);
+
+  const getUserListings = async () => {
+    const response = await axios
+      .get(`../../get-listing-info-by-user/${username}`, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .catch(e => console.warn(e));
+
+    if (response.status === 200) {
+      const { data } = response;
+      const listings = data.listings;
+      setListings(listings);
+    }
+  };
+
+  useEffect(() => {
+    getUserListings();
+  }, []);
 
   return (
     <MainContainer>
@@ -27,7 +50,7 @@ export const Profile = () => {
       </Typography>
       <PersonalDetailsContainer container>
         <Grid item xs={12} md={6}>
-          <Card backgroundColor='gainsboro' spacing={false}>
+          <Card backgroundColor='gainsboro' hasSpacing={false}>
             <Typography component='h6' variant='subtitle1'>
               {`${firstName} ${lastName}`}
             </Typography>
@@ -52,12 +75,25 @@ export const Profile = () => {
           </SellOrRentLink>
         </Grid>
       </Grid>
+      <Grid container style={{ paddingTop: 30 }}>
+        <Grid item xs={12}>
+          <Typography component='h6' variant='subtitle1'>
+            Your listings
+          </Typography>
+        </Grid>
+        <Grid container style={{ height: 300, overflowY: 'auto', backgroundColor: '#fcfcfc' }}>
+          {listings.map(listing => (
+            <ListingItem key={listing._id} listing={listing} />
+          ))}
+        </Grid>
+      </Grid>
     </MainContainer>
   );
 };
 
 const MainContainer = styled.div({
   padding: 20,
+  marginBottom: 100,
 });
 
 const TitleContainer = styled.div({
@@ -76,5 +112,3 @@ const SellOrRentContainer = styled.div({
 const SellOrRentLink = styled(Link)({
   textDecoration: 'none',
 });
- 
-

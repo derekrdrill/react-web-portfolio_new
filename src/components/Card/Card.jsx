@@ -9,7 +9,7 @@ export const Card = ({
   hoverBackgroundcolor,
   hoverable,
   onClick,
-  spacing,
+  hasSpacing,
   textColor,
 }) => (
   <StyledDiv
@@ -18,7 +18,7 @@ export const Card = ({
     hoverBackgroundcolor={hoverBackgroundcolor}
     hoverable={hoverable}
     onClick={onClick}
-    spacing={spacing}
+    hasSpacing={hasSpacing}
     textColor={textColor}
   >
     {children}
@@ -32,7 +32,7 @@ Card.propTypes = {
   hoverBackgroundcolor: PropTypes.string,
   hoverable: PropTypes.bool,
   padding: PropTypes.bool,
-  spacing: PropTypes.bool,
+  hasSpacing: PropTypes.bool,
   textColor: PropTypes.string,
 };
 
@@ -41,19 +41,21 @@ Card.defaultProps = {
   padding: true,
 };
 
-const StyledDiv = styled.div(({ backgroundColor, darkMode, hoverBackgroundcolor, hoverable, spacing, textColor }) => ({
-  '.MuiInputBase-root': {
+const StyledDiv = styled.div(
+  ({ backgroundColor, darkMode, hoverBackgroundcolor, hoverable, hasSpacing, textColor }) => ({
+    '.MuiInputBase-root': {
+      backgroundColor: darkMode ? '#404040' : backgroundColor ? backgroundColor : '#FFF',
+      color: darkMode ? '#fff' : textColor ? textColor : '#333',
+    },
+    ':hover': {
+      backgroundColor: hoverBackgroundcolor && hoverBackgroundcolor,
+    },
     backgroundColor: darkMode ? '#404040' : backgroundColor ? backgroundColor : '#FFF',
     color: darkMode ? '#fff' : textColor ? textColor : '#333',
-  },
-  ':hover': {
-    backgroundColor: hoverBackgroundcolor && hoverBackgroundcolor,
-  },
-  backgroundColor: darkMode ? '#404040' : backgroundColor ? backgroundColor : '#FFF',
-  color: darkMode ? '#fff' : textColor ? textColor : '#333',
-  borderRadius: 15,
-  padding: spacing ? '40px 50px' : 10,
-  margin: spacing ? '20px 25px' : 2,
-  position: 'relative',
-  cursor: hoverable && 'pointer',
-}));
+    borderRadius: 15,
+    padding: hasSpacing ? '40px 50px' : 10,
+    margin: hasSpacing ? '20px 25px' : 2,
+    position: 'relative',
+    cursor: hoverable && 'pointer',
+  }),
+);
