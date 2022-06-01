@@ -30,6 +30,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "font-awesome": "^4.7.0",
+    "google-map-react": "^2.1.10",
     "history": "^4.7.2",
     "jquery": "^3.6.0",
     "prettier": "^2.6.2",
@@ -43,6 +44,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^5.0.0",
     "react-scroll": "^1.8.6",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3"
   },
   "browserslist": {
