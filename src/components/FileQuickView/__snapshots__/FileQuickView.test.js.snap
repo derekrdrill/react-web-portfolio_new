@@ -38,7 +38,7 @@ exports[`File Quick View tests renders correctly 1`] = `
             className=""
             fade={false}
             fixedWidth={false}
-            flip={null}
+            flip={false}
             icon={
               Object {
                 "icon": Array [
@@ -62,6 +62,8 @@ exports[`File Quick View tests renders correctly 1`] = `
             shake={false}
             size={null}
             spin={false}
+            spinPulse={false}
+            spinReverse={false}
             swapOpacity={false}
             symbol={false}
             title=""
@@ -80,7 +82,7 @@ exports[`File Quick View tests renders correctly 1`] = `
             className=""
             fade={false}
             fixedWidth={false}
-            flip={null}
+            flip={false}
             icon={
               Object {
                 "icon": Array [
@@ -104,6 +106,8 @@ exports[`File Quick View tests renders correctly 1`] = `
             shake={false}
             size={null}
             spin={false}
+            spinPulse={false}
+            spinReverse={false}
             swapOpacity={false}
             symbol={false}
             title=""
