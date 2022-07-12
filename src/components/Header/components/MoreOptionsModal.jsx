@@ -48,7 +48,7 @@ const StyledBox = styled(Box)({
   borderRadius: 5,
 });
 
-const ResumeOptionButtons = styled(Button)(({ cancelbutton }) => ({
+export const ResumeOptionButtons = styled(Button)(({ cancelbutton }) => ({
   backgroundColor: cancelbutton ? 'gainsboro' : '#311b92',
   color: cancelbutton ? 'black' : 'white',
   marginRight: 4,

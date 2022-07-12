@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Menu tests renders correctly 1`] = `
+<styled.div>
+  <HeaderMenuOptions
+    mainTo="about-me"
+    menuIcon={<Memo />}
+    menuTitle="About Me"
+    secondaryTo="/about-me"
+  />
+  <HeaderMenuOptions
+    mainTo="projects"
+    menuIcon={<Memo />}
+    menuTitle="Projects"
+    secondaryTo="/projects"
+  />
+  <HeaderMenuOptions
+    mainTo="connect-with-me"
+    menuIcon={<Memo />}
+    menuTitle="Connect With Me"
+    secondaryTo="/connect-with-me"
+  />
+  <HeaderMenuOptions
+    mainTo="home"
+    menuIcon={<Memo />}
+    menuTitle="George"
+    secondaryTo="/"
+  />
+</styled.div>
+`;

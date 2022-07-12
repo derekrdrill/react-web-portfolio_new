@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connect with me tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+  spacing={2}
+>
+  <FormInput
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": 1,
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "First Name",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+  />
+  <FormInput
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": 2,
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Last Name",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+  />
+  <FormInput
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": 3,
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Email",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+  />
+  <FormInput
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": 4,
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Phone (Optional)",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+  />
+</ForwardRef(Grid)>
+`;

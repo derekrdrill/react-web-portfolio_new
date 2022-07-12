@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/fontawesome-free-solid';
 
+export const EyeIcon = ({ locked, onClick }) => <StyledEyeIcon icon={locked ? faEye : faEyeSlash} onClick={onClick} />;
+
 export const ShowHideIcon = ({ onClick }) => {
   const [locked, setLocked] = useState(true);
   const handleSetLocked = () => setLocked(!locked);
 
   return (
-    <StyledEyeIcon
-      icon={locked ? faEye : faEyeSlash}
+    <EyeIcon
+      locked={locked}
       onClick={() => {
         handleSetLocked();
         onClick && onClick();

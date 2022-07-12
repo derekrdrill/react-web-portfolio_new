@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lead Input Page tests renders correctly 1`] = `
+<Context.Provider
+  value={
+    Object {
+      "leadInputDispatch": [Function],
+      "page": "form",
+      "tooltipOpen": false,
+    }
+  }
+>
+  <LeadInputPage />
+</Context.Provider>
+`;

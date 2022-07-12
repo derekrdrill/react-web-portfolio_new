@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Custom Hook Example 1 tests renders correctly 1`] = `
+<CustomHookExample1Return
+  data={null}
+  loading={true}
+/>
+`;

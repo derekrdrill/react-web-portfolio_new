@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File Uploader View tests renders correctly 1`] = `
+<div>
+  <input
+    multiple={true}
+    onChange={[Function]}
+    type="file"
+  />
+  <br />
+  <br />
+  <button
+    onClick={[Function]}
+  >
+    Submit
+  </button>
+</div>
+`;

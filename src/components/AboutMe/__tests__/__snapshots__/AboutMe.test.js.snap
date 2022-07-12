@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About Me tests renders correctly 1`] = `
+<Styled(Container)
+  fluid={true}
+>
+  <Row>
+    <Col
+      className="py-3"
+    >
+      <Styled(Component)
+        className="text-center"
+        component="h1"
+        variant="h3"
+      >
+        ABOUT ME
+      </Styled(Component)>
+    </Col>
+  </Row>
+  <Row>
+    <Styled(Col)
+      lg={
+        Object {
+          "offset": 1,
+          "order": "first",
+          "span": 5,
+        }
+      }
+      xs={
+        Object {
+          "offset": 1,
+          "order": "last",
+          "span": 10,
+        }
+      }
+    >
+      <Styled(Component)
+        component="p"
+        variant="subtitle1"
+      >
+        Hi, I'm Derek. I'm just a guy from a small town in Maryland, 
+        who now resides in the beautiful city of Charlotte.
+        I remember falling in love with writing code, in an Intro to VB.Net class
+        at Salisbury University. It all clicked for me. I was building the cheesiest
+        'Movie Night' WinForms app you've ever seen, and it all 
+        just started to make sense. I felt this fiery sensation
+        inside as I built feature after feature, and solved problem after problem.
+        The rush was addictive, and for someone who's always valued themself in working hard,
+        solving problems and helping others, this was the high for me. I knew I wanted
+        this to be my career.
+      </Styled(Component)>
+      <Styled(Component)
+        component="p"
+        variant="subtitle1"
+      >
+        After undergrad, I accepted a role as a level 1 programmer,
+        working for a very small IT team, assigned to maintaining 
+        and building onto their ERP software. This was very much an introduction
+        to what it was like to be a professional developer, and was perfect
+        for me to organically build a strong foundation of development principles.
+        However, I knew I had to continue to sharpen my skills in my freetime.
+        By taking online course after course, I continued to advance my skills
+        in technologies like HTML, CSS, JavaScript, JQuery, Bootstrap and SQL,
+        but also teaching myself more modern technologies and libraries, such as,
+        Knockout.js, Node.js, React JS and MongoDB. I've carried those hard-working
+        values, that I enstilled early on, through my career. 5 years in, and I am now
+        a Front End Developer, and have accomplished things like:
+      </Styled(Component)>
+      <ForwardRef(List)
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      >
+        <Styled(Component)>
+          - Being apart of a team that entirely 
+        rebuilt a legacy, desktop ERP application
+        into a powerful modern web-app
+        </Styled(Component)>
+        <Styled(Component)>
+          - Worked with clients at academic offices
+        of education institutions to completely 
+        automate their paper-processes by building
+        workflows that comprised of powerful 
+        web forms that integrated with their live ERP data
+        </Styled(Component)>
+        <Styled(Component)>
+          - Heavily contributed towards the development of 
+        a CDN library of reusable Knockout.js components
+        that made the development of powerful web forms 
+        (mentioned above) easier and less time consuming
+        </Styled(Component)>
+        <Styled(Component)>
+          - Work as a React developer on a dev team 
+        that is building and maintaining the IMPLAN App,
+        a powerful economic analysis software tool
+        
+        </Styled(Component)>
+      </ForwardRef(List)>
+      <Styled(Component)
+        component="p"
+        variant="subtitle1"
+      >
+        The last bullet is my current role, a Front End developer
+        for the IMPLAN Group, and even after several years of hard work and continual education
+        to get to this point, I continue to push the limits of my knowledge daily, in and out of the office, 
+        to continue to grow as a professional front end developer
+      </Styled(Component)>
+      <Styled(Component)
+        component="p"
+        variant="subtitle1"
+      >
+        TLDR;
+      </Styled(Component)>
+      <Styled(Component)
+        component="p"
+        variant="subtitle1"
+      >
+        I love to write code because it fulfills the burning desire within me
+        to work hard and solve intricate problems for others, and as an admitted nerd who 
+        is not the most artistic, it's the best avenue to flexing my creativity muscles 💪🏼
+      </Styled(Component)>
+    </Styled(Col)>
+    <Styled(Col)
+      lg={6}
+      xs={12}
+    >
+      <img
+        alt="Chillin with birds"
+        src={
+          Object {
+            "process": [Function],
+          }
+        }
+      />
+    </Styled(Col)>
+  </Row>
+</Styled(Container)>
+`;

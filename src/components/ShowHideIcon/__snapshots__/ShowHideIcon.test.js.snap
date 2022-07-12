@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Show Hide Icon tests renders correctly 1`] = `
+<EyeIcon
+  locked={true}
+  onClick={[Function]}
+/>
+`;

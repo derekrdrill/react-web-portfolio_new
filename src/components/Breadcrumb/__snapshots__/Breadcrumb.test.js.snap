@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb tests renders correctly 1`] = `
+<Styled(Component)
+  separator="   /   "
+>
+  <Styled(Component)
+    component="h1"
+    id={1}
+    onClick={null}
+    variant="caption"
+  >
+    Personal Information
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={2}
+    onClick={null}
+    variant="caption"
+  >
+    Address Information
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={3}
+    onClick={null}
+    variant="caption"
+  >
+    Position Information
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={4}
+    onClick={null}
+    variant="caption"
+  >
+    Qualifications
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={5}
+    onClick={null}
+    variant="caption"
+  >
+    Special Skills
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={6}
+    onClick={null}
+    variant="caption"
+  >
+    References
+  </Styled(Component)>
+  <Styled(Component)
+    component="h1"
+    id={7}
+    onClick={null}
+    variant="caption"
+  >
+    Supporting Documents
+  </Styled(Component)>
+</Styled(Component)>
+`;

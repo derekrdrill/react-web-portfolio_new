@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`To Do tests renders correctly 1`] = `
+<ForwardRef(Typography)
+  component="h6"
+  variant="h6"
+>
+  <ToDoTitle
+    loading={false}
+    toDo={Object {}}
+  />
+</ForwardRef(Typography)>
+`;

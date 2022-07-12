@@ -41,7 +41,7 @@ Card.defaultProps = {
   padding: true,
 };
 
-const StyledDiv = styled.div(
+export const StyledDiv = styled.div(
   ({ backgroundColor, darkMode, hoverBackgroundcolor, hoverable, hasSpacing, textColor }) => ({
     '.MuiInputBase-root': {
       backgroundColor: darkMode ? '#404040' : backgroundColor ? backgroundColor : '#FFF',

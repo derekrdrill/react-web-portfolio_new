@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Job Application Section tests renders correctly 1`] = `
+<Styled(Component)
+  container={true}
+>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <Styled(Component)
+      variant="h4"
+    >
+      Personal Information
+    </Styled(Component)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <Styled(Component)
+      component="span"
+      variant="subtitle1"
+    />
+  </ForwardRef(Grid)>
+  <DynamicFormInputs
+    inputs={
+      Array [
+        Object {
+          "id": "firstName",
+          "label": "First Name",
+          "md": 3,
+          "sm": 6,
+          "variant": "outlined",
+          "xs": 12,
+        },
+        Object {
+          "id": "lastName",
+          "label": "Last Name",
+          "md": 3,
+          "sm": 6,
+          "variant": "outlined",
+          "xs": 12,
+        },
+        Object {
+          "id": "email",
+          "label": "Email",
+          "md": 3,
+          "sm": 6,
+          "type": "email",
+          "variant": "outlined",
+          "xs": 12,
+        },
+        Object {
+          "id": "phone",
+          "label": "Phone",
+          "md": 3,
+          "sm": 6,
+          "variant": "outlined",
+          "xs": 12,
+        },
+      ]
+    }
+  />
+</Styled(Component)>
+`;

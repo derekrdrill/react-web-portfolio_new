@@ -54,7 +54,7 @@ export const Breadcrumb = ({
   );
 };
 
-const BreadcrumbText = styled(Typography)(
+export const BreadcrumbText = styled(Typography)(
   ({ id, page, activepagecolor, prevpagescolor, prevpageshovercolor, nextpagescolor }) => [
     id === page && {
       color: activepagecolor || '#900C3F',
@@ -77,6 +77,6 @@ const BreadcrumbText = styled(Typography)(
   ],
 );
 
-const StyledBreadcrumbs = styled(Breadcrumbs)({
+export const StyledBreadcrumbs = styled(Breadcrumbs)({
   backgroundColor: 'gainsboro',
 });

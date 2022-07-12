@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HeaderMenuOptions } from './HeaderMenuOptions';
 import { HEADER_MENU_OPTIONS } from '../constants/HEADER_MENU_OPTIONS';
 
-const HeaderMenu = ({ headerType }) => (
+export const HeaderMenu = ({ headerType }) => (
   <HeaderMenuContainer>
     {HEADER_MENU_OPTIONS.map(OPTION => (
       <HeaderMenuOptions

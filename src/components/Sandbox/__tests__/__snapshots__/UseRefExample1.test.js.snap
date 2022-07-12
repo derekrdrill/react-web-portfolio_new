@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use Memo Example tests renders correctly 1`] = `
+<React.Fragment>
+  <div>
+    <ForwardRef(TextField)
+      inputRef={
+        Object {
+          "current": undefined,
+        }
+      }
+      label="Input"
+      placeholder="Type something..."
+    />
+  </div>
+  <ForwardRef(Button)
+    onClick={[Function]}
+    variant="contained"
+  >
+    Submit
+  </ForwardRef(Button)>
+</React.Fragment>
+`;

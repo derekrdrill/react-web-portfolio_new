@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connect with me tests renders correctly 1`] = `
+<Styled(Component)
+  container={true}
+>
+  <Styled(Component)
+    item={true}
+    xs={12}
+  >
+    <Styled(Component)
+      component="h2"
+      variant="h3"
+    >
+      LET'S CONNECT
+    </Styled(Component)>
+    <Styled(Component)
+      component="p"
+      variant="h6"
+    >
+      Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!
+    </Styled(Component)>
+  </Styled(Component)>
+  <Styled(Component)
+    item={true}
+    lg={4}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        lg={12}
+        xs={4}
+      >
+        <ForwardRef(Grid)
+          container={true}
+          justifyContent="center"
+        >
+          <styled.a
+            href="mailto:derekrdrill@gmail.com"
+            target=""
+          >
+            <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
+              border={false}
+              bounce={false}
+              className=""
+              fade={false}
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f199",
+                    "M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM178.117 262.104C87.429 196.287 88.353 196.121 64 177.167V152c0-13.255 10.745-24 24-24h272c13.255 0 24 10.745 24 24v25.167c-24.371 18.969-23.434 19.124-114.117 84.938-10.5 7.655-31.392 26.12-45.883 25.894-14.503.218-35.367-18.227-45.883-25.895zM384 217.775V360c0 13.255-10.745 24-24 24H88c-13.255 0-24-10.745-24-24V217.775c13.958 10.794 33.329 25.236 95.303 70.214 14.162 10.341 37.975 32.145 64.694 32.01 26.887.134 51.037-22.041 64.72-32.025 61.958-44.965 81.325-59.406 95.283-70.199z",
+                  ],
+                  "iconName": "envelope-square",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              maskId={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              shake={false}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              titleId={null}
+              transform={null}
+            />
+          </styled.a>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        lg={12}
+        xs={4}
+      >
+        <ForwardRef(Grid)
+          container={true}
+          justifyContent="center"
+        >
+          <styled.a
+            href="https://www.linkedin.com/in/derek-drill"
+            target="_blank"
+          >
+            <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
+              border={false}
+              bounce={false}
+              className=""
+              fade={false}
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f08c",
+                    "M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z",
+                  ],
+                  "iconName": "linkedin",
+                  "prefix": "fab",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              maskId={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              shake={false}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              titleId={null}
+              transform={null}
+            />
+          </styled.a>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        lg={12}
+        xs={4}
+      >
+        <ForwardRef(Grid)
+          container={true}
+          justifyContent="center"
+        >
+          <styled.a
+            href="https://github.com/derekrdrill"
+            target="_blank"
+          >
+            <FontAwesomeIcon
+              beat={false}
+              beatFade={false}
+              border={false}
+              bounce={false}
+              className=""
+              fade={false}
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    480,
+                    512,
+                    Array [],
+                    "f113",
+                    "M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z",
+                  ],
+                  "iconName": "github-alt",
+                  "prefix": "fab",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              maskId={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              shake={false}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              titleId={null}
+              transform={null}
+            />
+          </styled.a>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <Styled(Component)
+    item={true}
+    lg={8}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      spacing={2}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        lg={5}
+        xs={12}
+      >
+        <DynamicFormInputs
+          inputs={
+            Array [
+              Object {
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": 1,
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "First Name",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": 2,
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Last Name",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": 3,
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Email",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": 4,
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Phone (Optional)",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+            ]
+          }
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        lg={7}
+        xs={12}
+      >
+        <DynamicFormInputs
+          inputs={
+            Array [
+              Object {
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": 1,
+                "inputBackgroundColor": "gainsboro",
+                "inputborderRadius": 4,
+                "label": "Tell me somethin' good",
+                "labelColor": "#28282B",
+                "maxRows": 11,
+                "minRows": 11,
+                "multiline": true,
+                "variant": "filled",
+                "xs": 12,
+              },
+            ]
+          }
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="flex-end"
+    >
+      <ForwardRef(Button)
+        color="warning"
+        variant="contained"
+      >
+        Send
+      </ForwardRef(Button)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent={
+        Object {
+          "lg": "flex-end",
+          "xs": "flex-start",
+        }
+      }
+    >
+      <styled.img
+        src={
+          Object {
+            "process": [Function],
+          }
+        }
+      />
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+</Styled(Component)>
+`;

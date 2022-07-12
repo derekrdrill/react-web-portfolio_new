@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Job Applications Page tests renders correctly 1`] = `
+<Container
+  fluid={true}
+>
+  <Styled(Row)>
+    <Col
+      className="py-2"
+      xs={4}
+    >
+      <ForwardRef(FormControl)
+        fullWidth={true}
+      >
+        <ForwardRef(InputLabel)>
+          <Styled(Component)
+            component="label"
+            variant="h6"
+          >
+            Select one
+          </Styled(Component)>
+        </ForwardRef(InputLabel)>
+        <Styled(Component)
+          label="Select one"
+          onChange={[Function]}
+          value="basic"
+          variant="standard"
+        >
+          <ForwardRef(MenuItem)
+            value="basic"
+          >
+            Basic
+          </ForwardRef(MenuItem)>
+          <ForwardRef(MenuItem)
+            value="advanced"
+          >
+            Advanced
+          </ForwardRef(MenuItem)>
+          <ForwardRef(MenuItem)
+            value="multi-page"
+          >
+            Mulit-Page
+          </ForwardRef(MenuItem)>
+        </Styled(Component)>
+      </ForwardRef(FormControl)>
+    </Col>
+  </Styled(Row)>
+  <Row>
+    <JobApplicationType
+      appType="basic"
+    />
+  </Row>
+  <LoaderSpinner
+    open={null}
+  />
+</Container>
+`;

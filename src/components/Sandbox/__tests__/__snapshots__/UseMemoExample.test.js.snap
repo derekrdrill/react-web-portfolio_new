@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use Memo Example tests renders correctly 1`] = `
+<div>
+  <ForwardRef(TextField)
+    label="Number"
+    onChange={[Function]}
+    type="number"
+  />
+  <ForwardRef(Typography)
+    paragraph={true}
+  >
+    Renders: 
+    1
+  </ForwardRef(Typography)>
+  <ForwardRef(Typography)
+    paragraph={true}
+  >
+    Square Root of Number is 
+    1
+  </ForwardRef(Typography)>
+  <ForwardRef(Button)
+    onClick={[Function]}
+    variant="contained"
+  >
+    Re-render
+  </ForwardRef(Button)>
+</div>
+`;

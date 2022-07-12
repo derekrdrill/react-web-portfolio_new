@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const ADVANCED_JOB_APP_INPUTS = [
   {
     id: 1,

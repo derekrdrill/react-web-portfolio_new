@@ -5,7 +5,6 @@ export const FileUploader = () => {
   const [files, setFiles] = useState([]);
 
   const onChange = e => {
-    console.log(e.target.files);
     setFiles(e.target.files);
   };
 
@@ -35,8 +34,6 @@ export const FileUploader = () => {
     //   }
     // }
   };
-
-  console.log(files);
 
   return (
     <div>

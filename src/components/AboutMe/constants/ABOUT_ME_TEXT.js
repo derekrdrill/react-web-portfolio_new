@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const ABOUT_ME_TEXT = [
   {
     id: 'paragraph1',
