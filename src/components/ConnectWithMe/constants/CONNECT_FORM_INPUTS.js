@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const CONNECT_FORM_INPUTS = [
   {
     id: 1,

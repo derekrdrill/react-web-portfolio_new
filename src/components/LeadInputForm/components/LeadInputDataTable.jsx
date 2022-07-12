@@ -1,7 +1,7 @@
 import React from 'react';
 import { DynamicDataTable } from '../../DynamicDataTable/DynamicDataTable';
 
-const headers = [
+export const headers = [
   { headerID: 'firstName', headerName: 'First Name' },
   { headerID: 'lastName', headerName: 'Last Name' },
   { headerID: 'email', headerName: 'Email' },

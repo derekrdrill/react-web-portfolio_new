@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Typography } from '@mui/material';
 
+export const ToDoTitle = ({ loading, toDo }) => (loading ? 'Loading...' : toDo.title);
+
 export const ToDo = () => {
   const [loading, setLoading] = useState(false);
   const [toDo, setToDo] = useState({});
@@ -26,7 +28,7 @@ export const ToDo = () => {
 
   return (
     <Typography variant='h6' component='h6'>
-      {loading ? 'Loading...' : toDo.title}
+      <ToDoTitle loading={loading} toDo={toDo} />
     </Typography>
   );
 };

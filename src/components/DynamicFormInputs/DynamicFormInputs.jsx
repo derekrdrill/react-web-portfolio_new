@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Grid, IconButton, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Grid, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { ShowHideIcon } from '../ShowHideIcon/ShowHideIcon';
 
 // TODO: condense this all to one style using emotion

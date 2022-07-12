@@ -7,6 +7,16 @@ import { AdvancedJobApplication } from './AdvancedJobApplication';
 import { MultiPageJobApplication } from './MultiPageJobApplication';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
+export const JobApplicationType = ({ appType }) =>
+  appType === 'basic' ? (
+    <BasicJobApplication />
+  ) : appType === 'advanced' ? (
+    <AdvancedJobApplication />
+  ) : (
+    <MultiPageJobApplication />
+  );
+
+
 export const JobApplicationsPage = () => {
   const [appType, setAppType] = useState('basic');
   const [loading, setLoading] = useState(null);
@@ -38,13 +48,7 @@ export const JobApplicationsPage = () => {
         </Col>
       </JobApplicationsSelectRow>
       <Row>
-        {appType === 'basic' ? (
-          <BasicJobApplication />
-        ) : appType === 'advanced' ? (
-          <AdvancedJobApplication />
-        ) : (
-          <MultiPageJobApplication />
-        )}
+        <JobApplicationType appType={appType} />
       </Row>
       <LoaderSpinner open={loading} />
     </Container>

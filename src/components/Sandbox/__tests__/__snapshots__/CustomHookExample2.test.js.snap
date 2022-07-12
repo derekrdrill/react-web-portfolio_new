@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Custom Hook Example 2 tests renders correctly 1`] = `
+<React.Fragment>
+  <div>
+    <ForwardRef(TextField)
+      label="Task"
+      onChange={[Function]}
+      value=""
+    />
+  </div>
+  <ForwardRef(Button)
+    color="info"
+    onClick={[Function]}
+    variant="contained"
+  >
+    Submit
+  </ForwardRef(Button)>
+</React.Fragment>
+`;

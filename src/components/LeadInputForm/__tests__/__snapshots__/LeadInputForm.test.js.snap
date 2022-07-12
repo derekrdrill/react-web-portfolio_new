@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lead Input Form tests renders correctly 1`] = `
+<div>
+  <Memo(l) />
+  <Container
+    fluid={false}
+  >
+    <Row>
+      <Col
+        className="mt-5"
+        lg={
+          Object {
+            "offset": 3,
+            "span": 4,
+          }
+        }
+        xs={
+          Object {
+            "offset": 3,
+            "span": 6,
+          }
+        }
+      >
+        <ForwardRef(Typography)
+          component="h1"
+          variant="h6"
+        >
+          Please fill in your information below
+        </ForwardRef(Typography)>
+      </Col>
+    </Row>
+    <Styled(Row)>
+      <Col
+        lg={
+          Object {
+            "offset": 3,
+            "span": 6,
+          }
+        }
+        xs={
+          Object {
+            "span": 12,
+          }
+        }
+      >
+        <DynamicFormInputs
+          inputs={
+            Array [
+              Object {
+                "color": "primary",
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": "firstName",
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "First Name",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "color": "primary",
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": "lastName",
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Last Name",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "color": "primary",
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": "email",
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Email",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+              Object {
+                "color": "primary",
+                "fontFamily": "Kufam",
+                "fullWidth": true,
+                "id": "phone",
+                "inputBackgroundColor": "gainsboro",
+                "inputPaddingBottom": 5,
+                "inputborderRadius": 4,
+                "label": "Phone Number",
+                "labelColor": "#28282B",
+                "variant": "filled",
+                "xs": 12,
+              },
+            ]
+          }
+          onChange={[Function]}
+        />
+      </Col>
+    </Styled(Row)>
+    <Styled(Row)>
+      <Col
+        lg={
+          Object {
+            "offset": 8,
+            "span": 1,
+          }
+        }
+        xs={
+          Object {
+            "span": 12,
+          }
+        }
+      >
+        <ForwardRef(Button)
+          fullWidth={true}
+          onClick={[Function]}
+          variant="contained"
+        >
+          Submit
+        </ForwardRef(Button)>
+      </Col>
+    </Styled(Row)>
+    <LoaderSpinner
+      open={null}
+    />
+  </Container>
+</div>
+`;

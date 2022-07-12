@@ -6,7 +6,7 @@ export const UseRefExample1 = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(inputRef.current.value);
+    // console.log(inputRef.current.value);
   };
 
   return (

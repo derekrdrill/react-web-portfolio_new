@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feedback Stats tests renders correctly 1`] = `
+<Context.Provider
+  value={
+    Object {
+      "addFeedbackItem": [Function],
+      "deleteFeedbackItem": [Function],
+      "feedbackEdit": Object {
+        "edit": false,
+        "item": Object {},
+      },
+      "feedbackItems": Array [],
+      "setFeedbackEditItems": [Function],
+      "updateFeedbackItem": [Function],
+    }
+  }
+>
+  <FeedbackStats />
+</Context.Provider>
+`;

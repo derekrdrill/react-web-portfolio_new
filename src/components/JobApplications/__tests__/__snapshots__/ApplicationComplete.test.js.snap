@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application Complete tests renders correctly 1`] = `
+<styled.div>
+  <ForwardRef(Typography)
+    component="h1"
+    variant="h5"
+  >
+    Thank you for your application!
+    <br />
+    <Link
+      replace={false}
+      to="/"
+    >
+      Go home
+    </Link>
+  </ForwardRef(Typography)>
+</styled.div>
+`;

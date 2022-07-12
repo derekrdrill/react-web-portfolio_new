@@ -11,12 +11,12 @@ export const UseMemoExample = () => {
 
   const getSqRt = number => {
     for (let i = 0; i < 10000; i++) {
-      console.log(i);
+      // console.log(i);
     }
 
-    console.log('Expensive function called');
+    // console.log('Expensive function called');
     return Math.sqrt(number);
-  };
+  };;
 
   const sqRt = useMemo(() => getSqRt(number), [number]);
 

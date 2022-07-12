@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader Spinner tests renders correctly 1`] = `
+<ForwardRef(Modal)
+  disableAutoFocus={true}
+  open={true}
+>
+  <Container
+    fluid={false}
+  >
+    <Row>
+      <Col
+        lg={
+          Object {
+            "offset": 5,
+            "span": 3,
+          }
+        }
+        xs={
+          Object {
+            "offset": 2,
+            "span": 9,
+          }
+        }
+      >
+        <styled.div>
+          <styled.img
+            src={
+              Object {
+                "process": [Function],
+              }
+            }
+          />
+        </styled.div>
+      </Col>
+    </Row>
+  </Container>
+</ForwardRef(Modal)>
+`;

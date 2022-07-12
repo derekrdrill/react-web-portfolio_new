@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card tests renders correctly 1`] = `
+<styled.div
+  darkMode={false}
+>
+  <div>
+    Snapshot test
+  </div>
+</styled.div>
+`;

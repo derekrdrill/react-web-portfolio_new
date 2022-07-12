@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Modal tests renders correctly 1`] = `
+<ForwardRef(Modal)
+  open={true}
+>
+  <styled.div>
+    <styled.div>
+      <ForwardRef(Button)
+        color="error"
+        size="small"
+        variant="contained"
+      >
+        X
+      </ForwardRef(Button)>
+    </styled.div>
+    <styled.div />
+    <styled.div>
+      <styled.div>
+        <Styled(Component)
+          fullWidth={true}
+          variant="contained"
+        >
+          Cancel
+        </Styled(Component)>
+      </styled.div>
+      <styled.div>
+        <ForwardRef(Button)
+          color="info"
+          fullWidth={true}
+          onClick={[Function]}
+          variant="contained"
+        >
+          Submit
+        </ForwardRef(Button)>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+</ForwardRef(Modal)>
+`;

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lead Input Data Table tests renders correctly 1`] = `
+<DynamicDataTable
+  checkAllColor="primary"
+  checkOneColor="secondary"
+  deleteDataRowNameItems={
+    Array [
+      "firstName",
+      " ",
+      "lastName",
+    ]
+  }
+  deleteDataRowsAPICall="http://localhost:3001/deleteLeadInput"
+  editDataRowsAPICall="http://localhost:3001/replaceLeadInput"
+  getDataRowsAPICall="http://localhost:3001/leadInput"
+  headers={
+    Array [
+      Object {
+        "headerID": "firstName",
+        "headerName": "First Name",
+      },
+      Object {
+        "headerID": "lastName",
+        "headerName": "Last Name",
+      },
+      Object {
+        "headerID": "email",
+        "headerName": "Email",
+      },
+      Object {
+        "headerID": "phone",
+        "headerName": "Phone Number",
+      },
+    ]
+  }
+  size="small"
+/>
+`;
