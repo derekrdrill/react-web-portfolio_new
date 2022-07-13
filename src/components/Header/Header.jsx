@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { AppBar as HeaderBar, Toolbar } from '@mui/material';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import bitmojiThinking from '../../assets/bitmoji_thinking.png';
+import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import { AppBar, Toolbar } from '@mui/material';
+
 import HeaderMenu from './components/HeaderMenu';
 import { MoreOptions } from './components/MoreOptions';
-import { MORE_OPTIONS } from './constants/MORE_OPTIONS';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
+
+import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
+
+import { MORE_OPTIONS } from './constants/MORE_OPTIONS';
+import bitmojiThinking from '../../assets/bitmoji_thinking.png';
 import { history } from '../../index';
 
 export const Header = ({ children }) => {
   const currentRoute = history.location.pathname;
+
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [loading, setLoading] = useState(null);
 
   const homeClick = () => {
@@ -33,23 +40,29 @@ export const Header = ({ children }) => {
   );
   return (
     <div>
-      <HeaderBar>
-        <HeaderToolBar>
+      <AppBar elevation={0}>
+        <HeaderToolBar darkMode={darkMode}>
           <HeaderImage />
           <HeaderMenu headerType={currentRoute === '/' ? 'main' : 'secondary'} />
           <MoreOptions moreOptions={MORE_OPTIONS} />
         </HeaderToolBar>
-      </HeaderBar>
+      </AppBar>
       <StyledChildContainer>{children}</StyledChildContainer>
       <LoaderSpinner open={loading} />
     </div>
   );
 };
 
-const HeaderToolBar = styled(Toolbar)({
-  backgroundColor: '#030200;',
+// const HeaderBar = styled(AppBar)({
+//   '.MuiPaper-root': {
+//     boxShadow: 'none',
+//   },
+// });
+
+const HeaderToolBar = styled(Toolbar)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#030200' : 'whitesmoke',
   height: 80,
-});
+}));
 
 const StyledHeaderImage = styled.img({
   height: 65,

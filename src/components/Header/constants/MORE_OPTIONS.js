@@ -24,7 +24,7 @@ export const MORE_OPTIONS = [
     icon: <FontAwesomeIcon icon={faGithubAlt} />,
     href: 'https://github.com/derekrdrill',
     target: '_blank',
-    divider: true,
+    // divider: true,
   },
   {
     id: 4,
@@ -40,11 +40,11 @@ export const MORE_OPTIONS = [
       modalCloseButton: 'Cancel',
     },
   },
-  {
-    id: 5,
-    title: 'Source Code',
-    icon: <FontAwesomeIcon icon={faCode} />,
-    target: '',
-    href: '',
-  },
+  // {
+  //   id: 5,
+  //   title: 'Source Code',
+  //   icon: <FontAwesomeIcon icon={faCode} />,
+  //   target: '',
+  //   href: '',
+  // },
 ];

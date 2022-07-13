@@ -1,19 +1,24 @@
 import React, { useContext, useState } from 'react';
 import { history } from '../../../index';
-import styled from 'styled-components';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Typography } from '@mui/material';
-import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
+import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { UserRegister } from './UserRegister';
 import { UserPasswordResetSend } from './UserPasswordResetSend';
-import { AlertContext } from '../../Alert/context/AlertContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
+
+import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
+import { AlertContext } from '../../Alert/context/AlertContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { handleAlert } from '../../Alert/context/AlertActions';
+
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 
 export const UserLogin = () => {
   const { isRegistering, forgotPassword, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [signInItem, setSignInItem] = useState({ username: '', password: '' });
   const allFieldsFilled = signInItem.username && signInItem.password;
 
@@ -62,6 +67,7 @@ export const UserLogin = () => {
 
   return (
     <>
+      <PageBodyStyle darkMode={darkMode} />
       {(isRegistering || forgotPassword) && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
       <UserLoginContainer isRegistering={isRegistering}>
         {isRegistering ? (
@@ -71,7 +77,7 @@ export const UserLogin = () => {
         ) : (
           <>
             <LoginTextContainer>
-              <LoginText component='h4' variant='h4'>
+              <LoginText darkMode={darkMode} component='h4' variant='h4'>
                 User sign-in
               </LoginText>
             </LoginTextContainer>
@@ -82,10 +88,10 @@ export const UserLogin = () => {
               </Button>
             </ButtonContainer>
             <Button onClick={handleForgotPassword}>Forgot password?</Button>
-            <Typography paragraph>
+            <NotAMemberText darkMode={darkMode} paragraph>
               Not a member?
               <Button onClick={handlesetIsRegistering}>Sign up now</Button>
-            </Typography>
+            </NotAMemberText>
           </>
         )}
       </UserLoginContainer>
@@ -95,6 +101,12 @@ export const UserLogin = () => {
     </>
   );
 };
+
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode && '#292929',
+  },
+}));
 
 const AlertContainer = styled.div({
   display: 'flex',
@@ -119,6 +131,11 @@ const LoginTextContainer = styled.div({
   marginTop: '100px',
 });
 
-const LoginText = styled(Typography)({
+const LoginText = styled(Typography)(({ darkMode }) => ({
   margin: '10px 0',
-});
+  color: darkMode ? 'beige' : 'inherit',
+}));
+
+const NotAMemberText = styled(Typography)(({ darkMode }) => ({
+  color: darkMode ? 'beige' : 'inherit',
+}));

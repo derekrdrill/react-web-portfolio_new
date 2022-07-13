@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { history } from '../../../index';
 import styled from 'styled-components';
@@ -6,9 +6,13 @@ import { Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBath, faBed, faParking, faPaw, faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
 
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 export const ListingItem = ({ listing }) => {
   const token = sessionStorage.getItem('token');
   !token && history.push('./auth');
+
+  const { darkMode } = useContext(DarkLightModeContext);
 
   const {
     _id,
@@ -28,7 +32,7 @@ export const ListingItem = ({ listing }) => {
   const price = (offer ? discountedPrice : regularPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return (
-    <LisitingItemContainer item xs={12} md={6} lg={4}>
+    <LisitingItemContainer darkMode={darkMode} item xs={12} md={6} lg={4}>
       <ListItemLink to={`/housing-marketplace/listing/${_id}`}>
         <Grid container spacing={1}>
           <Grid item xs={4}>
@@ -54,21 +58,23 @@ export const ListingItem = ({ listing }) => {
             </ListingPrice>
             <Grid container>
               <ListingStatNumbersContainer item>
-                <FontAwesomeIcon icon={faBed} />
-                <ListingStatNumbers component='span' variant='subtitle2'>
+                <FontAwesomeIcon icon={faBed} color={darkMode && 'beige'} />
+                <ListingStatNumbers darkMode={darkMode} component='span' variant='subtitle2'>
                   {bedrooms}
                 </ListingStatNumbers>
               </ListingStatNumbersContainer>
               <ListingStatNumbersContainer item>
-                <FontAwesomeIcon icon={faBath} />
-                <ListingStatNumbers component='span' variant='subtitle2'>
+                <FontAwesomeIcon icon={faBath} color={darkMode && 'beige'} />
+                <ListingStatNumbers darkMode={darkMode} component='span' variant='subtitle2'>
                   {bathrooms}
                 </ListingStatNumbers>
               </ListingStatNumbersContainer>
               <ListingStatNumbersContainer item>
-                {parking && <FontAwesomeIcon icon={faParking} />}
+                {parking && <FontAwesomeIcon icon={faParking} color={darkMode && 'beige'} />}
               </ListingStatNumbersContainer>
-              <ListingStatNumbersContainer item>{pets && <FontAwesomeIcon icon={faPaw} />}</ListingStatNumbersContainer>
+              <ListingStatNumbersContainer item>
+                {pets && <FontAwesomeIcon icon={faPaw} color={darkMode && 'beige'} />}
+              </ListingStatNumbersContainer>
             </Grid>
           </Grid>
           <Grid item xs={1}>
@@ -90,14 +96,14 @@ const ListItemLink = styled(Link)({
   color: '#404040',
 });
 
-const LisitingItemContainer = styled(Grid)({
+const LisitingItemContainer = styled(Grid)(({ darkMode }) => ({
   ':hover': {
-    backgroundColor: '#ebf0f7',
+    backgroundColor: darkMode ? '#3d3e4c' : '#ebf0f7',
   },
   borderRadius: 5,
   cursor: 'pointer',
   padding: 15,
-});
+}));
 
 const ListingTitle = styled(Typography)({
   fontWeight: 'bold',
@@ -114,9 +120,10 @@ const ListingPrice = styled(Typography)({
   fontWeight: 'bold',
 });
 
-const ListingStatNumbers = styled(Typography)({
+const ListingStatNumbers = styled(Typography)(({ darkMode }) => ({
   marginLeft: 4,
-});
+  color: darkMode && 'beige',
+}));
 
 const ListingStatNumbersContainer = styled(Grid)({
   margin: '0 5px',

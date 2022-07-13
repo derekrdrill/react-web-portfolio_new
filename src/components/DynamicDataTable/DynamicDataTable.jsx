@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import $ from 'jquery';
 import styled from 'styled-components';
 import {
@@ -24,6 +24,9 @@ import SaveIcon from '@mui/icons-material/Save';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchOffIcon from '@mui/icons-material/SearchOff';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
+
+import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
+
 import { MessageModal } from '../Modals/MessageModal';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 
@@ -42,6 +45,8 @@ export const DynamicDataTable = ({
   stickyHeader = true,
   tableBodyColor = 'beige',
 }) => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [allRowsSelected, setAllRowsSelected] = useState(false);
   const [checkedRows, setCheckRows] = useState([]);
   const [dataRows, setDataRows] = useState([]);
@@ -236,7 +241,7 @@ export const DynamicDataTable = ({
         <Table size={size} stickyHeader={stickyHeader}>
           <TableHead>
             <TableRow>
-              <TableToolsCell>
+              <TableToolsCell darkMode={darkMode}>
                 <Grid container>
                   <Grid item xs={3}>
                     <Grid container>
@@ -256,6 +261,7 @@ export const DynamicDataTable = ({
                     </Grid>
                     <Grid container justifyContent='center'>
                       <SearchButton
+                        darkMode={darkMode}
                         children={filtersDisplay ? <SearchOffIcon /> : <SearchIcon />}
                         onClick={() => setFilterDisplay(!filtersDisplay)}
                       />
@@ -268,7 +274,7 @@ export const DynamicDataTable = ({
                       </TableToolsText>
                     </Grid>
                     <Grid container justifyContent='center'>
-                      <IconButton children={<RotateLeftIcon />} onClick={handleTableReset} />
+                      <ResetButton darkMode={darkMode} children={<RotateLeftIcon />} onClick={handleTableReset} />
                     </Grid>
                   </Grid>
                   <Grid item xs={3}>
@@ -286,7 +292,7 @@ export const DynamicDataTable = ({
                 </Grid>
               </TableToolsCell>
               {headers.map(header => (
-                <TableHeadCell key={header.headerID}>
+                <TableHeadCell darkMode={darkMode} key={header.headerID}>
                   <Grid container>
                     <TableHeadCellText id={header.headerID} component='h1' variant='body1' onClick={handleTableSort}>
                       {header.headerName}
@@ -307,7 +313,7 @@ export const DynamicDataTable = ({
               ))}
             </TableRow>
           </TableHead>
-          <TableBodyStyled>
+          <TableBodyStyled darkMode={darkMode}>
             {dataRows
               .filter(dataRow => dataRow[filterColumn].toUpperCase().startsWith(filterValue))
               .map(dataRow => {
@@ -317,6 +323,7 @@ export const DynamicDataTable = ({
                 return (
                   <TableBodyRow
                     key={dataRow._id}
+                    darkMode={darkMode}
                     selected={rowIsSelected}
                     selectedcolor={selectedRowColor}
                     selectedfontcolor={selectedRowFontColor}
@@ -325,18 +332,22 @@ export const DynamicDataTable = ({
                     <TableCell>
                       <Checkbox
                         id={dataRow._id}
-                        color={checkOneColor}
+                        color={darkMode ? 'primary' : checkOneColor}
                         onChange={handleCheckOneRow}
                         checked={rowIsSelected}
                       />
                       <RemoveRecordIcon
+                        className='edit-delete-icon'
                         id={dataRow._id}
+                        darkMode={darkMode}
                         children={<DeleteForeverIcon />}
                         onClick={handleSetDeleteRow}
                       />
                       {editingID != dataRow._id ? (
                         <EditRecordIcon
+                          className='edit-delete-icon'
                           id={dataRow._id}
+                          darkMode={darkMode}
                           children={<DriveFileRenameOutlineIcon />}
                           onClick={handleEditRow}
                         />
@@ -350,6 +361,7 @@ export const DynamicDataTable = ({
                         <TableCell key={dataRowInfo[0]}>
                           <TableBodyCellInput
                             id={dataRowInfo[0]}
+                            darkMode={darkMode}
                             value={dataRowInfo[1]}
                             isediting={isEditing}
                             disabled={!isEditing}
@@ -405,14 +417,14 @@ const TableContainerStyled = styled(TableContainer)({
   marginBottom: 15,
 });
 
-const TableHeadCell = styled(TableCell)({
-  backgroundColor: 'gainsboro',
+const TableHeadCell = styled(TableCell)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#292929' : 'gainsboro',
   borderLeft: 'dashed gray 1px',
-});
+}));
 
-const TableToolsCell = styled(TableCell)({
-  backgroundColor: 'lightgrey',
-});
+const TableToolsCell = styled(TableCell)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#3d3d3d' : 'lightgrey',
+}));
 
 const TableHeadCellText = styled(Typography)({
   cursor: 'pointer',
@@ -421,30 +433,43 @@ const TableHeadCellText = styled(Typography)({
   },
 });
 
-const TableBodyStyled = styled(TableBody)({
-  backgroundColor: 'white',
-});
+const TableBodyStyled = styled(TableBody)(({ darkMode }) => ({
+  backgroundColor: darkMode ? 'darkgrey' : 'white',
+}));
 
-const TableBodyRow = styled(TableRow)(({ selectedfontcolor, selectedcolor, tablebodycolor }) => ({
+const TableBodyRow = styled(TableRow)(({ darkMode, selectedfontcolor, selectedcolor, tablebodycolor }) => ({
   '&.Mui-selected': {
-    backgroundColor: selectedcolor,
+    backgroundColor: darkMode ? '#222d49' : selectedcolor,
     td: {
-      color: selectedfontcolor,
+      input: {
+        color: darkMode ? 'gainsboro' : selectedfontcolor,
+      },
+      '.edit-delete-icon': {
+        ':hover': {
+          svg: {
+            color: darkMode ? 'lightgrey' : 'inherit',
+          },
+        },
+        svg: {
+          color: darkMode ? 'grey' : 'inherit',
+        },
+      },
     },
     ':hover': {
-      backgroundColor: selectedcolor,
+      backgroundColor: darkMode ? '#222d49' : selectedcolor,
     },
   },
   ':hover': {
-    opacity: 0.8,
+    opacity: darkMode ? 0.9 : 0.8,
   },
-  backgroundColor: tablebodycolor,
+  backgroundColor: darkMode ? 'grey' : tablebodycolor,
 }));
 
-const TableBodyCellInput = styled.input(({ isediting }) => ({
+const TableBodyCellInput = styled.input(({ darkMode, isediting }) => ({
   backgroundColor: isediting ? 'white' : 'transparent',
   border: isediting ? '1px grey solid' : 'none',
   borderRadius: 2,
+  color: darkMode ? 'black' : 'inherit',
 }));
 
 const TableToolsText = styled(Typography)({
@@ -459,25 +484,38 @@ const FilterInput = styled.input({
   height: 21,
 });
 
-const SearchButton = styled(IconButton)({
+const SearchButton = styled(IconButton)(({ darkMode }) => ({
+  svg: {
+    path: {
+      fill: darkMode ? 'grey' : 'inherit',
+    },
+  },
   transform: 'translateY(1px)',
-});
+}));
 
-const RemoveRecordIcon = styled(IconButton)({
-  color: '#B22222',
+const ResetButton = styled(IconButton)(({ darkMode }) => ({
+  svg: {
+    path: {
+      fill: darkMode ? 'grey' : 'inherit',
+    },
+  },
+}));
+
+const RemoveRecordIcon = styled(IconButton)(({ darkMode }) => ({
+  color: darkMode ? '#1a1a1a' : '#B22222',
   cursor: 'pointer',
   ':hover': {
-    color: '#800000',
+    color: darkMode ? '#121212' : '#800000',
   },
-});
+}));
 
-const EditRecordIcon = styled(IconButton)({
-  color: '#2B7494',
+const EditRecordIcon = styled(IconButton)(({ darkMode }) => ({
+  color: darkMode ? '#1a1a1a' : '#2B7494',
   cursor: 'pointer',
   ':hover': {
-    color: '#3C99DC',
+    color: darkMode ? '#1a1a1a' : '#3C99DC',
   },
-});
+}));
 
 const SaveRecordIcon = styled(IconButton)({
   color: 'forestgreen',

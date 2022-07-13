@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { history } from '../../../index';
-import GoogleMapReact from 'google-map-react';
+import React, { useContext, useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { BasicModal } from '../../Modals/BasicModal';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import styled, { createGlobalStyle } from 'styled-components';
+import axios from 'axios';
 import { Button, Chip, Icon, Grid, Typography } from '@mui/material';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/fontawesome-free-regular';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import GoogleMapReact from 'google-map-react';
+import { history } from '../../../index';
+
+import { BasicModal } from '../../Modals/BasicModal';
+import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 export const ListingInfo = () => {
   const pathName = history.location.pathname;
   const listingID = pathName.slice(pathName.indexOf('listing/') + 8, pathName.length);
+
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [listingInfo, setListingInfo] = useState({});
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState('');
@@ -68,6 +74,7 @@ export const ListingInfo = () => {
 
   return (
     <>
+      <PageBodyStyle darkMode={darkMode} />
       {listingInfo.imageUrls && (
         <ImagesContainer container>
           <Grid
@@ -165,8 +172,8 @@ export const ListingInfo = () => {
           {listingInfo.location}
         </Typography>
         <ChipContainer>
-          <LisitingTypeChip label={`For ${listingInfo.type}`} />
-          <LisitingDiscountChip label={`$${discount} discount`} />
+          <LisitingTypeChip darkMode={darkMode} label={`For ${listingInfo.type}`} />
+          <LisitingDiscountChip darkMode={darkMode} label={`$${discount} discount`} />
         </ChipContainer>
         <DetailsContainer>
           <Typography variant='body1' component='p'>
@@ -216,6 +223,15 @@ export const ListingInfo = () => {
     </>
   );
 };
+
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode && '#292929',
+    'h1, h2, h3, h4, h5, h6, p': {
+      color: darkMode && 'beige',
+    },
+  },
+}));
 
 const MainContainer = styled.div({
   padding: 20,
@@ -268,16 +284,14 @@ const MapLocationIcon = styled(Icon)({
   },
 });
 
-const LisitingTypeChip = styled(Chip)({
-  '&.MuiChip-root': {
-    backgroundColor: '#26e583',
-    color: 'beige',
-  },
-});
+const LisitingTypeChip = styled(Chip)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#2b2f9c' : '#26e583',
+  color: 'beige',
+}));
 
-const LisitingDiscountChip = styled(Chip)({
+const LisitingDiscountChip = styled(Chip)(({ darkMode }) => ({
   '&.MuiChip-root': {
-    backgroundColor: '#4d3536',
+    backgroundColor: darkMode ? '#747590' : '#4d3536',
     color: 'beige',
   },
-});
+}));

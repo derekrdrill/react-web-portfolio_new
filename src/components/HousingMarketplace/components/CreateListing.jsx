@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Button, ButtonGroup, Grid, InputLabel, TextField, Typography } from '@mui/material';
-import { AlertContext } from '../../Alert/context/AlertContext';
+
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
-import { handleAlert } from '../../Alert/context/AlertActions';
 import { DynamicList } from '../../DynamicList/DynamicList';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+import { AlertContext } from '../../Alert/context/AlertContext';
+import { handleAlert } from '../../Alert/context/AlertActions';
 
 const formDataDefaults = {
   bathrooms: 1,
@@ -26,11 +29,13 @@ const formDataDefaults = {
 };
 
 export const CreateListing = () => {
-  const { alertDispatch } = useContext(AlertContext);
   const username = sessionStorage.getItem('username');
+
+  const { darkMode } = useContext(DarkLightModeContext);
+  const { alertDispatch } = useContext(AlertContext);
+
   const [loading, setLoading] = useState(false);
   const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
-
   const [formData, setFormData] = useState(formDataDefaults);
 
   const {
@@ -121,202 +126,266 @@ export const CreateListing = () => {
   };
 
   return (
-    <MainContainer>
-      {loading && <LoaderSpinner open={true} />}
-      <AlertContainer>
-        <Alert />
-      </AlertContainer>
-      <TitleContainer>
-        <Typography component='h6' variant='h4'>
-          Create a Listing
-        </Typography>
-      </TitleContainer>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            fullWidth
-            label='Listing Name'
-            value={name}
-            onChange={e => {
-              handleFormInputChange(e, 'name');
-            }}
-            size='small'
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            fullWidth
-            label='Listing Address'
-            multiline
-            maxRows={3}
-            value={location}
-            onBlur={e => {
-              handleGeoLocation(e);
-            }}
-            onChange={e => {
-              handleFormInputChange(e, 'location');
-            }}
-          />
-        </Grid>
-        <Grid item xs={4} md={1}>
-          <TextField
-            fullWidth
-            label='Bedrooms'
-            value={bedrooms}
-            onChange={e => {
-              handleFormInputChange(e, 'bedrooms');
-            }}
-            size='small'
-            type='number'
-          />
-        </Grid>
-        <Grid item xs={4} md={1}>
-          <TextField
-            fullWidth
-            label='Bathrooms'
-            value={bathrooms}
-            onChange={e => {
-              handleFormInputChange(e, 'bathrooms');
-            }}
-            size='small'
-            type='number'
-          />
-        </Grid>
-        <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-          <InputLabel shrink>Rent or Sell</InputLabel>
-          <ButtonGroup fullWidth>
-            <SelectorButton
+    <>
+      <PageBodyStyle darkMode={darkMode} />
+      <MainContainer>
+        {loading && <LoaderSpinner open={true} />}
+        <AlertContainer>
+          <Alert />
+        </AlertContainer>
+        <TitleContainer>
+          <Typography component='h6' variant='h4'>
+            Create a Listing
+          </Typography>
+        </TitleContainer>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              label='Listing Name'
+              value={name}
+              onChange={e => {
+                handleFormInputChange(e, 'name');
+              }}
               size='small'
-              selected={type === 'rent'}
-              onClick={() => handleButtonGroupChange('type', 'rent')}
-            >
-              Rent
-            </SelectorButton>
-            <SelectorButton
+              variant='outlined'
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              label='Listing Address'
+              multiline
+              maxRows={3}
+              value={location}
+              onBlur={e => {
+                handleGeoLocation(e);
+              }}
+              onChange={e => {
+                handleFormInputChange(e, 'location');
+              }}
+            />
+          </Grid>
+          <Grid item xs={4} md={1}>
+            <TextField
+              fullWidth
+              label='Bedrooms'
+              value={bedrooms}
+              onChange={e => {
+                handleFormInputChange(e, 'bedrooms');
+              }}
               size='small'
-              selected={type === 'sell'}
-              onClick={() => handleButtonGroupChange('type', 'sale')}
-            >
-              Sell
-            </SelectorButton>
-          </ButtonGroup>
-        </Grid>
-        <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-          <InputLabel shrink>Parking Spot</InputLabel>
-          <ButtonGroup fullWidth>
-            <SelectorButton size='small' selected={parking} onClick={() => handleButtonGroupChange('parking', true)}>
-              Yes
-            </SelectorButton>
-            <SelectorButton size='small' selected={!parking} onClick={() => handleButtonGroupChange('parking', false)}>
-              No
-            </SelectorButton>
-          </ButtonGroup>
-        </Grid>
-        <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-          <InputLabel shrink>Furnished</InputLabel>
-          <ButtonGroup fullWidth>
-            <SelectorButton
+              type='number'
+            />
+          </Grid>
+          <Grid item xs={4} md={1}>
+            <TextField
+              fullWidth
+              label='Bathrooms'
+              value={bathrooms}
+              onChange={e => {
+                handleFormInputChange(e, 'bathrooms');
+              }}
               size='small'
-              selected={furnished}
-              onClick={() => handleButtonGroupChange('furnished', true)}
-            >
-              Yes
-            </SelectorButton>
-            <SelectorButton
-              size='small'
-              selected={!furnished}
-              onClick={() => handleButtonGroupChange('furnished', false)}
-            >
-              No
-            </SelectorButton>
-          </ButtonGroup>
-        </Grid>
-        {type === 'rent' && (
+              type='number'
+            />
+          </Grid>
           <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-            <InputLabel shrink>Pets Allowed</InputLabel>
+            <InputLabel shrink>Rent or Sell</InputLabel>
             <ButtonGroup fullWidth>
-              <SelectorButton size='small' selected={pets} onClick={() => handleButtonGroupChange('pets', true)}>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={type === 'rent'}
+                onClick={() => handleButtonGroupChange('type', 'rent')}
+              >
+                Rent
+              </SelectorButton>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={type === 'sell'}
+                onClick={() => handleButtonGroupChange('type', 'sell')}
+              >
+                Sell
+              </SelectorButton>
+            </ButtonGroup>
+          </Grid>
+          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+            <InputLabel shrink>Parking Spot</InputLabel>
+            <ButtonGroup fullWidth>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={parking}
+                onClick={() => handleButtonGroupChange('parking', true)}
+              >
                 Yes
               </SelectorButton>
-              <SelectorButton size='small' selected={!pets} onClick={() => handleButtonGroupChange('pets', false)}>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={!parking}
+                onClick={() => handleButtonGroupChange('parking', false)}
+              >
                 No
               </SelectorButton>
             </ButtonGroup>
           </Grid>
-        )}
-        <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-          <InputLabel shrink>Offer</InputLabel>
-          <ButtonGroup fullWidth>
-            <SelectorButton size='small' selected={offer} onClick={() => handleButtonGroupChange('offer', true)}>
-              Yes
-            </SelectorButton>
-            <SelectorButton size='small' selected={!offer} onClick={() => handleButtonGroupChange('offer', false)}>
-              No
-            </SelectorButton>
-          </ButtonGroup>
-        </Grid>
-        <Grid item xs={12} sm={8} md={5} lg={6}>
-          <TextField
-            fullWidth
-            label='Regular Price'
-            value={regularPrice}
-            onChange={e => {
-              handleFormInputChange(e, 'regularPrice');
-            }}
-            size='small'
-          />
-        </Grid>
-        <Grid item xs={12} sm={8} md={5} lg={6}>
-          <TextField
-            fullWidth
-            label='Discounted Price'
-            value={discountedPrice}
-            onChange={e => {
-              handleFormInputChange(e, 'discountedPrice');
-            }}
-            size='small'
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container>
-            <Grid item xs={12} sm={6} md={3}>
-              <InputLabel>Upload images</InputLabel>
-              <InputLabel shrink>First image will be the cover (max of 5)</InputLabel>
-              <DynamicList
-                addColor='forestgreen'
-                removeColor='maroon'
-                children={
-                  <FileUploadField
-                    disabled={!name || !location || !regularPrice || !discountedPrice}
-                    inputProps={{ accept: '.jpg, .png, .jpeg' }}
-                    onChange={handleImageUpload}
-                    size='small'
-                    type='file'
-                    variant='filled'
-                  />
-                }
-                maxRows={5}
-              />
+          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+            <InputLabel shrink>Furnished</InputLabel>
+            <ButtonGroup fullWidth>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={furnished}
+                onClick={() => handleButtonGroupChange('furnished', true)}
+              >
+                Yes
+              </SelectorButton>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={!furnished}
+                onClick={() => handleButtonGroupChange('furnished', false)}
+              >
+                No
+              </SelectorButton>
+            </ButtonGroup>
+          </Grid>
+          {type === 'rent' && (
+            <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+              <InputLabel shrink>Pets Allowed</InputLabel>
+              <ButtonGroup fullWidth>
+                <SelectorButton
+                  color={darkMode ? 'secondary' : 'primary'}
+                  darkMode={darkMode}
+                  size='small'
+                  selected={pets}
+                  onClick={() => handleButtonGroupChange('pets', true)}
+                >
+                  Yes
+                </SelectorButton>
+                <SelectorButton
+                  color={darkMode ? 'secondary' : 'primary'}
+                  darkMode={darkMode}
+                  size='small'
+                  selected={!pets}
+                  onClick={() => handleButtonGroupChange('pets', false)}
+                >
+                  No
+                </SelectorButton>
+              </ButtonGroup>
+            </Grid>
+          )}
+          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+            <InputLabel shrink>Offer</InputLabel>
+            <ButtonGroup fullWidth>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={offer}
+                onClick={() => handleButtonGroupChange('offer', true)}
+              >
+                Yes
+              </SelectorButton>
+              <SelectorButton
+                color={darkMode ? 'secondary' : 'primary'}
+                darkMode={darkMode}
+                size='small'
+                selected={!offer}
+                onClick={() => handleButtonGroupChange('offer', false)}
+              >
+                No
+              </SelectorButton>
+            </ButtonGroup>
+          </Grid>
+          <Grid item xs={12} sm={8} md={5} lg={6}>
+            <TextField
+              fullWidth
+              label='Regular Price'
+              value={regularPrice}
+              onChange={e => {
+                handleFormInputChange(e, 'regularPrice');
+              }}
+              size='small'
+            />
+          </Grid>
+          <Grid item xs={12} sm={8} md={5} lg={6}>
+            <TextField
+              fullWidth
+              label='Discounted Price'
+              value={discountedPrice}
+              onChange={e => {
+                handleFormInputChange(e, 'discountedPrice');
+              }}
+              size='small'
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid item xs={12} sm={6} md={3}>
+                <InputLabel>Upload images</InputLabel>
+                <InputLabel shrink>First image will be the cover (max of 5)</InputLabel>
+                <DynamicList
+                  addColor='forestgreen'
+                  removeColor='maroon'
+                  children={
+                    <FileUploadField
+                      disabled={!name || !location || !regularPrice || !discountedPrice}
+                      inputProps={{ accept: '.jpg, .png, .jpeg' }}
+                      onChange={handleImageUpload}
+                      size='small'
+                      type='file'
+                      variant='filled'
+                    />
+                  }
+                  maxRows={5}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12} md={5} xl={3}>
-          <Button
-            color='info'
-            disabled={!name || !location || !regularPrice || !discountedPrice}
-            fullWidth
-            onClick={handleCreateListing}
-            variant='contained'
-          >
-            Create Listing
-          </Button>
+        <Grid container>
+          <Grid item xs={12} md={5} xl={3}>
+            <Button
+              color='info'
+              disabled={!name || !location || !regularPrice || !discountedPrice}
+              fullWidth
+              onClick={handleCreateListing}
+              variant='contained'
+            >
+              Create Listing
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </MainContainer>
+      </MainContainer>
+    </>
   );
 };
+
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode && '#292929',
+    'h1, h2, h3, h4, h5, h6, p': {
+      color: darkMode && 'beige',
+    },
+    '.MuiInputBase-root': {
+      backgroundColor: darkMode && '#474747',
+      color: darkMode && '#CCCCCC',
+    },
+    '.MuiInputLabel-root': {
+      color: darkMode && 'white',
+    },
+  },
+}));
 
 const MainContainer = styled.div({
   padding: '20px 20px 100px 20px',
@@ -331,13 +400,21 @@ const AlertContainer = styled.div({
   justifyContent: 'center',
 });
 
-const SelectorButton = styled(Button)(({ selected }) => [
+const SelectorButton = styled(Button)(({ darkMode, selected }) => [
+  {
+    ':hover': {
+      backgroundColor: darkMode && 'lightgrey',
+      color: darkMode && 'beige',
+    },
+    backgroundColor: darkMode && 'grey',
+    color: darkMode && 'beige',
+  },
   selected && {
     ':hover': {
-      backgroundColor: 'navy',
+      backgroundColor: darkMode ? 'violet' : 'navy',
       color: 'white',
     },
-    backgroundColor: 'navy',
+    backgroundColor: darkMode ? 'violet' : 'navy',
     color: 'white',
   },
 ]);

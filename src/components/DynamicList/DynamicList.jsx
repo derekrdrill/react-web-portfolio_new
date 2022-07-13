@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/fontawesome-free-solid';
 
+import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
+
 export const DynamicList = props => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const maxRows = props.maxRows || 5;
   const minRows = props.minRows || 1;
   const [rowCount, setRowCount] = useState([{ id: minRows }]);
@@ -28,11 +32,17 @@ export const DynamicList = props => {
             {props.children}
           </Grid>
           <Grid item xs={12} sm={2} md={1}>
-            <DynamicListButton onClick={addRow} disabled={rowCount.length === maxRows} iconcolor={props.addColor}>
+            <DynamicListButton
+              darkMode={darkMode}
+              onClick={addRow}
+              disabled={rowCount.length === maxRows}
+              iconcolor={props.addColor}
+            >
               <FontAwesomeIcon icon={faPlus} />
             </DynamicListButton>
             <DynamicListButton
               onClick={() => removeRow(row.id)}
+              darkMode={darkMode}
               disabled={rowCount.length === minRows}
               iconcolor={props.removeColor}
             >
@@ -50,8 +60,8 @@ const DynamicListTitle = styled(Typography)({
   marginBottom: 10,
 });
 
-const DynamicListButton = styled(Button)(({ iconcolor }) => ({
-  color: iconcolor || '#1976d2',
+const DynamicListButton = styled(Button)(({ darkMode, iconcolor }) => ({
+  color: darkMode ? '#3b3b3b' : iconcolor || '#1976d2',
 }));
 
 const DynamicListContainer = styled(Grid)({

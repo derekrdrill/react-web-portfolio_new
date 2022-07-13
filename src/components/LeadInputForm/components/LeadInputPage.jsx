@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 import { AppBar, Toolbar, Button, Tooltip, Typography } from '@mui/material';
-import { LeadInputContext } from '../context/LeadInputContext';
+
 import { LeadInputForm } from './LeadInputForm';
 import { LeadInputDataTable } from './LeadInputDataTable';
 
+import { LeadInputContext } from '../context/LeadInputContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 export const LeadInputPage = () => {
+  const { darkMode } = useContext(DarkLightModeContext);
   const { leadInputDispatch, page, tooltipOpen } = useContext(LeadInputContext);
 
   const handlePageButtonClick = () => {
@@ -18,7 +22,7 @@ export const LeadInputPage = () => {
 
   return (
     <>
-      <PageBodyStyle />
+      <PageBodyStyle darkMode={darkMode} />
       <LeadInputPageHeader>
         <Toolbar>
           <Container fluid>
@@ -51,11 +55,14 @@ export const LeadInputPage = () => {
   );
 };
 
-const PageBodyStyle = createGlobalStyle({
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {
-    backgroundColor: 'tan',
+    backgroundColor: darkMode ? '#303030' : '#f2e9de',
   },
-});
+  'h1, h2, h3, h4, h5, h6': {
+    color: darkMode ? 'grey' : 'inherit',
+  },
+}));
 
 const LeadInputPageHeader = styled(AppBar)({
   top: 80,

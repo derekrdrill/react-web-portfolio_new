@@ -23,6 +23,8 @@ import { AlertProvider } from './components/Alert/context/AlertContext';
 import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
 import { FileUploader } from './components/FileUploader/FileUploader';
 import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
+import { DarkLightMode } from './components/DarkLightMode/components/DarkLightMode';
+import { DarkLightModeProvider } from './components/DarkLightMode/context/DarkLightModeContext';
 
 export const routes = [
   {
@@ -205,5 +207,14 @@ export const routes = [
     id: 22,
     path: '/file-uploader',
     render: <FileUploader />,
+  },
+  {
+    id: 23,
+    path: '/dark-light-mode',
+    render: (
+      <DarkLightModeProvider>
+        <DarkLightMode />
+      </DarkLightModeProvider>
+    ),
   },
 ];

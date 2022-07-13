@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Grid, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+
 import { ShowHideIcon } from '../ShowHideIcon/ShowHideIcon';
+
+import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
 // TODO: condense this all to one style using emotion
 
 // import { css } from '@emotion/react';
 
 const FormInput = ({ input, onChange }) => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [selectValue, setSelectValue] = useState('');
   const [passwordHidden, setPasswordHidden] = useState(true);
+
   const selectChange = event => setSelectValue(event.target.value);
   const handleSetPasswordHidden = () => setPasswordHidden(!passwordHidden);
 
@@ -17,12 +23,15 @@ const FormInput = ({ input, onChange }) => {
     <Grid item xs={input.xs} sm={input.sm} md={input.md}>
       {input.select ? (
         <FormControl fullWidth>
-          <InputLabel>{input.label}</InputLabel>
+          <StyledSelectLabel darkMode={darkMode} labelcolor={input.labelColor}>
+            {input.label}
+          </StyledSelectLabel>
           <StyledSelect
             id={input.id}
+            darkMode={darkMode}
             label={input.label}
             value={selectValue}
-            variant={input.variant}
+            variant={darkMode ? 'filled' : input.variant}
             fullWidth={input.fullWidth || true}
             onChange={selectChange}
             color={input.color || 'secondary'}
@@ -43,8 +52,10 @@ const FormInput = ({ input, onChange }) => {
       ) : (
         <StyledTextField
           id={input.id}
+          darkMode={darkMode}
           label={input.label}
-          variant={input.variant}
+          placeholder={input.placeholder}
+          variant={darkMode ? 'filled' : input.variant}
           fullWidth={input.fullWidth || true}
           multiline={input.multiline}
           minRows={input.multiline && input.minRows}
@@ -99,30 +110,52 @@ export const DynamicFormInputs = ({ inputs, onChange }) => (
 // }));
 
 const StyledTextField = styled(TextField)(
-  ({ inputbackgroundcolor, inputborderradius, inputpaddingbottom, inputfontfamily, labelfontfamily, labelcolor }) => ({
+  ({
+    darkMode,
+    inputbackgroundcolor,
+    inputborderradius,
+    inputpaddingbottom,
+    inputfontfamily,
+    labelfontfamily,
+    labelcolor,
+  }) => ({
     paddingBottom: inputpaddingbottom,
     '.MuiInputBase-root': {
-      backgroundColor: inputbackgroundcolor,
+      backgroundColor: darkMode ? '#474747' : inputbackgroundcolor,
       borderRadius: inputborderradius,
+      color: darkMode ? 'beige' : 'inherit',
       fontFamily: inputfontfamily,
     },
     '.MuiInputLabel-root': {
-      color: labelcolor,
+      color: darkMode ? 'white' : labelcolor,
       fontFamily: labelfontfamily,
     },
   }),
 );
 
+const StyledSelectLabel = styled(InputLabel)(({ darkMode, labelcolor }) => ({
+  color: darkMode ? 'white' : labelcolor,
+}));
+
 const StyledSelect = styled(Select)(
-  ({ inputbackgroundcolor, inputborderradius, inputpaddingbottom, inputfontfamily, labelfontfamily, labelcolor }) => ({
+  ({
+    darkMode,
+    inputbackgroundcolor,
+    inputborderradius,
+    inputpaddingbottom,
+    inputfontfamily,
+    labelfontfamily,
+    labelcolor,
+  }) => ({
     paddingBottom: inputpaddingbottom,
-    '.MuiInputBase-root': {
-      backgroundColor: inputbackgroundcolor,
+    '&.MuiInputBase-root': {
+      backgroundColor: darkMode ? '#474747' : inputbackgroundcolor,
       borderRadius: inputborderradius,
+      color: darkMode ? 'beige' : 'inherit',
       fontFamily: inputfontfamily,
     },
     '.MuiInputLabel-root': {
-      color: labelcolor,
+      color: darkMode ? 'beige' : labelcolor,
       fontFamily: labelfontfamily,
     },
   }),
