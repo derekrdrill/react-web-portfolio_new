@@ -20,7 +20,7 @@ export const PROJECTS = [
   // },
   {
     id: 2,
-    title: 'Lead Input Form/Report',
+    title: 'Lead Input App',
     description: `A simple input form that reads from and writes to a MongoDB. 
                       Included is a dynamic reporting table to track the input data.`,
     icon: faDatabase,
@@ -35,8 +35,8 @@ export const PROJECTS = [
   },
   {
     id: 4,
-    title: 'Housing Marketplace App',
-    description: `An application that...`,
+    title: 'Housing Marketplace',
+    description: `An app that shows listings, current offers on listings and allows to create new listings. All data is pulled from a MongoDB via an Express backend.`,
     icon: faBuilding,
     to: '/housing-marketplace/auth',
   },

@@ -53,6 +53,23 @@ Here is the breakdown of completed and pending work on this app:
       </li>
     </ul>
   </li>
+  <li>
+    Github Finder Project
+    <ul>
+      <li>
+        A tool that pulls data from the Github API and cleanly presents it in a user-friendly React UI
+      </li> 
+    </ul>
+  </li>
+  <li>
+    Housing marketplace app
+    <ul>
+      <li>
+        An app that allows users to see current listings, current offers on listings and create new listings.
+        This app pull asll dat a from a MongoDB via an Express backend.
+      </li> 
+    </ul>
+  </li>
 </ul>
   
 <h2>Pending</h2>
@@ -69,7 +86,7 @@ Here is the breakdown of completed and pending work on this app:
       </li> 
     </ul>
   </li>
-  <li>
+  <!-- <li>
     Housing marketplace app
     <ul>
       <li>
@@ -81,17 +98,7 @@ Here is the breakdown of completed and pending work on this app:
       </li> 
     </ul>
   </li>
-  <li>
-    'Let's Connect' page functionality
-    <ul>
-      <li>
-        This page is currently just a UI. Interaction with the back end and MongoDB database needs to be set up so a formatted email will be sent to me when a user fills out that form.
-      </li> 
-      <li>
-        Status: <em>In Progress</em>
-      </li> 
-    </ul>
-  </li>
+  <li> -->
   <li>
     The George App
     <ul>
