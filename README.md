@@ -70,6 +70,14 @@ Here is the breakdown of completed and pending work on this app:
       </li> 
     </ul>
   </li>
+  <li>
+    Dark/Light mode
+    <ul>
+      <li>
+        A global functionality that toggles the entire app between light and dark mode at a click
+      </li> 
+    </ul>
+  </li>
 </ul>
   
 <h2>Pending</h2>
