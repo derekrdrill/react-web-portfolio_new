@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { history } from '../../../index';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Typography } from '@mui/material';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { AlertContext } from '../../Alert/context/AlertContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 import { handleAlert } from '../../Alert/context/AlertActions';
 import { formInputsGenerator } from '../../../utils/formInputsGenerator';
@@ -36,6 +37,7 @@ export const UserPasswordReset = () => {
 
   const { passwordIsReset, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
+  const { darkMode } = useContext(DarkLightModeContext);
 
   const [userFound, setUserFound] = useState(false);
   const [userID, setUserID] = useState(null);
@@ -87,39 +89,48 @@ export const UserPasswordReset = () => {
   }, []);
 
   return (
-    <UserPasswordResetContainer>
-      {passwordIsReset ? (
-        <Typography paragraph>
-          Your password has been reset successfully. Click <a href='/housing-marketplace/auth'>here</a> to sign in
-        </Typography>
-      ) : userFound ? (
-        <>
-          <TextContainer>
-            <Typography component='h6' variant='h6'>
-              Reset password below
-            </Typography>
-          </TextContainer>
-          <DynamicFormInputs inputs={inputs} form={form} setForm={setForm} />
-          <ButtonContainer>
-            <Button
-              disabled={!form.password || !form.confirmPassword}
-              fullWidth
-              onClick={handlePasswordReset}
-              variant='contained'
-            >
-              Reset password
-            </Button>
-          </ButtonContainer>
-          <AlertContainer>
-            <Alert />
-          </AlertContainer>
-        </>
-      ) : (
-        <></>
-      )}
-    </UserPasswordResetContainer>
+    <>
+      <PageBodyStyle darkMode={darkMode} />
+      <UserPasswordResetContainer>
+        {passwordIsReset ? (
+          <Typography paragraph>
+            Your password has been reset successfully. Click <a href='/housing-marketplace/auth'>here</a> to sign in
+          </Typography>
+        ) : userFound ? (
+          <>
+            <TextContainer>
+              <Typography component='h6' variant='h6'>
+                Reset password below
+              </Typography>
+            </TextContainer>
+            <DynamicFormInputs inputs={inputs} form={form} setForm={setForm} />
+            <ButtonContainer>
+              <Button
+                disabled={!form.password || !form.confirmPassword}
+                fullWidth
+                onClick={handlePasswordReset}
+                variant='contained'
+              >
+                Reset password
+              </Button>
+            </ButtonContainer>
+            <AlertContainer>
+              <Alert />
+            </AlertContainer>
+          </>
+        ) : (
+          <></>
+        )}
+      </UserPasswordResetContainer>
+    </>
   );
-};;
+};
+
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode && '#292929',
+  },
+}));
 
 const AlertContainer = styled.div({
   display: 'flex',
