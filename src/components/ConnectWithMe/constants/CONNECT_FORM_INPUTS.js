@@ -6,7 +6,7 @@ export const CONNECT_FORM_INPUTS = [
     title: 'Basic Info Inputs',
     inputs: [
       {
-        id: 1,
+        id: 'firstName',
         label: 'First Name',
         variant: 'filled',
         xs: 12,
@@ -18,7 +18,7 @@ export const CONNECT_FORM_INPUTS = [
         labelColor: '#28282B',
       },
       {
-        id: 2,
+        id: 'lastName',
         label: 'Last Name',
         variant: 'filled',
         xs: 12,
@@ -30,7 +30,7 @@ export const CONNECT_FORM_INPUTS = [
         labelColor: '#28282B',
       },
       {
-        id: 3,
+        id: 'email',
         label: 'Email',
         variant: 'filled',
         xs: 12,
@@ -42,7 +42,7 @@ export const CONNECT_FORM_INPUTS = [
         labelColor: '#28282B',
       },
       {
-        id: 4,
+        id: 'phone',
         label: 'Phone (Optional)',
         variant: 'filled',
         xs: 12,
@@ -60,7 +60,7 @@ export const CONNECT_FORM_INPUTS = [
     title: 'Message Text Area',
     inputs: [
       {
-        id: 1,
+        id: 'message',
         label: `Tell me somethin' good`,
         variant: 'filled',
         xs: 12,

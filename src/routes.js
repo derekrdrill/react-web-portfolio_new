@@ -1,30 +1,28 @@
 import { App } from './components/App';
+
+import { AboutMe } from './components/AboutMe/components/AboutMe';
 import { ApplicationComplete } from './components/JobApplications/components/ApplicationComplete';
 import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationsPage';
-import { Projects } from './components/Projects/components/Projects';
-import { AboutMe } from './components/AboutMe/components/AboutMe';
+import { Category } from './components/HousingMarketplace/components/Category';
 import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
-import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
-import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
+import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
+import { DarkLightMode } from './components/DarkLightMode/components/DarkLightMode';
 import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
-import { Feedback } from './components/Feedback/Feedback';
-import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
-import { Sandbox } from './components/Sandbox/Sandbox';
-import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
-import { HousingMarketplace } from './components/HousingMarketplace/HousingMarketplace';
-import { Navbar } from './components/HousingMarketplace/components/Navbar';
 import { Explore } from './components/HousingMarketplace/components/Explore';
+import { Feedback } from './components/Feedback/Feedback';
+import { FileUploader } from './components/FileUploader/FileUploader';
+import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
+import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
+import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
+import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
+import { Navbar } from './components/HousingMarketplace/components/Navbar';
 import { Offer } from './components/HousingMarketplace/components/Offer';
 import { Profile } from './components/HousingMarketplace/components/Profile';
+import { Projects } from './components/Projects/components/Projects';
+import { Sandbox } from './components/Sandbox/Sandbox';
+import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
 import { UserLogin } from './components/HousingMarketplace/components/UserLogin';
 import { UserPasswordReset } from './components/HousingMarketplace/components/UserPasswordReset';
-import { Category } from './components/HousingMarketplace/components/Category';
-import { AlertProvider } from './components/Alert/context/AlertContext';
-import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
-import { FileUploader } from './components/FileUploader/FileUploader';
-import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
-import { DarkLightMode } from './components/DarkLightMode/components/DarkLightMode';
-import { DarkLightModeProvider } from './components/DarkLightMode/context/DarkLightModeContext';
 
 export const routes = [
   {
@@ -97,9 +95,7 @@ export const routes = [
     path: '/housing-marketplace/auth',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <UserLogin />
-        </AlertProvider>
+        <UserLogin />
       </UserAuthenticationProvider>
     ),
   },
@@ -119,11 +115,9 @@ export const routes = [
     path: '/housing-marketplace/explore',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <Explore />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <Explore />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -132,11 +126,9 @@ export const routes = [
     path: '/housing-marketplace/offers',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <Offer />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <Offer />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -145,11 +137,9 @@ export const routes = [
     path: '/housing-marketplace/profile',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <Profile />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <Profile />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -158,11 +148,9 @@ export const routes = [
     path: '/housing-marketplace/create-listing',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <CreateListing />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <CreateListing />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -171,9 +159,7 @@ export const routes = [
     path: '/housing-marketplace/reset-password/:token',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <UserPasswordReset />
-        </AlertProvider>
+        <UserPasswordReset />
       </UserAuthenticationProvider>
     ),
   },
@@ -182,11 +168,9 @@ export const routes = [
     path: '/housing-marketplace/category/:category',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <Category />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <Category />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -195,11 +179,9 @@ export const routes = [
     path: '/housing-marketplace/listing/:listingID',
     render: (
       <UserAuthenticationProvider>
-        <AlertProvider>
-          <Navbar>
-            <ListingInfo />
-          </Navbar>
-        </AlertProvider>
+        <Navbar>
+          <ListingInfo />
+        </Navbar>
       </UserAuthenticationProvider>
     ),
   },
@@ -211,10 +193,6 @@ export const routes = [
   {
     id: 23,
     path: '/dark-light-mode',
-    render: (
-      <DarkLightModeProvider>
-        <DarkLightMode />
-      </DarkLightModeProvider>
-    ),
+    render: <DarkLightMode />,
   },
 ];

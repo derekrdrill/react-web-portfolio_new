@@ -1,8 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import $ from 'jquery';
 import styled from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
+
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+
+import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
+import { handleAlert } from '../../Alert/context/AlertActions';
 
 import { CONNECT_TYPES } from '../constants/CONNECT_TYPES';
 import { CONNECT_FORM_INPUTS } from '../constants/CONNECT_FORM_INPUTS';
@@ -11,7 +18,58 @@ import bitmojiWaterCooler from '../../../assets/bitmoji_waterCooler.png';
 export const ConnectWithMe = ({ id }) => {
   const connectTypes = CONNECT_TYPES;
 
+  const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleMessageSend = async () => {
+    if (firstName && lastName && email && message) {
+      const response = await fetch(`../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }).catch(e => console.warn(e));
+
+      if (response.ok) {
+        const messageData = await response.json();
+        handleAlert(messageData.message, 'Email sent', 'success', alertDispatch);
+
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#email').val('');
+        $('#phone').val('');
+        $('#message').val('');
+      }
+    } else {
+      handleAlert(
+        'You must enter a first name, last name, email and message',
+        'Message cannot send',
+        'error',
+        alertDispatch,
+      );
+    }
+  };
+
+  const handleInputChange = e => {
+    let elementID = e.currentTarget.id;
+    let elementValue = e.currentTarget.value;
+
+    if (elementID === 'firstName') {
+      setFirstName(elementValue);
+    } else if (elementID === 'lastName') {
+      setLastName(elementValue);
+    } else if (elementID === 'email') {
+      setEmail(elementValue);
+    } else if (elementID === 'phone') {
+      setPhone(elementValue);
+    } else if (elementID === 'message') {
+      setMessage(elementValue);
+    }
+  };
 
   return (
     <ContactPageContainer id={id} darkMode={darkMode} container>
@@ -39,16 +97,31 @@ export const ConnectWithMe = ({ id }) => {
       <DirectConnectContainer item xs={12} lg={8}>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={5}>
-            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[0].inputs} />
+            <DynamicFormInputs
+              inputs={CONNECT_FORM_INPUTS[0].inputs}
+              onChange={e => {
+                handleInputChange(e);
+              }}
+            />
           </Grid>
           <Grid item xs={12} lg={7}>
-            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[1].inputs} />
+            <DynamicFormInputs
+              inputs={CONNECT_FORM_INPUTS[1].inputs}
+              onChange={e => {
+                handleInputChange(e);
+              }}
+            />
           </Grid>
         </Grid>
-        <Grid container justifyContent='flex-end'>
-          <Button variant='contained' color='warning'>
-            Send
-          </Button>
+        <Grid container justifyContent='space-between'>
+          <div>
+            <Alert />
+          </div>
+          <div>
+            <Button variant='contained' color='warning' onClick={handleMessageSend}>
+              Send
+            </Button>
+          </div>
         </Grid>
       </DirectConnectContainer>
       <Grid item xs={12}>
