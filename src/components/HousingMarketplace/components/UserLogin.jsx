@@ -11,6 +11,7 @@ import { UserAuthenticationContext } from '../context/UserAuthenticationContext'
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { handleAlert } from '../../Alert/context/AlertActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 
@@ -19,18 +20,12 @@ export const UserLogin = () => {
   const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
 
-  const [signInItem, setSignInItem] = useState({ username: '', password: '' });
-  const allFieldsFilled = signInItem.username && signInItem.password;
+  const [form, setForm] = useState(formInputsGenerator(USER_LOGIN_INPUTS));
 
-  const handleSetSignIn = e => {
-    const itemID = e.currentTarget.id;
-    const itemValue = e.currentTarget.value;
-
-    setSignInItem({ ...signInItem, [itemID]: itemValue });
-  };
+  const allFieldsFilled = form.username && form.password;
 
   const handleSignIn = async () => {
-    const { username, password } = signInItem;
+    const { username, password } = form;
 
     const response = await fetch(`../sign-in/${username}/${password}`, {
       method: 'GET',
@@ -81,7 +76,7 @@ export const UserLogin = () => {
                 User sign-in
               </LoginText>
             </LoginTextContainer>
-            <DynamicFormInputs inputs={USER_LOGIN_INPUTS} onChange={handleSetSignIn} />
+            <DynamicFormInputs inputs={USER_LOGIN_INPUTS} form={form} setForm={setForm} />
             <ButtonContainer>
               <Button disabled={!allFieldsFilled} fullWidth onClick={handleSignIn} variant='outlined'>
                 Sign in

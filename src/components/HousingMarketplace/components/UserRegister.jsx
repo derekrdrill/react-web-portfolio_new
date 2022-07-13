@@ -8,6 +8,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { allFieldsFilled, handleSubmit } from '../context/UserAuthenticationActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { USER_REGISTER_INPUTS } from '../constants/USER_REGISTER_INPUTS';
 
@@ -16,21 +17,7 @@ export const UserRegister = () => {
   const { userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
 
-  const [userItem, setUserItem] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const handleUserItemChange = e => {
-    const itemID = e.currentTarget.id;
-    const itemValue = e.currentTarget.value;
-
-    setUserItem({ ...userItem, [itemID]: itemValue });
-  };
+  const [form, setForm] = useState(formInputsGenerator(USER_REGISTER_INPUTS));
 
   return (
     <>
@@ -40,13 +27,13 @@ export const UserRegister = () => {
       <RegisterText darkMode={darkMode} component='p' variant='p'>
         Fill in all information below to sign up today!
       </RegisterText>
-      <DynamicFormInputs inputs={USER_REGISTER_INPUTS} onChange={handleUserItemChange} />
+      <DynamicFormInputs inputs={USER_REGISTER_INPUTS} form={form} setForm={setForm} />
       <ButtonContainer>
         <Button
-          disabled={allFieldsFilled(userItem)}
+          disabled={allFieldsFilled(form)}
           color='info'
           fullWidth
-          onClick={() => handleSubmit(userItem, alertDispatch, userAuthenticationDispatch)}
+          onClick={() => handleSubmit(form, alertDispatch, userAuthenticationDispatch)}
           variant='contained'
         >
           Submit

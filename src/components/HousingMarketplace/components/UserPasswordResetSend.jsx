@@ -8,30 +8,29 @@ import { UserAuthenticationContext } from '../context/UserAuthenticationContext'
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { handleSendResetEmail } from '../context/UserAuthenticationActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
+
+const inputs = [{ id: 'email', label: 'Email', variant: 'outlined', xs: 12, fullWidth: true }];
 
 export const UserPasswordResetSend = () => {
   const { darkMode } = useContext(DarkLightModeContext);
   const { alertDispatch } = useContext(AlertContext);
   const { userAuthenticationDispatch } = useContext(UserAuthenticationContext);
 
-  const [email, setEmail] = useState('');
-  const handleEmailChange = e => setEmail(e.currentTarget.value);
+  const [form, setForm] = useState(formInputsGenerator(inputs));
 
   return (
     <>
       <ResetEmailText darkMode={darkMode} component='p' variant='p'>
         Enter a valid email below to receieve password reset instructions
       </ResetEmailText>
-      <DynamicFormInputs
-        inputs={[{ id: 'email', label: 'Email', variant: 'outlined', xs: 12, fullWidth: true }]}
-        onChange={handleEmailChange}
-      />
+      <DynamicFormInputs inputs={inputs} form={form} setForm={setForm} />
       <ButtonContainer>
         <Button
-          disabled={!email}
+          disabled={!form.email}
           color='info'
           fullWidth
-          onClick={() => handleSendResetEmail(email, alertDispatch, userAuthenticationDispatch)}
+          onClick={() => handleSendResetEmail(form.email, alertDispatch, userAuthenticationDispatch)}
           variant='contained'
         >
           Send Reset Email
@@ -39,7 +38,7 @@ export const UserPasswordResetSend = () => {
       </ButtonContainer>
     </>
   );
-};
+};;;
 
 const ResetEmailText = styled(Typography)(({ darkMode }) => ({
   margin: '10px 0',

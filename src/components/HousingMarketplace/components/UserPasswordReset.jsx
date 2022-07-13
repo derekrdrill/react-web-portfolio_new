@@ -2,11 +2,33 @@ import React, { useContext, useEffect, useState } from 'react';
 import { history } from '../../../index';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 import { AlertContext } from '../../Alert/context/AlertContext';
-import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
+
 import { handleAlert } from '../../Alert/context/AlertActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
+
+const inputs = [
+  {
+    id: 'password',
+    label: 'New Password',
+    variant: 'outlined',
+    xs: 12,
+    fullWidth: true,
+    type: 'password',
+  },
+  {
+    id: 'confirmPassword',
+    label: 'Confirm New Password',
+    variant: 'outlined',
+    xs: 12,
+    fullWidth: true,
+    type: 'password',
+  },
+];
 
 export const UserPasswordReset = () => {
   const pathName = history.location.pathname;
@@ -14,23 +36,17 @@ export const UserPasswordReset = () => {
 
   const { passwordIsReset, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
-  const [passwords, setPasswords] = useState({ password: '', confirmPassword: '' });
+
   const [userFound, setUserFound] = useState(false);
   const [userID, setUserID] = useState(null);
-
-  const handleInputChange = e => {
-    const itemID = e.currentTarget.id;
-    const itemValue = e.currentTarget.value;
-
-    setPasswords({ ...passwords, [itemID]: itemValue });
-  };
+  const [form, setForm] = useState(formInputsGenerator(inputs));
 
   const handlePasswordReset = async () => {
-    if (passwords.password === passwords.confirmPassword) {
+    if (form.password === form.confirmPassword) {
       const response = await fetch(`../../../../../../updatePassword/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: userID, password: passwords.password }),
+        body: JSON.stringify({ id: userID, password: form.password }),
       }).catch(e => console.warn(e));
 
       if (response.ok) {
@@ -83,30 +99,10 @@ export const UserPasswordReset = () => {
               Reset password below
             </Typography>
           </TextContainer>
-          <DynamicFormInputs
-            inputs={[
-              {
-                id: 'password',
-                label: 'New Password',
-                variant: 'outlined',
-                xs: 12,
-                fullWidth: true,
-                type: 'password',
-              },
-              {
-                id: 'confirmPassword',
-                label: 'Confirm New Password',
-                variant: 'outlined',
-                xs: 12,
-                fullWidth: true,
-                type: 'password',
-              },
-            ]}
-            onChange={handleInputChange}
-          />
+          <DynamicFormInputs inputs={inputs} form={form} setForm={setForm} />
           <ButtonContainer>
             <Button
-              disabled={!passwords.password || !passwords.confirmPassword}
+              disabled={!form.password || !form.confirmPassword}
               fullWidth
               onClick={handlePasswordReset}
               variant='contained'
@@ -123,7 +119,7 @@ export const UserPasswordReset = () => {
       )}
     </UserPasswordResetContainer>
   );
-};
+};;
 
 const AlertContainer = styled.div({
   display: 'flex',

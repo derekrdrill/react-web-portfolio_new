@@ -8,30 +8,21 @@ import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { addLeadInput } from '../context/LeadInputActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { LEAD_INFO_INPUTS } from '../constants/LEAD_INFO_INPUTS';
 
 export const LeadInputForm = () => {
-  const [leads, setLeads] = useState({});
   const [loading, setLoading] = useState(null);
-
-  const updateLeadsObject = e => {
-    let key = e.target.id;
-    let value = e.target.value;
-    let updatedValue = { [key]: value };
-
-    setLeads(leads => ({
-      ...leads,
-      ...updatedValue,
-    }));
-  };
+  const [form, setForm] = useState(formInputsGenerator(LEAD_INFO_INPUTS));
 
   const postApi = async () => {
     setLoading(true);
     setTimeout(() => {
-      addLeadInput(leads);
+      addLeadInput(form);
       setLoading(null);
-      $('input').val('');
+      // $('input').val('');
+      setForm({ firstName: '', lastName: '', email: '', phone: '' });
     }, 1000);
   };
 
@@ -46,7 +37,7 @@ export const LeadInputForm = () => {
       </Row>
       <InputsRow>
         <Col xs={{ span: 12 }} lg={{ span: 6, offset: 3 }}>
-          <DynamicFormInputs inputs={LEAD_INFO_INPUTS} onChange={updateLeadsObject} />
+          <DynamicFormInputs inputs={LEAD_INFO_INPUTS} form={form} setForm={setForm} />
         </Col>
       </InputsRow>
       <SubmitButtonRow>

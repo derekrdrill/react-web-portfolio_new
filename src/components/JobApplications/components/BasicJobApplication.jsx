@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Grid, TextField, Typography, Button } from '@mui/material';
-
 import { DynamicList } from '../../DynamicList/DynamicList';
-
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { BASIC_JOB_APP_INPUTS } from '../constants/BASIC_JOB_APP_INPUTS';
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 
 export const BasicJobApplication = () => {
   const { darkMode } = useContext(DarkLightModeContext);
+  const [form, setForm] = useState(formInputsGenerator(BASIC_JOB_APP_INPUTS));
 
   return (
     <JobAppContainer darkMode={darkMode} container spacing={2}>
@@ -30,7 +31,7 @@ export const BasicJobApplication = () => {
           children={<TextField type='file' />}
         />
       </FileUploadContainer>
-      <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} />
+      <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} form={form} setForm={setForm} />
       <Grid container justifyContent='flex-end'>
         <Link to='/app-complete'>
           <SubmitButton size='large' color='info' variant='contained'>

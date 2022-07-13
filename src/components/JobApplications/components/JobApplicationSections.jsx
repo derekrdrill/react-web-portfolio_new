@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
@@ -7,10 +7,14 @@ import { DynamicList } from '../../DynamicList/DynamicList';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
+
 export const JobApplicationSection = ({ section }) => {
   const { darkMode } = useContext(DarkLightModeContext);
 
-  const inputs = <DynamicFormInputs inputs={section.inputs} />;
+  const [form, setForm] = useState(formInputsGenerator(section.inputs));
+
+  const inputs = <DynamicFormInputs inputs={section.inputs} form={form} setForm={setForm} />;
 
   return (
     <JobAppSectionContainer container>

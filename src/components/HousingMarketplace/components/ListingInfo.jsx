@@ -24,6 +24,18 @@ export const ListingInfo = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState('');
 
+  const inputs = [
+    {
+      id: 'contactMessage',
+      label: 'Message',
+      variant: 'outlined',
+      xs: 12,
+      fullWidth: true,
+      multiline: true,
+      minRows: 3,
+    },
+  ];
+
   const discountedPrice = listingInfo.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? '';
   const discount =
     (listingInfo.regularPrice - listingInfo.discountedPrice)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? 0;
@@ -146,19 +158,7 @@ export const ListingInfo = () => {
             <Grid item xs={12}>
               <Typography component='h4' variant='h5'>
                 Contact {`${contactInfo.firstName} ${contactInfo.lastName}`}
-                <DynamicFormInputs
-                  inputs={[
-                    {
-                      id: 'contactMessage',
-                      label: 'Message',
-                      variant: 'outlined',
-                      xs: 12,
-                      fullWidth: true,
-                      multiline: true,
-                      minRows: 3,
-                    },
-                  ]}
-                />
+                <DynamicFormInputs inputs={inputs} />
               </Typography>
             </Grid>
           </Grid>

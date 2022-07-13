@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import $ from 'jquery';
 import styled from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 
@@ -10,6 +9,7 @@ import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 import { handleAlert } from '../../Alert/context/AlertActions';
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { CONNECT_TYPES } from '../constants/CONNECT_TYPES';
 import { CONNECT_FORM_INPUTS } from '../constants/CONNECT_FORM_INPUTS';
@@ -21,14 +21,11 @@ export const ConnectWithMe = ({ id }) => {
   const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
+  const [form1, setForm1] = useState(formInputsGenerator(CONNECT_FORM_INPUTS[0].inputs));
+  const [form2, setForm2] = useState(formInputsGenerator(CONNECT_FORM_INPUTS[1].inputs));
 
   const handleMessageSend = async () => {
-    if (firstName && lastName && email && message) {
+    if (form1.firstName && form1.lastName && form1.email && form2.message) {
       const response = await fetch(`../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -38,11 +35,8 @@ export const ConnectWithMe = ({ id }) => {
         const messageData = await response.json();
         handleAlert(messageData.message, 'Email sent', 'success', alertDispatch);
 
-        $('#firstName').val('');
-        $('#lastName').val('');
-        $('#email').val('');
-        $('#phone').val('');
-        $('#message').val('');
+        setForm1({ firstName: '', lastName: '', email: '', phone: '' });
+        setForm2({ message: '' });
       }
     } else {
       handleAlert(
@@ -51,23 +45,6 @@ export const ConnectWithMe = ({ id }) => {
         'error',
         alertDispatch,
       );
-    }
-  };
-
-  const handleInputChange = e => {
-    let elementID = e.currentTarget.id;
-    let elementValue = e.currentTarget.value;
-
-    if (elementID === 'firstName') {
-      setFirstName(elementValue);
-    } else if (elementID === 'lastName') {
-      setLastName(elementValue);
-    } else if (elementID === 'email') {
-      setEmail(elementValue);
-    } else if (elementID === 'phone') {
-      setPhone(elementValue);
-    } else if (elementID === 'message') {
-      setMessage(elementValue);
     }
   };
 
@@ -97,20 +74,10 @@ export const ConnectWithMe = ({ id }) => {
       <DirectConnectContainer item xs={12} lg={8}>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={5}>
-            <DynamicFormInputs
-              inputs={CONNECT_FORM_INPUTS[0].inputs}
-              onChange={e => {
-                handleInputChange(e);
-              }}
-            />
+            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[0].inputs} form={form1} setForm={setForm1} />
           </Grid>
           <Grid item xs={12} lg={7}>
-            <DynamicFormInputs
-              inputs={CONNECT_FORM_INPUTS[1].inputs}
-              onChange={e => {
-                handleInputChange(e);
-              }}
-            />
+            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[1].inputs} form={form2} setForm={setForm2} />
           </Grid>
         </Grid>
         <Grid container justifyContent='space-between'>
