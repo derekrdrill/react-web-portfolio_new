@@ -25,7 +25,10 @@ export const ConnectWithMe = ({ id }) => {
   const [form2, setForm2] = useState(formInputsGenerator(CONNECT_FORM_INPUTS[1].inputs));
 
   const handleMessageSend = async () => {
-    if (form1.firstName && form1.lastName && form1.email && form2.message) {
+    const { firstName, lastName, email, phone } = form1;
+    const { message } = form2;
+
+    if (firstName && lastName && email && message) {
       const response = await fetch(`../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
