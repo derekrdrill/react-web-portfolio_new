@@ -81,20 +81,18 @@ const FormInput = ({ input, onChange, value }) => {
   );
 };
 
-export const DynamicFormInputs = ({ inputs, onChange, form, setForm }) => {
+export const DynamicFormInputs = ({ inputs, form, setForm }) => {
   const handleInputChange = (e, setForm) => {
     let id = e.currentTarget.id;
     setForm({ ...form, [id]: e.currentTarget.value });
   };
-
-  const handleChange = onChange ?? (e => handleInputChange(e, setForm));
 
   return (
     <Grid container spacing={2}>
       {inputs.map(input => {
         let value = form[input.id];
 
-        return <FormInput key={input.id} input={input} onChange={handleChange} value={value} />;
+        return <FormInput key={input.id} input={input} onChange={e => handleInputChange(e, setForm)} value={value} />;
       })}
     </Grid>
   );
