@@ -1,6 +1,6 @@
 export const BASIC_JOB_APP_INPUTS = [
   {
-    id: 1,
+    id: 'name',
     label: 'Name',
     variant: 'standard',
     xs: 12,
@@ -9,7 +9,7 @@ export const BASIC_JOB_APP_INPUTS = [
     fullWidth: true,
   },
   {
-    id: 2,
+    id: 'email',
     label: 'Email',
     variant: 'standard',
     xs: 12,
@@ -19,7 +19,7 @@ export const BASIC_JOB_APP_INPUTS = [
     type: 'email',
   },
   {
-    id: 3,
+    id: 'phone',
     label: 'Phone',
     variant: 'standard',
     xs: 12,
@@ -28,7 +28,7 @@ export const BASIC_JOB_APP_INPUTS = [
     fullWidth: true,
   },
   {
-    id: 4,
+    id: 'job',
     label: 'What job are you applying for?',
     variant: 'standard',
     xs: 12,
@@ -37,7 +37,7 @@ export const BASIC_JOB_APP_INPUTS = [
     fullWidth: true,
   },
   {
-    id: 5,
+    id: 'summary',
     label: 'Write a short summary about yourself',
     variant: 'standard',
     xs: 12,

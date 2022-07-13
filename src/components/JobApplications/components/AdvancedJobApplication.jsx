@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Grid, Typography, Button } from '@mui/material';
@@ -12,7 +12,6 @@ import headerLogo from '../../../assets/header-logo.png';
 
 export const AdvancedJobApplication = () => {
   const { darkMode } = useContext(DarkLightModeContext);
-
   return (
     <JobAppContainer darkMode={darkMode} item>
       <JobAppHeaderContainer darkMode={darkMode} container>
@@ -31,7 +30,6 @@ export const AdvancedJobApplication = () => {
           </Typography>
         </JobAppInstructionsContainer>
       </JobAppHeaderContainer>
-      {/* <br /> */}
       <div style={{ borderRight: '1px dashed black', borderLeft: '1px dashed black' }}>
         {ADVANCED_JOB_APP_INPUTS.map(section => (
           <JobApplicationSection key={section.id} section={section} />
@@ -55,7 +53,6 @@ const JobAppContainer = styled(Grid)(({ darkMode }) => ({
   border: '1px solid lightgrey',
   backgroundColor: darkMode ? '#5c5c5c' : '#F5F5F5',
   boxShadow: '5px 3px 3px grey',
-  // margin: '1% 0 1% 0',
 }));
 
 const JobAppTitleContainer = styled(Grid)({

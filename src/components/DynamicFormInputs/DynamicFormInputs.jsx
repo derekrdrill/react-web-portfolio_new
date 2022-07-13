@@ -10,7 +10,7 @@ import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeCont
 
 // import { css } from '@emotion/react';
 
-const FormInput = ({ input, onChange }) => {
+const FormInput = ({ input, onChange, value }) => {
   const { darkMode } = useContext(DarkLightModeContext);
 
   const [selectValue, setSelectValue] = useState('');
@@ -56,11 +56,13 @@ const FormInput = ({ input, onChange }) => {
           label={input.label}
           placeholder={input.placeholder}
           variant={darkMode ? 'filled' : input.variant}
+          // variant={input.variant}
           fullWidth={input.fullWidth || true}
           multiline={input.multiline}
           minRows={input.multiline && input.minRows}
           maxRows={input.multiline && input.maxRows}
           onChange={onChange}
+          value={value}
           size={input.size || 'medium'}
           type={input.type === 'password' ? (passwordHidden ? 'password' : 'text') : input.type}
           color={input.color || 'secondary'}
@@ -79,13 +81,24 @@ const FormInput = ({ input, onChange }) => {
   );
 };
 
-export const DynamicFormInputs = ({ inputs, onChange }) => (
-  <Grid container spacing={2}>
-    {inputs.map(input => (
-      <FormInput key={input.id} input={input} onChange={onChange} />
-    ))}
-  </Grid>
-);
+export const DynamicFormInputs = ({ inputs, onChange, form, setForm }) => {
+  const handleInputChange = (e, setForm) => {
+    let id = e.currentTarget.id;
+    setForm({ ...form, [id]: e.currentTarget.value });
+  };
+
+  const handleChange = onChange ?? (e => handleInputChange(e, setForm));
+
+  return (
+    <Grid container spacing={2}>
+      {inputs.map(input => {
+        let value = form[input.id];
+
+        return <FormInput key={input.id} input={input} onChange={handleChange} value={value} />;
+      })}
+    </Grid>
+  );
+};
 
 // TODO: condense this all to one style using emotion
 

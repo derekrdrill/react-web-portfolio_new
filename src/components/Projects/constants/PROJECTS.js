@@ -1,5 +1,4 @@
-import { faFileAlt, faTable, faDatabase, faBuilding } from '@fortawesome/fontawesome-free-solid';
-import { faHouse } from '@fortawesome/fontawesome-free-regular';
+import { faFileAlt, faDatabase, faBuilding } from '@fortawesome/fontawesome-free-solid';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 
 export const PROJECTS = [
@@ -10,18 +9,10 @@ export const PROJECTS = [
     icon: faFileAlt,
     to: '/job-apps-page',
   },
-  // {
-  //   id: 2,
-  //   title: 'Data Sorter',
-  //   description: `A dynamic reporting tool that will accept an uploaded excel or csv file to
-  //                     parse over and re-report that data in a dynamic, user-friendly manner`,
-  //   icon: faTable,
-  //   to: '/data-reporting-tool',
-  // },
   {
     id: 2,
     title: 'Lead Input App',
-    description: `A simple input form that reads from and writes to a MongoDB. 
+    description: `A simple input form that writes to a MongoDB. 
                       Included is a dynamic reporting table to track the input data.`,
     icon: faDatabase,
     to: '/lead-input-page',
