@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import { Menu, MenuItem, Divider, IconButton, Grid } from '@mui/material/';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import { MoreOptionsModal } from './MoreOptionsModal';
 import { FileQuickView } from '../../FileQuickView/FileQuickView';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+import { DarkLightMode } from '../../DarkLightMode/components/DarkLightMode';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 import resumePDF from '../../../assets/Resume_DRD.pdf';
 
 const Option = props => {
@@ -22,8 +26,8 @@ const Option = props => {
   );
 
   return (
-    <div>
-      <StyledMenuItem onClick={modal ? props.handleModalOpen : props.handleClose}>
+    <>
+      <StyledMenuItem darkMode={props.darkMode} onClick={modal ? props.handleModalOpen : props.handleClose}>
         {href ? (
           <StyledMenuLink href={href} target={target}>
             {menuItem}
@@ -33,11 +37,13 @@ const Option = props => {
         )}
       </StyledMenuItem>
       {divider && <Divider />}
-    </div>
+    </>
   );
 };
 
 export const MoreOptions = MoreOptionsProps => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [quickViewVisibility, setQuickViewVisibility] = useState(null);
@@ -69,12 +75,21 @@ export const MoreOptions = MoreOptionsProps => {
 
   return (
     <MoreOptionsButtonContainer>
-      <IconButton onClick={handleClick}>
-        <StyledIcon />
+      <IconButton>
+        <DarkLightMode />
       </IconButton>
-      <StyledMenu anchorEl={anchorEl} open={open} onClick={handleClose}>
+      <IconButton onClick={handleClick}>
+        <StyledIcon darkMode={darkMode} />
+      </IconButton>
+      <StyledMenu darkMode={darkMode} anchorEl={anchorEl} open={open} onClick={handleClose}>
         {MoreOptionsProps.moreOptions.map(option => (
-          <Option key={option.id} option={option} handleClose={handleClose} handleModalOpen={handleModalOpen} />
+          <Option
+            darkMode={darkMode}
+            key={option.id}
+            option={option}
+            handleClose={handleClose}
+            handleModalOpen={handleModalOpen}
+          />
         ))}
       </StyledMenu>
       <MoreOptionsModal open={openModal} handleModalClose={handleModalClose} quickViewOpen={handleQuickViewOpen} />
@@ -93,34 +108,37 @@ export const MoreOptions = MoreOptionsProps => {
 const MoreOptionsButtonContainer = styled.div({
   marginRight: 20,
   display: 'inline-block',
-  ':hover': {
-    opacity: 0.4,
-  },
 });
 
-const StyledMenu = styled(Menu)({
+const StyledMenu = styled(Menu)(({ darkMode }) => ({
   '.MuiPaper-root': {
     width: 150,
-    backgroundColor: 'white',
+    backgroundColor: darkMode ? 'grey' : 'white',
     opacity: 0.7,
   },
-});
+}));
 
-const StyledIcon = styled(SettingsTwoToneIcon)({
-  color: 'gainsboro',
-});
+const StyledIcon = styled(MenuIcon)(({ darkMode }) => ({
+  ':hover': {
+    opacity: darkMode ? 0.4 : 1.0,
+  },
+  color: darkMode ? 'gainsboro' : 'gray',
+}));
 
-const StyledMenuLink = styled.a({
+const StyledMenuLink = styled.a(({ darkMode }) => ({
   color: 'black',
   textDecoration: 'none',
   ':hover': {
     color: 'white',
   },
-});
+}));
 
-const StyledMenuItem = styled(MenuItem)({
+const StyledMenuItem = styled(MenuItem)(({ darkMode }) => ({
   ':hover': {
-    backgroundColor: 'black',
+    backgroundColor: darkMode ? 'black' : 'slategrey',
     color: 'white',
+    a: {
+      color: 'white',
+    },
   },
-});
+}));

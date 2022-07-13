@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
+import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 import { CONNECT_TYPES } from '../constants/CONNECT_TYPES';
 import { CONNECT_FORM_INPUTS } from '../constants/CONNECT_FORM_INPUTS';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import bitmojiWaterCooler from '../../../assets/bitmoji_waterCooler.png';
 
 export const ConnectWithMe = ({ id }) => {
   const connectTypes = CONNECT_TYPES;
+
+  const { darkMode } = useContext(DarkLightModeContext);
+
   return (
-    <ContactPageContainer id={id} container>
+    <ContactPageContainer id={id} darkMode={darkMode} container>
       <TitleContainer item xs={12}>
-        <TitleText variant='h3' component='h2'>
+        <TitleText darkMode={darkMode} variant='h3' component='h2'>
           LET'S CONNECT
         </TitleText>
-        <DescriptionText variant='h6' component='p'>
+        <DescriptionText darkMode={darkMode} variant='h6' component='p'>
           Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!
         </DescriptionText>
       </TitleContainer>
@@ -23,7 +28,7 @@ export const ConnectWithMe = ({ id }) => {
           {connectTypes.map(connect => (
             <Grid key={connect.id} item xs={4} lg={12}>
               <Grid container justifyContent='center'>
-                <StyledLink href={connect.href} target={connect.target}>
+                <StyledLink href={connect.href} target={connect.target} darkMode={darkMode}>
                   {connect.icon}
                 </StyledLink>
               </Grid>
@@ -55,11 +60,11 @@ export const ConnectWithMe = ({ id }) => {
   );
 };
 
-const ContactPageContainer = styled(Grid)({
-  backgroundColor: '#030200',
+const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#030200' : 'whitesmoke',
   paddingTop: '0.5%',
   height: '105vh',
-});
+}));
 
 const ConnectTypeContainer = styled(Grid)({
   transform: 'translateY(-10px)',
@@ -71,32 +76,33 @@ const TitleContainer = styled(Grid)({
   textAlign: 'right',
 });
 
-const TitleText = styled(Typography)({
+const TitleText = styled(Typography)(({ darkMode }) => ({
   fontFamily: 'Shizuru',
-  color: 'beige',
+  fontWeight: darkMode ? 'normal' : 'bold',
+  color: darkMode ? 'beige' : '#759CC9',
   marginBottom: 10,
-});
+}));
 
-const DescriptionText = styled(Typography)({
+const DescriptionText = styled(Typography)(({ darkMode }) => ({
   fontFamily: 'Kufam',
-  color: 'beige',
-});
+  color: darkMode ? 'beige' : '#759CC9',
+}));
 
-const StyledLink = styled.a({
+const StyledLink = styled.a(({ darkMode }) => ({
   svg: {
     width: 110,
     height: 150,
     color: 'beige',
     path: {
-      fill: '#36454F',
+      fill: darkMode ? '#36454F' : '#66abc7',
     },
     ':hover': {
       path: {
-        fill: '#367993',
+        fill: darkMode ? '#367993' : '#8fc2d6',
       },
     },
   },
-});
+}));
 
 const DirectConnectContainer = styled(Grid)({
   padding: '2% 2% 0 2%',

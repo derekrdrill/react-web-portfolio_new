@@ -1,15 +1,21 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
+
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
-import { allFieldsFilled, handleSubmit } from '../context/UserAuthenticationActions';
 import { AlertContext } from '../../Alert/context/AlertContext';
+import { allFieldsFilled, handleSubmit } from '../context/UserAuthenticationActions';
+
 import { USER_REGISTER_INPUTS } from '../constants/USER_REGISTER_INPUTS';
 
 export const UserRegister = () => {
+  const { darkMode } = useContext(DarkLightModeContext);
   const { userAuthenticationDispatch } = useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
+
   const [userItem, setUserItem] = useState({
     firstName: '',
     lastName: '',
@@ -28,10 +34,10 @@ export const UserRegister = () => {
 
   return (
     <>
-      <RegisterText component='h4' variant='h4'>
+      <RegisterText darkMode={darkMode} component='h4' variant='h4'>
         Sign up
       </RegisterText>
-      <RegisterText component='p' variant='p'>
+      <RegisterText darkMode={darkMode} component='p' variant='p'>
         Fill in all information below to sign up today!
       </RegisterText>
       <DynamicFormInputs inputs={USER_REGISTER_INPUTS} onChange={handleUserItemChange} />
@@ -50,9 +56,10 @@ export const UserRegister = () => {
   );
 };
 
-const RegisterText = styled(Typography)({
+const RegisterText = styled(Typography)(({ darkMode }) => ({
   margin: '10px 0',
-});
+  color: darkMode && 'beige',
+}));
 
 const ButtonContainer = styled.div({
   margin: 10,

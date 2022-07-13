@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { history } from '../../../index';
-import styled from 'styled-components';
 import Slider from 'react-slick';
+import { history } from '../../../index';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Chip, Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/fontawesome-free-regular';
+
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 import rentCategoryImg from '../../../assets/rentCategoryImage.jpeg';
 import sellCategoryImg from '../../../assets/sellCategoryImage.jpeg';
 
 export const Explore = () => {
   const token = sessionStorage.getItem('token');
+
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
 
@@ -37,6 +44,7 @@ export const Explore = () => {
   const NextSlide = ({ currentSlide, slideCount, ...props }) => (
     <QuickLinksSliderButton
       {...props}
+      darkMode={darkMode}
       className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')}
       icon={faArrowAltCircleRight}
     />
@@ -45,104 +53,117 @@ export const Explore = () => {
   const PrevSlide = ({ currentSlide, slideCount, ...props }) => (
     <QuickLinksSliderButton
       {...props}
+      darkMode={darkMode}
       className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')}
       icon={faArrowAltCircleLeft}
     />
   );
 
   return (
-    <MainContainer>
-      <TitleContainer>
-        <Typography component='h6' variant='h4'>
-          Explore
-        </Typography>
-      </TitleContainer>
-      {loading ? (
-        <LoaderSpinner open />
-      ) : (
-        <>
-          <QuickLinksContainer>
-            <Typography paragraph>Quick Links</Typography>
-            {listings.length > 0 && (
-              <Grid container>
-                <Grid item xs={12}>
-                  <QuickLinksSlider
-                    autoplay
-                    autoplaySpeed={2500}
-                    dots
-                    lazyLoad
-                    nextArrow={<NextSlide />}
-                    pauseOnHover
-                    prevArrow={<PrevSlide />}
-                    responsive={[
-                      {
-                        breakpoint: 1024,
-                        settings: {
-                          slidesToShow: 3,
+    <>
+      <PageBodyStyle darkMode={darkMode} />
+      <MainContainer>
+        <TitleContainer>
+          <Typography component='h6' variant='h4'>
+            Explore
+          </Typography>
+        </TitleContainer>
+        {loading ? (
+          <LoaderSpinner open />
+        ) : (
+          <>
+            <QuickLinksContainer>
+              <Typography paragraph>Quick Links</Typography>
+              {listings.length > 0 && (
+                <Grid container>
+                  <Grid item xs={12}>
+                    <QuickLinksSlider
+                      autoplay
+                      autoplaySpeed={2500}
+                      dots
+                      lazyLoad
+                      nextArrow={<NextSlide />}
+                      pauseOnHover
+                      prevArrow={<PrevSlide />}
+                      responsive={[
+                        {
+                          breakpoint: 1024,
+                          settings: {
+                            slidesToShow: 3,
+                          },
                         },
-                      },
-                      {
-                        breakpoint: 900,
-                        settings: {
-                          slidesToShow: 2,
+                        {
+                          breakpoint: 900,
+                          settings: {
+                            slidesToShow: 2,
+                          },
                         },
-                      },
-                      {
-                        breakpoint: 600,
-                        settings: {
-                          fade: true,
-                          slidesToShow: 1,
-                          speed: 1000,
+                        {
+                          breakpoint: 600,
+                          settings: {
+                            fade: true,
+                            slidesToShow: 1,
+                            speed: 1000,
+                          },
                         },
-                      },
-                    ]}
-                    speed={500}
-                    slidesToShow={4}
-                    slidesToScroll={1}
-                  >
-                    {listings.map((listing, key) => (
-                      <QuickLinks key={key} image={listing.imageUrls[0]}>
-                        <QuickLinksLink to={`/housing-marketplace/listing/${listing._id}`}>
-                          <QuickLinksNameContainer>
-                            <QuickLinksName paragraph>{listing.name}</QuickLinksName>
-                          </QuickLinksNameContainer>
-                          <QuickLinksPriceContainer>
-                            <QuickLinksPriceChip
-                              label={`$${listing.discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${
-                                listing.type === 'rent' ? ' / month' : ''
-                              }`}
-                            />
-                          </QuickLinksPriceContainer>
-                        </QuickLinksLink>
-                      </QuickLinks>
-                    ))}
-                  </QuickLinksSlider>
+                      ]}
+                      speed={500}
+                      slidesToShow={4}
+                      slidesToScroll={1}
+                    >
+                      {listings.map((listing, key) => (
+                        <QuickLinks key={key} image={listing.imageUrls[0]}>
+                          <QuickLinksLink to={`/housing-marketplace/listing/${listing._id}`}>
+                            <QuickLinksNameContainer>
+                              <QuickLinksName paragraph>{listing.name}</QuickLinksName>
+                            </QuickLinksNameContainer>
+                            <QuickLinksPriceContainer>
+                              <QuickLinksPriceChip
+                                label={`$${listing.discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${
+                                  listing.type === 'rent' ? ' / month' : ''
+                                }`}
+                              />
+                            </QuickLinksPriceContainer>
+                          </QuickLinksLink>
+                        </QuickLinks>
+                      ))}
+                    </QuickLinksSlider>
+                  </Grid>
+                </Grid>
+              )}
+            </QuickLinksContainer>
+            <div>
+              <Typography paragraph>Listings</Typography>
+              <Grid container spacing={1}>
+                <Grid item xs={6} md={4}>
+                  <Link to='/housing-marketplace/category/rent'>
+                    <CategoryImage src={rentCategoryImg} alt='rent' />
+                  </Link>
+                  <CategoryTitle paragraph>For rent</CategoryTitle>
+                </Grid>
+                <Grid item xs={6} md={4}>
+                  <Link to='/housing-marketplace/category/sale'>
+                    <CategoryImage src={sellCategoryImg} alt='sale' />
+                  </Link>
+                  <CategoryTitle paragraph>For sale</CategoryTitle>
                 </Grid>
               </Grid>
-            )}
-          </QuickLinksContainer>
-          <div>
-            <Typography paragraph>Listings</Typography>
-            <Grid container spacing={1}>
-              <Grid item xs={6} md={4}>
-                <Link to='/housing-marketplace/category/rent'>
-                  <CategoryImage src={rentCategoryImg} alt='rent' />
-                </Link>
-                <CategoryTitle paragraph>For rent</CategoryTitle>
-              </Grid>
-              <Grid item xs={6} md={4}>
-                <Link to='/housing-marketplace/category/sale'>
-                  <CategoryImage src={sellCategoryImg} alt='sale' />
-                </Link>
-                <CategoryTitle paragraph>For sale</CategoryTitle>
-              </Grid>
-            </Grid>
-          </div>
-        </>
-      )}
-    </MainContainer>
+            </div>
+          </>
+        )}
+      </MainContainer>
+    </>
   );
 };
+
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode && '#292929',
+    'h1, h2, h3, h4, h5, h6, p': {
+      color: darkMode && 'beige',
+    },
+  },
+}));
 
 const MainContainer = styled.div({
   padding: 20,
@@ -179,16 +200,16 @@ const QuickLinksSlider = styled(Slider)({
   margin: 10,
 });
 
-const QuickLinksSliderButton = styled(FontAwesomeIcon)({
+const QuickLinksSliderButton = styled(FontAwesomeIcon)(({ darkMode }) => ({
   ':hover': {
     path: {
-      fill: '#878787',
+      fill: darkMode ? 'gainsboro' : '#878787',
     },
   },
   path: {
-    fill: 'black',
+    fill: darkMode ? 'lightgrey' : 'black',
   },
-});
+}));
 
 const QuickLinksPriceContainer = styled.div({
   margin: '40px 0px 0px 5px',

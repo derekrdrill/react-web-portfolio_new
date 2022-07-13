@@ -1,48 +1,57 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Button, Modal } from '@mui/material';
 
-export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubmit, open, submitButtonText }) => (
-  <Modal onClose={handleClose} open={open}>
-    <ModalContainer>
-      <ExitButtonContainer>
-        <Button color='error' onClick={handleClose} size='small' variant='contained'>
-          X
-        </Button>
-      </ExitButtonContainer>
-      <ContentContainer>{children}</ContentContainer>
-      <ActionButtonsContainer>
-        <ButtonContainer>
-          <CancelButton fullWidth onClick={handleClose} variant='contained'>
-            {cancelButtonText ?? 'Cancel'}
-          </CancelButton>
-        </ButtonContainer>
-        <ButtonContainer>
-          <Button
-            color='info'
-            fullWidth
-            onClick={() => {
-              handleSubmit();
-              handleClose();
-            }}
-            variant='contained'
-          >
-            {submitButtonText ?? 'Submit'}
-          </Button>
-        </ButtonContainer>
-      </ActionButtonsContainer>
-    </ModalContainer>
-  </Modal>
-);
+import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
-const ModalContainer = styled.div({
-  backgroundColor: 'white',
+export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubmit, open, submitButtonText }) => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
+  return (
+    <Modal onClose={handleClose} open={open}>
+      <ModalContainer darkMode={darkMode}>
+        <ExitButtonContainer>
+          <Button color='error' onClick={handleClose} size='small' variant='contained'>
+            X
+          </Button>
+        </ExitButtonContainer>
+        <ContentContainer>{children}</ContentContainer>
+        <ActionButtonsContainer>
+          <ButtonContainer>
+            <CancelButton fullWidth onClick={handleClose} variant='contained'>
+              {cancelButtonText ?? 'Cancel'}
+            </CancelButton>
+          </ButtonContainer>
+          <ButtonContainer>
+            <Button
+              color='info'
+              fullWidth
+              onClick={() => {
+                handleSubmit();
+                handleClose();
+              }}
+              variant='contained'
+            >
+              {submitButtonText ?? 'Submit'}
+            </Button>
+          </ButtonContainer>
+        </ActionButtonsContainer>
+      </ModalContainer>
+    </Modal>
+  );
+};
+
+const ModalContainer = styled.div(({ darkMode }) => ({
+  'h1, h2, h3, h4, h5, h6, p': {
+    color: darkMode && 'black',
+  },
+  backgroundColor: darkMode ? 'grey' : 'white',
   marginLeft: '25%',
   marginTop: '18%',
   maxWidth: '50%',
   padding: 15,
   borderRadius: 5,
-});
+}));
 
 const ActionButtonsContainer = styled.div({
   display: 'flex',

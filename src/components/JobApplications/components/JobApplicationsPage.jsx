@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Select, InputLabel, MenuItem, FormControl, Typography } from '@mui/material';
+
 import { BasicJobApplication } from './BasicJobApplication';
 import { AdvancedJobApplication } from './AdvancedJobApplication';
 import { MultiPageJobApplication } from './MultiPageJobApplication';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 export const JobApplicationType = ({ appType }) =>
   appType === 'basic' ? (
@@ -16,8 +19,9 @@ export const JobApplicationType = ({ appType }) =>
     <MultiPageJobApplication />
   );
 
-
 export const JobApplicationsPage = () => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [appType, setAppType] = useState('basic');
   const [loading, setLoading] = useState(null);
 
@@ -30,38 +34,53 @@ export const JobApplicationsPage = () => {
   };
 
   return (
-    <Container fluid>
-      <JobApplicationsSelectRow>
-        <Col xs={4} className='py-2'>
-          <FormControl fullWidth>
-            <InputLabel>
-              <JobApplicationSelectLabelText variant='h6' component='label'>
-                Select one
-              </JobApplicationSelectLabelText>
-            </InputLabel>
-            <JobApplicationSelect value={appType} label='Select one' variant='standard' onChange={handleAppTypeChange}>
-              <MenuItem value='basic'>Basic</MenuItem>
-              <MenuItem value='advanced'>Advanced</MenuItem>
-              <MenuItem value='multi-page'>Mulit-Page</MenuItem>
-            </JobApplicationSelect>
-          </FormControl>
-        </Col>
-      </JobApplicationsSelectRow>
-      <Row>
-        <JobApplicationType appType={appType} />
-      </Row>
-      <LoaderSpinner open={loading} />
-    </Container>
+    <>
+      <PageBodyStyle appType={appType} darkMode={darkMode} />
+      <Container fluid>
+        <JobApplicationsSelectRow darkMode={darkMode}>
+          <Col xs={4} className='py-2'>
+            <FormControl fullWidth>
+              <InputLabel>
+                <JobApplicationSelectLabelText darkMode={darkMode} variant='h6' component='label'>
+                  Select one
+                </JobApplicationSelectLabelText>
+              </InputLabel>
+              <JobApplicationSelect
+                value={appType}
+                label='Select one'
+                variant='standard'
+                onChange={handleAppTypeChange}
+              >
+                <MenuItem value='basic'>Basic</MenuItem>
+                <MenuItem value='advanced'>Advanced</MenuItem>
+                <MenuItem value='multi-page'>Mulit-Page</MenuItem>
+              </JobApplicationSelect>
+            </FormControl>
+          </Col>
+        </JobApplicationsSelectRow>
+        <Row>
+          <JobApplicationType appType={appType} />
+        </Row>
+        <LoaderSpinner open={loading} />
+      </Container>
+    </>
   );
 };
 
-const JobApplicationsSelectRow = styled(Row)({
-  backgroundColor: 'grey',
+const PageBodyStyle = createGlobalStyle(({ appType, darkMode }) => ({
+  body: {
+    backgroundColor: darkMode ? '#5c5c5c' : 'white',
+  },
+}));
+
+const JobApplicationsSelectRow = styled(Row)(({ darkMode }) => ({
+  backgroundColor: darkMode ? 'grey' : 'whitesmoke',
+  borderTop: darkMode ? 'none' : '1px dashed #759CC9',
   position: '-webkit-sticky',
   position: 'sticky',
   top: 80,
   zIndex: 100,
-});
+}));
 
 const JobApplicationSelect = styled(Select)({
   backgroundColor: 'gainsboro',
@@ -70,6 +89,6 @@ const JobApplicationSelect = styled(Select)({
   marginLeft: 10,
 });
 
-const JobApplicationSelectLabelText = styled(Typography)({
-  color: 'beige',
-});
+const JobApplicationSelectLabelText = styled(Typography)(({ darkMode }) => ({
+  color: darkMode ? 'beige' : '#759CC9',
+}));

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenSquare, faLock, faChevronLeft, faChevronRight } from '@fortawesome/fontawesome-free-solid';
+import { Button, IconButton, Grid, Typography, Toolbar } from '@mui/material';
+
 import { JobApplicationSection } from './JobApplicationSections';
 import { Breadcrumb as BreadcrumbComponent } from '../../Breadcrumb/Breadcrumb';
-import { Button, IconButton, Grid, Typography, Toolbar } from '@mui/material';
 import { ProgressBar as ProgressBarComponent } from '../../ProgressBar/ProgressBar';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
 import { ADVANCED_JOB_APP_INPUTS } from '../constants/ADVANCED_JOB_APP_INPUTS';
 
 export const ProgressBar = ({ page, maxPage, progress }) =>
@@ -75,7 +79,7 @@ export const ForwardOrSubmitButton = ({ page, maxPage, inputs, goForward }) =>
     </StyledButton>
   );
 
-export const ApplicationContainer = ({ inputs, page, maxPage, goForward, editMode, toggleEditMode }) => (
+export const ApplicationContainer = ({ darkMode, inputs, page, maxPage, goForward, editMode, toggleEditMode }) => (
   <ApplicationContainerGrid container page={page} maxpage={maxPage}>
     {page < 1 ? (
       <Grid container className='landing-page'>
@@ -100,28 +104,44 @@ export const ApplicationContainer = ({ inputs, page, maxPage, goForward, editMod
         </Grid>
       </Grid>
     ) : (
-      <AdvancedAppInputsContainer className='app-inputs' item xs={12} editing={editMode} page={page} maxpage={maxPage}>
-        <ReviewJobAppToolbar editMode={editMode} toggleEditMode={toggleEditMode} page={page} maxPage={maxPage} />
-        {inputs.map(section => (
-          <JobApplicationSectionContainer
-            item
-            key={section.id}
-            xs={12}
-            page={page}
-            sectionid={section.id}
-            maxpage={maxPage}
-          >
-            <JobApplicationSection section={section} />
-          </JobApplicationSectionContainer>
-        ))}
+      <AdvancedAppInputsContainer
+        className='app-inputs'
+        darkMode={darkMode}
+        item
+        xs={12}
+        editing={editMode}
+        page={page}
+        maxpage={maxPage}
+      >
+        <ReviewJobAppToolbar
+          darkMode={darkMode}
+          editMode={editMode}
+          toggleEditMode={toggleEditMode}
+          page={page}
+          maxPage={maxPage}
+        />
+        {inputs.map(section => {
+          return (
+            <JobApplicationSectionContainer
+              item
+              key={section.id}
+              xs={12}
+              page={page}
+              sectionid={section.id}
+              maxpage={maxPage}
+            >
+              <JobApplicationSection section={section} />
+            </JobApplicationSectionContainer>
+          );
+        })}
       </AdvancedAppInputsContainer>
     )}
   </ApplicationContainerGrid>
 );
 
-export const ReviewJobAppToolbar = ({ page, maxPage, editMode, toggleEditMode }) =>
+export const ReviewJobAppToolbar = ({ darkMode, page, maxPage, editMode, toggleEditMode }) =>
   page === maxPage && (
-    <StyledToolbar>
+    <StyledToolbar darkMode={darkMode}>
       <EditIcon onClick={toggleEditMode}>
         <ReviewJobAppToolbarIcon editMode={editMode} />
       </EditIcon>
@@ -131,6 +151,8 @@ export const ReviewJobAppToolbar = ({ page, maxPage, editMode, toggleEditMode })
 export const ReviewJobAppToolbarIcon = ({ editMode }) => <FontAwesomeIcon icon={editMode ? faLock : faPenSquare} />;
 
 export const MultiPageJobApplication = () => {
+  const { darkMode } = useContext(DarkLightModeContext);
+
   const [editMode, setEditMode] = useState(null);
   const [progress, setProgress] = useState(0);
   const [page, setPage] = useState(0);
@@ -160,7 +182,7 @@ export const MultiPageJobApplication = () => {
 
   return (
     <div>
-      <PageBodyStyle page={page} maxpage={maxPage} />
+      <PageBodyStyle darkMode={darkMode} page={page} maxpage={maxPage} />
       <ProgressBar page={page} maxPage={maxPage} progress={progress} />
       <Breadcrumb
         breadcrumbs={ADVANCED_JOB_APP_INPUTS}
@@ -173,9 +195,10 @@ export const MultiPageJobApplication = () => {
         goForward={goForward}
       />
       <ApplicationContainer
+        darkMode={darkMode}
         inputs={ADVANCED_JOB_APP_INPUTS}
         page={page}
-        maxpage={maxPage}
+        maxPage={maxPage}
         goForward={goForward}
         editMode={editMode}
         toggleEditMode={toggleEditMode}
@@ -184,7 +207,7 @@ export const MultiPageJobApplication = () => {
   );
 };
 
-export const PageBodyStyle = createGlobalStyle(({ page }) => [
+export const PageBodyStyle = createGlobalStyle(({ darkMode, page }) => [
   page < 1 && {
     body: {
       backgroundImage: 'linear-gradient(to right, #851e38 , #e68fa4)',
@@ -192,6 +215,9 @@ export const PageBodyStyle = createGlobalStyle(({ page }) => [
     'h1, h2, h3, h4, h5, h6': {
       color: 'beige',
     },
+  },
+  page >= 1 && {
+    backgroundColor: darkMode ? 'black' : 'white',
   },
 ]);
 
@@ -207,11 +233,11 @@ const StartApplicationButton = styled(Button)({
   },
 });
 
-export const AdvancedAppInputsContainer = styled(Grid)(({ page, maxpage, editing }) => [
+export const AdvancedAppInputsContainer = styled(Grid)(({ darkMode, page, maxpage, editing }) => [
   page === maxpage && {
-    border: '1px solid lightgrey',
+    borderColor: darkMode ? 'transparent' : 'lightgrey',
     borderRadius: 5,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: darkMode ? '#2e2e2e' : '#F5F5F5',
     boxShadow: '5px 3px 3px grey',
     margin: '10px 30px 10px 30px',
     '.MuiButton-root': {
@@ -219,21 +245,27 @@ export const AdvancedAppInputsContainer = styled(Grid)(({ page, maxpage, editing
       color: !editing && 'lightgrey',
     },
     '.MuiInputBase-input, .MuiInputBase-root': {
-      backgroundColor: !editing && 'gainsboro',
+      backgroundColor: !editing && (darkMode ? 'darkgrey' : 'gainsboro'),
       pointerEvents: !editing && 'none',
     },
   },
 ]);
 
 export const JobApplicationSectionContainer = styled(Grid)(({ page, sectionid, maxpage }) => [
-  page < maxpage && {
-    display: page !== sectionid && 'none',
+  {
+    display: 'none',
+  },
+  page === sectionid && {
+    display: 'inline-block',
+  },
+  page === maxpage && {
+    display: 'inline-block',
   },
 ]);
 
-const StyledToolbar = styled(Toolbar)({
-  backgroundColor: 'gainsboro',
-});
+const StyledToolbar = styled(Toolbar)(({ darkMode }) => ({
+  backgroundColor: darkMode ? 'grey' : 'gainsboro',
+}));
 
 const EditIcon = styled(IconButton)({
   path: {

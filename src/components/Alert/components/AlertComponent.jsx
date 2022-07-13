@@ -5,7 +5,6 @@ import { AlertContext } from '../context/AlertContext';
 
 export const AlertComponent = () => {
   const { alert, fadeOut } = useContext(AlertContext);
-
   return (
     alert && (
       <StyledAlert severity={alert.type} $fadeOut={fadeOut}>
