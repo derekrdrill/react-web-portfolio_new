@@ -40,7 +40,7 @@ export const Category = () => {
       <MainContainer>
         <TitleContainer>
           <Typography component='h6' variant='h4'>
-            Listings for {listingType}
+            Listings for {listingType === 'sell' ? 'sale' : listingType}
           </Typography>
         </TitleContainer>
         {loading ? (

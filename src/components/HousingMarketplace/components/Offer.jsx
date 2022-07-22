@@ -46,7 +46,7 @@ export const Offer = () => {
         {loading ? (
           <LoaderSpinner open />
         ) : listings && listings.length > 0 ? (
-          <Grid container spacing={3}>
+          <Grid container>
             {listings.map(listing => (
               <ListingItem key={listing._id} listing={listing} />
             ))}

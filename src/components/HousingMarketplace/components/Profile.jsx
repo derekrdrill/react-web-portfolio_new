@@ -9,8 +9,11 @@ import HouseIcon from '@mui/icons-material/House';
 
 import { Card } from '../../Card/Card';
 import { ListingItem } from './ListingItem';
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
+import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+import { ListingsContext } from '../context/ListingsContext';
 
 export const Profile = () => {
   const token = sessionStorage.getItem('token');
@@ -21,7 +24,11 @@ export const Profile = () => {
   const lastName = sessionStorage.getItem('lastName');
   const username = sessionStorage.getItem('username');
 
+  localStorage.setItem('isEditing', 'false');
+
+  const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
+  const { deleteComplete, isDeleting, isConfirmingDelete, listingsDispatch } = useContext(ListingsContext);
 
   const [listings, setListings] = useState([]);
 
@@ -43,18 +50,39 @@ export const Profile = () => {
     getUserListings();
   }, []);
 
+  useEffect(() => {
+    if (deleteComplete && !isDeleting) {
+      getUserListings();
+    }
+  }, [deleteComplete, isDeleting]);
+
   return (
     <>
       <PageBodyStyle darkMode={darkMode} />
-      <MainContainer>
-        <TitleContainer>
-          <Typography component='h6' variant='h4'>
-            My Profile
-          </Typography>
-        </TitleContainer>
-        <Typography component='h6' variant='h6'>
-          Personal Details
-        </Typography>
+      <MainContainer container>
+        <Grid container>
+          <Grid item xs={6}>
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography component='h6' variant='h4'>
+                  My Profile
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography component='h6' variant='h6'>
+                  Personal Details
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <Grid container justifyContent='flex-end'>
+              <Grid item xs={6}>
+                <Alert />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
         <PersonalDetailsContainer darkMode={darkMode} container>
           <Grid item xs={12} md={6}>
             <Card backgroundColor='gainsboro' hasSpacing={false}>
@@ -82,18 +110,18 @@ export const Profile = () => {
             </SellOrRentLink>
           </Grid>
         </Grid>
-        <Grid container style={{ paddingTop: 30 }}>
+        <YourListingsContainer container>
           <Grid item xs={12}>
             <Typography component='h6' variant='subtitle1'>
               Your listings
             </Typography>
           </Grid>
-          <Grid container style={{ height: 300, overflowY: 'auto' }}>
+          <ListingItemsContainer container darkMode={darkMode}>
             {listings.map(listing => (
-              <ListingItem key={listing._id} listing={listing} />
+              <ListingItem key={listing._id} listing={listing} profile />
             ))}
-          </Grid>
-        </Grid>
+          </ListingItemsContainer>
+        </YourListingsContainer>
       </MainContainer>
     </>
   );
@@ -108,21 +136,17 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   },
 }));
 
-const MainContainer = styled.div({
+const MainContainer = styled(Grid)({
   padding: 20,
   marginBottom: 100,
 });
 
-const TitleContainer = styled.div({
-  padding: '10px 0',
-});
-
-const PersonalDetailsContainer = styled(Grid)(({ darkMode }) => ({
-  margin: '30px 0',
+const PersonalDetailsContainer = styled(Grid)({
+  margin: '20px 0',
   'h1, h2, h3, h4 h5, h6': {
     color: 'black',
   },
-}));
+});
 
 const SellOrRentContainer = styled.div({
   display: 'flex',
@@ -132,3 +156,11 @@ const SellOrRentContainer = styled.div({
 const SellOrRentLink = styled(Link)({
   textDecoration: 'none',
 });
+
+const ListingItemsContainer = styled(Grid)(({ darkMode }) => ({
+  height: 300,
+  overflowY: 'auto',
+  backgroundColor: darkMode ? '#303030' : '#f5f5f5',
+}));
+
+const YourListingsContainer = styled(Grid)({ paddingTop: 30 });
