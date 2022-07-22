@@ -61,7 +61,13 @@ const DynamicListTitle = styled(Typography)({
 });
 
 const DynamicListButton = styled(Button)(({ darkMode, iconcolor }) => ({
-  color: darkMode ? '#3b3b3b' : iconcolor || '#1976d2',
+  ':hover': {
+    color: darkMode && '#b9c7d4',
+  },
+  '&.Mui-disabled': {
+    color: darkMode && '#4d4d4d',
+  },
+  color: darkMode ? '#879eb5' : iconcolor || '#1976d2',
 }));
 
 const DynamicListContainer = styled(Grid)({
