@@ -1,18 +1,77 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { history } from '../../../index';
 import styled from 'styled-components';
-import { Grid, Typography } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBath, faBed, faParking, faPaw, faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
 
-import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+import { BasicModal as Modal } from '../../Modals/BasicModal';
 
-export const ListingItem = ({ listing }) => {
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+import { AlertContext } from '../../Alert/context/AlertContext';
+import { ListingsContext } from '../context/ListingsContext';
+
+import { handleAlert } from '../../Alert/context/AlertActions';
+
+export const goToListingItemPage = id => {
+  history.push(`/housing-marketplace/listing/${id}`);
+};
+
+export const deleteListingItem = async (id, alertDispatch, listingsDispatch) => {
+  listingsDispatch({
+    type: 'SET_IS_DELETING',
+    deleteComplete: false,
+    isDeleting: true,
+  });
+
+  const response = await axios
+    .post(
+      '../../delete-listing',
+      { id: id },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    .catch(e => console.warn(e));
+
+  if (response.status !== 200) {
+    console.log('error');
+
+    listingsDispatch({
+      type: 'SET_IS_DELETING',
+      deleteComplete: true,
+      isDeleting: false,
+    });
+  } else {
+    listingsDispatch({
+      type: 'SET_IS_DELETING',
+      deleteComplete: true,
+      isDeleting: false,
+    });
+
+    handleAlert(`${response.data} deleted`, 'Success', 'success', alertDispatch);
+  }
+};
+
+export const toggleIsConfirmingDelete = (isConfirmingDelete, listingsDispatch, name, location) => {
+  listingsDispatch({
+    type: 'SET_IS_CONFIRMING_DELETE',
+    isConfirmingDelete: !isConfirmingDelete,
+    modalName: name,
+    modalLocation: location,
+  });
+};
+
+export const ListingItem = ({ listing, profile }) => {
   const token = sessionStorage.getItem('token');
   !token && history.push('./auth');
 
   const { darkMode } = useContext(DarkLightModeContext);
+  const { alertDispatch } = useContext(AlertContext);
+  const { isConfirmingDelete, listingsDispatch, modalLocation, modalName } = useContext(ListingsContext);
 
   const {
     _id,
@@ -32,8 +91,17 @@ export const ListingItem = ({ listing }) => {
   const price = (offer ? discountedPrice : regularPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return (
-    <LisitingItemContainer darkMode={darkMode} item xs={12} md={6} lg={4}>
-      <ListItemLink to={`/housing-marketplace/listing/${_id}`}>
+    <>
+      <LisitingItemContainer
+        darkMode={darkMode}
+        item
+        xs={12}
+        md={6}
+        lg={4}
+        onClick={() => {
+          goToListingItemPage(_id);
+        }}
+      >
         <Grid container spacing={1}>
           <Grid item xs={4}>
             <ListingImage
@@ -77,24 +145,63 @@ export const ListingItem = ({ listing }) => {
               </ListingStatNumbersContainer>
             </Grid>
           </Grid>
-          <Grid item xs={1}>
-            <ListingDeleteIcon color='red' icon={faTrash} onClick={() => console.log('hey')} />
-            <br />
-            <ListingEditIcon color='#8f8f8f' icon={faPencilAlt} onClick={() => console.log('hey')} />
+          {profile && (
+            <Grid item xs={1}>
+              <IconButton
+                onClick={e => {
+                  e.stopPropagation();
+                  toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, name, location);
+                }}
+              >
+                <ListingDeleteIcon color={darkMode ? '#d10000' : 'red'} icon={faTrash} size='sm' />
+              </IconButton>
+              <br />
+              <IconButton
+                onClick={e => {
+                  e.stopPropagation();
+                  localStorage.setItem('isEditing', 'true');
+                  history.push(`/housing-marketplace/update-listing/${_id}`);
+                }}
+              >
+                <ListingEditIcon
+                  color={darkMode ? '#a8a8a8' : '#8f8f8f'}
+                  darkMode={darkMode}
+                  icon={faPencilAlt}
+                  size='sm'
+                />
+              </IconButton>
+            </Grid>
+          )}
+        </Grid>
+      </LisitingItemContainer>
+      <Modal
+        backdropOpacity={0.6}
+        buttonVariant={darkMode ? 'contained' : 'outlined'}
+        handleClose={() => {
+          toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, '', '');
+        }}
+        handleSubmit={() => {
+          deleteListingItem(_id, alertDispatch, listingsDispatch);
+        }}
+        open={isConfirmingDelete}
+      >
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography component='h4' variant='h5' align='center'>
+              Confirm the deletion of:
+            </Typography>
+            <ModalListingName component='h5' variant='h6' align='center'>
+              {modalName}
+            </ModalListingName>
+            <Typography component='p' variant='body1' align='center'>
+              {modalLocation}
+            </Typography>
           </Grid>
         </Grid>
-      </ListItemLink>
-    </LisitingItemContainer>
+      </Modal>
+    </>
   );
 };
-
-const ListItemLink = styled(Link)({
-  ':hover': {
-    color: '#404040',
-  },
-  textDecoration: 'none',
-  color: '#404040',
-});
 
 const LisitingItemContainer = styled(Grid)(({ darkMode }) => ({
   ':hover': {
@@ -103,6 +210,8 @@ const LisitingItemContainer = styled(Grid)(({ darkMode }) => ({
   borderRadius: 5,
   cursor: 'pointer',
   padding: 15,
+  minHeight: 150,
+  maxHeight: 200,
 }));
 
 const ListingTitle = styled(Typography)({
@@ -137,10 +246,14 @@ const ListingDeleteIcon = styled(FontAwesomeIcon)({
   },
 });
 
-const ListingEditIcon = styled(FontAwesomeIcon)({
+const ListingEditIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
   ':hover': {
     path: {
-      fill: '#4a4a4a',
+      fill: darkMode ? '#808080' : '#4a4a4a',
     },
   },
+}));
+
+const ModalListingName = styled(Typography)({
+  fontWeight: 'bold',
 });

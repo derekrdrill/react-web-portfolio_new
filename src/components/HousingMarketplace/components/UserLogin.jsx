@@ -78,7 +78,12 @@ export const UserLogin = () => {
             </LoginTextContainer>
             <DynamicFormInputs inputs={USER_LOGIN_INPUTS} form={form} setForm={setForm} />
             <ButtonContainer>
-              <Button disabled={!allFieldsFilled} fullWidth onClick={handleSignIn} variant='outlined'>
+              <Button
+                disabled={!allFieldsFilled}
+                fullWidth
+                onClick={handleSignIn}
+                variant={darkMode ? 'contained' : 'outlined'}
+              >
                 Sign in
               </Button>
             </ButtonContainer>

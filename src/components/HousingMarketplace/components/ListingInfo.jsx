@@ -14,6 +14,20 @@ import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
+import { formInputsGenerator } from '../../../utils/formInputsGenerator';
+
+const inputs = [
+  {
+    id: 'contactMessage',
+    label: 'Message',
+    variant: 'outlined',
+    xs: 12,
+    fullWidth: true,
+    multiline: true,
+    minRows: 3,
+  },
+];
+
 export const ListingInfo = () => {
   const pathName = history.location.pathname;
   const listingID = pathName.slice(pathName.indexOf('listing/') + 8, pathName.length);
@@ -24,17 +38,7 @@ export const ListingInfo = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState('');
 
-  const inputs = [
-    {
-      id: 'contactMessage',
-      label: 'Message',
-      variant: 'outlined',
-      xs: 12,
-      fullWidth: true,
-      multiline: true,
-      minRows: 3,
-    },
-  ];
+  const [form, setForm] = useState(formInputsGenerator(inputs));
 
   const discountedPrice = listingInfo.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? '';
   const discount =
@@ -158,7 +162,7 @@ export const ListingInfo = () => {
             <Grid item xs={12}>
               <Typography component='h4' variant='h5'>
                 Contact {`${contactInfo.firstName} ${contactInfo.lastName}`}
-                <DynamicFormInputs inputs={inputs} />
+                <DynamicFormInputs inputs={inputs} form={form} setForm={setForm} />
               </Typography>
             </Grid>
           </Grid>
@@ -208,7 +212,10 @@ export const ListingInfo = () => {
               defaultCenter={{ lat: listingInfo.latitude, lng: listingInfo.longitude }}
               center={{ lat: listingInfo.latitude, lng: listingInfo.longitude }}
               defaultZoom={13}
-              options={{ minZoom: 9, styles: [{ stylers: [{ saturation: 50 }, { gamma: 0.5 }] }] }}
+              options={{
+                minZoom: 9,
+                styles: [{ stylers: [{ saturation: darkMode ? 70 : 40 }, { gamma: darkMode ? 0.8 : 0.5 }] }],
+              }}
             >
               <MapLocationIcon color='primary' lat={listingInfo.latitude} lng={listingInfo.longitude}>
                 <LocationOnIcon />
@@ -216,7 +223,7 @@ export const ListingInfo = () => {
             </GoogleMapReact>
           </MapContainer>
         )}
-        <Button onClick={toggleContactModalOpen} variant='outlined'>
+        <Button onClick={toggleContactModalOpen} variant={darkMode ? 'contained' : 'outlined'}>
           Contact {listingInfo.type === 'rent' ? 'Landlord' : 'Seller'}
         </Button>
       </MainContainer>

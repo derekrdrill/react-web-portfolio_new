@@ -14,6 +14,7 @@ import { FileUploader } from './components/FileUploader/FileUploader';
 import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
 import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
 import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
+import { ListingsProvider } from './components/HousingMarketplace/context/ListingsContext';
 import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
 import { Navbar } from './components/HousingMarketplace/components/Navbar';
 import { Offer } from './components/HousingMarketplace/components/Offer';
@@ -115,9 +116,11 @@ export const routes = [
     path: '/housing-marketplace/explore',
     render: (
       <UserAuthenticationProvider>
-        <Navbar>
-          <Explore />
-        </Navbar>
+        <ListingsProvider>
+          <Navbar>
+            <Explore />
+          </Navbar>
+        </ListingsProvider>
       </UserAuthenticationProvider>
     ),
   },
@@ -126,9 +129,11 @@ export const routes = [
     path: '/housing-marketplace/offers',
     render: (
       <UserAuthenticationProvider>
-        <Navbar>
-          <Offer />
-        </Navbar>
+        <ListingsProvider>
+          <Navbar>
+            <Offer />
+          </Navbar>
+        </ListingsProvider>
       </UserAuthenticationProvider>
     ),
   },
@@ -137,9 +142,11 @@ export const routes = [
     path: '/housing-marketplace/profile',
     render: (
       <UserAuthenticationProvider>
-        <Navbar>
-          <Profile />
-        </Navbar>
+        <ListingsProvider>
+          <Navbar>
+            <Profile />
+          </Navbar>
+        </ListingsProvider>
       </UserAuthenticationProvider>
     ),
   },
@@ -148,14 +155,29 @@ export const routes = [
     path: '/housing-marketplace/create-listing',
     render: (
       <UserAuthenticationProvider>
-        <Navbar>
-          <CreateListing />
-        </Navbar>
+        <ListingsProvider>
+          <Navbar>
+            <CreateListing />
+          </Navbar>
+        </ListingsProvider>
       </UserAuthenticationProvider>
     ),
   },
   {
     id: 19,
+    path: '/housing-marketplace/update-listing/:listingID',
+    render: (
+      <UserAuthenticationProvider>
+        <ListingsProvider>
+          <Navbar>
+            <CreateListing />
+          </Navbar>
+        </ListingsProvider>
+      </UserAuthenticationProvider>
+    ),
+  },
+  {
+    id: 20,
     path: '/housing-marketplace/reset-password/:token',
     render: (
       <UserAuthenticationProvider>
@@ -164,18 +186,20 @@ export const routes = [
     ),
   },
   {
-    id: 20,
+    id: 21,
     path: '/housing-marketplace/category/:category',
     render: (
       <UserAuthenticationProvider>
-        <Navbar>
-          <Category />
-        </Navbar>
+        <ListingsProvider>
+          <Navbar>
+            <Category />
+          </Navbar>
+        </ListingsProvider>
       </UserAuthenticationProvider>
     ),
   },
   {
-    id: 21,
+    id: 22,
     path: '/housing-marketplace/listing/:listingID',
     render: (
       <UserAuthenticationProvider>
@@ -186,12 +210,12 @@ export const routes = [
     ),
   },
   {
-    id: 22,
+    id: 23,
     path: '/file-uploader',
     render: <FileUploader />,
   },
   {
-    id: 23,
+    id: 24,
     path: '/dark-light-mode',
     render: <DarkLightMode />,
   },

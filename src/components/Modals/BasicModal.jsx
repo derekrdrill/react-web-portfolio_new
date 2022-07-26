@@ -4,11 +4,26 @@ import { Button, Modal } from '@mui/material';
 
 import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
-export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubmit, open, submitButtonText }) => {
+export const BasicModal = ({
+  backdropOpacity,
+  buttonVariant,
+  cancelButtonText,
+  children,
+  handleClose,
+  handleSubmit,
+  hideBackdrop,
+  open,
+  submitButtonText,
+}) => {
   const { darkMode } = useContext(DarkLightModeContext);
 
   return (
-    <Modal onClose={handleClose} open={open}>
+    <Modal
+      hideBackdrop={hideBackdrop}
+      onClose={handleClose}
+      open={open}
+      BackdropProps={{ style: { opacity: backdropOpacity ?? 0.9 } }}
+    >
       <ModalContainer darkMode={darkMode}>
         <ExitButtonContainer>
           <Button color='error' onClick={handleClose} size='small' variant='contained'>
@@ -18,7 +33,7 @@ export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubm
         <ContentContainer>{children}</ContentContainer>
         <ActionButtonsContainer>
           <ButtonContainer>
-            <CancelButton fullWidth onClick={handleClose} variant='contained'>
+            <CancelButton fullWidth onClick={handleClose} variant={buttonVariant ?? 'contained'}>
               {cancelButtonText ?? 'Cancel'}
             </CancelButton>
           </ButtonContainer>
@@ -30,7 +45,7 @@ export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubm
                 handleSubmit();
                 handleClose();
               }}
-              variant='contained'
+              variant={buttonVariant ?? 'contained'}
             >
               {submitButtonText ?? 'Submit'}
             </Button>
@@ -40,6 +55,15 @@ export const BasicModal = ({ cancelButtonText, children, handleClose, handleSubm
     </Modal>
   );
 };
+
+// const ModalStyled = styled(Modal)(({ backdropColor }) => [
+//   backdropColor && {
+//     '.MuiBackdrop-root': {
+//       backgroundColor: backdropColor,
+//       opacity: 0.7,
+//     },
+//   },
+// ]);
 
 const ModalContainer = styled.div(({ darkMode }) => ({
   'h1, h2, h3, h4, h5, h6, p': {
@@ -63,14 +87,16 @@ const ButtonContainer = styled.div({
   maxWidth: 185,
 });
 
-const CancelButton = styled(Button)({
+const CancelButton = styled(Button)(({ variant }) => ({
   '&.MuiButton-root': {
     ':hover': {
-      backgroundColor: '#424242',
+      backgroundColor: variant === 'outlined' ? '#f0f0f0' : '#424242',
     },
-    backgroundColor: '#696969',
+    backgroundColor: variant === 'outlined' ? 'transparent' : '#696969',
+    borderColor: variant === 'outlined' ? 'grey' : 'transparent',
+    color: variant === 'outlined' ? 'grey' : 'white',
   },
-});
+}));
 
 const ContentContainer = styled.div({
   padding: 30,

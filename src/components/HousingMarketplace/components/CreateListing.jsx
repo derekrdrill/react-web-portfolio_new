@@ -1,12 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import $ from 'jquery';
 import axios from 'axios';
+import { history } from '../../../index';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Button, ButtonGroup, Grid, InputLabel, TextField, Typography } from '@mui/material';
+import { Button, ButtonGroup, Grid, IconButton, InputLabel, TextField, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/fontawesome-free-solid';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { DynamicList } from '../../DynamicList/DynamicList';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
+import { ListingsContext } from '../context/ListingsContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { handleAlert } from '../../Alert/context/AlertActions';
@@ -17,6 +22,7 @@ const formDataDefaults = {
   discountedPrice: 0,
   furnished: false,
   images: [],
+  imageUrls: [],
   latitude: 0,
   longitude: 0,
   location: '',
@@ -30,6 +36,10 @@ const formDataDefaults = {
 
 export const CreateListing = () => {
   const username = sessionStorage.getItem('username');
+  const isEditing = localStorage.getItem('isEditing');
+
+  const pathName = history.location.pathname;
+  const listingID = pathName.substring(pathName.indexOf('update-listing/') + 15, pathName.length);
 
   const { darkMode } = useContext(DarkLightModeContext);
   const { alertDispatch } = useContext(AlertContext);
@@ -44,6 +54,7 @@ export const CreateListing = () => {
     discountedPrice,
     furnished,
     images,
+    imageUrls,
     latitude,
     longitude,
     location,
@@ -119,23 +130,101 @@ export const CreateListing = () => {
         console.log('error');
       }
 
+      $('input[type=file]').val('');
       setLoading(false);
       setFormData(formDataDefaults);
       handleAlert('New listing added', 'Success', 'success', alertDispatch);
     }
   };
 
+  const handleUpdateListing = async () => {
+    setLoading(true);
+
+    const imageData = new FormData();
+    Object.values(formData.images).forEach(image => {
+      imageData.append('uploadImages', image);
+    });
+
+    const uploadImagesResponse = await axios
+      .post('../../upload-images', imageData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .catch(e => console.warn(e));
+
+    const { data } = uploadImagesResponse;
+
+    if (data.uploadSuccess) {
+      const response = await axios
+        .post(
+          `../../update-listing`,
+          {
+            formData,
+            images: data.filePaths,
+          },
+          {
+            headers: { 'Content-Type': 'application/json' },
+          },
+        )
+        .catch(e => console.warn(e));
+
+      if (response.status !== 200) {
+        console.log('error');
+      } else {
+        setFormData({ ...formData, imageUrls: [...imageUrls, ...data.filePaths], images: [] });
+        handleAlert(response.data.message, 'Success', 'success', alertDispatch);
+        $('input[type=file]').val('');
+      }
+
+      setLoading(false);
+    }
+  };
+
+  const removeCurrentImage = e => {
+    let imageUrlsArray = imageUrls;
+    let index = imageUrlsArray.indexOf(e.currentTarget.id);
+
+    if (index !== -1) {
+      imageUrlsArray.splice(index, 1);
+    }
+
+    setFormData({ ...formData, imageUrls: imageUrlsArray });
+  };
+
+  const loadListing = async () => {
+    setLoading(true);
+
+    const response = await axios
+      .get(`../../get-listing-info/${listingID}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch(e => console.warn(e));
+
+    if (response.status === 200) {
+      const listingData = response.data.listingInfo[0];
+
+      setFormData({ ...formData, ...listingData });
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isEditing === 'true') {
+      loadListing();
+    }
+  }, []);
+
   return (
     <>
       <PageBodyStyle darkMode={darkMode} />
       <MainContainer>
         {loading && <LoaderSpinner open={true} />}
-        <AlertContainer>
-          <Alert />
-        </AlertContainer>
         <TitleContainer>
           <Typography component='h6' variant='h4'>
-            Create a Listing
+            {`${isEditing === 'true' ? 'Update' : 'Create'} a listing`}
           </Typography>
         </TitleContainer>
         <Grid container spacing={2}>
@@ -190,11 +279,10 @@ export const CreateListing = () => {
               type='number'
             />
           </Grid>
-          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+          <ButtonGroupGridItem item xs={7} sm={6} md={2} xl={1}>
             <InputLabel shrink>Rent or Sell</InputLabel>
             <ButtonGroup fullWidth>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={type === 'rent'}
@@ -203,7 +291,6 @@ export const CreateListing = () => {
                 Rent
               </SelectorButton>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={type === 'sell'}
@@ -212,12 +299,11 @@ export const CreateListing = () => {
                 Sell
               </SelectorButton>
             </ButtonGroup>
-          </Grid>
-          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+          </ButtonGroupGridItem>
+          <ButtonGroupGridItem item xs={7} sm={6} md={2} xl={1}>
             <InputLabel shrink>Parking Spot</InputLabel>
             <ButtonGroup fullWidth>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={parking}
@@ -226,7 +312,6 @@ export const CreateListing = () => {
                 Yes
               </SelectorButton>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={!parking}
@@ -235,12 +320,11 @@ export const CreateListing = () => {
                 No
               </SelectorButton>
             </ButtonGroup>
-          </Grid>
-          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+          </ButtonGroupGridItem>
+          <ButtonGroupGridItem item xs={7} sm={6} md={2} xl={1}>
             <InputLabel shrink>Furnished</InputLabel>
             <ButtonGroup fullWidth>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={furnished}
@@ -249,7 +333,6 @@ export const CreateListing = () => {
                 Yes
               </SelectorButton>
               <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
                 darkMode={darkMode}
                 size='small'
                 selected={!furnished}
@@ -258,13 +341,12 @@ export const CreateListing = () => {
                 No
               </SelectorButton>
             </ButtonGroup>
-          </Grid>
+          </ButtonGroupGridItem>
           {type === 'rent' && (
-            <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
+            <ButtonGroupGridItem item xs={7} sm={6} md={2} xl={1}>
               <InputLabel shrink>Pets Allowed</InputLabel>
               <ButtonGroup fullWidth>
                 <SelectorButton
-                  color={darkMode ? 'secondary' : 'primary'}
                   darkMode={darkMode}
                   size='small'
                   selected={pets}
@@ -273,7 +355,6 @@ export const CreateListing = () => {
                   Yes
                 </SelectorButton>
                 <SelectorButton
-                  color={darkMode ? 'secondary' : 'primary'}
                   darkMode={darkMode}
                   size='small'
                   selected={!pets}
@@ -282,31 +363,31 @@ export const CreateListing = () => {
                   No
                 </SelectorButton>
               </ButtonGroup>
-            </Grid>
+            </ButtonGroupGridItem>
           )}
-          <Grid item xs={7} sm={6} md={2} xl={1} style={{ marginTop: '-10px' }}>
-            <InputLabel shrink>Offer</InputLabel>
-            <ButtonGroup fullWidth>
-              <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
-                darkMode={darkMode}
-                size='small'
-                selected={offer}
-                onClick={() => handleButtonGroupChange('offer', true)}
-              >
-                Yes
-              </SelectorButton>
-              <SelectorButton
-                color={darkMode ? 'secondary' : 'primary'}
-                darkMode={darkMode}
-                size='small'
-                selected={!offer}
-                onClick={() => handleButtonGroupChange('offer', false)}
-              >
-                No
-              </SelectorButton>
-            </ButtonGroup>
-          </Grid>
+          {type === 'sell' && (
+            <ButtonGroupGridItem item xs={7} sm={6} md={2} xl={1}>
+              <InputLabel shrink>Offer</InputLabel>
+              <ButtonGroup fullWidth>
+                <SelectorButton
+                  darkMode={darkMode}
+                  size='small'
+                  selected={offer}
+                  onClick={() => handleButtonGroupChange('offer', true)}
+                >
+                  Yes
+                </SelectorButton>
+                <SelectorButton
+                  darkMode={darkMode}
+                  size='small'
+                  selected={!offer}
+                  onClick={() => handleButtonGroupChange('offer', false)}
+                >
+                  No
+                </SelectorButton>
+              </ButtonGroup>
+            </ButtonGroupGridItem>
+          )}
           <Grid item xs={12} sm={8} md={5} lg={6}>
             <TextField
               fullWidth
@@ -330,40 +411,82 @@ export const CreateListing = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Grid container>
-              <Grid item xs={12} sm={6} md={3}>
-                <InputLabel>Upload images</InputLabel>
+            <ListingImagesContainer container justifyContent={{ xs: 'flex-start', md: 'space-between' }} spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <InputLabel>{`Upload${isEditing === 'true' ? ' new ' : ' '}images`}</InputLabel>
                 <InputLabel shrink>First image will be the cover (max of 5)</InputLabel>
-                <DynamicList
-                  addColor='forestgreen'
-                  removeColor='maroon'
-                  children={
-                    <FileUploadField
-                      disabled={!name || !location || !regularPrice || !discountedPrice}
-                      inputProps={{ accept: '.jpg, .png, .jpeg' }}
-                      onChange={handleImageUpload}
-                      size='small'
-                      type='file'
-                      variant='filled'
+                <ImagesContainer container darkMode={darkMode}>
+                  <Grid item xs={6} xl={4}>
+                    <DynamicList
+                      addColor='forestgreen'
+                      removeColor='maroon'
+                      children={
+                        <FileUploadField
+                          disabled={!name || !location || !regularPrice || !discountedPrice}
+                          inputProps={{ accept: '.jpg, .png, .jpeg' }}
+                          onChange={handleImageUpload}
+                          size='small'
+                          type='file'
+                          variant='filled'
+                        />
+                      }
+                      maxRows={5}
+                      maxHeight={225}
                     />
-                  }
-                  maxRows={5}
-                />
+                  </Grid>
+                </ImagesContainer>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6}>
+                {isEditing === 'true' && (
+                  <>
+                    <InputLabel>Current images</InputLabel>
+                    <InputLabel shrink>You can delete existing images from here</InputLabel>
+                    <ImagesContainer container darkMode={darkMode} justifyContent='flex-start'>
+                      {imageUrls.length > 0 &&
+                        imageUrls.map((img, imgCount) => (
+                          <CurrentImageContainer key={imgCount}>
+                            <CurrentImage src={img} />
+                            <DeleteCurrentImageIcon
+                              id={img}
+                              onClick={e => {
+                                removeCurrentImage(e);
+                              }}
+                              size='small'
+                            >
+                              <FontAwesomeIcon icon={faTrash} color='red' />
+                            </DeleteCurrentImageIcon>
+                          </CurrentImageContainer>
+                        ))}
+                    </ImagesContainer>
+                  </>
+                )}
+              </Grid>
+            </ListingImagesContainer>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} style={{ marginTop: 2 }}>
+          <Grid item order={{ md: isEditing === 'true' ? 2 : 1, xl: 1 }} xs={12} md={6}>
+            <Grid container>
+              <Grid item xs={12} xl={6}>
+                <CreateListingButton
+                  color='info'
+                  darkMode={darkMode}
+                  disabled={!name || !location || !regularPrice || !discountedPrice}
+                  fullWidth
+                  onClick={isEditing === 'true' ? handleUpdateListing : handleCreateListing}
+                  variant={'contained'}
+                >
+                  {`${isEditing === 'true' ? 'Update' : 'Create'} Listing`}
+                </CreateListingButton>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={12} md={5} xl={3}>
-            <Button
-              color='info'
-              disabled={!name || !location || !regularPrice || !discountedPrice}
-              fullWidth
-              onClick={handleCreateListing}
-              variant='contained'
-            >
-              Create Listing
-            </Button>
+          <Grid item order={{ md: isEditing === 'true' ? 1 : 2, xl: 2 }} xs={12} md={6} xl={12}>
+            <Grid container justifyContent={isEditing === 'true' ? 'flex-start' : 'flex-end'}>
+              <Grid item xs={12} md={6} lg={4} xl={2}>
+                <Alert />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </MainContainer>
@@ -395,9 +518,8 @@ const TitleContainer = styled.div({
   padding: '10px 0',
 });
 
-const AlertContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
+const ButtonGroupGridItem = styled(Grid)({
+  marginTop: -12,
 });
 
 const SelectorButton = styled(Button)(({ darkMode, selected }) => [
@@ -411,16 +533,66 @@ const SelectorButton = styled(Button)(({ darkMode, selected }) => [
   },
   selected && {
     ':hover': {
-      backgroundColor: darkMode ? 'violet' : 'navy',
+      backgroundColor: darkMode ? '#1632a2' : '#002feb',
       color: 'white',
     },
-    backgroundColor: darkMode ? 'violet' : 'navy',
+    backgroundColor: darkMode ? '#1632a2' : '#002feb',
     color: 'white',
   },
 ]);
+
+const ListingImagesContainer = styled(Grid)({
+  height: 260,
+});
 
 const FileUploadField = styled(TextField)(({ disabled }) => [
   disabled && {
     pointerEvents: 'none',
   },
+  {
+    '.MuiInputBase-input': {
+      cursor: 'pointer',
+    },
+  },
 ]);
+
+const CreateListingButton = styled(Button)(({ darkMode }) => ({
+  '&.Mui-disabled': {
+    backgroundColor: darkMode && '#6b9ab3',
+  },
+  margin: '10px 0',
+}));
+
+const ImagesContainer = styled(Grid)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#303030' : '#fafafa',
+  borderRadius: 5,
+  maxHeight: 200,
+  overflowY: 'auto',
+  padding: 10,
+}));
+
+const CurrentImageContainer = styled.div({
+  ':hover': {
+    '.MuiIconButton-root': { display: 'block' },
+    img: { opacity: 0.7 },
+  },
+  position: 'relative',
+});
+
+const CurrentImage = styled.img({
+  ':hover': { svg: { display: 'block' } },
+  height: 105,
+  width: 145,
+  borderRadius: 10,
+  padding: 4,
+});
+
+const DeleteCurrentImageIcon = styled(IconButton)({
+  ':hover': {
+    svg: { color: '#7f0606' },
+  },
+  display: 'none',
+  position: 'absolute',
+  right: 5,
+  top: 5,
+});

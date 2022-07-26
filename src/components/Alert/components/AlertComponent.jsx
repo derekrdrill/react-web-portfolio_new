@@ -28,7 +28,7 @@ const fadeOut = keyframes({
 });
 
 const StyledAlert = styled(Alert)`
-  // animation-name: ${props =>
+  animation-name: ${props =>
     props.$fadeOut
       ? css`
           ${fadeOut}

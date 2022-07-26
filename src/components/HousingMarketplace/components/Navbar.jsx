@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { history } from '../../../index';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { AppBar, Button, Toolbar } from '@mui/material';
+import { AppBar, Button, Grid, Toolbar } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompass, faTag, faUser } from '@fortawesome/fontawesome-free-solid';
 
@@ -18,7 +18,7 @@ export const Navbar = ({ children }) => {
     <>
       <FooterBar darkMode={darkMode}>
         <Toolbar>
-          <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+          <Grid container justifyContent='space-around'>
             <StyledLink to='/housing-marketplace/explore'>
               <FooterBarButton
                 darkMode={darkMode}
@@ -47,7 +47,7 @@ export const Navbar = ({ children }) => {
                 Profile
               </FooterBarButton>
             </StyledLink>
-          </div>
+          </Grid>
         </Toolbar>
       </FooterBar>
       {children}
@@ -63,7 +63,7 @@ const FooterBar = styled(AppBar)(({ darkMode }) => ({
   top: '90%',
 }));
 
-const FooterBarButton = styled(Button)(({ darkMode, currentPage, page }) => [
+const FooterBarButton = styled(Button)(({ currentPage, page }) => [
   {
     ':hover': {
       background: 'none',

@@ -142,8 +142,8 @@ export const Explore = () => {
                   <CategoryTitle paragraph>For rent</CategoryTitle>
                 </Grid>
                 <Grid item xs={6} md={4}>
-                  <Link to='/housing-marketplace/category/sale'>
-                    <CategoryImage src={sellCategoryImg} alt='sale' />
+                  <Link to='/housing-marketplace/category/sell'>
+                    <CategoryImage src={sellCategoryImg} alt='sell' />
                   </Link>
                   <CategoryTitle paragraph>For sale</CategoryTitle>
                 </Grid>
