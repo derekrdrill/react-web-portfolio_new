@@ -79,7 +79,7 @@ const JobApplicationsSelectRow = styled(Row)(({ darkMode }) => ({
   position: '-webkit-sticky',
   position: 'sticky',
   top: 80,
-  zIndex: 100,
+  zIndex: 2,
 }));
 
 const JobApplicationSelect = styled(Select)({
