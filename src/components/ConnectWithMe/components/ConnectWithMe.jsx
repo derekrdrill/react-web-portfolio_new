@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
@@ -52,61 +52,73 @@ export const ConnectWithMe = ({ id }) => {
   };
 
   return (
-    <ContactPageContainer id={id} darkMode={darkMode} container>
-      <TitleContainer item xs={12}>
-        <TitleText darkMode={darkMode} variant='h3' component='h2'>
-          LET'S CONNECT
-        </TitleText>
-        <DescriptionText darkMode={darkMode} variant='h6' component='p'>
-          Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!
-        </DescriptionText>
-      </TitleContainer>
-      <ConnectTypeContainer item xs={12} lg={4}>
-        <Grid container>
-          {connectTypes.map(connect => (
-            <Grid key={connect.id} item xs={4} lg={12}>
-              <Grid container justifyContent='center'>
-                <StyledLink href={connect.href} target={connect.target} darkMode={darkMode}>
-                  {connect.icon}
-                </StyledLink>
+    <>
+      <PageBodyStyle darkMode={darkMode} />
+      <ContactPageContainer id={id} darkMode={darkMode} container>
+        <TitleContainer item xs={12}>
+          <TitleText darkMode={darkMode} variant='h3' component='h2'>
+            LET'S CONNECT
+          </TitleText>
+          <DescriptionText darkMode={darkMode} variant='h6' component='p'>
+            Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!
+          </DescriptionText>
+        </TitleContainer>
+        <ConnectTypeContainer item xs={12} lg={4}>
+          <Grid container>
+            {connectTypes.map(connect => (
+              <Grid key={connect.id} item xs={4} lg={12}>
+                <Grid container justifyContent='center'>
+                  <StyledLink href={connect.href} target={connect.target} darkMode={darkMode}>
+                    {connect.icon}
+                  </StyledLink>
+                </Grid>
               </Grid>
+            ))}
+          </Grid>
+        </ConnectTypeContainer>
+        <DirectConnectContainer item xs={12} lg={8}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={5}>
+              <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[0].inputs} form={form1} setForm={setForm1} />
             </Grid>
-          ))}
-        </Grid>
-      </ConnectTypeContainer>
-      <DirectConnectContainer item xs={12} lg={8}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} lg={5}>
-            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[0].inputs} form={form1} setForm={setForm1} />
+            <Grid item xs={12} lg={7}>
+              <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[1].inputs} form={form2} setForm={setForm2} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} lg={7}>
-            <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[1].inputs} form={form2} setForm={setForm2} />
+          <Grid container justifyContent='space-between'>
+            <div>
+              <Alert />
+            </div>
+            <div>
+              <Button variant='contained' color='warning' onClick={handleMessageSend}>
+                Send
+              </Button>
+            </div>
+          </Grid>
+        </DirectConnectContainer>
+        <Grid item xs={12}>
+          <Grid container justifyContent={{ xs: 'flex-start', lg: 'flex-end' }}>
+            <StyledBitmojiImage src={bitmojiWaterCooler} />
           </Grid>
         </Grid>
-        <Grid container justifyContent='space-between'>
-          <div>
-            <Alert />
-          </div>
-          <div>
-            <Button variant='contained' color='warning' onClick={handleMessageSend}>
-              Send
-            </Button>
-          </div>
-        </Grid>
-      </DirectConnectContainer>
-      <Grid item xs={12}>
-        <Grid container justifyContent={{ xs: 'flex-start', lg: 'flex-end' }}>
-          <StyledBitmojiImage src={bitmojiWaterCooler} />
-        </Grid>
-      </Grid>
-    </ContactPageContainer>
+      </ContactPageContainer>
+    </>
   );
 };
 
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode ? '#030200' : 'whitesmoke',
+  },
+}));
+
 const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
-  backgroundColor: darkMode ? '#030200' : 'whitesmoke',
-  paddingTop: '0.5%',
-  height: '105vh',
+  padding: 50,
+  borderTop: '2px solid transparent',
+  borderImage: darkMode
+    ? 'linear-gradient(to right, rgba(248, 184, 255, 1), skyblue, gainsboro)'
+    : 'linear-gradient(to right, rgba(176, 52, 197, 1), rgba(86, 206, 210, 1))',
+  borderImageSlice: 1,
 }));
 
 const ConnectTypeContainer = styled(Grid)({

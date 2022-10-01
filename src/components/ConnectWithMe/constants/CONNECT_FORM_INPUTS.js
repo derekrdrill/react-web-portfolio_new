@@ -61,7 +61,7 @@ export const CONNECT_FORM_INPUTS = [
     inputs: [
       {
         id: 'message',
-        label: `Tell me somethin' good`,
+        label: `Your message....`,
         variant: 'filled',
         xs: 12,
         fullWidth: true,
