@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Alert, AlertTitle } from '@mui/material';
 import { AlertContext } from '../context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 export const AlertComponent = () => {
-  const { alert, fadeOut } = useContext(AlertContext);
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { alert, fadeOut } = React.useContext(AlertContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
     alert && (
@@ -27,7 +27,7 @@ const fadeOut = keyframes({
   },
 });
 
-const StyledAlert = styled(Alert)`
+export const StyledAlert = styled(Alert)`
   animation-name: ${props =>
     props.$fadeOut
       ? css`
