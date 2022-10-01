@@ -19,27 +19,30 @@ export const ProgressBar = ({ page, maxPage, progress }) =>
 export const Breadcrumb = ({
   breadcrumbs,
   breadcrumbClick,
-  page,
-  maxPage,
-  separator,
+  darkMode,
   endCrumb,
   goBackward,
   goForward,
+  maxPage,
+  page,
+  separator,
 }) =>
   page >= 1 &&
   page <= maxPage && (
-    <div>
-      <BreadcrumbComponent
-        breadcrumbs={breadcrumbs}
-        breadcrumbClick={breadcrumbClick}
-        page={page}
-        maxPage={maxPage}
-        separator={separator}
-        endCrumb={endCrumb}
-      />
+    <>
+      <Grid container display={{ xs: 'none', sm: 'block' }}>
+        <BreadcrumbComponent
+          breadcrumbs={breadcrumbs}
+          breadcrumbClick={breadcrumbClick}
+          page={page}
+          maxPage={maxPage}
+          separator={separator}
+          endCrumb={endCrumb}
+        />
+      </Grid>
       <Grid container>
         <Grid item xs={6}>
-          <StyledButton onClick={goBackward}>
+          <StyledButton darkMode={darkMode} onClick={goBackward}>
             <FontAwesomeIcon icon={faChevronLeft} />
             <BackToButtonTitle page={page} inputs={ADVANCED_JOB_APP_INPUTS} />
           </StyledButton>
@@ -47,15 +50,16 @@ export const Breadcrumb = ({
         <Grid item xs={6}>
           <Grid container justifyContent='flex-end'>
             <ForwardOrSubmitButton
-              page={page}
-              maxPage={maxPage}
+              darkMode={darkMode}
               goForward={goForward}
               inputs={ADVANCED_JOB_APP_INPUTS}
+              maxPage={maxPage}
+              page={page}
             />
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 
 export const BackToButtonTitle = ({ page, inputs }) =>
@@ -64,17 +68,17 @@ export const BackToButtonTitle = ({ page, inputs }) =>
 export const ForwardButtonTitle = ({ page, maxPage, inputs }) =>
   `${page < maxPage - 1 ? `GO TO ${inputs[page].title}` : 'GO TO REVIEW'}\u00A0\u00A0`;
 
-export const ForwardOrSubmitButton = ({ page, maxPage, inputs, goForward }) =>
+export const ForwardOrSubmitButton = ({ darkMode, page, maxPage, inputs, goForward }) =>
   page === maxPage ? (
     <StyledLink to='/app-complete'>
-      <StyledButton>
+      <StyledButton darkMode={darkMode}>
         {`${'SUBMIT APPLICATION'}\u00A0\u00A0`}
         <FontAwesomeIcon icon={faChevronRight} />
       </StyledButton>
     </StyledLink>
   ) : (
-    <StyledButton onClick={goForward}>
-      <ForwardButtonTitle page={page} inputs={inputs} />
+    <StyledButton darkMode={darkMode} onClick={goForward}>
+      <ForwardButtonTitle inputs={inputs} maxPage={maxPage} page={page} />
       <FontAwesomeIcon icon={faChevronRight} />
     </StyledButton>
   );
@@ -123,9 +127,8 @@ export const ApplicationContainer = ({ darkMode, inputs, page, maxPage, goForwar
         {inputs.map(section => {
           return (
             <JobApplicationSectionContainer
-              item
+              container
               key={section.id}
-              xs={12}
               page={page}
               sectionid={section.id}
               maxpage={maxPage}
@@ -187,12 +190,13 @@ export const MultiPageJobApplication = () => {
       <Breadcrumb
         breadcrumbs={ADVANCED_JOB_APP_INPUTS}
         breadcrumbClick={setPageByBreadcrumb}
-        page={page}
-        maxPage={maxPage}
-        separator={'|'}
         endCrumb={'Review'}
+        darkMode={darkMode}
         goBackward={goBackward}
         goForward={goForward}
+        maxPage={maxPage}
+        page={page}
+        separator={'|'}
       />
       <ApplicationContainer
         darkMode={darkMode}
@@ -274,9 +278,13 @@ const EditIcon = styled(IconButton)({
   },
 });
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ darkMode }) => ({
+  ':hover': {
+    color: darkMode && 'white',
+  },
+  color: darkMode && '#cfcfcf',
   marginTop: 15,
-});
+}));
 
 const StyledLink = styled(Link)({
   textDecoration: 'none',

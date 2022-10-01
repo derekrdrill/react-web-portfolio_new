@@ -1,136 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Lead Input Form tests renders correctly 1`] = `
-<div>
-  <Memo(l) />
-  <Container
-    fluid={false}
+<React.Fragment>
+  <Styled(Component)
+    container={true}
+    justifyContent="center"
   >
-    <Row>
-      <Col
-        className="mt-5"
-        lg={
+    <ForwardRef(Typography)
+      component="h1"
+      variant="h6"
+    >
+      Please fill in your information below
+    </ForwardRef(Typography)>
+  </Styled(Component)>
+  <ForwardRef(Grid)
+    container={true}
+    justifyContent="center"
+  >
+    <ForwardRef(Grid)
+      item={true}
+      lg={6}
+      md={8}
+      xl={4}
+      xs={10}
+    >
+      <DynamicFormInputs
+        form={
           Object {
-            "offset": 3,
-            "span": 4,
+            "email": "",
+            "firstName": "",
+            "lastName": "",
+            "phone": "",
           }
         }
-        xs={
+        inputs={
+          Array [
+            Object {
+              "color": "primary",
+              "fontFamily": "Kufam",
+              "fullWidth": true,
+              "id": "firstName",
+              "inputBackgroundColor": "gainsboro",
+              "inputPaddingBottom": 5,
+              "inputborderRadius": 4,
+              "label": "First Name",
+              "labelColor": "#28282B",
+              "variant": "filled",
+              "xs": 12,
+            },
+            Object {
+              "color": "primary",
+              "fontFamily": "Kufam",
+              "fullWidth": true,
+              "id": "lastName",
+              "inputBackgroundColor": "gainsboro",
+              "inputPaddingBottom": 5,
+              "inputborderRadius": 4,
+              "label": "Last Name",
+              "labelColor": "#28282B",
+              "variant": "filled",
+              "xs": 12,
+            },
+            Object {
+              "color": "primary",
+              "fontFamily": "Kufam",
+              "fullWidth": true,
+              "id": "email",
+              "inputBackgroundColor": "gainsboro",
+              "inputPaddingBottom": 5,
+              "inputborderRadius": 4,
+              "label": "Email",
+              "labelColor": "#28282B",
+              "variant": "filled",
+              "xs": 12,
+            },
+            Object {
+              "color": "primary",
+              "fontFamily": "Kufam",
+              "fullWidth": true,
+              "id": "phone",
+              "inputBackgroundColor": "gainsboro",
+              "inputPaddingBottom": 5,
+              "inputborderRadius": 4,
+              "label": "Phone Number",
+              "labelColor": "#28282B",
+              "variant": "filled",
+              "xs": 12,
+            },
+          ]
+        }
+        setForm={[Function]}
+      />
+      <Styled(Component)
+        container={true}
+        justifyContent={
           Object {
-            "offset": 3,
-            "span": 6,
+            "sm": "flex-end",
+            "xs": "center",
           }
         }
       >
-        <ForwardRef(Typography)
-          component="h1"
-          variant="h6"
+        <ForwardRef(Grid)
+          item={true}
+          sm={4}
+          xs={12}
         >
-          Please fill in your information below
-        </ForwardRef(Typography)>
-      </Col>
-    </Row>
-    <Styled(Row)>
-      <Col
-        lg={
-          Object {
-            "offset": 3,
-            "span": 6,
-          }
-        }
-        xs={
-          Object {
-            "span": 12,
-          }
-        }
-      >
-        <DynamicFormInputs
-          inputs={
-            Array [
-              Object {
-                "color": "primary",
-                "fontFamily": "Kufam",
-                "fullWidth": true,
-                "id": "firstName",
-                "inputBackgroundColor": "gainsboro",
-                "inputPaddingBottom": 5,
-                "inputborderRadius": 4,
-                "label": "First Name",
-                "labelColor": "#28282B",
-                "variant": "filled",
-                "xs": 12,
-              },
-              Object {
-                "color": "primary",
-                "fontFamily": "Kufam",
-                "fullWidth": true,
-                "id": "lastName",
-                "inputBackgroundColor": "gainsboro",
-                "inputPaddingBottom": 5,
-                "inputborderRadius": 4,
-                "label": "Last Name",
-                "labelColor": "#28282B",
-                "variant": "filled",
-                "xs": 12,
-              },
-              Object {
-                "color": "primary",
-                "fontFamily": "Kufam",
-                "fullWidth": true,
-                "id": "email",
-                "inputBackgroundColor": "gainsboro",
-                "inputPaddingBottom": 5,
-                "inputborderRadius": 4,
-                "label": "Email",
-                "labelColor": "#28282B",
-                "variant": "filled",
-                "xs": 12,
-              },
-              Object {
-                "color": "primary",
-                "fontFamily": "Kufam",
-                "fullWidth": true,
-                "id": "phone",
-                "inputBackgroundColor": "gainsboro",
-                "inputPaddingBottom": 5,
-                "inputborderRadius": 4,
-                "label": "Phone Number",
-                "labelColor": "#28282B",
-                "variant": "filled",
-                "xs": 12,
-              },
-            ]
-          }
-          onChange={[Function]}
-        />
-      </Col>
-    </Styled(Row)>
-    <Styled(Row)>
-      <Col
-        lg={
-          Object {
-            "offset": 8,
-            "span": 1,
-          }
-        }
-        xs={
-          Object {
-            "span": 12,
-          }
-        }
-      >
-        <ForwardRef(Button)
-          fullWidth={true}
-          onClick={[Function]}
-          variant="contained"
-        >
-          Submit
-        </ForwardRef(Button)>
-      </Col>
-    </Styled(Row)>
-    <LoaderSpinner
-      open={null}
-    />
-  </Container>
-</div>
+          <ForwardRef(Button)
+            disabled={true}
+            fullWidth={true}
+            onClick={[Function]}
+            variant="contained"
+          >
+            Submit
+          </ForwardRef(Button)>
+        </ForwardRef(Grid)>
+      </Styled(Component)>
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+  <LoaderSpinner
+    open={null}
+  />
+</React.Fragment>
 `;

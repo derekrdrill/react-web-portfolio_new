@@ -79,4 +79,5 @@ export const BreadcrumbText = styled(Typography)(
 
 export const StyledBreadcrumbs = styled(Breadcrumbs)({
   backgroundColor: 'gainsboro',
+  padding: 5,
 });

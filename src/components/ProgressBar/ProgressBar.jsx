@@ -9,10 +9,10 @@ export const ProgressBar = ({ progress, percentageDecimals }) => {
 
   return (
     <StyledProgressBarContainer container>
-      <Grid item xs={11}>
+      <Grid item xs={10} md={11}>
         <StyledProgressBar variant='determinate' value={progressTotal} progress={progress} />
       </Grid>
-      <ProgressPercentageContainer item xs={1} progress={progressTotal}>
+      <ProgressPercentageContainer item xs={2} md={1} progress={progressTotal}>
         <Grid container justifyContent='center'>
           <ProgressPercentage variant='subtitle1' component='h6'>
             {progress.toFixed(percentageDecimals || 2)}%

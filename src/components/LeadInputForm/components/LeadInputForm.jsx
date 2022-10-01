@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import $ from 'jquery';
 import styled from 'styled-components';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Grid } from '@mui/material';
 
 import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
@@ -21,42 +19,38 @@ export const LeadInputForm = () => {
     setTimeout(() => {
       addLeadInput(form);
       setLoading(null);
-      // $('input').val('');
       setForm({ firstName: '', lastName: '', email: '', phone: '' });
     }, 1000);
   };
 
   return (
-    <Container>
-      <Row>
-        <Col xs={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 3 }} className='mt-5'>
-          <Typography variant='h6' component='h1'>
-            Please fill in your information below
-          </Typography>
-        </Col>
-      </Row>
-      <InputsRow>
-        <Col xs={{ span: 12 }} lg={{ span: 6, offset: 3 }}>
+    <>
+      <TitleContainer container justifyContent='center'>
+        <Typography variant='h6' component='h1'>
+          Please fill in your information below
+        </Typography>
+      </TitleContainer>
+      <Grid container justifyContent='center'>
+        <Grid item xs={10} md={8} lg={6} xl={4}>
           <DynamicFormInputs inputs={LEAD_INFO_INPUTS} form={form} setForm={setForm} />
-        </Col>
-      </InputsRow>
-      <SubmitButtonRow>
-        <Col xs={{ span: 12 }} lg={{ span: 1, offset: 8 }}>
-          <Button onClick={postApi} variant='contained' fullWidth>
-            Submit
-          </Button>
-        </Col>
-      </SubmitButtonRow>
+          <ButtonContainer container justifyContent={{ xs: 'center', sm: 'flex-end' }}>
+            <Grid item xs={12} sm={4}>
+              <Button
+                disabled={form.firstName === '' || form.lastName === '' || form.email === '' || form.phone === ''}
+                fullWidth
+                onClick={postApi}
+                variant={'contained'}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </ButtonContainer>
+        </Grid>
+      </Grid>
       <LoaderSpinner open={loading} />
-    </Container>
+    </>
   );
 };
 
-
-const InputsRow = styled(Row)({
-  marginTop: '5%',
-});
-
-const SubmitButtonRow = styled(Row)({
-  marginTop: '5%',
-});
+const TitleContainer = styled(Grid)({ padding: '2% 0' });
+const ButtonContainer = styled(Grid)({ paddingTop: '4%' });

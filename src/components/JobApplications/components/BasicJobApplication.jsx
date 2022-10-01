@@ -24,35 +24,39 @@ export const BasicJobApplication = () => {
         </Grid>
       </JobAppTitleContainer>
       <FileUploadContainer darkMode={darkMode} item xs={12}>
-        <DynamicList
-          title='Upload supporting documents'
-          addColor='forestgreen'
-          removeColor='maroon'
-          children={<TextField type='file' />}
-        />
+        <Typography component='h5'>Upload supporting documents</Typography>
+        <FileUploadScrollContainer container darkMode={darkMode}>
+          <DynamicList
+            addColor='forestgreen'
+            removeColor='maroon'
+            children={<FileUpload darkMode={darkMode} type='file' />}
+          />
+        </FileUploadScrollContainer>
       </FileUploadContainer>
       <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} form={form} setForm={setForm} />
       <Grid container justifyContent='flex-end'>
-        <Link to='/app-complete'>
-          <SubmitButton size='large' color='info' variant='contained'>
-            Submit Application
-          </SubmitButton>
-        </Link>
+        <Grid item xs={12} md={6} lg={4}>
+          <Link to='/app-complete'>
+            <SubmitButton color='info' fullWidth size='large' variant='contained'>
+              Submit Application
+            </SubmitButton>
+          </Link>
+        </Grid>
       </Grid>
     </JobAppContainer>
   );
 };
 
 const JobAppContainer = styled(Grid)(({ darkMode }) => ({
-  transform: 'translateY(50px)',
-  marginLeft: '9%',
-  width: '80%',
-  textAlign: 'center',
-  padding: 60,
-  borderRadius: 10,
-  border: darkMode ? 'none' : '1px solid lightgrey',
   backgroundColor: darkMode ? '#303030' : '#F5F5F5',
+  border: darkMode ? 'none' : '1px solid lightgrey',
+  borderRadius: 10,
   boxShadow: darkMode ? '5px 3px 3px lightgrey' : '5px 3px 3px grey',
+  marginLeft: '9%',
+  marginTop: 25,
+  padding: 60,
+  textAlign: 'center',
+  width: '80%',
 }));
 
 const JobAppTitleContainer = styled(Grid)({
@@ -71,10 +75,25 @@ const FileUploadContainer = styled(Grid)(({ darkMode }) => ({
   'h1,h2,h3,h4,h5,h6': {
     color: darkMode ? '#E8DED1' : 'inherit',
   },
-  borderRadius: 6,
-  border: darkMode ? 'none' : '1px dashed gainsboro',
   background: darkMode ? '#808080' : '#FAFAFA',
+  border: darkMode ? 'none' : '1px dashed gainsboro',
+  borderRadius: 6,
   boxShadow: darkMode ? '3px 2px 5px lightgrey' : '1px 1px 2px grey',
+  marginBottom: 30,
   padding: 20,
-  margin: '0 100px 40px 100px',
+}));
+
+const FileUploadScrollContainer = styled(Grid)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#8a8a8a' : '#f7f7f7',
+  borderRadius: 5,
+  marginTop: 20,
+  maxHeight: 250,
+  overflowY: 'auto',
+  padding: 10,
+}));
+
+const FileUpload = styled(TextField)(({ darkMode }) => ({
+  '.MuiInputBase-root': {
+    backgroundColor: darkMode ? '#c7c7c7' : 'beige',
+  },
 }));

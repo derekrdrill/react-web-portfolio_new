@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Grid, Typography, Button } from '@mui/material';
@@ -12,19 +12,24 @@ import headerLogo from '../../../assets/header-logo.png';
 
 export const AdvancedJobApplication = () => {
   const { darkMode } = useContext(DarkLightModeContext);
+
   return (
-    <JobAppContainer darkMode={darkMode} item>
-      <JobAppHeaderContainer darkMode={darkMode} container>
-        <JobAppImageContainer item xs={12} sm={3}>
-          <img src={headerLogo} />
+    <JobAppContainer item darkMode={darkMode}>
+      <JobAppHeaderContainer container darkMode={darkMode}>
+        <JobAppImageContainer item xs={12} md={3}>
+          <Grid container justifyContent={{ xs: 'center', sm: 'flex-start' }}>
+            <img src={headerLogo} />
+          </Grid>
         </JobAppImageContainer>
-        <JobAppTitleContainer item sm={9} xs={12}>
-          <Grid container justifyContent='flex-end'>
-            <Typography variant='h3'>Application for Employment</Typography>
+        <JobAppTitleContainer item xs={12} md={9}>
+          <Grid container justifyContent={{ xs: 'flex-start', md: 'flex-end' }}>
+            <Typography textAlign={{ xs: 'center' }} variant='h3'>
+              Application for Employment
+            </Typography>
           </Grid>
         </JobAppTitleContainer>
         <JobAppInstructionsContainer container justifyContent='center'>
-          <Typography variant='h6' component='span'>
+          <Typography component='span' textAlign={{ xs: 'center' }} variant='h6'>
             Please carefully read and answer all questions below. You will not be able to submit this application until
             all questions are answered.
           </Typography>
@@ -56,13 +61,13 @@ const JobAppContainer = styled(Grid)(({ darkMode }) => ({
 }));
 
 const JobAppTitleContainer = styled(Grid)({
-  padding: '40px 10px 0 0',
+  padding: '30px 0',
 });
 
 const JobAppHeaderContainer = styled(Grid)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'darkgrey' : 'gainsboro',
   borderRadius: '5px 5px 0 0',
-  paddingBottom: 10,
+  padding: 10,
 }));
 
 const JobAppSubmitButtonContainer = styled(Grid)({

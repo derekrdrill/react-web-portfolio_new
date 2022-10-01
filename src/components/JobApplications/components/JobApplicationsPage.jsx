@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Select, InputLabel, MenuItem, FormControl, Typography } from '@mui/material';
+import { FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 
 import { BasicJobApplication } from './BasicJobApplication';
 import { AdvancedJobApplication } from './AdvancedJobApplication';
@@ -35,47 +34,43 @@ export const JobApplicationsPage = () => {
 
   return (
     <>
-      <PageBodyStyle appType={appType} darkMode={darkMode} />
-      <Container fluid>
-        <JobApplicationsSelectRow darkMode={darkMode}>
-          <Col xs={4} className='py-2'>
-            <FormControl fullWidth>
-              <InputLabel>
-                <JobApplicationSelectLabelText darkMode={darkMode} variant='h6' component='label'>
-                  Select one
-                </JobApplicationSelectLabelText>
-              </InputLabel>
-              <JobApplicationSelect
-                value={appType}
-                label='Select one'
-                variant='standard'
-                onChange={handleAppTypeChange}
-              >
-                <MenuItem value='basic'>Basic</MenuItem>
-                <MenuItem value='advanced'>Advanced</MenuItem>
-                <MenuItem value='multi-page'>Mulit-Page</MenuItem>
-              </JobApplicationSelect>
-            </FormControl>
-          </Col>
-        </JobApplicationsSelectRow>
-        <Row>
+      <PageBodyStyle darkMode={darkMode} />
+      <JobApplicationsSelectRow darkMode={darkMode} container>
+        <Grid item xs={12} md={6} lg={4}>
+          <FormControl fullWidth>
+            <InputLabel>
+              <JobApplicationSelectLabelText darkMode={darkMode} variant='h6' component='label'>
+                Select one
+              </JobApplicationSelectLabelText>
+            </InputLabel>
+            <JobApplicationSelect label='Select one' onChange={handleAppTypeChange} value={appType} variant='standard'>
+              <MenuItem value='basic'>Basic</MenuItem>
+              <MenuItem value='advanced'>Advanced</MenuItem>
+              <MenuItem value='multi-page'>Mulit-Page</MenuItem>
+            </JobApplicationSelect>
+          </FormControl>
+        </Grid>
+      </JobApplicationsSelectRow>
+      <Grid container>
+        <Grid item xs={12}>
           <JobApplicationType appType={appType} />
-        </Row>
-        <LoaderSpinner open={loading} />
-      </Container>
+        </Grid>
+      </Grid>
+      <LoaderSpinner open={loading} />
     </>
   );
 };
 
-const PageBodyStyle = createGlobalStyle(({ appType, darkMode }) => ({
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {
     backgroundColor: darkMode ? '#5c5c5c' : 'white',
   },
 }));
 
-const JobApplicationsSelectRow = styled(Row)(({ darkMode }) => ({
+const JobApplicationsSelectRow = styled(Grid)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'grey' : 'whitesmoke',
   borderTop: darkMode ? 'none' : '1px dashed #759CC9',
+  padding: '20px 5px',
   position: '-webkit-sticky',
   position: 'sticky',
   top: 80,

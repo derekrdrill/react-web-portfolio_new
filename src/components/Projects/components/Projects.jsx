@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
@@ -20,9 +19,9 @@ const Project = ({ darkMode, project, setLoading }) => {
   };
 
   return (
-    <ProjectContentContainer darkMode={darkMode} item xs={10} onClick={() => handleClick(project.to)}>
+    <ProjectContentContainer darkMode={darkMode} item xs={12} md={11} lg={10} onClick={() => handleClick(project.to)}>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={8} lg={9}>
           <ProjectCardText darkMode={darkMode} variant='h6' component='h2'>
             {project.title}
           </ProjectCardText>
@@ -30,8 +29,12 @@ const Project = ({ darkMode, project, setLoading }) => {
             {project.description}
           </ProjectCardText>
         </Grid>
-        <Grid item xs={6}>
-          <StyledIcon darkMode={darkMode} icon={project.icon} />
+        <Grid item xs={12} sm={4} lg={3}>
+          <Grid container justifyContent={{ xs: 'center', sm: 'flex-end' }}>
+            <Grid item>
+              <StyledIcon darkMode={darkMode} icon={project.icon} />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </ProjectContentContainer>
@@ -46,51 +49,62 @@ export const Projects = ({ id }) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <ProjectsContainer darkMode={darkMode} id={id}>
-      <Grid container justifyContent='center'>
-        <StyledBitmojiImage src={bitmojiLaptop} />
-      </Grid>
-      <Grid container>
-        <Grid item xs={1} sm={1}>
-          <Grid container>
-            {projectsTitle.map((letter, letterCount) => (
-              <Grid key={letterCount} item xs={1} sm={12}>
-                <ProjectsTitleText variant='h3' component='h1'>
-                  {letter}
-                </ProjectsTitleText>
-              </Grid>
-            ))}
-          </Grid>
+    <>
+      <PageBodyStyle darkMode={darkMode} />
+      <ProjectsContainer darkMode={darkMode} id={id}>
+        <Grid container justifyContent='center'>
+          <StyledBitmojiImage src={bitmojiLaptop} />
         </Grid>
-        <Grid item xs={12} sm={11}>
-          <Grid container>
-            <TitleContainer item xs={12}>
-              <TextFont variant='subtitle1' component='h3'>
-                Personal work to display knowledge of building React web apps
-              </TextFont>
-            </TitleContainer>
-            <Grid item xs={12}>
-              <Grid container>
-                {PROJECTS.map(project => (
-                  <Grid key={project.id} item xs={12} lg={6}>
-                    <Project darkMode={darkMode} project={project} setLoading={setLoading} />
-                  </Grid>
-                ))}
+        <Grid container>
+          <Grid item xs={12} sm={1}>
+            <Grid container>
+              {projectsTitle.map((letter, letterCount) => (
+                <Grid key={letterCount} item xs={1} sm={12}>
+                  <ProjectsTitleText variant='h3' component='h1'>
+                    {letter}
+                  </ProjectsTitleText>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={11}>
+            <Grid container>
+              <TitleContainer item xs={12}>
+                <TextFont variant='subtitle1' component='h3'>
+                  Personal work to display knowledge of building React web apps
+                </TextFont>
+              </TitleContainer>
+              <Grid item xs={12}>
+                <Grid container>
+                  {PROJECTS.map(project => (
+                    <Grid key={project.id} item xs={12} md={6}>
+                      <Project darkMode={darkMode} project={project} setLoading={setLoading} />
+                    </Grid>
+                  ))}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <LoaderSpinner open={loading} />
-    </ProjectsContainer>
+        <LoaderSpinner open={loading} />
+      </ProjectsContainer>
+    </>
   );
 };
 
+const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
+  body: {
+    backgroundColor: darkMode ? '#030200' : 'whitesmoke',
+  },
+}));
+
 const ProjectsContainer = styled.div(({ darkMode }) => ({
-  backgroundColor: darkMode ? '#030200' : 'whitesmoke',
-  paddingLeft: 100,
-  paddingRight: 50,
-  height: '100vh',
+  padding: '35px 50px 200px 50px',
+  borderTop: '2px solid transparent',
+  borderImage: darkMode
+    ? 'linear-gradient(to right, rgba(248, 184, 255, 1), skyblue, gainsboro)'
+    : 'linear-gradient(to right, rgba(176, 52, 197, 1), rgba(86, 206, 210, 1))',
+  borderImageSlice: 1,
 }));
 
 const TitleContainer = styled(Grid)({
@@ -98,24 +112,17 @@ const TitleContainer = styled(Grid)({
 });
 
 const ProjectsTitleText = styled(Typography)(({ darkMode }) => ({
+  color: '#B39BD8',
   fontFamily: 'Shizuru',
   fontWeight: darkMode ? 'normal' : 'bold',
-  color: '#B39BD8',
 }));
 
 const TextFont = styled(Typography)({
-  fontFamily: 'Kufam',
   color: '#B39BD8',
+  fontFamily: 'Kufam',
 });
 
 const ProjectContentContainer = styled(Grid)(({ darkMode }) => ({
-  marginBottom: 25,
-  paddingTop: 35,
-  paddingLeft: 40,
-  backgroundColor: darkMode ? '#333333' : '#c3c3c3',
-  borderRadius: 10,
-  boxShadow: darkMode ? '5px 3px 3px violet' : '5px 3px 3px #a970ff',
-  cursor: 'pointer',
   ':hover': {
     backgroundColor: darkMode ? 'grey' : '#f0e5ff',
     boxShadow: darkMode ? '5px 3px 3px gainsboro' : '5px 3px 3px violet',
@@ -126,6 +133,12 @@ const ProjectContentContainer = styled(Grid)(({ darkMode }) => ({
       color: darkMode ? 'white' : '#9370c7',
     },
   },
+  backgroundColor: darkMode ? '#333333' : '#c3c3c3',
+  borderRadius: 10,
+  boxShadow: darkMode ? '5px 3px 3px violet' : '5px 3px 3px #a970ff',
+  cursor: 'pointer',
+  marginBottom: 25,
+  padding: 30,
 }));
 
 const ProjectCardText = styled(Typography)(({ darkMode }) => ({
@@ -133,13 +146,12 @@ const ProjectCardText = styled(Typography)(({ darkMode }) => ({
 }));
 
 const StyledIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
-  width: 100,
-  height: 200,
-  transform: 'translate(75px, -40px)',
   color: darkMode ? 'beige' : '#9370c7',
+  height: 150,
+  width: 75,
 }));
 
 const StyledBitmojiImage = styled.img({
-  width: 120,
   height: 120,
+  width: 120,
 });

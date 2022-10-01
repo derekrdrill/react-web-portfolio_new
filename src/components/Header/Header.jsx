@@ -47,11 +47,26 @@ export const Header = ({ children }) => {
         elevation={0}
         style={{
           backgroundColor: 'transparent',
+          // borderBottom: '1px solid linear-gradient(to right, royalblue, skyblue)',
         }}
+        // style={{
+        //   borderBottom: darkMode
+        //     ? 'linear-gradient(to right, royalblue, skyblue)'
+        //     : 'linear-gradient(to right, darkblue, teal)',
+        // }}
       >
         <Grid container style={{ height: 80 }}>
           <Grid item xs={12} style={{ display: 'block', zIndex: 5 }}>
-            <HeaderToolBar darkMode={darkMode}>
+            <HeaderToolBar
+              darkMode={darkMode}
+              // style={{
+              //   borderBottom: '5px solid transparent',
+              //   // borderImage: 'linear-gradient(0.25turn, rgba(255,249,34), rgba(255,0,128), rgba(56,2,155,0))',
+              //   borderImage: 'linear-gradient(0.25turn, rgba(100, 72, 254, 1), royalblue, skyblue)',
+              //   borderImageSlice: 1,
+              //   width: '100%',
+              // }}
+            >
               <Grid container justifyContent='space-between'>
                 <HeaderImage />
                 <Grid display={{ xs: 'none', md: 'block' }} item style={{ paddingTop: 20 }}>
@@ -73,6 +88,7 @@ export const Header = ({ children }) => {
                 </Grid>
               </Grid>
             </HeaderToolBar>
+            {/* <PageDivider darkMode={darkMode} /> */}
           </Grid>
           <HeaderMenuListItem darkMode={darkMode} item smallMenuIsOpen={smallMenuIsOpen} xs={12}>
             <List>
@@ -98,6 +114,13 @@ const HeaderMenuListItem = styled(Grid)(({ darkMode, smallMenuIsOpen }) => ({
     transform: 'translateY(-150%)',
     visibility: 'hidden',
   },
+}));
+
+const PageDivider = styled.hr(({ darkMode }) => ({
+  background: darkMode ? 'linear-gradient(to right, royalblue, skyblue)' : 'linear-gradient(to right, darkblue, teal)',
+  margin: 0,
+  minHeight: 5,
+  padding: 0,
 }));
 
 const HeaderToolBar = styled(Toolbar)(({ darkMode }) => ({
