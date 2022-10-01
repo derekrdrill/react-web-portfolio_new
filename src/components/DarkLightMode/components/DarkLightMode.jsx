@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { DarkLightModeContext } from '../context/DarkLightModeContext';
@@ -7,8 +7,10 @@ import { handleSetDarkMode } from '../context/DarkLightModeActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/fontawesome-free-solid';
 
+export const getIcon = (darkMode, faSun, faMoon) => (darkMode ? faSun : faMoon);
+
 export const DarkLightMode = () => {
-  const { darkMode, darkLightModeDispatch } = useContext(DarkLightModeContext);
+  const { darkMode, darkLightModeDispatch } = React.useContext(DarkLightModeContext);
 
   const callSetHandleDarkMode = () => {
     handleSetDarkMode(darkMode, darkLightModeDispatch);
@@ -19,10 +21,12 @@ export const DarkLightMode = () => {
     handleSetDarkMode(!currentDarkMode, darkLightModeDispatch);
   }, []);
 
-  return <DarkLightModeIcon darkMode={darkMode} icon={darkMode ? faSun : faMoon} onClick={callSetHandleDarkMode} />;
+  return (
+    <DarkLightModeIcon darkMode={darkMode} icon={getIcon(darkMode, faSun, faMoon)} onClick={callSetHandleDarkMode} />
+  );
 };
 
-const DarkLightModeIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
+export const DarkLightModeIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
   ':hover': {
     path: {
       fill: darkMode ? '#DDDDDD' : '#759CC9',
