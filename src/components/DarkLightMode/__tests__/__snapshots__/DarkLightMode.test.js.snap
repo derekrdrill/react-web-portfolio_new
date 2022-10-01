@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connect with me tests renders correctly 1`] = `
+exports[`DarkLightMode with me tests renders correctly 1`] = `
 <Styled(FontAwesomeIcon)
   darkMode={true}
   icon={

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoveAllColumnsButton with me tests renders correctly 1`] = `
+<ForwardRef(Button)
+  color="secondary"
+  fullWidth={true}
+  onClick={[MockFunction]}
+  variant="contained"
+>
+  TEST
+</ForwardRef(Button)>
+`;

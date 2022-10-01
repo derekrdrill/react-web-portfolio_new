@@ -1,56 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-  Select,
-  InputLabel,
-  FormControl,
-  Typography,
-  MenuItem,
-  List,
-  ListItem,
-  IconButton,
-  Grid,
-  Button,
-} from '@mui/material';
+import { Select, InputLabel, FormControl, Typography, MenuItem, List, ListItem, Grid, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/fontawesome-free-solid';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { DynamicDataTable } from '../DynamicDataTable/DynamicDataTable';
 
-const DynamicColumnsList = ({ columns, initialList = false, buttonClick }) => (
-  <ColumnsListContainer>
-    <ColumnsList>
-      {columns.map(column => (
-        <ColumnsListItem key={column.id} draggable='true'>
-          <Grid container>
-            <Grid item xs={10} order={{ xs: 1, lg: initialList ? 1 : 2 }}>
-              <Grid container justifyContent={{ xs: 'flex-start', lg: initialList ? 'flex-start' : 'flex-end' }}>
-                <Typography variant='subtitle1' component='h3'>
-                  {column.columnName || ''}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={2} order={{ xs: 2, lg: initialList ? 2 : 1 }}>
-              <Grid container justifyContent={{ xs: 'flex-end', lg: initialList ? 'flex-end' : 'flex-start' }}>
-                <IconButton
-                  id={column.id}
-                  color={initialList ? 'success' : 'error'}
-                  children={initialList ? <AddCircleIcon /> : <RemoveCircleIcon />}
-                  onClick={e => buttonClick(e, initialList)}
-                  variant='contained'
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </ColumnsListItem>
-      ))}
-    </ColumnsList>
-  </ColumnsListContainer>
-);
-const MoveAllColumnsButton = ({ children, endIcon, onClick }) => (
-  <Button children={children} color='secondary' endIcon={endIcon} fullWidth onClick={onClick} variant='contained' />
-);
+import { DynamicColumnsList } from '../components/DynamicColumnsList';
+import { MoveAllColumnsButton } from '../components/MoveAllColumnsButton';
+
 export const DataReportingTool = () => {
   const [dataSet, setDataSet] = useState('Select One');
   const [collections, setCollections] = useState([]);
