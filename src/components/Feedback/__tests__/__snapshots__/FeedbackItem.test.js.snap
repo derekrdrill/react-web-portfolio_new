@@ -1,21 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Feedback Item tests renders correctly 1`] = `
-<Context.Provider
-  value={
-    Object {
-      "addFeedbackItem": [Function],
-      "deleteFeedbackItem": [Function],
-      "feedbackEdit": Object {
-        "edit": false,
-        "item": Object {},
-      },
-      "feedbackItems": Array [],
-      "setFeedbackEditItems": [Function],
-      "updateFeedbackItem": [Function],
-    }
-  }
+<Card
+  darkMode={false}
+  padding={true}
 >
-  <FeedbackItem />
-</Context.Provider>
+  <styled.div>
+    <ForwardRef(Typography)
+      component="h6"
+      variant="subtitle"
+    />
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <ForwardRef(Button)
+        color="secondary"
+        fullWidth={true}
+        onClick={[Function]}
+      >
+        <FaEdit
+          color="purple"
+        />
+      </ForwardRef(Button)>
+    </styled.div>
+    <styled.div>
+      <ForwardRef(Button)
+        color="secondary"
+        fullWidth={true}
+        onClick={[Function]}
+      >
+        <FaTimes
+          color="purple"
+        />
+      </ForwardRef(Button)>
+    </styled.div>
+  </styled.div>
+  <styled.div>
+    <ForwardRef(Typography)
+      component="p"
+      variant="subtitle1"
+    />
+  </styled.div>
+  <BasicModal
+    cancelButtonText="I changed my mind"
+    handleClose={[Function]}
+    handleSubmit={[Function]}
+    open={false}
+    submitButtonText="Yes, delete it"
+  >
+    <ForwardRef(Typography)
+      paragraph={true}
+    >
+      Are you sure you want to delete this feedback record?
+    </ForwardRef(Typography)>
+  </BasicModal>
+</Card>
 `;
