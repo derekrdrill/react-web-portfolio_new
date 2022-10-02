@@ -1,8 +1,8 @@
 import { App } from './components/App';
 
 import { AboutMe } from './components/AboutMe/components/AboutMe';
-import { ApplicationComplete } from './components/JobApplications/components/ApplicationComplete';
-import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationsPage';
+import { ApplicationComplete } from './components/JobApplications/components/Common/ApplicationComplete';
+import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationPage/JobApplicationsPage';
 import { Category } from './components/HousingMarketplace/components/Category';
 import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
 import { CreateListing } from './components/HousingMarketplace/components/CreateListing';

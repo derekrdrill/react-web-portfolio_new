@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Advanced Job Application tests renders correctly 1`] = `
+<Styled(Component)
+  darkMode={true}
+  item={true}
+>
+  <Styled(Component)
+    container={true}
+    darkMode={true}
+  >
+    <ForwardRef(Grid)
+      item={true}
+      md={3}
+      xs={12}
+    >
+      <ForwardRef(Grid)
+        container={true}
+        justifyContent={
+          Object {
+            "sm": "flex-start",
+            "xs": "center",
+          }
+        }
+      >
+        <img
+          src={
+            Object {
+              "process": [Function],
+            }
+          }
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+    <Styled(Component)
+      item={true}
+      md={9}
+      xs={12}
+    >
+      <ForwardRef(Grid)
+        container={true}
+        justifyContent={
+          Object {
+            "md": "flex-end",
+            "xs": "flex-start",
+          }
+        }
+      >
+        <ForwardRef(Typography)
+          textAlign={
+            Object {
+              "xs": "center",
+            }
+          }
+          variant="h3"
+        >
+          Application for Employment
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+    </Styled(Component)>
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="center"
+    >
+      <ForwardRef(Typography)
+        component="span"
+        textAlign={
+          Object {
+            "xs": "center",
+          }
+        }
+        variant="h6"
+      >
+        Please carefully read and answer all questions below. You will not be able to submit this application until all questions are answered.
+      </ForwardRef(Typography)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <div
+    style={
+      Object {
+        "borderLeft": "1px dashed black",
+        "borderRight": "1px dashed black",
+      }
+    }
+  >
+    <JobApplicationSection
+      section={
+        Object {
+          "id": 1,
+          "inputs": Array [
+            Object {
+              "id": "firstName",
+              "label": "First Name",
+              "md": 3,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "lastName",
+              "label": "Last Name",
+              "md": 3,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "email",
+              "label": "Email",
+              "md": 3,
+              "sm": 6,
+              "type": "email",
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "phone",
+              "label": "Phone",
+              "md": 3,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+          ],
+          "title": "Personal Information",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "id": 2,
+          "inputs": Array [
+            Object {
+              "id": "street",
+              "label": "Street",
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "city",
+              "label": "City",
+              "md": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "state",
+              "label": "State",
+              "md": 3,
+              "variant": "outlined",
+              "xs": 6,
+            },
+            Object {
+              "id": "zip",
+              "label": "Zip",
+              "md": 3,
+              "variant": "outlined",
+              "xs": 6,
+            },
+          ],
+          "title": "Address Information",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "id": 3,
+          "inputs": Array [
+            Object {
+              "id": "position",
+              "label": "What position are you applying for?",
+              "md": 6,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "startDate",
+              "label": "When can you start?",
+              "md": 6,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "fullOrPart",
+              "label": "Full or part time?",
+              "md": 6,
+              "select": true,
+              "selectOptions": Array [
+                Object {
+                  "id": 1,
+                  "value": "Full time",
+                },
+                Object {
+                  "id": 2,
+                  "value": "Part time",
+                },
+              ],
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "expectedPay",
+              "label": "Expected pay rate",
+              "md": 6,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "crime",
+              "label": "Have you ever been convicted of a crime?",
+              "md": 6,
+              "select": true,
+              "selectOptions": Array [
+                Object {
+                  "id": 1,
+                  "value": "Yes",
+                },
+                Object {
+                  "id": 2,
+                  "value": "No",
+                },
+              ],
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "crimeExplain",
+              "label": "Please explain",
+              "md": 6,
+              "multiline": true,
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+          ],
+          "title": "Position Information",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "dynamicList": true,
+          "id": 4,
+          "inputs": Array [
+            Object {
+              "id": "institution",
+              "label": "Institution",
+              "md": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "fromYear",
+              "label": "From Year",
+              "md": 3,
+              "variant": "outlined",
+              "xs": 6,
+            },
+            Object {
+              "id": "toYear",
+              "label": "To Year",
+              "md": 3,
+              "variant": "outlined",
+              "xs": 6,
+            },
+            Object {
+              "id": "degreeReceived",
+              "label": "Degree Received",
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+            Object {
+              "id": "areaOfSpecialization",
+              "label": "Area of Specialization",
+              "sm": 6,
+              "variant": "outlined",
+              "xs": 12,
+            },
+          ],
+          "instructions": "Please list any education or training you feel relates to the position you are applying for that would help you perform the work, such as, schools, colleges, degrees, vocational or technical programs, and military training",
+          "title": "Qualifications",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "id": 5,
+          "inputs": Array [
+            Object {
+              "id": "specialSkills",
+              "label": "Please list any skills you feel would help you in the position you are applying for",
+              "minRows": 3,
+              "multiline": true,
+              "xs": 12,
+            },
+          ],
+          "title": "Special Skills",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "dynamicList": true,
+          "id": 6,
+          "inputs": Array [
+            Object {
+              "id": "referenceName",
+              "label": "Name",
+              "md": 3,
+              "sm": 6,
+              "xs": 12,
+            },
+            Object {
+              "id": "referenceEmail",
+              "label": "Email",
+              "md": 3,
+              "sm": 6,
+              "xs": 12,
+            },
+            Object {
+              "id": "referencePhone",
+              "label": "Phone",
+              "md": 3,
+              "sm": 6,
+              "xs": 12,
+            },
+            Object {
+              "id": "referenceRelationship",
+              "label": "Relationship",
+              "md": 3,
+              "sm": 6,
+              "xs": 12,
+            },
+          ],
+          "instructions": "Please at least 3 professional or educational references",
+          "title": "References",
+        }
+      }
+    />
+    <JobApplicationSection
+      section={
+        Object {
+          "dynamicList": true,
+          "id": 7,
+          "inputs": Array [
+            Object {
+              "id": "fileUpload",
+              "type": "file",
+              "xs": 12,
+            },
+          ],
+          "instructions": <div>
+            These documents could include Resume CV, Cover Letter, Letter of Recomendation, Transcript, etc
+            <br />
+            <i>
+              This is not required, but information in these documents could impact our decision
+            </i>
+          </div>,
+          "title": "Supporting Documents",
+        }
+      }
+    />
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="flex-end"
+    >
+      <Styled(Component)
+        item={true}
+      >
+        <Link
+          replace={false}
+          to="/app-complete"
+        >
+          <ForwardRef(Button)
+            color="info"
+            size="large"
+            variant="contained"
+          >
+            Submit Application
+          </ForwardRef(Button)>
+        </Link>
+      </Styled(Component)>
+    </ForwardRef(Grid)>
+  </div>
+</Styled(Component)>
+`;
