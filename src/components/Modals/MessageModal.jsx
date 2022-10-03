@@ -1,9 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Button, Typography, Modal } from '@mui/material';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
+
+export const getCancelButtonColor = (cancelButtonColor, darkMode) =>
+  darkMode ? 'secondary' : cancelButtonColor || 'error';
+
+export const getConfirmButtonColor = (confirmButtonColor, darkMode) =>
+  darkMode ? 'primary' : confirmButtonColor || 'success';
 
 export const MessageModal = ({
   open,
@@ -16,7 +22,7 @@ export const MessageModal = ({
   cancelButtonColor,
   confirmButtonColor,
 }) => {
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -34,7 +40,7 @@ export const MessageModal = ({
         <ModalRow>
           <ModalButtonCol xs={6}>
             <Button
-              color={darkMode ? 'secondary' : cancelButtonColor || 'error'}
+              color={getCancelButtonColor(cancelButtonColor, darkMode)}
               variant='contained'
               onClick={onClose}
               fullWidth
@@ -44,7 +50,7 @@ export const MessageModal = ({
           </ModalButtonCol>
           <ModalButtonCol xs={6}>
             <Button
-              color={darkMode ? 'primary' : confirmButtonColor || 'success'}
+              color={getConfirmButtonColor(confirmButtonColor, darkMode)}
               variant='contained'
               onClick={onSubmit}
               fullWidth
@@ -58,7 +64,7 @@ export const MessageModal = ({
   );
 };
 
-const ModalContainer = styled(Container)(({ darkMode }) => ({
+export const ModalContainer = styled(Container)(({ darkMode }) => ({
   'h1, h2, h3, h4, h5, h6, p': {
     color: darkMode && 'black',
   },
@@ -70,10 +76,10 @@ const ModalContainer = styled(Container)(({ darkMode }) => ({
   borderRadius: 5,
 }));
 
-const ModalRow = styled(Row)({
+export const ModalRow = styled(Row)({
   padding: 10,
 });
 
-const ModalButtonCol = styled(Col)({
+export const ModalButtonCol = styled(Col)({
   textAlign: 'center',
 });

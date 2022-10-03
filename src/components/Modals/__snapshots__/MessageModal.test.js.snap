@@ -4,7 +4,9 @@ exports[`Message Modal tests renders correctly 1`] = `
 <ForwardRef(Modal)
   open={true}
 >
-  <Styled(Container)>
+  <Styled(Container)
+    darkMode={false}
+  >
     <Styled(Row)>
       <ForwardRef(Typography)
         className="text-center"

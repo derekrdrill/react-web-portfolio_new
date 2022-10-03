@@ -2,9 +2,18 @@
 
 exports[`Basic Modal tests renders correctly 1`] = `
 <ForwardRef(Modal)
+  BackdropProps={
+    Object {
+      "style": Object {
+        "opacity": 0.9,
+      },
+    }
+  }
   open={true}
 >
-  <styled.div>
+  <styled.div
+    darkMode={false}
+  >
     <styled.div>
       <ForwardRef(Button)
         color="error"

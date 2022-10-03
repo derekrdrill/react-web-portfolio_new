@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Button, Modal } from '@mui/material';
 
@@ -15,7 +15,7 @@ export const BasicModal = ({
   open,
   submitButtonText,
 }) => {
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
     <Modal
@@ -56,28 +56,7 @@ export const BasicModal = ({
   );
 };
 
-// const ModalStyled = styled(Modal)(({ backdropColor }) => [
-//   backdropColor && {
-//     '.MuiBackdrop-root': {
-//       backgroundColor: backdropColor,
-//       opacity: 0.7,
-//     },
-//   },
-// ]);
-
-const ModalContainer = styled.div(({ darkMode }) => ({
-  'h1, h2, h3, h4, h5, h6, p': {
-    color: darkMode && 'black',
-  },
-  backgroundColor: darkMode ? 'grey' : 'white',
-  marginLeft: '25%',
-  marginTop: '18%',
-  maxWidth: '50%',
-  padding: 15,
-  borderRadius: 5,
-}));
-
-const ActionButtonsContainer = styled.div({
+export const ActionButtonsContainer = styled.div({
   display: 'flex',
   justifyContent: 'space-around',
 });
@@ -87,7 +66,7 @@ const ButtonContainer = styled.div({
   maxWidth: 185,
 });
 
-const CancelButton = styled(Button)(({ variant }) => ({
+export const CancelButton = styled(Button)(({ variant }) => ({
   '&.MuiButton-root': {
     ':hover': {
       backgroundColor: variant === 'outlined' ? '#f0f0f0' : '#424242',
@@ -98,13 +77,25 @@ const CancelButton = styled(Button)(({ variant }) => ({
   },
 }));
 
-const ContentContainer = styled.div({
+export const ContentContainer = styled.div({
   padding: 30,
   display: 'flex',
   justifyContent: 'center',
 });
 
-const ExitButtonContainer = styled.div({
+export const ExitButtonContainer = styled.div({
   display: 'flex',
   justifyContent: 'flex-end',
 });
+
+export const ModalContainer = styled.div(({ darkMode }) => ({
+  'h1, h2, h3, h4, h5, h6, p': {
+    color: darkMode && 'black',
+  },
+  backgroundColor: darkMode ? 'grey' : 'white',
+  marginLeft: '25%',
+  marginTop: '18%',
+  maxWidth: '50%',
+  padding: 15,
+  borderRadius: 5,
+}));
