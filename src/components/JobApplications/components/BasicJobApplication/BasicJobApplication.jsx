@@ -6,7 +6,7 @@ import { Grid, TextField, Typography, Button } from '@mui/material';
 import { DarkLightModeContext } from '../../../DarkLightMode/context/DarkLightModeContext';
 
 import { DynamicList } from '../../../DynamicList/DynamicList';
-import { DynamicFormInputs } from '../../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../../DynamicFormInputs/components/DynamicFormInputs';
 
 import { formInputsGenerator } from '../../../../utils/formInputsGenerator';
 import { BASIC_JOB_APP_INPUTS } from '../../constants/BASIC_JOB_APP_INPUTS';

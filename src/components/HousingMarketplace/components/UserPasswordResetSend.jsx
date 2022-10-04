@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
 
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 import { UserAuthenticationContext } from '../context/UserAuthenticationContext';
 
 import { AlertContext } from '../../Alert/context/AlertContext';

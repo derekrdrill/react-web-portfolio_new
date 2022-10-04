@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';

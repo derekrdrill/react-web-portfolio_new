@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  item={true}
+  xs={12}
+>
+  <Styled(Component)
+    InputProps={
+      Object {
+        "endAdornment": <TextFieldEndAdornment
+          passwordHidden={true}
+          setPasswordHidden={[Function]}
+        />,
+      }
+    }
+    className="text"
+    color="secondary"
+    darkMode={true}
+    fullWidth={true}
+    id="firstName"
+    label="First Name"
+    onChange={[Function]}
+    size="medium"
+    value="firstName"
+    variant="filled"
+  />
+</ForwardRef(Grid)>
+`;

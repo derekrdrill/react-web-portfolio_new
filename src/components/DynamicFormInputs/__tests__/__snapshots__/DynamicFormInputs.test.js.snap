@@ -1,16 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connect with me tests renders correctly 1`] = `
+exports[`DynamicFormInputs tests renders correctly 1`] = `
 <ForwardRef(Grid)
   container={true}
   spacing={2}
 >
   <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
     input={
       Object {
         "fontFamily": "Kufam",
         "fullWidth": true,
-        "id": 1,
+        "id": "firstName",
         "inputBackgroundColor": "gainsboro",
         "inputPaddingBottom": 5,
         "inputborderRadius": 4,
@@ -20,13 +28,23 @@ exports[`Connect with me tests renders correctly 1`] = `
         "xs": 12,
       }
     }
+    setForm={[MockFunction]}
+    value=""
   />
   <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
     input={
       Object {
         "fontFamily": "Kufam",
         "fullWidth": true,
-        "id": 2,
+        "id": "lastName",
         "inputBackgroundColor": "gainsboro",
         "inputPaddingBottom": 5,
         "inputborderRadius": 4,
@@ -36,13 +54,23 @@ exports[`Connect with me tests renders correctly 1`] = `
         "xs": 12,
       }
     }
+    setForm={[MockFunction]}
+    value=""
   />
   <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
     input={
       Object {
         "fontFamily": "Kufam",
         "fullWidth": true,
-        "id": 3,
+        "id": "email",
         "inputBackgroundColor": "gainsboro",
         "inputPaddingBottom": 5,
         "inputborderRadius": 4,
@@ -52,13 +80,23 @@ exports[`Connect with me tests renders correctly 1`] = `
         "xs": 12,
       }
     }
+    setForm={[MockFunction]}
+    value=""
   />
   <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
     input={
       Object {
         "fontFamily": "Kufam",
         "fullWidth": true,
-        "id": 4,
+        "id": "phone",
         "inputBackgroundColor": "gainsboro",
         "inputPaddingBottom": 5,
         "inputborderRadius": 4,
@@ -68,6 +106,8 @@ exports[`Connect with me tests renders correctly 1`] = `
         "xs": 12,
       }
     }
+    setForm={[MockFunction]}
+    value=""
   />
 </ForwardRef(Grid)>
 `;

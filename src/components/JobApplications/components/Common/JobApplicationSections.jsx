@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
-import { DynamicFormInputs } from '../../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../../DynamicFormInputs/components/DynamicFormInputs';
 import { DynamicList } from '../../../DynamicList/DynamicList';
 
 import { DarkLightModeContext } from '../../../DarkLightMode/context/DarkLightModeContext';

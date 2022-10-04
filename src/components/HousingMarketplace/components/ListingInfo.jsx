@@ -10,7 +10,7 @@ import GoogleMapReact from 'google-map-react';
 import { history } from '../../../index';
 
 import { BasicModal } from '../../Modals/BasicModal';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
