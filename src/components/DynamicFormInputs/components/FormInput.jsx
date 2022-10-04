@@ -8,8 +8,6 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 import { TextFieldEndAdornment } from '../components/TextFieldEndAdornment';
 
 export const getVariant = (darkMode, variant) => (darkMode ? 'filled' : variant);
-export const getMinRows = (minRows, multiLine) => multiLine && minRows;
-export const getMaxRows = (maxRows, multiLine) => multiLine && maxRows;
 export const getTextFieldType = (passwordHidden, type) =>
   type === 'password' ? (passwordHidden ? 'password' : 'text') : type;
 
@@ -70,8 +68,8 @@ export const FormInput = ({ input, form, setForm, value }) => {
           variant={getVariant(darkMode, input.variant)}
           fullWidth={input.fullWidth || true}
           multiline={input.multiline}
-          minRows={getMinRows(input.minRows, input.mulitline)}
-          maxRows={getMaxRows(input.maxRows, input.mulitline)}
+          minRows={input.minRows}
+          maxRows={input.maxRows}
           onChange={e => handleInputChange(e, setForm)}
           value={value}
           size={input.size || 'medium'}

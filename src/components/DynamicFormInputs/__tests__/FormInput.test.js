@@ -12,7 +12,7 @@ import {
   StyledTextField,
 } from '../components/FormInput';
 
-import { getMaxRows, getMinRows, getTextFieldType, getVariant } from '../components/FormInput';
+import { getTextFieldType, getVariant } from '../components/FormInput';
 
 configure({ adapter: new Adapter() });
 
@@ -182,16 +182,6 @@ describe('FormInput tests', () => {
     expect(getVariant(true, 'filled')).toEqual('filled');
     expect(getVariant(false, 'filled')).toEqual('filled');
     expect(getVariant(false, 'outlined')).toEqual('outlined');
-  });
-
-  it('runs getMinRows', () => {
-    expect(getMinRows(5, true)).toEqual(5);
-    expect(getMinRows(5, false)).toEqual(false);
-  });
-
-  it('runs getMaxRows', () => {
-    expect(getMaxRows(5, true)).toEqual(5);
-    expect(getMaxRows(5, false)).toEqual(false);
   });
 
   it('runs getTextFieldType', () => {
