@@ -4,7 +4,9 @@ exports[`More Options Modal tests renders correctly 1`] = `
 <ForwardRef(Modal)
   open={true}
 >
-  <Styled(Component)>
+  <Styled(Component)
+    darkMode={true}
+  >
     <ForwardRef(Typography)
       component="h2"
       variant="h6"
