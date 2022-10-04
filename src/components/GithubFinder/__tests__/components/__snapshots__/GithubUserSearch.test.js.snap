@@ -15,7 +15,17 @@ exports[`GithubUserSearch tests renders correctly 1`] = `
       value=""
       variant="outlined"
     />
-    
+    <GithubUserSearchClear
+      githubDispatch={[MockFunction]}
+      handleClearUsers={[Function]}
+      searchInput={
+        Object {
+          "current": null,
+        }
+      }
+      setText={[Function]}
+      text=""
+    />
     <Styled(Component)
       onClick={[Function]}
       variant="contained"

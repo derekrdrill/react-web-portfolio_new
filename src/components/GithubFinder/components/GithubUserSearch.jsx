@@ -2,10 +2,34 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Button, TextField } from '@mui/material';
 import { FaTimes } from 'react-icons/fa';
-import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
-import { GithubContext } from '../context/GithubContext';
+
 import { AlertContext } from '../../Alert/context/AlertContext';
+import { GithubContext } from '../context/GithubContext';
+
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
+import { GithubUserSearchClear } from './GithubUserSearchClear';
 import { searchUsers } from '../context/GithubActions';
+
+export const handleChange = (e, githubDispatch, handleClearUsers, searchInput, setText) => {
+  let textValue = e.currentTarget.value;
+
+  if (!textValue) {
+    handleClearUsers(githubDispatch, searchInput, setText);
+    textValue = null;
+  } else {
+    setText(textValue);
+  }
+
+  return textValue;
+};
+
+export const handleClearUsers = (githubDispatch, searchInput, setText) => {
+  githubDispatch({ type: 'CLEAR_USERS' });
+  setText('');
+  searchInput.current.focus();
+
+  return null;
+};
 
 export const GithubUserSearch = () => {
   const searchInput = useRef(null);
@@ -13,23 +37,7 @@ export const GithubUserSearch = () => {
   const { githubDispatch } = React.useContext(GithubContext);
   const { alertDispatch } = React.useContext(AlertContext);
 
-  const handleChange = e => {
-    let textValue = e.currentTarget.value;
-
-    if (!textValue) {
-      handleClearUsers();
-    } else {
-      setText(textValue);
-    }
-  };
-
-  const handleClearUsers = () => {
-    githubDispatch({ type: 'CLEAR_USERS' });
-    setText('');
-    searchInput.current.focus();
-  };
-
-  const handleSubmit = async e => {
+  const handleSubmit = async () => {
     if (text === '') {
       const alertMsg = 'You must enter something for the search to fire 🔥';
       const alertTitle = 'Empty Search';
@@ -56,12 +64,20 @@ export const GithubUserSearch = () => {
         <SearchInput
           fullWidth
           label='Type a user name'
-          onChange={handleChange}
+          onChange={e => {
+            handleChange(e, githubDispatch, handleClearUsers, searchInput, setText);
+          }}
           inputRef={searchInput}
           value={text}
           variant='outlined'
         />
-        {text && <ClearSearch onClick={handleClearUsers} />}
+        <GithubUserSearchClear
+          githubDispatch={githubDispatch}
+          handleClearUsers={handleClearUsers}
+          searchInput={searchInput}
+          setText={setText}
+          text={text}
+        />
         <SearchButton onClick={handleSubmit} variant='contained'>
           Search
         </SearchButton>

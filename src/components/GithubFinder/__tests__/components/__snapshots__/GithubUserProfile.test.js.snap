@@ -1,17 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Github Finder tests renders correctly 1`] = `
-<Context.Provider
-  value={
-    Object {
-      "githubDispatch": [Function],
-      "loading": false,
-      "repos": Array [],
-      "user": null,
-      "users": Array [],
-    }
-  }
+<ForwardRef(Grid)
+  item={true}
 >
-  <GithubUserProfile />
-</Context.Provider>
+  <styled.div>
+    <ForwardRef(Button)
+      color="secondary"
+      onClick={[Function]}
+    >
+      Back to user results
+    </ForwardRef(Button)>
+  </styled.div>
+  <Styled(Component)
+    container={true}
+  >
+    <GithubUserProfileTop />
+    <GithubUserProfileMiddle />
+    <GithubUserRepos />
+  </Styled(Component)>
+</ForwardRef(Grid)>
 `;

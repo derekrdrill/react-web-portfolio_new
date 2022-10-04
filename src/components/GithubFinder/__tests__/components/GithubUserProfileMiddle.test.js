@@ -1,11 +1,11 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { GithubUserProfile } from '../../components/GithubUserProfile';
+import { GithubUserProfileMiddle } from '../../components/GithubUserProfileMiddle';
 
 const renderer = new ShallowRenderer();
 
-describe('Github Finder tests', () => {
+describe('GithubUserProfileMiddle tests', () => {
   let realUseContext;
   let useContextMock;
 
@@ -19,8 +19,10 @@ describe('Github Finder tests', () => {
   });
 
   it('renders correctly', () => {
-    useContextMock.mockReturnValue({ githubDispatch: jest.fn() });
-    renderer.render(<GithubUserProfile />);
+    useContextMock.mockReturnValue({
+      user: { following: 10, followers: 10, public_gists: 0, public_repos: 2 },
+    });
+    renderer.render(<GithubUserProfileMiddle />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
