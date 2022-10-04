@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubUserSearch tests renders correctly 1`] = `
+<styled.div>
+  <styled.div>
+    <Styled(Component)
+      fullWidth={true}
+      inputRef={
+        Object {
+          "current": null,
+        }
+      }
+      label="Type a user name"
+      onChange={[Function]}
+      value=""
+      variant="outlined"
+    />
+    
+    <Styled(Component)
+      onClick={[Function]}
+      variant="contained"
+    >
+      Search
+    </Styled(Component)>
+  </styled.div>
+  <styled.div>
+    <AlertComponent />
+  </styled.div>
+</styled.div>
+`;

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lead Input Page tests renders correctly 1`] = `
+<React.Fragment>
+  <Memo(l)
+    darkMode={true}
+  />
+  <ForwardRef(Grid)
+    container={true}
+  >
+    <Styled(Component)
+      item={true}
+      xs={12}
+    >
+      <ForwardRef(Tooltip)
+        onClose={[Function]}
+        onOpen={false}
+        open={false}
+        title={
+          <ForwardRef(Typography)
+            component="p"
+            variant="subtitle2"
+          >
+            This would likely be an admin button in a real-life scenario
+          </ForwardRef(Typography)>
+        }
+      >
+        <ForwardRef(Button)
+          onClick={[Function]}
+        >
+          Go back to input form
+        </ForwardRef(Button)>
+      </ForwardRef(Tooltip)>
+    </Styled(Component)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    container={true}
+    style={
+      Object {
+        "paddingTop": 75,
+      }
+    }
+  />
+</React.Fragment>
+`;

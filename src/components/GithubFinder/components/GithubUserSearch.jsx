@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Button, TextField } from '@mui/material';
 import { FaTimes } from 'react-icons/fa';
@@ -10,8 +10,8 @@ import { searchUsers } from '../context/GithubActions';
 export const GithubUserSearch = () => {
   const searchInput = useRef(null);
   const [text, setText] = useState('');
-  const { githubDispatch } = useContext(GithubContext);
-  const { alertDispatch } = useContext(AlertContext);
+  const { githubDispatch } = React.useContext(GithubContext);
+  const { alertDispatch } = React.useContext(AlertContext);
 
   const handleChange = e => {
     let textValue = e.currentTarget.value;
@@ -71,7 +71,7 @@ export const GithubUserSearch = () => {
       </AlertContainer>
     </GithubUserSearchContainer>
   );
-};;;
+};
 
 const GithubUserSearchContainer = styled.div({
   margin: '200px 0px 0px 20px',

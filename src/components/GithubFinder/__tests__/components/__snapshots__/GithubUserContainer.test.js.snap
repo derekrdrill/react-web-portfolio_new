@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Github Users Container tests renders correctly 1`] = `
+<Styled(Component)
+  container={true}
+>
+  <GithubUserProfile />
+</Styled(Component)>
+`;

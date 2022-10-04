@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Grid } from '@mui/material';
 import { GithubUserItem } from './GithubUserItem';
@@ -7,7 +7,7 @@ import { GithubContext } from '../context/GithubContext';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 export const GithubUsersContainer = () => {
-  const { loading, user, users } = useContext(GithubContext);
+  const { loading, user, users } = React.useContext(GithubContext);
 
   return (
     <MainContainer container>

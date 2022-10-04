@@ -1,9 +1,7 @@
-import 'regenerator-runtime/runtime';
-
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { LeadInputDataTable } from '../components/LeadInputDataTable';
+import { LeadInputDataTable } from '../../components/LeadInputDataTable';
 
 const renderer = new ShallowRenderer();
 

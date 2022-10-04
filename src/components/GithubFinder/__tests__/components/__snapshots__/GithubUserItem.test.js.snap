@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubUserItem tests renders correctly 1`] = `
+<styled.div>
+  <styled.img
+    src="www.fake.com"
+  />
+  <div>
+    <ForwardRef(Typography)
+      component="h6"
+      variant="subtitle1"
+    >
+      test
+    </ForwardRef(Typography)>
+    <styled.a
+      onClick={[Function]}
+    >
+      <ForwardRef(Typography)
+        component="h6"
+        variant="subtitle2"
+      >
+        View Profile
+      </ForwardRef(Typography)>
+    </styled.a>
+  </div>
+</styled.div>
+`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Github Users Container tests renders correctly 1`] = `
+exports[`GithubProvider with me tests renders correctly 1`] = `
 <Context.Provider
   value={
     Object {
@@ -11,7 +11,5 @@ exports[`Github Users Container tests renders correctly 1`] = `
       "users": Array [],
     }
   }
->
-  <GithubUsersContainer />
-</Context.Provider>
+/>
 `;

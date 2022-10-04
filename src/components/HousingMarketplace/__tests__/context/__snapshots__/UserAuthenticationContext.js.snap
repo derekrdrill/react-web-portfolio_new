@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserAuthenticationProvider with me tests renders correctly 1`] = `
+<Context.Provider
+  value={
+    Object {
+      "forgotPassword": false,
+      "isRegistering": false,
+      "passwordIsReset": false,
+      "signedIn": false,
+      "userAuthenticationDispatch": [Function],
+    }
+  }
+/>
+`;

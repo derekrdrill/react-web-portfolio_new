@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Grid, Tooltip, Typography } from '@mui/material';
 
@@ -9,15 +9,16 @@ import { LeadInputContext } from '../context/LeadInputContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 export const LeadInputPage = () => {
-  const { darkMode } = useContext(DarkLightModeContext);
-  const { leadInputDispatch, page, tooltipOpen } = useContext(LeadInputContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
+  const { leadInputDispatch, page, tooltipOpen } = React.useContext(LeadInputContext);
 
   const handlePageButtonClick = () => {
     const newPage = page === 'form' ? 'table' : 'form';
     leadInputDispatch({ type: 'SWITCH_PAGES', payload: { page: newPage, tooltipOpen: false } });
   };
 
-  const handleTooltipToggle = () => leadInputDispatch({ type: 'TOGGLE_TOOLTIP', payload: !tooltipOpen });
+  const handleTooltipToggle = () =>
+    leadInputDispatch({ type: 'TOGGLE_TOOLTIP', payload: !tooltipOpen });
 
   return (
     <>
