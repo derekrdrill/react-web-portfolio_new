@@ -9,8 +9,6 @@ import { ABOUT_ME_TEXT } from '../constants/ABOUT_ME_TEXT';
 import bitmojiChillinWithBirds from '../../../assets/bitmoji_chillinWithBirds1.png';
 
 export const AboutMe = ({ id }) => {
-  // test change
-
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
