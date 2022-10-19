@@ -131,18 +131,18 @@ describe('FormInput tests', () => {
       />,
     );
 
-    expect(styledSelect.props().className).toEqual('sc-hKMtZM dOZhYI');
-    expect(styledSelectDark.props().className).toEqual('sc-hKMtZM eBAHZq');
-    expect(styledSelectCustom.props().className).toEqual('sc-hKMtZM kkkIBR');
-    expect(styledSelectCustomDark.props().className).toEqual('sc-hKMtZM ghrOEk');
+    expect(styledSelect.props().className).toEqual('sc-hLBbgP fJdIrt');
+    expect(styledSelectDark.props().className).toEqual('sc-hLBbgP jqgstf');
+    expect(styledSelectCustom.props().className).toEqual('sc-hLBbgP hbJFcI');
+    expect(styledSelectCustomDark.props().className).toEqual('sc-hLBbgP iTKrhJ');
   });
 
   it('renders StyledSelectLabel styled component correctly', () => {
     const styledSelectLabel = shallow(<StyledSelectLabel />);
     const styledSelectLabelDark = shallow(<StyledSelectLabel darkMode />);
 
-    expect(styledSelectLabel.props().className).toEqual('sc-dkzDqf');
-    expect(styledSelectLabelDark.props().className).toEqual('sc-dkzDqf bpCSpA');
+    expect(styledSelectLabel.props().className).toEqual('sc-dkrFOg');
+    expect(styledSelectLabelDark.props().className).toEqual('sc-dkrFOg hDPTFu');
   });
 
   it('renders StyledTextField styled component correctly', () => {
@@ -171,10 +171,10 @@ describe('FormInput tests', () => {
       />,
     );
 
-    expect(styledTextField.props().className).toEqual('sc-gsnTZi bIOuqm');
-    expect(styledTextFieldDark.props().className).toEqual('sc-gsnTZi woZmH');
-    expect(styledTextFieldCustom.props().className).toEqual('sc-gsnTZi hscKFL');
-    expect(styledTextFieldCustomDark.props().className).toEqual('sc-gsnTZi dnKaVZ');
+    expect(styledTextField.props().className).toEqual('sc-gswNZR nsIYp');
+    expect(styledTextFieldDark.props().className).toEqual('sc-gswNZR ijTkaA');
+    expect(styledTextFieldCustom.props().className).toEqual('sc-gswNZR itwiQc');
+    expect(styledTextFieldCustomDark.props().className).toEqual('sc-gswNZR ivXtrG');
   });
 
   it('runs getVariant', () => {

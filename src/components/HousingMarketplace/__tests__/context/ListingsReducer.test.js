@@ -1,4 +1,4 @@
-import { listingsReducer } from '../../context/listingsReducer';
+import { listingsReducer } from '../../context/ListingsReducer';
 
 describe('listingsReducer tests', () => {
   it('handles listingsReducer', () => {

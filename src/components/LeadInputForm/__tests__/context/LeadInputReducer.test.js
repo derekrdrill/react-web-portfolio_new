@@ -1,4 +1,4 @@
-import { leadInputReducer } from '../../context/leadInputReducer';
+import { leadInputReducer } from '../../context/LeadInputReducer';
 
 describe('leadInputReducer tests', () => {
   it('handles leadInputReducer', () => {

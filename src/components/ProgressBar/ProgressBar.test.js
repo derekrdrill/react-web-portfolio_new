@@ -14,8 +14,8 @@ describe('Progress Bar tests', () => {
 
   it('renders styled progress bar', () => {
     const styledProgressBarTests = [
-      { progress: 99, result: 'sc-gsnTZi kKbGnU' },
-      { progress: 100, result: 'sc-gsnTZi bjXplk' },
+      { progress: 99, result: 'sc-gswNZR jmLtKj' },
+      { progress: 100, result: 'sc-gswNZR eeIpwf' },
     ];
 
     styledProgressBarTests.forEach(({ progress, result }) => {
@@ -29,8 +29,8 @@ describe('Progress Bar tests', () => {
 
   it('renders progress bar percentage container', () => {
     const progressBarPercentageContainerTests = [
-      { progress: 99, result: 'sc-dkzDqf goFJmG' },
-      { progress: 100, result: 'sc-dkzDqf eDSiEb' },
+      { progress: 99, result: 'sc-dkrFOg ldRmqw' },
+      { progress: 100, result: 'sc-dkrFOg djyLSp' },
     ];
 
     progressBarPercentageContainerTests.forEach(({ progress, result }) => {

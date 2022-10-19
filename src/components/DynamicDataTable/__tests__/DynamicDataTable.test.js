@@ -45,32 +45,32 @@ describe('Dynamic data table tests', () => {
     const tableHeadCell = shallow(<TableHeadCell />);
     const tableHeadCellDark = shallow(<TableHeadCell darkMode />);
 
-    expect(tableHeadCell.props().className).toEqual('sc-evZas cfNQCD');
-    expect(tableHeadCellDark.props().className).toEqual('sc-evZas ddardB');
+    expect(tableHeadCell.props().className).toEqual('sc-eDWCr kweytw');
+    expect(tableHeadCellDark.props().className).toEqual('sc-eDWCr iPedVC');
   });
 
   it('renders TableToolsCell styled component correctly', () => {
     const tableToolsCell = shallow(<TableToolsCell />);
     const tableToolsCellDark = shallow(<TableToolsCell darkMode />);
 
-    expect(tableToolsCell.props().className).toEqual('sc-breuTD eivYOJ');
-    expect(tableToolsCellDark.props().className).toEqual('sc-breuTD PMMsy');
+    expect(tableToolsCell.props().className).toEqual('sc-bqWxrE kjeUoJ');
+    expect(tableToolsCellDark.props().className).toEqual('sc-bqWxrE eirfnK');
   });
 
   it('renders SearchButton styled component correctly', () => {
     const searchButton = shallow(<SearchButton />);
     const searchButtonDark = shallow(<SearchButton darkMode />);
 
-    expect(searchButton.props().className).toEqual('sc-fEOsli cjbpuV');
-    expect(searchButtonDark.props().className).toEqual('sc-fEOsli bzbLp');
+    expect(searchButton.props().className).toEqual('sc-fEXmlR hNDa-dI');
+    expect(searchButtonDark.props().className).toEqual('sc-fEXmlR bhDuDU');
   });
 
   it('renders ResetButton styled component correctly', () => {
     const resetButton = shallow(<ResetButton />);
     const resetButtonDark = shallow(<ResetButton darkMode />);
 
-    expect(resetButton.props().className).toEqual('sc-bjUoiL bOEsoq');
-    expect(resetButtonDark.props().className).toEqual('sc-bjUoiL kexfQm');
+    expect(resetButton.props().className).toEqual('sc-bjfHbI brHydv');
+    expect(resetButtonDark.props().className).toEqual('sc-bjfHbI nKeeT');
   });
 
   it('runs getSelectRowsLabel correctly', () => {

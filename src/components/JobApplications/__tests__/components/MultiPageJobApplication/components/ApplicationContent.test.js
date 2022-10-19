@@ -1,9 +1,5 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { shallow } from 'enzyme';
-
-import { configure } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import {
   ApplicationContent,
@@ -13,8 +9,6 @@ import {
 } from '../../../../components/MultiPageJobApplication/components/ApplicationContent';
 
 import { ADVANCED_JOB_APP_INPUTS } from '../../../../constants/ADVANCED_JOB_APP_INPUTS';
-
-configure({ adapter: new Adapter() });
 
 const renderer = new ShallowRenderer();
 
@@ -56,9 +50,9 @@ describe('ApplicationContent tests', () => {
 
   it('renders ApplicationContentContainer styled component correctly', () => {
     const appContainerTests = [
-      { page: 0, maxPage: 1, result: 'sc-kDDrLX bEnZOa' },
-      { page: 1, maxPage: 2, result: 'sc-kDDrLX bjMNrg' },
-      { page: 2, maxPage: 2, result: 'sc-kDDrLX ccnaTh' },
+      { page: 0, maxPage: 1, result: 'sc-kDvujY jRMoMP' },
+      { page: 1, maxPage: 2, result: 'sc-kDvujY bCgLEt' },
+      { page: 2, maxPage: 2, result: 'sc-kDvujY dAZMHM' },
     ];
 
     appContainerTests.forEach(({ page, maxPage, result }) => {
@@ -72,11 +66,11 @@ describe('ApplicationContent tests', () => {
 
   it('renders AdvancedAppInputsContainerstyled component correctly', () => {
     const advAppInputsContainerTests = [
-      { page: 1, maxPage: 1, editing: true, result: 'sc-iqcoie eNrFmP', darkMode: false },
-      { page: 1, maxPage: 1, editing: false, result: 'sc-iqcoie hiyGJd', darkMode: false },
-      { page: 1, maxPage: 2, editing: false, result: 'sc-iqcoie', darkMode: false },
-      { page: 1, maxPage: 1, editing: true, result: 'sc-iqcoie kwQBeC', darkMode: true },
-      { page: 1, maxPage: 1, editing: false, result: 'sc-iqcoie fiyYGD', darkMode: true },
+      { page: 1, maxPage: 1, editing: true, result: 'sc-ipEyDJ iUlvdn', darkMode: false },
+      { page: 1, maxPage: 1, editing: false, result: 'sc-ipEyDJ dkcItZ', darkMode: false },
+      { page: 1, maxPage: 2, editing: false, result: 'sc-ipEyDJ', darkMode: false },
+      { page: 1, maxPage: 1, editing: true, result: 'sc-ipEyDJ hIILKm', darkMode: true },
+      { page: 1, maxPage: 1, editing: false, result: 'sc-ipEyDJ iSVDpX', darkMode: true },
     ];
 
     advAppInputsContainerTests.forEach(({ darkMode, page, maxPage, editing, result }) => {
@@ -97,9 +91,9 @@ describe('ApplicationContent tests', () => {
 
   it('renders JobAppSectionContainer styled component correctly', () => {
     const jobAppSectionContainerTests = [
-      { page: 1, maxPage: 3, sectionid: 2, result: 'sc-crXcEl dohSJT' },
-      { page: 3, maxPage: 3, sectionid: 3, result: 'sc-crXcEl eTNHSj' },
-      { page: 1, maxPage: 3, sectionid: 1, result: 'sc-crXcEl gvbbmF' },
+      { page: 1, maxPage: 3, sectionid: 2, result: 'sc-csuSiG fLvtKr' },
+      { page: 3, maxPage: 3, sectionid: 3, result: 'sc-csuSiG bbCrbn' },
+      { page: 1, maxPage: 3, sectionid: 1, result: 'sc-csuSiG hxtmON' },
     ];
 
     jobAppSectionContainerTests.forEach(({ page, maxPage, sectionid, result }) => {
