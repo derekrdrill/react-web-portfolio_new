@@ -43,47 +43,47 @@ describe('About Me tests', () => {
     const aboutMeBitmojiContainer = shallow(<AboutMeBitmojiContainer />);
     const aboutMeBitmojiContainerDark = shallow(<AboutMeBitmojiContainer darkMode />);
 
-    expect(aboutMeBitmojiContainer.props().className).toEqual('sc-hKMtZM ivEDco');
-    expect(aboutMeBitmojiContainerDark.props().className).toEqual('sc-hKMtZM ivEDco');
+    expect(aboutMeBitmojiContainer.props().className).toEqual('sc-hLBbgP gWCnyl');
+    expect(aboutMeBitmojiContainerDark.props().className).toEqual('sc-hLBbgP gWCnyl');
   });
 
   it('renders AboutMeContainer styled component correctly', () => {
     const aboutMeContainer = shallow(<AboutMeContainer />);
     const aboutMeContainerDark = shallow(<AboutMeContainer darkMode />);
 
-    expect(aboutMeContainer.props().className).toEqual('sc-bczRLJ jHwXBs');
-    expect(aboutMeContainerDark.props().className).toEqual('sc-bczRLJ gyWplj');
+    expect(aboutMeContainer.props().className).toEqual('sc-bcXHqe gOxZrZ');
+    expect(aboutMeContainerDark.props().className).toEqual('sc-bcXHqe ktbKri');
   });
 
   it('renders AboutMeListItem styled component correctly', () => {
     const aboutMeListItem = shallow(<AboutMeListItem />);
     const aboutMeListItemDark = shallow(<AboutMeListItem darkMode />);
 
-    expect(aboutMeListItem.props().className).toEqual('sc-jSMfEi kQukqh');
-    expect(aboutMeListItemDark.props().className).toEqual('sc-jSMfEi eyjPqw');
+    expect(aboutMeListItem.props().className).toEqual('sc-jSUZER eGtSul');
+    expect(aboutMeListItemDark.props().className).toEqual('sc-jSUZER hMuKSQ');
   });
 
   it('renders AboutMeTitle styled component correctly', () => {
     const aboutMeTitle = shallow(<AboutMeTitle />);
     const aboutMeTitleDark = shallow(<AboutMeTitle darkMode />);
 
-    expect(aboutMeTitle.props().className).toEqual('sc-gsnTZi hcmfen');
-    expect(aboutMeTitleDark.props().className).toEqual('sc-gsnTZi hZNyJl');
+    expect(aboutMeTitle.props().className).toEqual('sc-gswNZR iabZiM');
+    expect(aboutMeTitleDark.props().className).toEqual('sc-gswNZR cVFUgK');
   });
 
   it('renders AboutMeText styled component correctly', () => {
     const aboutMeText = shallow(<AboutMeText />);
     const aboutMeTextDark = shallow(<AboutMeText darkMode />);
 
-    expect(aboutMeText.props().className).toEqual('sc-eCYdqJ gTquPu');
-    expect(aboutMeTextDark.props().className).toEqual('sc-eCYdqJ jEKVPL');
+    expect(aboutMeText.props().className).toEqual('sc-eDvSVe kcUOXO');
+    expect(aboutMeTextDark.props().className).toEqual('sc-eDvSVe ekcVhb');
   });
 
   it('renders AboutMeTextContainer styled component correctly', () => {
     const aboutMeTextContainer = shallow(<AboutMeTextContainer />);
     const aboutMeTextContainerDark = shallow(<AboutMeTextContainer darkMode />);
 
-    expect(aboutMeTextContainer.props().className).toEqual('sc-dkzDqf hWuRPA');
-    expect(aboutMeTextContainerDark.props().className).toEqual('sc-dkzDqf gEiWuV');
+    expect(aboutMeTextContainer.props().className).toEqual('sc-dkrFOg ggQkMW');
+    expect(aboutMeTextContainerDark.props().className).toEqual('sc-dkrFOg ljauMX');
   });
 });
