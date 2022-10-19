@@ -28,8 +28,8 @@ describe('More Options Modal tests', () => {
 
   it('renders Resume Option Buttons correctly', () => {
     const resumeOptionTests = [
-      { cancelbutton: false, result: 'sc-gsnTZi brqFLd' },
-      { cancelbutton: true, result: 'sc-gsnTZi AIRpM' },
+      { cancelbutton: false, result: 'sc-gswNZR gJKnQu' },
+      { cancelbutton: true, result: 'sc-gswNZR hNQAuP' },
     ];
 
     resumeOptionTests.forEach(({ cancelbutton, result }) => {
@@ -41,8 +41,8 @@ describe('More Options Modal tests', () => {
 
   it('renders StyledBox correctly', () => {
     const styledBoxTests = [
-      { darkMode: false, result: 'sc-bczRLJ hugivE' },
-      { darkMode: true, result: 'sc-bczRLJ lhwdHl' },
+      { darkMode: false, result: 'sc-bcXHqe keFXPN' },
+      { darkMode: true, result: 'sc-bcXHqe fbsAPY' },
     ];
 
     styledBoxTests.forEach(({ darkMode, result }) => {
