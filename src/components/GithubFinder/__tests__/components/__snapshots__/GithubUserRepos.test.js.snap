@@ -1,0 +1,324 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubUserRepos tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+>
+  <Styled(Component)
+    item={true}
+    xs={12}
+  >
+    <Styled(Component)
+      container={true}
+    >
+      <Styled(Component)
+        component="h5"
+        variant="h5"
+      >
+        Top Repositories
+      </Styled(Component)>
+    </Styled(Component)>
+    <Styled(Component)
+      container={true}
+      rowSpacing={2}
+    >
+      <Styled(FontAwesomeIcon)
+        color="white"
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f0c1",
+              "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z",
+            ],
+            "iconName": "link",
+            "prefix": "fas",
+          }
+        }
+      />
+      <Styled(Component)
+        component="h6"
+        variant="subtitle1"
+      />
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Typography)
+          component="h6"
+          variant="subtitle2"
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={4}
+      >
+        <styled.div>
+          <ForwardRef(Tooltip)
+            title="size: 100 kb"
+          >
+            <Styled(Component)
+              color="secondary"
+              icon={
+                <FontAwesomeIcon
+                  beat={false}
+                  beatFade={false}
+                  border={false}
+                  bounce={false}
+                  className=""
+                  fade={false}
+                  fixedWidth={false}
+                  flip={false}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        448,
+                        512,
+                        Array [],
+                        "f1c0",
+                        "M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z",
+                      ],
+                      "iconName": "database",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  maskId={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  shake={false}
+                  size={null}
+                  spin={false}
+                  spinPulse={false}
+                  spinReverse={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  titleId={null}
+                  transform={null}
+                />
+              }
+              label="100 kb"
+              size="small"
+              variant="outlined"
+            />
+          </ForwardRef(Tooltip)>
+          <ForwardRef(Tooltip)
+            title="watchers: 100"
+          >
+            <Styled(Component)
+              color="info"
+              icon={
+                <FontAwesomeIcon
+                  beat={false}
+                  beatFade={false}
+                  border={false}
+                  bounce={false}
+                  className=""
+                  fade={false}
+                  fixedWidth={false}
+                  flip={false}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f06e",
+                        "M569.354 231.631C512.969 135.949 407.81 72 288 72 168.14 72 63.004 135.994 6.646 231.631a47.999 47.999 0 0 0 0 48.739C63.031 376.051 168.19 440 288 440c119.86 0 224.996-63.994 281.354-159.631a47.997 47.997 0 0 0 0-48.738zM288 392c-75.162 0-136-60.827-136-136 0-75.162 60.826-136 136-136 75.162 0 136 60.826 136 136 0 75.162-60.826 136-136 136zm104-136c0 57.438-46.562 104-104 104s-104-46.562-104-104c0-17.708 4.431-34.379 12.236-48.973l-.001.032c0 23.651 19.173 42.823 42.824 42.823s42.824-19.173 42.824-42.823c0-23.651-19.173-42.824-42.824-42.824l-.032.001C253.621 156.431 270.292 152 288 152c57.438 0 104 46.562 104 104z",
+                      ],
+                      "iconName": "eye",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  maskId={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  shake={false}
+                  size={null}
+                  spin={false}
+                  spinPulse={false}
+                  spinReverse={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  titleId={null}
+                  transform={null}
+                />
+              }
+              label="100"
+              size="small"
+              variant="outlined"
+            />
+          </ForwardRef(Tooltip)>
+          <ForwardRef(Tooltip)
+            title="stargazers_count: 100"
+          >
+            <Styled(Component)
+              color="success"
+              icon={
+                <FontAwesomeIcon
+                  beat={false}
+                  beatFade={false}
+                  border={false}
+                  bounce={false}
+                  className=""
+                  fade={false}
+                  fixedWidth={false}
+                  flip={false}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f005",
+                        "M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z",
+                      ],
+                      "iconName": "star",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  maskId={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  shake={false}
+                  size={null}
+                  spin={false}
+                  spinPulse={false}
+                  spinReverse={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  titleId={null}
+                  transform={null}
+                />
+              }
+              label="100"
+              size="small"
+              variant="outlined"
+            />
+          </ForwardRef(Tooltip)>
+          <ForwardRef(Tooltip)
+            title="open_issues: 2"
+          >
+            <Styled(Component)
+              color="error"
+              icon={
+                <FontAwesomeIcon
+                  beat={false}
+                  beatFade={false}
+                  border={false}
+                  bounce={false}
+                  className=""
+                  fade={false}
+                  fixedWidth={false}
+                  flip={false}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        192,
+                        512,
+                        Array [],
+                        "f129",
+                        "M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z",
+                      ],
+                      "iconName": "info",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  maskId={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  shake={false}
+                  size={null}
+                  spin={false}
+                  spinPulse={false}
+                  spinReverse={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  titleId={null}
+                  transform={null}
+                />
+              }
+              label="2"
+              size="small"
+              variant="outlined"
+            />
+          </ForwardRef(Tooltip)>
+          <ForwardRef(Tooltip)
+            title="forks_count: 20"
+          >
+            <Styled(Component)
+              color="warning"
+              icon={
+                <FontAwesomeIcon
+                  beat={false}
+                  beatFade={false}
+                  border={false}
+                  bounce={false}
+                  className=""
+                  fade={false}
+                  fixedWidth={false}
+                  flip={false}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        416,
+                        512,
+                        Array [],
+                        "f2e7",
+                        "M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z",
+                      ],
+                      "iconName": "utensils",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  maskId={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  shake={false}
+                  size={null}
+                  spin={false}
+                  spinPulse={false}
+                  spinReverse={false}
+                  swapOpacity={false}
+                  symbol={false}
+                  title=""
+                  titleId={null}
+                  transform={null}
+                />
+              }
+              label="20"
+              size="small"
+              variant="outlined"
+            />
+          </ForwardRef(Tooltip)>
+        </styled.div>
+      </ForwardRef(Grid)>
+    </Styled(Component)>
+  </Styled(Component)>
+</ForwardRef(Grid)>
+`;

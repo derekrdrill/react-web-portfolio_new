@@ -1,13 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button, FormControl, FormControlLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Card } from '../../Card/Card';
 import { FeedbackContext } from '../context/FeedbackContext';
 
+export const getFeedbackReviewLabel = edit => (edit ? 'Edit review' : 'Write a review');
+export const getSubmitButtonLabel = edit => (edit ? 'Update ' : 'Submit ');
+export const isReviewButtonDisabled = (review, rating) => !review || typeof rating !== 'number';
+
 export const FeedbackForm = ({ maxRank }) => {
   const menuItems = new Array(maxRank + 1).fill(null);
-  const { addFeedbackItem, feedbackEdit, updateFeedbackItem } = useContext(FeedbackContext);
+  const { addFeedbackItem, feedbackEdit, updateFeedbackItem } = React.useContext(FeedbackContext);
 
   const [rating, setRating] = useState(null);
   const [review, setReview] = useState('');
@@ -63,21 +75,21 @@ export const FeedbackForm = ({ maxRank }) => {
       </FormControl>
       <TextField
         fullWidth
-        label={feedbackEdit.edit ? 'Edit review' : 'Write a review'}
+        label={getFeedbackReviewLabel(feedbackEdit.edit)}
         minRows={2}
         multiline
         onChange={handleSetReview}
-        placeholder={feedbackEdit.edit ? 'Edit review' : 'Write a review'}
+        placeholder={getFeedbackReviewLabel(feedbackEdit.edit)}
         value={review}
       />
       <ButtonContainer>
         <Button
-          disabled={!review || typeof rating !== 'number'}
+          disabled={isReviewButtonDisabled(review, rating)}
           onClick={handleSubmitReview}
           size='small'
           variant='outlined'
         >
-          {feedbackEdit.edit ? 'Update ' : 'Submit '}
+          {getSubmitButtonLabel(feedbackEdit.edit)}
           Review
         </Button>
       </ButtonContainer>
@@ -93,20 +105,20 @@ FeedbackForm.defaultProps = {
   maxRank: 10,
 };
 
-const ButtonContainer = styled.div({
+export const ButtonContainer = styled.div({
   display: 'flex',
   justifyContent: 'flex-end',
   padding: '15px 0',
 });
 
-const RadioButtonsContainer = styled.div({
+export const RadioButtonsContainer = styled.div({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
   margin: '40px 30px',
 });
 
-const RatingRadioControl = styled(FormControlLabel)(({ checked }) => [
+export const RatingRadioControl = styled(FormControlLabel)(({ checked }) => [
   {
     '.MuiRadio-root': {
       display: 'none',

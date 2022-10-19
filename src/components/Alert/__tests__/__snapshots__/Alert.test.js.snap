@@ -1,17 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert tests renders correctly 1`] = `
-<Context.Provider
-  value={
-    Object {
-      "alert": null,
-      "alertDispatch": [Function],
-      "fadeOut": false,
-    }
-  }
+<Styled(Component)
+  $fadeOut={true}
+  darkMode={true}
 >
-  <AlertComponent>
-    Title
-  </AlertComponent>
-</Context.Provider>
+  <ForwardRef(AlertTitle) />
+</Styled(Component)>
 `;

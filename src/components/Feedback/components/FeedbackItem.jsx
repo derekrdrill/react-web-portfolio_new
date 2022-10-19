@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
@@ -8,7 +8,7 @@ import { FeedbackContext } from '../context/FeedbackContext';
 import { FaTimes, FaEdit } from 'react-icons/fa';
 
 export const FeedbackItem = ({ bgColorNumDisplay, id, rating, text }) => {
-  const { deleteFeedbackItem, setFeedbackEditItems } = useContext(FeedbackContext);
+  const { deleteFeedbackItem, setFeedbackEditItems } = React.useContext(FeedbackContext);
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
@@ -70,7 +70,7 @@ FeedbackItem.propTypes = {
   text: PropTypes.string,
 };
 
-const NumberDisplay = styled.div(({ bgColor }) => ({
+export const NumberDisplay = styled.div(({ bgColor }) => ({
   position: 'relative',
   background: '#f4f4f4',
   width: 50,

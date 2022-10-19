@@ -9,7 +9,7 @@ export const HeaderMenu = ({ headerType, menuType }) => (
     {menuType === 'list' ? (
       <>
         {HEADER_MENU_OPTIONS.map(OPTION => (
-          <ListItem style={{ padding: 0, margin: 0 }}>
+          <ListItem className='list-item' style={{ padding: 0, margin: 0 }}>
             <HeaderMenuOptions
               key={OPTION.id}
               menuTitle={OPTION.menuTitle}

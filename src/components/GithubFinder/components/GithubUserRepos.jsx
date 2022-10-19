@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Chip, Grid, Tooltip, Typography } from '@mui/material';
 import { GithubContext } from '../context/GithubContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faDatabase, faEye, faInfo, faStar, faUtensils } from '@fortawesome/fontawesome-free-solid';
+import {
+  faLink,
+  faDatabase,
+  faEye,
+  faInfo,
+  faStar,
+  faUtensils,
+} from '@fortawesome/fontawesome-free-solid';
 
 export const GithubUserRepos = () => {
-  const { repos } = useContext(GithubContext);
+  const { repos } = React.useContext(GithubContext);
 
   return (
     <Grid container>
@@ -20,7 +27,12 @@ export const GithubUserRepos = () => {
           const repoInfo = [
             { id: 'size', value: `${repo.size} kb`, color: 'secondary', icon: faDatabase },
             { id: 'watchers', value: repo.watchers, color: 'info', icon: faEye },
-            { id: 'stargazers_count', value: repo.stargazers_count, color: 'success', icon: faStar },
+            {
+              id: 'stargazers_count',
+              value: repo.stargazers_count,
+              color: 'success',
+              icon: faStar,
+            },
             { id: 'open_issues', value: repo.open_issues, color: 'error', icon: faInfo },
             { id: 'forks_count', value: repo.forks_count, color: 'warning', icon: faUtensils },
           ];

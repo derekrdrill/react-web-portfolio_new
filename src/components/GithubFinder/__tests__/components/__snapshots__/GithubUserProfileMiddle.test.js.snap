@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+  justifyContent={
+    Object {
+      "lg": "flex-start",
+      "md": "center",
+    }
+  }
+>
+  <Styled(Component)
+    item={true}
+    lg={3}
+    md={6}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={10}
+      >
+        <ForwardRef(Typography)
+          component="h6"
+          variant="subtitle2"
+        >
+          Followers
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          component="h5"
+          variant="h5"
+        >
+          10
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={2}
+      >
+        <FontAwesomeIcon
+          beat={false}
+          beatFade={false}
+          border={false}
+          bounce={false}
+          className=""
+          color="lightgrey"
+          fade={false}
+          fixedWidth={false}
+          flip={false}
+          icon={
+            Object {
+              "icon": Array [
+                640,
+                512,
+                Array [],
+                "f0c0",
+                "M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z",
+              ],
+              "iconName": "users",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          maskId={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          shake={false}
+          size={null}
+          spin={false}
+          spinPulse={false}
+          spinReverse={false}
+          style={
+            Object {
+              "height": "1.5em",
+              "width": "1.5em",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          titleId={null}
+          transform={null}
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <Styled(Component)
+    item={true}
+    lg={3}
+    md={6}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={10}
+      >
+        <ForwardRef(Typography)
+          component="h6"
+          variant="subtitle2"
+        >
+          Following
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          component="h5"
+          variant="h5"
+        >
+          10
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={2}
+      >
+        <FontAwesomeIcon
+          beat={false}
+          beatFade={false}
+          border={false}
+          bounce={false}
+          className=""
+          color="lightgrey"
+          fade={false}
+          fixedWidth={false}
+          flip={false}
+          icon={
+            Object {
+              "icon": Array [
+                640,
+                512,
+                Array [],
+                "f500",
+                "M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z",
+              ],
+              "iconName": "user-friends",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          maskId={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          shake={false}
+          size={null}
+          spin={false}
+          spinPulse={false}
+          spinReverse={false}
+          style={
+            Object {
+              "height": "1.5em",
+              "width": "1.5em",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          titleId={null}
+          transform={null}
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <Styled(Component)
+    item={true}
+    lg={3}
+    md={6}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={10}
+      >
+        <ForwardRef(Typography)
+          component="h6"
+          variant="subtitle2"
+        >
+          Public Repos
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          component="h5"
+          variant="h5"
+        >
+          2
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={2}
+      >
+        <FontAwesomeIcon
+          beat={false}
+          beatFade={false}
+          border={false}
+          bounce={false}
+          className=""
+          color="lightgrey"
+          fade={false}
+          fixedWidth={false}
+          flip={false}
+          icon={
+            Object {
+              "icon": Array [
+                640,
+                512,
+                Array [],
+                "f542",
+                "M384 320H256c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V352c0-17.67-14.33-32-32-32zM192 32c0-17.67-14.33-32-32-32H32C14.33 0 0 14.33 0 32v128c0 17.67 14.33 32 32 32h95.72l73.16 128.04C211.98 300.98 232.4 288 256 288h.28L192 175.51V128h224V64H192V32zM608 0H480c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32z",
+              ],
+              "iconName": "project-diagram",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          maskId={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          shake={false}
+          size={null}
+          spin={false}
+          spinPulse={false}
+          spinReverse={false}
+          style={
+            Object {
+              "height": "1.5em",
+              "width": "1.5em",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          titleId={null}
+          transform={null}
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+  <Styled(Component)
+    item={true}
+    lg={3}
+    md={6}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={10}
+      >
+        <ForwardRef(Typography)
+          component="h6"
+          variant="subtitle2"
+        >
+          Public Gists
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          component="h5"
+          variant="h5"
+        >
+          0
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={2}
+      >
+        <FontAwesomeIcon
+          beat={false}
+          beatFade={false}
+          border={false}
+          bounce={false}
+          className=""
+          color="lightgrey"
+          fade={false}
+          fixedWidth={false}
+          flip={false}
+          icon={
+            Object {
+              "icon": Array [
+                616,
+                512,
+                Array [],
+                "f54e",
+                "M602 118.6L537.1 15C531.3 5.7 521 0 510 0H106C95 0 84.7 5.7 78.9 15L14 118.6c-33.5 53.5-3.8 127.9 58.8 136.4 4.5.6 9.1.9 13.7.9 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18.1 20.1 44.3 33.1 73.8 33.1 4.7 0 9.2-.3 13.7-.9 62.8-8.4 92.6-82.8 59-136.4zM529.5 288c-10 0-19.9-1.5-29.5-3.8V384H116v-99.8c-9.6 2.2-19.5 3.8-29.5 3.8-6 0-12.1-.4-18-1.2-5.6-.8-11.1-2.1-16.4-3.6V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32V283.2c-5.4 1.6-10.8 2.9-16.4 3.6-6.1.8-12.1 1.2-18.2 1.2z",
+              ],
+              "iconName": "store",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          maskId={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          shake={false}
+          size={null}
+          spin={false}
+          spinPulse={false}
+          spinReverse={false}
+          style={
+            Object {
+              "height": "1.5em",
+              "width": "1.5em",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          titleId={null}
+          transform={null}
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+</ForwardRef(Grid)>
+`;

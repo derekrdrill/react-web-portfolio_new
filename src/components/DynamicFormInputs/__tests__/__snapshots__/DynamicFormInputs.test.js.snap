@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DynamicFormInputs tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+  spacing={2}
+>
+  <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": "firstName",
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "First Name",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+    setForm={[MockFunction]}
+    value=""
+  />
+  <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": "lastName",
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Last Name",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+    setForm={[MockFunction]}
+    value=""
+  />
+  <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": "email",
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Email",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+    setForm={[MockFunction]}
+    value=""
+  />
+  <FormInput
+    form={
+      Object {
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "phone": "",
+      }
+    }
+    input={
+      Object {
+        "fontFamily": "Kufam",
+        "fullWidth": true,
+        "id": "phone",
+        "inputBackgroundColor": "gainsboro",
+        "inputPaddingBottom": 5,
+        "inputborderRadius": 4,
+        "label": "Phone (Optional)",
+        "labelColor": "#28282B",
+        "variant": "filled",
+        "xs": 12,
+      }
+    }
+    setForm={[MockFunction]}
+    value=""
+  />
+</ForwardRef(Grid)>
+`;

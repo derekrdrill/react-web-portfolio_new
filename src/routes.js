@@ -1,13 +1,13 @@
 import { App } from './components/App';
 
 import { AboutMe } from './components/AboutMe/components/AboutMe';
-import { ApplicationComplete } from './components/JobApplications/components/ApplicationComplete';
-import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationsPage';
+import { ApplicationComplete } from './components/JobApplications/components/Common/ApplicationComplete';
+import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationPage/JobApplicationsPage';
 import { Category } from './components/HousingMarketplace/components/Category';
 import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
 import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
 import { DarkLightMode } from './components/DarkLightMode/components/DarkLightMode';
-import { DataReportingTool } from './components/DataReportingTool/DataReportingTool';
+import { DataReportingTool } from './components/DataReportingTool/components/DataReportingTool';
 import { Explore } from './components/HousingMarketplace/components/Explore';
 import { Feedback } from './components/Feedback/Feedback';
 import { FileUploader } from './components/FileUploader/FileUploader';

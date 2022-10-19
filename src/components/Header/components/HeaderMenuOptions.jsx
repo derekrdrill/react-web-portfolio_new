@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import styled from 'styled-components';
@@ -8,8 +8,15 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 // TODO: revisit condensing the two types of links with css instead of styled components
 // import { css } from '@emotion/react';
 
-export const HeaderMenuOptions = ({ menuTitle, menuIcon, mainTo, secondaryTo, headerType, menuType }) => {
-  const { darkMode } = useContext(DarkLightModeContext);
+export const HeaderMenuOptions = ({
+  menuTitle,
+  menuIcon,
+  mainTo,
+  secondaryTo,
+  headerType,
+  menuType,
+}) => {
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return headerType === 'main' ? (
     <StyledScrollLink
@@ -58,7 +65,7 @@ export const HeaderMenuOptions = ({ menuTitle, menuIcon, mainTo, secondaryTo, he
 //     },
 // });
 
-const StyledScrollLink = styled(ScrollLink)(({ darkMode, menuType }) => ({
+export const StyledScrollLink = styled(ScrollLink)(({ darkMode, menuType }) => ({
   backgroundImage:
     menuType === 'list'
       ? 'linear-gradient(#212121, #212121)'
@@ -69,7 +76,14 @@ const StyledScrollLink = styled(ScrollLink)(({ darkMode, menuType }) => ({
   backgroundPositionX: '100%',
   backgroundRepeat: 'no-repeat',
   backgroundSize: '0% 0.1em',
-  color: menuType === 'list' ? (darkMode ? '#212121' : 'darkslategray') : !darkMode ? 'darkslategray' : 'royalblue',
+  color:
+    menuType === 'list'
+      ? darkMode
+        ? '#212121'
+        : 'darkslategray'
+      : !darkMode
+      ? 'darkslategray'
+      : 'royalblue',
   cursor: 'pointer',
   margin: menuType === 'main' && 15,
   padding: menuType === 'list' ? 20 : 8,
@@ -81,7 +95,14 @@ const StyledScrollLink = styled(ScrollLink)(({ darkMode, menuType }) => ({
     backgroundColor: menuType === 'list' && 'lightblue',
     backgroundSize: '100% 0.1em',
     backgroundPositionX: '0%',
-    color: menuType === 'list' ? (darkMode ? '#212121' : 'darkslategray') : !darkMode ? 'darkslategray' : 'royalblue',
+    color:
+      menuType === 'list'
+        ? darkMode
+          ? '#212121'
+          : 'darkslategray'
+        : !darkMode
+        ? 'darkslategray'
+        : 'royalblue',
   },
   svg: {
     transform: 'translate(3px, -2px)',
@@ -90,7 +111,7 @@ const StyledScrollLink = styled(ScrollLink)(({ darkMode, menuType }) => ({
   },
 }));
 
-const StyledRouterLink = styled(RouterLink)(({ darkMode, menuType }) => ({
+export const StyledRouterLink = styled(RouterLink)(({ darkMode, menuType }) => ({
   backgroundImage:
     menuType === 'list'
       ? 'linear-gradient(#212121, #212121)'
@@ -101,7 +122,14 @@ const StyledRouterLink = styled(RouterLink)(({ darkMode, menuType }) => ({
   backgroundPositionX: '100%',
   backgroundRepeat: 'no-repeat',
   backgroundSize: '0% 0.1em',
-  color: menuType === 'list' ? (darkMode ? '#212121' : 'darkslategray') : !darkMode ? 'darkslategray' : 'royalblue',
+  color:
+    menuType === 'list'
+      ? darkMode
+        ? '#212121'
+        : 'darkslategray'
+      : !darkMode
+      ? 'darkslategray'
+      : 'royalblue',
   cursor: 'pointer',
   margin: menuType === 'main' && 15,
   padding: menuType === 'list' ? 20 : 8,
@@ -118,6 +146,13 @@ const StyledRouterLink = styled(RouterLink)(({ darkMode, menuType }) => ({
     backgroundColor: menuType === 'list' && 'lightblue',
     backgroundSize: '100% 0.1em',
     backgroundPositionX: '0%',
-    color: menuType === 'list' ? (darkMode ? '#212121' : 'darkslategray') : !darkMode ? 'darkslategray' : 'royalblue',
+    color:
+      menuType === 'list'
+        ? darkMode
+          ? '#212121'
+          : 'darkslategray'
+        : !darkMode
+        ? 'darkslategray'
+        : 'royalblue',
   },
 }));

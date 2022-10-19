@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationButtons tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+>
+  <ForwardRef(Grid)
+    item={true}
+    xs={6}
+  >
+    <ApplicationBackButton />
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={6}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="flex-end"
+    >
+      <ApplicationForwardButton />
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+</ForwardRef(Grid)>
+`;

@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GithubUserProfileTop tests renders correctly 1`] = `
+<ForwardRef(Grid)
+  container={true}
+  spacing={1}
+>
+  <ForwardRef(Grid)
+    item={true}
+    md={3}
+    sm={12}
+    xl={2}
+  >
+    <styled.img
+      src="www.fakeav.com"
+    />
+    <Styled(Component)
+      component="h6"
+      variant="subtitle1"
+    >
+      test name
+    </Styled(Component)>
+    <Styled(Component)
+      component="h6"
+      variant="subtitle2"
+    >
+      test login
+    </Styled(Component)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    md={9}
+    sm={12}
+    xl={10}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      spacing={1}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Typography)
+          component="h4"
+          variant="h5"
+        >
+          test name
+        </ForwardRef(Typography)>
+        <styled.div>
+          <ForwardRef(Chip)
+            color="success"
+            label="test type"
+            size="small"
+            variant="outlined"
+          />
+          <ForwardRef(Chip)
+            color="secondary"
+            label="Hireable"
+            size="small"
+            variant="outlined"
+          />
+        </styled.div>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Typography)
+          component="p"
+          variant="subtitle1"
+        >
+          <GithubUserProfileBio />
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Button)
+          color="info"
+          href="www.github.com/fake"
+          size="large"
+          target="_blank"
+          variant="outlined"
+        >
+          Visit Profile
+        </ForwardRef(Button)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Grid)
+          container={true}
+        >
+          <ForwardRef(Grid)
+            item={true}
+            sm={3}
+            xs={12}
+          >
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle2"
+            >
+              Location
+            </ForwardRef(Typography)>
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle1"
+            >
+              location
+            </ForwardRef(Typography)>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            sx={
+              Object {
+                "display": Object {
+                  "lg": "none",
+                  "xs": "block",
+                },
+              }
+            }
+            xs={12}
+          >
+            <hr />
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            sm={3}
+            xs={12}
+          >
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle2"
+            >
+              Website
+            </ForwardRef(Typography)>
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle1"
+            >
+              www.fakeblog.com
+            </ForwardRef(Typography)>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            sx={
+              Object {
+                "display": Object {
+                  "lg": "none",
+                  "xs": "block",
+                },
+              }
+            }
+            xs={12}
+          >
+            <hr />
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            sm={3}
+            xs={12}
+          >
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle2"
+            >
+              Twitter
+            </ForwardRef(Typography)>
+            <ForwardRef(Typography)
+              component="h6"
+              variant="subtitle1"
+            >
+              test twitter
+            </ForwardRef(Typography)>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            sx={
+              Object {
+                "display": Object {
+                  "lg": "none",
+                  "xs": "block",
+                },
+              }
+            }
+            xs={12}
+          >
+            <hr />
+          </ForwardRef(Grid)>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+</ForwardRef(Grid)>
+`;

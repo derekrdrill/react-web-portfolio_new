@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
@@ -18,8 +18,8 @@ import bitmojiWaterCooler from '../../../assets/bitmoji_waterCooler.png';
 export const ConnectWithMe = ({ id }) => {
   const connectTypes = CONNECT_TYPES;
 
-  const { alertDispatch } = useContext(AlertContext);
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { alertDispatch } = React.useContext(AlertContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   const [form1, setForm1] = useState(formInputsGenerator(CONNECT_FORM_INPUTS[0].inputs));
   const [form2, setForm2] = useState(formInputsGenerator(CONNECT_FORM_INPUTS[1].inputs));
@@ -112,7 +112,7 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   },
 }));
 
-const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
+export const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
   padding: 50,
   borderTop: '2px solid transparent',
   borderImage: darkMode
@@ -121,29 +121,29 @@ const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
   borderImageSlice: 1,
 }));
 
-const ConnectTypeContainer = styled(Grid)({
+export const ConnectTypeContainer = styled(Grid)({
   transform: 'translateY(-10px)',
 });
 
-const TitleContainer = styled(Grid)({
+export const TitleContainer = styled(Grid)({
   paddingRight: '2%',
   display: 'block',
   textAlign: 'right',
 });
 
-const TitleText = styled(Typography)(({ darkMode }) => ({
+export const TitleText = styled(Typography)(({ darkMode }) => ({
   fontFamily: 'Shizuru',
   fontWeight: darkMode ? 'normal' : 'bold',
   color: darkMode ? 'beige' : '#759CC9',
   marginBottom: 10,
 }));
 
-const DescriptionText = styled(Typography)(({ darkMode }) => ({
+export const DescriptionText = styled(Typography)(({ darkMode }) => ({
   fontFamily: 'Kufam',
   color: darkMode ? 'beige' : '#759CC9',
 }));
 
-const StyledLink = styled.a(({ darkMode }) => ({
+export const StyledLink = styled.a(({ darkMode }) => ({
   svg: {
     width: 110,
     height: 150,
@@ -159,11 +159,11 @@ const StyledLink = styled.a(({ darkMode }) => ({
   },
 }));
 
-const DirectConnectContainer = styled(Grid)({
+export const DirectConnectContainer = styled(Grid)({
   padding: '2% 2% 0 2%',
 });
 
-const StyledBitmojiImage = styled.img({
+export const StyledBitmojiImage = styled.img({
   width: 225,
   height: 240,
   transform: 'translateY(-65px)',

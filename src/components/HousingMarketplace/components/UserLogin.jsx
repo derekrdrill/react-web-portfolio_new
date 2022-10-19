@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { history } from '../../../index';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Typography } from '@mui/material';
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 import { UserRegister } from './UserRegister';
 import { UserPasswordResetSend } from './UserPasswordResetSend';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';

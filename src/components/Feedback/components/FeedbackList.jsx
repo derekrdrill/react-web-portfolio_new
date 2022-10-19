@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FeedbackContext } from '../context/FeedbackContext';
 import { FeedbackItem } from './FeedbackItem';
 
 export const FeedbackList = () => {
-  const { feedbackItems } = useContext(FeedbackContext);
+  const { feedbackItems } = React.useContext(FeedbackContext);
 
   return (
     <>

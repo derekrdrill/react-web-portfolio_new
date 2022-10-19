@@ -1,14 +1,71 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import { shallow } from 'enzyme';
 
-import { ConnectWithMe } from '../components/ConnectWithMe';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+import {
+  ConnectWithMe,
+  ContactPageContainer,
+  DescriptionText,
+  StyledLink,
+  TitleText,
+} from '../components/ConnectWithMe';
+
+configure({ adapter: new Adapter() });
 
 const renderer = new ShallowRenderer();
 
 describe('Connect with me tests', () => {
+  let realUseContext;
+  let useContextMock;
+
+  beforeEach(() => {
+    realUseContext = React.useContext;
+    useContextMock = React.useContext = jest.fn();
+  });
+
+  afterEach(() => {
+    React.useContext = realUseContext;
+  });
+
   it('renders correctly', () => {
+    useContextMock.mockReturnValue({ darkMode: true, alertDispatch: jest.fn() });
     renderer.render(<ConnectWithMe />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
+  });
+
+  it('renders ContactPageContainer styled component correctly', () => {
+    const contactPageContainer = shallow(<ContactPageContainer />);
+    const contactPageContainerDark = shallow(<ContactPageContainer darkMode />);
+
+    expect(contactPageContainer.props().className).toEqual('sc-jSMfEi gYvDiJ');
+    expect(contactPageContainerDark.props().className).toEqual('sc-jSMfEi gFvBDK');
+  });
+
+  it('renders DescriptionText styled component correctly', () => {
+    const descriptionText = shallow(<DescriptionText />);
+    const descriptionTextDark = shallow(<DescriptionText darkMode />);
+
+    expect(descriptionText.props().className).toEqual('sc-papXJ beorre');
+    expect(descriptionTextDark.props().className).toEqual('sc-papXJ cepZxj');
+  });
+
+  it('renders StyledLink styled component correctly', () => {
+    const styledLink = shallow(<StyledLink />);
+    const styledLinkDark = shallow(<StyledLink darkMode />);
+
+    expect(styledLink.props().className).toEqual('sc-jqUVSM kSncwm');
+    expect(styledLinkDark.props().className).toEqual('sc-jqUVSM isuDUX');
+  });
+
+  it('renders TitleText styled component correctly', () => {
+    const titleText = shallow(<TitleText />);
+    const titleTextDark = shallow(<TitleText darkMode />);
+
+    expect(titleText.props().className).toEqual('sc-ftvSup jmqKvL');
+    expect(titleTextDark.props().className).toEqual('sc-ftvSup iKCcyY');
   });
 });

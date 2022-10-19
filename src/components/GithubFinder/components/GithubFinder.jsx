@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { GithubUsersContainer } from './GithubUsersContainer';
 import { GithubUserSearch } from './GithubUserSearch';
 import { GithubProvider } from '../context/GithubContext';

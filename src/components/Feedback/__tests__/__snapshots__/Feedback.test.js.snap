@@ -1,21 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Feedback tests renders correctly 1`] = `
-<Context.Provider
-  value={
-    Object {
-      "addFeedbackItem": [Function],
-      "deleteFeedbackItem": [Function],
-      "feedbackEdit": Object {
-        "edit": false,
-        "item": Object {},
-      },
-      "feedbackItems": Array [],
-      "setFeedbackEditItems": [Function],
-      "updateFeedbackItem": [Function],
-    }
-  }
->
-  <Feedback />
-</Context.Provider>
+<React.Fragment>
+  <Memo(l) />
+  <FeedbackProvider>
+    <styled.div>
+      <FeedbackForm
+        maxRank={10}
+      />
+      <FeedbackStats />
+      <FeedbackList />
+    </styled.div>
+  </FeedbackProvider>
+</React.Fragment>
 `;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Typography, Button, Grid } from '@mui/material';
 
-import { DynamicFormInputs } from '../../DynamicFormInputs/DynamicFormInputs';
+import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { addLeadInput } from '../context/LeadInputActions';

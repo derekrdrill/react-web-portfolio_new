@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Box, Button, Modal, Typography } from '@mui/material/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 import resume from '../../../assets/Resume_DRD.pdf';
 
 export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
     <Modal open={open} onClose={handleModalClose}>
@@ -46,7 +46,7 @@ export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
   );
 };
 
-const StyledBox = styled(Box)(({ darkMode }) => ({
+export const StyledBox = styled(Box)(({ darkMode }) => ({
   'h1, h2, h3, h4, h5, h6, p': { color: darkMode && '#c4c4c4' },
   backgroundColor: darkMode ? '#545454' : 'white',
   marginLeft: '25%',
@@ -66,10 +66,10 @@ export const ResumeOptionButtons = styled(Button)(({ cancelbutton }) => ({
   },
 }));
 
-const ResumeOptionsButtonIcon = styled(FontAwesomeIcon)({
+export const ResumeOptionsButtonIcon = styled(FontAwesomeIcon)({
   marginLeft: 5,
 });
 
-const StyledLink = styled.a({
+export const StyledLink = styled.a({
   textDecoration: 'none',
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicDataTable } from '../../DynamicDataTable/DynamicDataTable';
+import { DynamicDataTable } from '../../DynamicDataTable/components/DynamicDataTable';
 
 export const headers = [
   { headerID: 'firstName', headerName: 'First Name' },

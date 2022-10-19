@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 import { GithubContext } from '../context/GithubContext';
 import { getUserAndRepos } from '../context/GithubActions';
 
 export const GithubUserItem = ({ user: { login, avatar_url } }) => {
-  const { githubDispatch } = useContext(GithubContext);
+  const { githubDispatch } = React.useContext(GithubContext);
 
   const handleGetUser = async () => {
     githubDispatch({ type: 'SET_LOADING' });

@@ -1,57 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Homepage tests renders correctly 1`] = `
-<styled.div>
-  <Styled(Container)>
-    <Row>
-      <Col
-        className="my-5 py-4 my-lg-0 py-lg-0"
-        lg={
-          Object {
-            "order": "first",
-            "span": 8,
-          }
+<React.Fragment>
+  <Memo(l)
+    darkMode={true}
+  />
+  <Styled(Component)
+    container={true}
+    darkMode={true}
+    justifyContent={
+      Object {
+        "md": "flex-start",
+        "xs": "center",
+      }
+    }
+  >
+    <ForwardRef(Grid)
+      item={true}
+      md={9}
+      order={
+        Object {
+          "md": 1,
+          "xs": 2,
         }
-        sm={
+      }
+      xs={12}
+    >
+      <ForwardRef(Grid)
+        container={true}
+        justifyContent={
           Object {
-            "order": "last",
-            "span": 12,
+            "sm": "flex-start",
+            "xs": "center",
           }
         }
       >
-        <Row>
-          <Col
-            lg={9}
-            sm={12}
-          >
-            <styled.img
-              alt="qc-logo"
-              className="d-block d-lg-none"
-              src={
-                Object {
-                  "process": [Function],
-                }
-              }
-            />
-            <Styled(Component)
-              component="h1"
-              variant="h2"
-            >
-              Welcome from the Queen City
-            </Styled(Component)>
-          </Col>
-          <Col
-            className="d-none d-lg-block"
-            lg={
+        <ForwardRef(Grid)
+          item={true}
+          lg={6}
+          md={7}
+          sm={9}
+          xl={5}
+          xs={12}
+        >
+          <ForwardRef(Grid)
+            container={true}
+            display={
               Object {
-                "offset": 0,
-                "span": 3,
-              }
-            }
-            sm={
-              Object {
-                "offset": 4,
-                "span": 9,
+                "md": "none",
+                "xs": "block",
               }
             }
           >
@@ -63,46 +60,88 @@ exports[`Homepage tests renders correctly 1`] = `
                 }
               }
             />
-          </Col>
-        </Row>
-        <Styled(Component)
-          component="h1"
-          variant="h4"
-        >
-          I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater Charlotte Metro area
-        </Styled(Component)>
-        <Styled(Component)
-          component="h1"
-          variant="h6"
-        >
-          I strive to elegantly code user-friendly web apps that utilize ReactJS, Material UI and Styled-Components
-        </Styled(Component)>
-      </Col>
-      <Col
-        className="my-5 py-5 my-lg-0 py-lg-0"
-        lg={
-          Object {
-            "offset": 0,
-            "span": 4,
-          }
-        }
-        xs={
-          Object {
-            "offset": 3,
-            "span": 6,
-          }
-        }
-      >
-        <styled.img
-          alt="Me and George"
-          src={
+          </ForwardRef(Grid)>
+          <Styled(Component)
+            component="h1"
+            darkMode={true}
+            variant="h2"
+          >
+            Welcome from the Queen City
+          </Styled(Component)>
+        </ForwardRef(Grid)>
+        <ForwardRef(Grid)
+          display={
             Object {
-              "process": [Function],
+              "md": "block",
+              "xs": "none",
             }
           }
-        />
-      </Col>
-    </Row>
-  </Styled(Container)>
-</styled.div>
+          item={true}
+          lg={6}
+          md={5}
+          sm={9}
+          xl={7}
+        >
+          <styled.img
+            alt="qc-logo"
+            src={
+              Object {
+                "process": [Function],
+              }
+            }
+          />
+        </ForwardRef(Grid)>
+        <ForwardRef(Grid)
+          item={true}
+          justifyContent={
+            Object {
+              "sm": "flex-start",
+              "xs": "center",
+            }
+          }
+          xs={12}
+        >
+          <Styled(Component)
+            component="h1"
+            darkMode={true}
+            variant="h4"
+          >
+            I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater Charlotte Metro area
+          </Styled(Component)>
+          <Styled(Component)
+            component="h1"
+            darkMode={true}
+            variant="h6"
+          >
+            I strive to elegantly code user-friendly web apps that utilize React, Material UI and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end
+          </Styled(Component)>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+    <ForwardRef(Grid)
+      item={true}
+      md={3}
+      order={
+        Object {
+          "md": 2,
+          "xs": 1,
+        }
+      }
+      style={
+        Object {
+          "paddingBottom": 50,
+        }
+      }
+    >
+      <styled.img
+        alt="Me and George"
+        src={
+          Object {
+            "process": [Function],
+          }
+        }
+      />
+    </ForwardRef(Grid)>
+  </Styled(Component)>
+</React.Fragment>
 `;
