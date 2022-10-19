@@ -1,4 +1,4 @@
-import { userAuthenticationReducer } from '../../context/userAuthenticationReducer';
+import { userAuthenticationReducer } from '../../context/UserAuthenticationReducer';
 
 describe('userAuthenticationReducer tests', () => {
   it('handles userAuthenticationReducer', () => {
