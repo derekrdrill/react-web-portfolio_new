@@ -41,10 +41,10 @@ export const LeadInputPage = () => {
           </Tooltip>
         </ButtonContainer>
       </Grid>
-      <Grid container style={{ paddingTop: 75 }}>
+      <MainContainer container>
         {page === 'form' && <LeadInputForm />}
         {page === 'table' && <LeadInputDataTable />}
-      </Grid>
+      </MainContainer>
     </>
   );
 };
@@ -60,4 +60,8 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
 
 const ButtonContainer = styled(Grid)({
   textAlign: 'right',
+});
+
+export const MainContainer = styled(Grid)({
+  paddingTop: 75,
 });

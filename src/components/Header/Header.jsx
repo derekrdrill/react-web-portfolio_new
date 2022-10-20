@@ -1,18 +1,18 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { AppBar, Button, Grid, List, Toolbar } from '@mui/material';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
-import HeaderMenu from './components/HeaderMenu';
+import { HeaderMenu } from './components/HeaderMenu';
+import { HeaderImage } from './components/HeaderImage';
 import { MoreOptions } from './components/MoreOptions';
 import { LoaderSpinner } from '../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
 import { MORE_OPTIONS } from './constants/MORE_OPTIONS';
-import bitmojiThinking from '../../assets/bitmoji_thinking.png';
 import { history } from '../../index';
 
 export const Header = ({ children }) => {
@@ -31,79 +31,81 @@ export const Header = ({ children }) => {
     }, 1200);
   };
 
-  const DynamicHeaderImageWrapper = ({ condition, wrapper, children }) => (condition ? wrapper(children) : children);
-
-  const HeaderImage = () => (
-    <DynamicHeaderImageWrapper
-      condition={currentRoute === '/'}
-      wrapper={children => <ScrollLink to='home'>{children}</ScrollLink>}
-    >
-      <StyledHeaderImage src={bitmojiThinking} alt='home' onClick={currentRoute !== '/' ? homeClick : null} />
-    </DynamicHeaderImageWrapper>
-  );
   return (
     <div>
-      <AppBar
-        elevation={0}
-        style={{
-          backgroundColor: 'transparent',
-          // borderBottom: '1px solid linear-gradient(to right, royalblue, skyblue)',
-        }}
-        // style={{
-        //   borderBottom: darkMode
-        //     ? 'linear-gradient(to right, royalblue, skyblue)'
-        //     : 'linear-gradient(to right, darkblue, teal)',
-        // }}
-      >
-        <Grid container style={{ height: 80 }}>
-          <Grid item xs={12} style={{ display: 'block', zIndex: 5 }}>
-            <HeaderToolBar
-              darkMode={darkMode}
-              // style={{
-              //   borderBottom: '5px solid transparent',
-              //   // borderImage: 'linear-gradient(0.25turn, rgba(255,249,34), rgba(255,0,128), rgba(56,2,155,0))',
-              //   borderImage: 'linear-gradient(0.25turn, rgba(100, 72, 254, 1), royalblue, skyblue)',
-              //   borderImageSlice: 1,
-              //   width: '100%',
-              // }}
-            >
+      <TransparentAppBar elevation={0}>
+        <HeaderMainContainer container>
+          <HeaderToolBarContainer item xs={12}>
+            <HeaderToolBar darkMode={darkMode}>
               <Grid container justifyContent='space-between'>
-                <HeaderImage />
-                <Grid display={{ xs: 'none', md: 'block' }} item style={{ paddingTop: 20 }}>
-                  <HeaderMenu headerType={currentRoute === '/' ? 'main' : 'secondary'} menuType='main' />
-                </Grid>
-                <Grid display={{ xs: 'block', md: 'none' }} item style={{ paddingTop: 20 }}>
-                  <Button
-                    endIcon={smallMenuIsOpen ? <CancelPresentationIcon /> : <KeyboardDoubleArrowDownIcon />}
-                    onClick={() => {
-                      setSmallMenuIsOpen(!smallMenuIsOpen);
-                    }}
-                    style={{ color: darkMode ? 'grey' : 'slategray' }}
+                <HeaderImage currentRoute={currentRoute} homeClick={homeClick}>
+                  {children}
+                </HeaderImage>
+                <HeaderMenuContainer item display={{ xs: 'none', md: 'block' }}>
+                  <HeaderMenu
+                    headerType={currentRoute === '/' ? 'main' : 'secondary'}
+                    menuType='main'
+                  />
+                </HeaderMenuContainer>
+                <HeaderMenuSmallContainer item display={{ xs: 'block', md: 'none' }}>
+                  <HeaderMenuSmallButton
+                    darkMode={darkMode}
+                    endIcon={
+                      smallMenuIsOpen ? <CancelPresentationIcon /> : <KeyboardDoubleArrowDownIcon />
+                    }
+                    onClick={
+                      /* istanbul ignore next */
+                      () => {
+                        setSmallMenuIsOpen(!smallMenuIsOpen);
+                      }
+                    }
                   >
                     {`${smallMenuIsOpen ? 'Close' : 'Open'} page list`}
-                  </Button>
-                </Grid>
-                <Grid item style={{ paddingTop: 10 }}>
+                  </HeaderMenuSmallButton>
+                </HeaderMenuSmallContainer>
+                <MoreOptionsContainer item>
                   <MoreOptions moreOptions={MORE_OPTIONS} />
-                </Grid>
+                </MoreOptionsContainer>
               </Grid>
             </HeaderToolBar>
-            {/* <PageDivider darkMode={darkMode} /> */}
-          </Grid>
+          </HeaderToolBarContainer>
           <HeaderMenuListItem darkMode={darkMode} item smallMenuIsOpen={smallMenuIsOpen} xs={12}>
             <List>
-              <HeaderMenu headerType={currentRoute === '/' ? 'main' : 'secondary'} menuType='list' />
+              <HeaderMenu
+                headerType={currentRoute === '/' ? 'main' : 'secondary'}
+                menuType='list'
+              />
             </List>
           </HeaderMenuListItem>
-        </Grid>
-      </AppBar>
+        </HeaderMainContainer>
+      </TransparentAppBar>
       <StyledChildContainer>{children}</StyledChildContainer>
       <LoaderSpinner open={loading} />
     </div>
   );
 };
 
-const HeaderMenuListItem = styled(Grid)(({ darkMode, smallMenuIsOpen }) => ({
+Header.propTypes = {
+  children: PropTypes.node,
+};
+
+export const HeaderMainContainer = styled(Grid)({
+  height: 80,
+});
+
+export const HeaderMenuContainer = styled(Grid)({
+  paddingTop: 20,
+});
+
+export const HeaderMenuSmallButton = styled(Button)(({ darkMode }) => ({
+  color: darkMode ? 'grey' : 'slategray',
+}));
+
+export const HeaderMenuSmallContainer = styled(Grid)({
+  paddingTop: 20,
+});
+
+export const HeaderMenuListItem = styled(Grid)(({ darkMode, smallMenuIsOpen }) => ({
   backgroundColor: darkMode ? '#616161' : 'beige',
   boxShadow: '0 4px 2px -2px darkgray',
   transform: smallMenuIsOpen ? 'translateY(0)' : 'translateY(-150%)',
@@ -116,28 +118,24 @@ const HeaderMenuListItem = styled(Grid)(({ darkMode, smallMenuIsOpen }) => ({
   },
 }));
 
-const PageDivider = styled.hr(({ darkMode }) => ({
-  background: darkMode ? 'linear-gradient(to right, royalblue, skyblue)' : 'linear-gradient(to right, darkblue, teal)',
-  margin: 0,
-  minHeight: 5,
-  padding: 0,
-}));
-
-const HeaderToolBar = styled(Toolbar)(({ darkMode }) => ({
+export const HeaderToolBar = styled(Toolbar)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#030200' : 'whitesmoke',
   height: 80,
 }));
 
-const StyledHeaderImage = styled.img({
-  height: 65,
-  top: 10,
-  left: 10,
-  cursor: 'pointer',
-  ':hover': {
-    opacity: 0.8,
-  },
+export const HeaderToolBarContainer = styled(Grid)({
+  display: 'block',
+  zIndex: 5,
 });
 
-const StyledChildContainer = styled.div({
+export const MoreOptionsContainer = styled(Grid)({
+  paddingTop: 10,
+});
+
+export const StyledChildContainer = styled.div({
   marginTop: 80,
+});
+
+export const TransparentAppBar = styled(AppBar)({
+  backgroundColor: 'transparent',
 });

@@ -41,10 +41,13 @@ export const BasicModal = ({
             <Button
               color='info'
               fullWidth
-              onClick={() => {
-                handleSubmit();
-                handleClose();
-              }}
+              onClick={
+                /* istanbul ignore next */
+                () => {
+                  handleSubmit();
+                  handleClose();
+                }
+              }
               variant={buttonVariant ?? 'contained'}
             >
               {submitButtonText ?? 'Submit'}

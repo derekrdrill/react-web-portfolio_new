@@ -48,7 +48,6 @@ const FileQuickViewContainer = styled(Container)({
 
 const FileQuickViewToolbar = styled(Row)({
   backgroundColor: 'gainsboro',
-  position: '-webkit-sticky',
   position: 'sticky',
   top: 0,
   zIndex: 1,

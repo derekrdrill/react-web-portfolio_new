@@ -37,11 +37,7 @@ export const GithubUserProfileMiddle = () => {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <FontAwesomeIcon
-                color='lightgrey'
-                icon={item.icon}
-                style={{ height: '1.5em', width: '1.5em' }}
-              />
+              <FontAwesomeIcon color='lightgrey' icon={item.icon} />
             </Grid>
           </Grid>
         </MiddleSectionItem>
@@ -54,4 +50,9 @@ export const MiddleSectionItem = styled(Grid)({
   borderRadius: 10,
   boxShadow: '2px 1px 10px #121326',
   padding: 15,
+});
+
+export const MiddleSectionItemIcon = styled(FontAwesomeIcon)({
+  height: '1.5em',
+  width: '1.5em',
 });

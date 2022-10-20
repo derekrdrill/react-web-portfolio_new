@@ -70,7 +70,10 @@ export const FormInput = ({ input, form, setForm, value }) => {
           multiline={input.multiline}
           minRows={input.minRows}
           maxRows={input.maxRows}
-          onChange={e => handleInputChange(e, setForm)}
+          onChange={
+            /* istanbul ignore next */
+            e => handleInputChange(e, setForm)
+          }
           value={value}
           size={input.size || 'medium'}
           type={getTextFieldType(passwordHidden, input.type)}

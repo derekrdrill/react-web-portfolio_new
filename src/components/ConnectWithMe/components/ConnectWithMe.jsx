@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
 
@@ -29,10 +30,13 @@ export const ConnectWithMe = ({ id }) => {
     const { message } = form2;
 
     if (firstName && lastName && email && message) {
-      const response = await fetch(`../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }).catch(e => console.warn(e));
+      const response = await fetch(
+        `../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`,
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        },
+      ).catch(e => console.warn(e));
 
       if (response.ok) {
         const messageData = await response.json();
@@ -57,10 +61,10 @@ export const ConnectWithMe = ({ id }) => {
       <ContactPageContainer id={id} darkMode={darkMode} container>
         <TitleContainer item xs={12}>
           <TitleText darkMode={darkMode} variant='h3' component='h2'>
-            LET'S CONNECT
+            {`LET'S CONNECT`}
           </TitleText>
           <DescriptionText darkMode={darkMode} variant='h6' component='p'>
-            Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!
+            {`Fire up an email, check out my LinkedIn, see this project in Github or send me a message right here!`}
           </DescriptionText>
         </TitleContainer>
         <ConnectTypeContainer item xs={12} lg={4}>
@@ -79,10 +83,18 @@ export const ConnectWithMe = ({ id }) => {
         <DirectConnectContainer item xs={12} lg={8}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={5}>
-              <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[0].inputs} form={form1} setForm={setForm1} />
+              <DynamicFormInputs
+                inputs={CONNECT_FORM_INPUTS[0].inputs}
+                form={form1}
+                setForm={setForm1}
+              />
             </Grid>
             <Grid item xs={12} lg={7}>
-              <DynamicFormInputs inputs={CONNECT_FORM_INPUTS[1].inputs} form={form2} setForm={setForm2} />
+              <DynamicFormInputs
+                inputs={CONNECT_FORM_INPUTS[1].inputs}
+                form={form2}
+                setForm={setForm2}
+              />
             </Grid>
           </Grid>
           <Grid container justifyContent='space-between'>
@@ -104,6 +116,10 @@ export const ConnectWithMe = ({ id }) => {
       </ContactPageContainer>
     </>
   );
+};
+
+ConnectWithMe.propTypes = {
+  id: PropTypes.string,
 };
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({

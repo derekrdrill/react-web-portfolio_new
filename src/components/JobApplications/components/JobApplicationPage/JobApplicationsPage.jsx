@@ -2,21 +2,10 @@ import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 
-import { BasicJobApplication } from '../BasicJobApplication/BasicJobApplication';
-import { AdvancedJobApplication } from '../AdvancedJobApplication/AdvancedJobApplication';
-import { MultiPageJobApplication } from '../MultiPageJobApplication/MultiPageJobApplication';
+import { JobApplicationType } from './components/JobApplicationType';
 import { LoaderSpinner } from '../../../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../../../DarkLightMode/context/DarkLightModeContext';
-
-export const JobApplicationType = ({ appType }) =>
-  appType === 'basic' ? (
-    <BasicJobApplication />
-  ) : appType === 'advanced' ? (
-    <AdvancedJobApplication />
-  ) : (
-    <MultiPageJobApplication />
-  );
 
 export const JobApplicationsPage = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
@@ -76,7 +65,6 @@ export const JobApplicationsSelectRow = styled(Grid)(({ darkMode }) => ({
   backgroundColor: darkMode ? 'grey' : 'whitesmoke',
   borderTop: darkMode ? 'none' : '1px dashed #759CC9',
   padding: '20px 5px',
-  position: '-webkit-sticky',
   position: 'sticky',
   top: 80,
   zIndex: 2,

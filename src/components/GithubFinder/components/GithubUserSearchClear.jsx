@@ -3,19 +3,16 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 
-export const GithubUserSearchClear = ({
-  githubDispatch,
-  handleClearUsers,
-  searchInput,
-  setText,
-  text,
-}) =>
+export const GithubUserSearchClear = ({ githubDispatch, handleClearUsers, searchInput, setText, text }) =>
   text && (
     <ClearSearch
       className='search'
-      onClick={() => {
-        handleClearUsers(githubDispatch, searchInput, setText);
-      }}
+      onClick={
+        /* istanbul ignore next */
+        () => {
+          handleClearUsers(githubDispatch, searchInput, setText);
+        }
+      }
     />
   );
 

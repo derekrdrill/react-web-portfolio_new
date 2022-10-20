@@ -30,7 +30,10 @@ export const UserPasswordResetSend = () => {
           disabled={!form.email}
           color='info'
           fullWidth
-          onClick={() => handleSendResetEmail(form.email, alertDispatch, userAuthenticationDispatch)}
+          onClick={
+            /* istanbul ignore next */
+            () => handleSendResetEmail(form.email, alertDispatch, userAuthenticationDispatch)
+          }
           variant='contained'
         >
           Send Reset Email
@@ -38,7 +41,7 @@ export const UserPasswordResetSend = () => {
       </ButtonContainer>
     </>
   );
-};;;
+};
 
 const ResetEmailText = styled(Typography)(({ darkMode }) => ({
   margin: '10px 0',

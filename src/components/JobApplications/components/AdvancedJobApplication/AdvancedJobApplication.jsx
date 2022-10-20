@@ -35,7 +35,7 @@ export const AdvancedJobApplication = () => {
           </Typography>
         </JobAppInstructionsContainer>
       </JobAppHeaderContainer>
-      <div style={{ borderRight: '1px dashed black', borderLeft: '1px dashed black' }}>
+      <JobApplicationSectionContainer>
         {ADVANCED_JOB_APP_INPUTS.map(section => (
           <JobApplicationSection key={section.id} section={section} />
         ))}
@@ -48,7 +48,7 @@ export const AdvancedJobApplication = () => {
             </Link>
           </JobAppSubmitButtonContainer>
         </Grid>
-      </div>
+      </JobApplicationSectionContainer>
     </JobAppContainer>
   );
 };
@@ -59,6 +59,11 @@ export const JobAppContainer = styled(Grid)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#5c5c5c' : '#F5F5F5',
   boxShadow: '5px 3px 3px grey',
 }));
+
+export const JobApplicationSectionContainer = styled.div({
+  borderRight: '1px dashed black',
+  borderLeft: '1px dashed black',
+});
 
 export const JobAppTitleContainer = styled(Grid)({
   padding: '30px 0',

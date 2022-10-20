@@ -31,6 +31,7 @@ Card.propTypes = {
   darkMode: PropTypes.bool,
   hoverBackgroundcolor: PropTypes.string,
   hoverable: PropTypes.bool,
+  onClick: PropTypes.func,
   padding: PropTypes.bool,
   hasSpacing: PropTypes.bool,
   textColor: PropTypes.string,

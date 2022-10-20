@@ -61,15 +61,24 @@ export const MultiPageJobApplication = () => {
       <ApplicationProgressBar page={page} maxPage={maxPage} progress={progress} />
       <ApplicationBreadcrumb
         breadcrumbs={ADVANCED_JOB_APP_INPUTS}
-        breadcrumbClick={e => setPageByBreadcrumb(e, maxPage, page, setPage, setProgress)}
+        breadcrumbClick={
+          /* istanbul ignore next */
+          e => setPageByBreadcrumb(e, maxPage, page, setPage, setProgress)
+        }
         endCrumb={'Review'}
         maxPage={maxPage}
         page={page}
         separator={'|'}
       />
       <ApplicationButtons
-        goBackward={() => goBackward(maxPage, page, setPage, setProgress)}
-        goForward={() => goForward(maxPage, page, setPage, setProgress)}
+        goBackward={
+          /* istanbul ignore next */
+          () => goBackward(maxPage, page, setPage, setProgress)
+        }
+        goForward={
+          /* istanbul ignore next */
+          () => goForward(maxPage, page, setPage, setProgress)
+        }
         inputs={ADVANCED_JOB_APP_INPUTS}
         maxPage={maxPage}
         page={page}
@@ -78,9 +87,15 @@ export const MultiPageJobApplication = () => {
         inputs={ADVANCED_JOB_APP_INPUTS}
         page={page}
         maxPage={maxPage}
-        goForward={() => goForward(maxPage, page, setPage, setProgress)}
+        goForward={
+          /* istanbul ignore next */
+          () => goForward(maxPage, page, setPage, setProgress)
+        }
         editMode={editMode}
-        toggleEditMode={() => toggleEditMode(editMode, setEditMode)}
+        toggleEditMode={
+          /* istanbul ignore next */
+          () => toggleEditMode(editMode, setEditMode)
+        }
       />
     </div>
   );

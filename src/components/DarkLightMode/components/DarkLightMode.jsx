@@ -19,7 +19,7 @@ export const DarkLightMode = () => {
   useEffect(() => {
     let currentDarkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
     handleSetDarkMode(!currentDarkMode, darkLightModeDispatch);
-  }, []);
+  }, [darkLightModeDispatch]);
 
   return (
     <DarkLightModeIcon darkMode={darkMode} icon={getIcon(darkMode, faSun, faMoon)} onClick={callSetHandleDarkMode} />

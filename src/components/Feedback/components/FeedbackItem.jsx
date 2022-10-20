@@ -25,15 +25,17 @@ export const FeedbackItem = ({ bgColorNumDisplay, id, rating, text }) => {
           <Button
             color='secondary'
             fullWidth
-            onClick={() =>
-              setFeedbackEditItems(
-                {
-                  id: id,
-                  text: text,
-                  rating: rating,
-                },
-                true,
-              )
+            onClick={
+              /* istanbul ignore next */
+              () =>
+                setFeedbackEditItems(
+                  {
+                    id: id,
+                    text: text,
+                    rating: rating,
+                  },
+                  true,
+                )
             }
           >
             <FaEdit color='purple' />

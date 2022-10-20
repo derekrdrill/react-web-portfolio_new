@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Typography, List, ListItem } from '@mui/material';
@@ -9,8 +10,6 @@ import { ABOUT_ME_TEXT } from '../constants/ABOUT_ME_TEXT';
 import bitmojiChillinWithBirds from '../../../assets/bitmoji_chillinWithBirds1.png';
 
 export const AboutMe = ({ id }) => {
-  // test change
-
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
@@ -36,12 +35,12 @@ export const AboutMe = ({ id }) => {
             <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
               {ABOUT_ME_TEXT[2].text}
             </AboutMeText>
-            <List style={{ color: 'white' }}>
+            <AboutMeList>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[3].text}</AboutMeListItem>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[4].text}</AboutMeListItem>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[5].text}</AboutMeListItem>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[6].text}</AboutMeListItem>
-            </List>
+            </AboutMeList>
             <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
               {ABOUT_ME_TEXT[7].text}
             </AboutMeText>
@@ -59,6 +58,10 @@ export const AboutMe = ({ id }) => {
       </AboutMeContainer>
     </>
   );
+};
+
+AboutMe.propTypes = {
+  id: PropTypes.string,
 };
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
@@ -102,6 +105,10 @@ export const AboutMeText = styled(Typography)(({ darkMode }) => ({
   color: darkMode ? 'gainsboro' : '#333333',
   marginBottom: 15,
 }));
+
+export const AboutMeList = styled(List)({
+  color: '#FFFFFF',
+});
 
 export const AboutMeListItem = styled(ListItem)(({ darkMode }) => ({
   fontFamily: 'Kufam',

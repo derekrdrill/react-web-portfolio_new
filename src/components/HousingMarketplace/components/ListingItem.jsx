@@ -98,9 +98,12 @@ export const ListingItem = ({ listing, profile }) => {
         xs={12}
         md={6}
         lg={4}
-        onClick={() => {
-          goToListingItemPage(_id);
-        }}
+        onClick={
+          /* istanbul ignore next */
+          () => {
+            goToListingItemPage(_id);
+          }
+        }
       >
         <Grid container spacing={1}>
           <Grid item xs={4}>
@@ -148,20 +151,26 @@ export const ListingItem = ({ listing, profile }) => {
           {profile && (
             <Grid item xs={1}>
               <IconButton
-                onClick={e => {
-                  e.stopPropagation();
-                  toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, name, location);
-                }}
+                onClick={
+                  /* istanbul ignore next */
+                  e => {
+                    e.stopPropagation();
+                    toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, name, location);
+                  }
+                }
               >
                 <ListingDeleteIcon color={darkMode ? '#d10000' : 'red'} icon={faTrash} size='sm' />
               </IconButton>
               <br />
               <IconButton
-                onClick={e => {
-                  e.stopPropagation();
-                  localStorage.setItem('isEditing', 'true');
-                  history.push(`/housing-marketplace/update-listing/${_id}`);
-                }}
+                onClick={
+                  /* istanbul ignore next */
+                  e => {
+                    e.stopPropagation();
+                    localStorage.setItem('isEditing', 'true');
+                    history.push(`/housing-marketplace/update-listing/${_id}`);
+                  }
+                }
               >
                 <ListingEditIcon
                   color={darkMode ? '#a8a8a8' : '#8f8f8f'}

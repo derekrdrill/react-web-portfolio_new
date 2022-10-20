@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 
 import { GithubContext } from '../context/GithubContext';
@@ -13,8 +14,10 @@ export const GithubUserProfileBio = () => {
     <>
       N/A
       <span className='default-bio'>
-        'Creative, analytical and passionate React Developer with a demonstrated history of
-        delivering effective solutions.'
+        <Typography variant='body1'>
+          Creative, analytical and passionate React Developer with a demonstrated history of
+          delivering effective solutions.
+        </Typography>
       </span>
     </>
   );

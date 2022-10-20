@@ -1,57 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
+import { Project } from './Project';
+import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { PROJECTS } from '../constants/PROJECTS';
 import bitmojiLaptop from '../../../assets/bitmoji_laptop.png';
-import { history } from '../../../index';
-
-const Project = ({ darkMode, project, setLoading }) => {
-  const handleClick = to => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(null);
-      history.push(to);
-    }, 2500);
-  };
-
-  return (
-    <ProjectContentContainer darkMode={darkMode} item xs={12} md={11} lg={10} onClick={() => handleClick(project.to)}>
-      <Grid container>
-        <Grid item xs={12} sm={8} lg={9}>
-          <ProjectCardText darkMode={darkMode} variant='h6' component='h2'>
-            {project.title}
-          </ProjectCardText>
-          <ProjectCardText darkMode={darkMode} variant='subtitle2' component='p'>
-            {project.description}
-          </ProjectCardText>
-        </Grid>
-        <Grid item xs={12} sm={4} lg={3}>
-          <Grid container justifyContent={{ xs: 'center', sm: 'flex-end' }}>
-            <Grid item>
-              <StyledIcon darkMode={darkMode} icon={project.icon} />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </ProjectContentContainer>
-  );
-};
 
 export const Projects = ({ id }) => {
   const projectsTitle = 'P,R,O,J,E,C,T,S'.split(',');
 
-  const { darkMode } = useContext(DarkLightModeContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   const [loading, setLoading] = useState(false);
 
   return (
     <>
       <PageBodyStyle darkMode={darkMode} />
-      <ProjectsContainer darkMode={darkMode} id={id}>
+      <ProjectsContainer id={id} darkMode={darkMode}>
         <Grid container justifyContent='center'>
           <StyledBitmojiImage src={bitmojiLaptop} />
         </Grid>
@@ -92,6 +62,10 @@ export const Projects = ({ id }) => {
   );
 };
 
+Projects.propTypes = {
+  id: PropTypes.string,
+};
+
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {
     backgroundColor: darkMode ? '#030200' : 'whitesmoke',
@@ -107,51 +81,22 @@ const ProjectsContainer = styled.div(({ darkMode }) => ({
   borderImageSlice: 1,
 }));
 
-const TitleContainer = styled(Grid)({
-  padding: 10,
-});
-
 const ProjectsTitleText = styled(Typography)(({ darkMode }) => ({
   color: '#B39BD8',
   fontFamily: 'Shizuru',
   fontWeight: darkMode ? 'normal' : 'bold',
 }));
 
+const StyledBitmojiImage = styled.img({
+  height: 120,
+  width: 120,
+});
+
 const TextFont = styled(Typography)({
   color: '#B39BD8',
   fontFamily: 'Kufam',
 });
 
-const ProjectContentContainer = styled(Grid)(({ darkMode }) => ({
-  ':hover': {
-    backgroundColor: darkMode ? 'grey' : '#f0e5ff',
-    boxShadow: darkMode ? '5px 3px 3px gainsboro' : '5px 3px 3px violet',
-    '.MuiTypography-root': {
-      color: darkMode ? 'white' : '#a182ce',
-    },
-    svg: {
-      color: darkMode ? 'white' : '#9370c7',
-    },
-  },
-  backgroundColor: darkMode ? '#333333' : '#c3c3c3',
-  borderRadius: 10,
-  boxShadow: darkMode ? '5px 3px 3px violet' : '5px 3px 3px #a970ff',
-  cursor: 'pointer',
-  marginBottom: 25,
-  padding: 30,
-}));
-
-const ProjectCardText = styled(Typography)(({ darkMode }) => ({
-  color: darkMode ? 'beige' : '#a182ce',
-}));
-
-const StyledIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
-  color: darkMode ? 'beige' : '#9370c7',
-  height: 150,
-  width: 75,
-}));
-
-const StyledBitmojiImage = styled.img({
-  height: 120,
-  width: 120,
+const TitleContainer = styled(Grid)({
+  padding: 10,
 });

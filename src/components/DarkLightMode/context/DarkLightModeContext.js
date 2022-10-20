@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
 import { darkLightModeReducer } from './DarkLightModeReducer';
 
 export const DarkLightModeContext = createContext();
@@ -15,4 +16,8 @@ export const DarkLightModeProvider = ({ children }) => {
       {children}
     </DarkLightModeContext.Provider>
   );
+};
+
+DarkLightModeProvider.propTypes = {
+  children: PropTypes.node,
 };
