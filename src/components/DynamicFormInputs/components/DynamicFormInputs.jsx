@@ -16,6 +16,6 @@ export const DynamicFormInputs = ({ inputs, form, setForm }) => (
 
 DynamicFormInputs.propTypes = {
   inputs: PropTypes.array,
-  form: PropTypes.array,
+  form: PropTypes.object,
   setForm: PropTypes.func,
 };
