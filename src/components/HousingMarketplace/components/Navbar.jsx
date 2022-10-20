@@ -65,10 +65,7 @@ export default Navbar;
 
 const FooterBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#1c1c1c' : 'white',
-  overflow: 'hidden',
-  position: 'fixed',
-  bottom: 0,
-  top: '90%',
+  marginTop: '92.5vh',
 }));
 
 const FooterBarButton = styled(Button)(({ currentPage, page }) => [
