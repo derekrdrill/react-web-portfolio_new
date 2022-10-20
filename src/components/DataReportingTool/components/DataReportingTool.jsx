@@ -7,7 +7,7 @@ import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/fontawesome-f
 import { DynamicColumnsList } from '../components/DynamicColumnsList';
 import { MoveAllColumnsButton } from '../components/MoveAllColumnsButton';
 
-export const DataReportingTool = () => {
+const DataReportingTool = () => {
   const [dataSet, setDataSet] = useState('Select One');
   const [collections, setCollections] = useState([]);
   const [collectionKeys, setCollectionKeys] = useState([]);
@@ -54,9 +54,23 @@ export const DataReportingTool = () => {
     }
   };
 
-  useEffect(() => handleGetAllCollections(), []);
-  useEffect(() => handleGetCollectionKeys(), [dataSet, handleGetCollectionKeys]);
-  useEffect(() => setAvailableColumns(collectionKeys), [collectionKeys]);
+  useEffect(
+    /* istanbul ignore next */
+    () => handleGetAllCollections(),
+    [],
+  );
+
+  useEffect(
+    /* istanbul ignore next */
+    () => handleGetCollectionKeys(),
+    [dataSet, handleGetCollectionKeys],
+  );
+
+  useEffect(
+    /* istanbul ignore next */
+    () => setAvailableColumns(collectionKeys),
+    [collectionKeys],
+  );
 
   return (
     <div>
@@ -72,7 +86,10 @@ export const DataReportingTool = () => {
             <DataSetSelect
               label={dataSet}
               variant='standard'
-              onChange={e => setDataSet(e.target.value)}
+              onChange={
+                /* istanbul ignore next */
+                e => setDataSet(e.target.value)
+              }
               value={dataSet ?? ''}
             >
               {collections.map(collection => (
@@ -143,6 +160,8 @@ export const DataReportingTool = () => {
   );
 };
 
+export default DataReportingTool;
+
 const PageBodyStyle = createGlobalStyle({
   body: {
     backgroundColor: '#228881',
@@ -151,7 +170,6 @@ const PageBodyStyle = createGlobalStyle({
 
 const DataSetSelectContainer = styled(Grid)({
   backgroundColor: 'grey',
-  // position: '-webkit-sticky',
   position: 'sticky',
   top: 80,
   padding: '10px 0 15px 0',

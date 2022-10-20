@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
+
 import { FormInput } from './FormInput';
 
 export const DynamicFormInputs = ({ inputs, form, setForm }) => (
@@ -11,3 +13,9 @@ export const DynamicFormInputs = ({ inputs, form, setForm }) => (
     })}
   </Grid>
 );
+
+DynamicFormInputs.propTypes = {
+  inputs: PropTypes.array,
+  form: PropTypes.array,
+  setForm: PropTypes.func,
+};

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { history } from '../../../index';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppBar, Button, Grid, Toolbar } from '@mui/material';
@@ -8,7 +8,9 @@ import { faCompass, faTag, faUser } from '@fortawesome/fontawesome-free-solid';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
-export const Navbar = ({ children }) => {
+import { history } from '../../../index';
+
+const Navbar = ({ children }) => {
   const pathName = history.location.pathname;
   const currentPage = pathName.slice(pathName.indexOf('place/') + 6, pathName.length);
 
@@ -54,6 +56,12 @@ export const Navbar = ({ children }) => {
     </>
   );
 };
+
+Navbar.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Navbar;
 
 const FooterBar = styled(AppBar)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#1c1c1c' : 'white',

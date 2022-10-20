@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeSquare, faFile, faCode } from '@fortawesome/fontawesome-free-solid';
+import { faEnvelopeSquare, faFile } from '@fortawesome/fontawesome-free-solid';
 import { faGithubAlt, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 export const MORE_OPTIONS = [

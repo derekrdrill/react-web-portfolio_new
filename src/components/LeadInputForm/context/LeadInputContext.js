@@ -1,9 +1,11 @@
 import React, { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
+
 import { leadInputReducer } from './LeadInputReducer';
 
 export const LeadInputContext = createContext();
 
-export const LeadInputProvider = ({ children }) => {
+const LeadInputProvider = ({ children }) => {
   const initialState = {
     page: 'form',
     tooltipOpen: false,
@@ -11,5 +13,17 @@ export const LeadInputProvider = ({ children }) => {
 
   const [state, leadInputDispatch] = useReducer(leadInputReducer, initialState);
 
-  return <LeadInputContext.Provider value={{ leadInputDispatch, ...state }}>{children}</LeadInputContext.Provider>;
+  return (
+    <LeadInputContext.Provider value={{ leadInputDispatch, ...state }}>
+      {children}
+    </LeadInputContext.Provider>
+  );
 };
+
+LeadInputProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+export default LeadInputProvider;
+
+

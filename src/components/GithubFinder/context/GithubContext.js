@@ -1,4 +1,6 @@
 import React, { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
+
 import { githubReducer } from './GithubReducer';
 
 export const GithubContext = createContext();
@@ -23,4 +25,8 @@ export const GithubProvider = ({ children }) => {
       {children}
     </GithubContext.Provider>
   );
+};
+
+GithubProvider.propTypes = {
+  children: PropTypes.node,
 };

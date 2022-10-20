@@ -9,22 +9,32 @@ import { faSun, faMoon } from '@fortawesome/fontawesome-free-solid';
 
 export const getIcon = (darkMode, faSun, faMoon) => (darkMode ? faSun : faMoon);
 
-export const DarkLightMode = () => {
+const DarkLightMode = () => {
   const { darkMode, darkLightModeDispatch } = React.useContext(DarkLightModeContext);
 
   const callSetHandleDarkMode = () => {
     handleSetDarkMode(darkMode, darkLightModeDispatch);
   };
 
-  useEffect(() => {
-    let currentDarkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
-    handleSetDarkMode(!currentDarkMode, darkLightModeDispatch);
-  }, [darkLightModeDispatch]);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      let currentDarkMode = localStorage.getItem('darkMode') === 'true' ? true : false;
+      handleSetDarkMode(!currentDarkMode, darkLightModeDispatch);
+    },
+    [darkLightModeDispatch],
+  );
 
   return (
-    <DarkLightModeIcon darkMode={darkMode} icon={getIcon(darkMode, faSun, faMoon)} onClick={callSetHandleDarkMode} />
+    <DarkLightModeIcon
+      darkMode={darkMode}
+      icon={getIcon(darkMode, faSun, faMoon)}
+      onClick={callSetHandleDarkMode}
+    />
   );
 };
+
+export default DarkLightMode;
 
 export const DarkLightModeIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
   ':hover': {

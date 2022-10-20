@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FileViewer from 'react-file-viewer';
 import styled from 'styled-components';
 import { Button, Modal } from '@mui/material';
@@ -31,6 +32,14 @@ export const FileQuickView = ({ fileType, filePath, onlineLink, open, onClose })
     </FileQuickViewContainer>
   </Modal>
 );
+
+FileQuickView.propTypes = {
+  filePath: PropTypes.string,
+  fileType: PropTypes.string,
+  onClose: PropTypes.func,
+  onlineLink: PropTypes.string,
+  open: PropTypes.bool,
+};
 
 const FileQuickViewContainer = styled(Container)({
   height: '85%',

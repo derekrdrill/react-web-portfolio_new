@@ -11,11 +11,10 @@ import { Card } from '../../Card/Card';
 import { ListingItem } from './ListingItem';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
-import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { ListingsContext } from '../context/ListingsContext';
 
-export const Profile = () => {
+const Profile = () => {
   const token = sessionStorage.getItem('token');
   !token && history.push('/housing-marketplace/auth');
 
@@ -26,13 +25,12 @@ export const Profile = () => {
 
   localStorage.setItem('isEditing', 'false');
 
-  const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
-  const { deleteComplete, isDeleting, isConfirmingDelete, listingsDispatch } = useContext(ListingsContext);
+  const { deleteComplete, isDeleting } = useContext(ListingsContext);
 
   const [listings, setListings] = useState([]);
 
-  const getUserListings = async () => {
+  const getUserListings = React.useCallback(async () => {
     const response = await axios
       .get(`../../get-listing-info-by-user/${username}`, {
         headers: { 'Content-Type': 'application/json' },
@@ -44,17 +42,25 @@ export const Profile = () => {
       const listings = data.listings;
       setListings(listings);
     }
-  };
+  }, [username]);
 
-  useEffect(() => {
-    getUserListings();
-  }, []);
-
-  useEffect(() => {
-    if (deleteComplete && !isDeleting) {
+  useEffect(
+    /* istanbul ignore next */
+    () => {
       getUserListings();
-    }
-  }, [deleteComplete, isDeleting]);
+    },
+    [getUserListings],
+  );
+
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      if (deleteComplete && !isDeleting) {
+        getUserListings();
+      }
+    },
+    [deleteComplete, getUserListings, isDeleting],
+  );
 
   return (
     <>
@@ -98,7 +104,12 @@ export const Profile = () => {
         <Grid container>
           <Grid item xs={12} md={3} xl={2}>
             <SellOrRentLink to='./create-listing'>
-              <Card backgroundColor='gainsboro' hoverable hoverBackgroundcolor='lightgrey' spacing={false}>
+              <Card
+                backgroundColor='gainsboro'
+                hoverable
+                hoverBackgroundcolor='lightgrey'
+                spacing={false}
+              >
                 <SellOrRentContainer>
                   <HouseIcon />
                   <Typography component='span' variant='subtitle1'>
@@ -126,6 +137,8 @@ export const Profile = () => {
     </>
   );
 };
+
+export default Profile;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

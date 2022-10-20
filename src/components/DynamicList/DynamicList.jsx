@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,6 +64,15 @@ export const DynamicList = ({ addColor, children, maxRows, minRows, removeColor,
       ))}
     </Grid>
   );
+};
+
+DynamicList.propTypes = {
+  addColor: PropTypes.string,
+  children: PropTypes.node,
+  maxRows: PropTypes.number,
+  minRows: PropTypes.number,
+  removeColor: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export const DynamicListTitle = styled(Typography)({

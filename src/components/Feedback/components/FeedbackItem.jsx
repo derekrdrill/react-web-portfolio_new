@@ -55,7 +55,10 @@ export const FeedbackItem = ({ bgColorNumDisplay, id, rating, text }) => {
       <BasicModal
         cancelButtonText='I changed my mind'
         handleClose={handleModalClose}
-        handleSubmit={() => deleteFeedbackItem(id)}
+        handleSubmit={
+          /* istanbul ignore next */
+          () => deleteFeedbackItem(id)
+        }
         open={modalOpen}
         submitButtonText='Yes, delete it'
       >

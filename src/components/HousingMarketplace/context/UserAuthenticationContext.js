@@ -1,9 +1,11 @@
 import React, { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
+
 import { userAuthenticationReducer } from './UserAuthenticationReducer';
 
 export const UserAuthenticationContext = createContext();
 
-export const UserAuthenticationProvider = ({ children }) => {
+const UserAuthenticationProvider = ({ children }) => {
   const initialState = {
     signedIn: false,
     isRegistering: false,
@@ -24,3 +26,9 @@ export const UserAuthenticationProvider = ({ children }) => {
     </UserAuthenticationContext.Provider>
   );
 };
+
+UserAuthenticationProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+export default UserAuthenticationProvider;

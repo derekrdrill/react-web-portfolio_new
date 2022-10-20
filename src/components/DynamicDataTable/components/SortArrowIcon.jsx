@@ -13,4 +13,8 @@ export const SortArrowIcon = ({ headerID, sortColumn, sortType }) =>
     ) : null
   ) : null;
 
-SortArrowIcon.propTypes = {};
+SortArrowIcon.propTypes = {
+  headerID: PropTypes.string,
+  sortColumn: PropTypes.string,
+  sortType: PropTypes.string,
+};

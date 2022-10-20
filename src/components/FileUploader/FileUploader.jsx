@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-export const FileUploader = () => {
+const FileUploader = () => {
   const [files, setFiles] = useState([]);
 
   const onChange = e => {
@@ -44,3 +43,5 @@ export const FileUploader = () => {
     </div>
   );
 };
+
+export default FileUploader;

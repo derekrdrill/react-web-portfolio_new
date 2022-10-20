@@ -7,4 +7,6 @@ import SearchOffIcon from '@mui/icons-material/SearchOff';
 export const SearchButtonIcon = ({ filtersDisplay }) =>
   filtersDisplay ? <SearchOffIcon className='search-off' /> : <SearchIcon className='search-on' />;
 
-SearchButtonIcon.propTypes = {};
+SearchButtonIcon.propTypes = {
+  filtersDisplay: PropTypes.bool,
+};

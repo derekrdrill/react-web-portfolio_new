@@ -16,7 +16,7 @@ import { CONNECT_TYPES } from '../constants/CONNECT_TYPES';
 import { CONNECT_FORM_INPUTS } from '../constants/CONNECT_FORM_INPUTS';
 import bitmojiWaterCooler from '../../../assets/bitmoji_waterCooler.png';
 
-export const ConnectWithMe = ({ id }) => {
+const ConnectWithMe = ({ id }) => {
   const connectTypes = CONNECT_TYPES;
 
   const { alertDispatch } = React.useContext(AlertContext);
@@ -121,6 +121,8 @@ export const ConnectWithMe = ({ id }) => {
 ConnectWithMe.propTypes = {
   id: PropTypes.string,
 };
+
+export default ConnectWithMe;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

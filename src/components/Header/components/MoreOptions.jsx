@@ -8,7 +8,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 import { Option } from './Option';
 import { MoreOptionsModal } from './MoreOptionsModal';
 
-import { DarkLightMode } from '../../DarkLightMode/components/DarkLightMode';
+import DarkLightMode from '../../DarkLightMode/components/DarkLightMode';
 import { FileQuickView } from '../../FileQuickView/FileQuickView';
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 

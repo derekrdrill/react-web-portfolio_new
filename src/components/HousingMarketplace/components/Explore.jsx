@@ -14,7 +14,7 @@ import sellCategoryImg from '../../../assets/sellCategoryImage.jpeg';
 
 import { history } from '../../../index';
 
-export const Explore = () => {
+const Explore = () => {
   const token = sessionStorage.getItem('token');
 
   const { darkMode } = useContext(DarkLightModeContext);
@@ -36,10 +36,14 @@ export const Explore = () => {
     }
   };
 
-  useEffect(() => {
-    fetchListings();
-    setLoading(false);
-  }, []);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      fetchListings();
+      setLoading(false);
+    },
+    [],
+  );
 
   return (
     <>
@@ -139,6 +143,8 @@ export const Explore = () => {
     </>
   );
 };
+
+export default Explore;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

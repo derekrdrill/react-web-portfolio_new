@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Typography, Modal } from '@mui/material';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -62,6 +63,18 @@ export const MessageModal = ({
       </ModalContainer>
     </Modal>
   );
+};
+
+MessageModal.propTypes = {
+  body: PropTypes.string,
+  cancelButtonColor: PropTypes.string,
+  cancelButtonText: PropTypes.string,
+  confirmButtonColor: PropTypes.string,
+  confirmButtonText: PropTypes.string,
+  onClose: PropTypes.func,
+  onSubmit: PropTypes.func,
+  open: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export const ModalContainer = styled(Container)(({ darkMode }) => ({

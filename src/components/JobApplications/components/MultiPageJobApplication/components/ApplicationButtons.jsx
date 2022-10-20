@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 
-import { DarkLightModeContext } from '../../../../DarkLightMode/context/DarkLightModeContext';
-
 import { ApplicationBackButton } from './ApplicationBackButton';
 import { ApplicationForwardButton } from './ApplicationForwardButton';
 

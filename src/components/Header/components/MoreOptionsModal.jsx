@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Button, Modal, Typography } from '@mui/material/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,6 +45,12 @@ export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
       </StyledBox>
     </Modal>
   );
+};
+
+MoreOptionsModal.propTypes = {
+  handleModalClose: PropTypes.func,
+  open: PropTypes.bool,
+  quickViewOpen: PropTypes.func,
 };
 
 export const StyledBox = styled(Box)(({ darkMode }) => ({

@@ -5,7 +5,7 @@ import { GithubUserSearch } from './GithubUserSearch';
 import { GithubProvider } from '../context/GithubContext';
 import { AlertProvider } from '../../Alert/context/AlertContext';
 
-export const GithubFinder = () => (
+const GithubFinder = () => (
   <GithubProvider>
     <AlertProvider>
       <PageStyle />
@@ -15,6 +15,7 @@ export const GithubFinder = () => (
   </GithubProvider>
 );
   
+export default GithubFinder;
 
 const PageStyle = createGlobalStyle({
   body: {

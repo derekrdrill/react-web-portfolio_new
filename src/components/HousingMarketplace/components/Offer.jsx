@@ -8,7 +8,7 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
-export const Offer = () => {
+const Offer = () => {
   const token = sessionStorage.getItem('token');
   !token && history.push('./auth');
 
@@ -29,10 +29,14 @@ export const Offer = () => {
     }
   };
 
-  useEffect(() => {
-    fetchListings();
-    setLoading(false);
-  }, []);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      fetchListings();
+      setLoading(false);
+    },
+    [],
+  );
 
   return (
     <>
@@ -58,6 +62,8 @@ export const Offer = () => {
     </>
   );
 };
+
+export default Offer;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

@@ -9,22 +9,26 @@ export const ToDo = () => {
 
   const isMounted = useRef(true);
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(res => res.json())
-      .then(data => {
-        if (isMounted.current) {
-          setTimeout(() => {
-            setToDo(data);
-            setLoading(false);
-          }, 3000);
-        }
-      });
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(res => res.json())
+        .then(data => {
+          if (isMounted.current) {
+            setTimeout(() => {
+              setToDo(data);
+              setLoading(false);
+            }, 3000);
+          }
+        });
 
-    return () => {
-      isMounted.current = false;
-    };
-  }, [isMounted]);
+      return () => {
+        isMounted.current = false;
+      };
+    },
+    [isMounted],
+  );
 
   return (
     <Typography variant='h6' component='h6'>

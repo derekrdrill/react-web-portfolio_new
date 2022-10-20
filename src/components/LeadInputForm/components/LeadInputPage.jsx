@@ -8,7 +8,7 @@ import { LeadInputDataTable } from './LeadInputDataTable';
 import { LeadInputContext } from '../context/LeadInputContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
-export const LeadInputPage = () => {
+const LeadInputPage = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
   const { leadInputDispatch, page, tooltipOpen } = React.useContext(LeadInputContext);
 
@@ -48,6 +48,8 @@ export const LeadInputPage = () => {
     </>
   );
 };
+
+export default LeadInputPage;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

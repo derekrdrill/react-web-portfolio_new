@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 import styled from 'styled-components';
 import {
@@ -65,14 +66,14 @@ export const DynamicDataTable = ({
   const [sortColumn, setSortColumn] = useState(null);
   const [sortType, setSortType] = useState(null);
 
-  const handleGetDataRowsAPICall = () => {
+  const handleGetDataRowsAPICall = React.useCallback(() => {
     fetch(getDataRowsAPICall)
       .then(response => response.json())
       .then(json => {
         setDataRows(json);
         setDataRowsKeys(Object.keys(json[0]));
       });
-  };
+  }, [getDataRowsAPICall]);
 
   const handleDeleteDataRowsAPICall = deleteRowID => {
     fetch(`${deleteDataRowsAPICall}/${deleteRowID}`, {
@@ -234,7 +235,11 @@ export const DynamicDataTable = ({
     }, 1000);
   };
 
-  useEffect(() => handleGetDataRowsAPICall(), []);
+  useEffect(
+    /* istanbul ignore next */
+    () => handleGetDataRowsAPICall(),
+    [handleGetDataRowsAPICall],
+  );
 
   return (
     <TableHolder>
@@ -387,6 +392,22 @@ export const DynamicDataTable = ({
       <LoaderSpinner open={loading} />
     </TableHolder>
   );
+};
+
+DynamicDataTable.propTypes = {
+  checkAllColor: PropTypes.string,
+  checkOneColor: PropTypes.string,
+  getDataRowsAPICall: PropTypes.func,
+  deleteDataRowsAPICall: PropTypes.func,
+  deleteDataRowNameItems: PropTypes.func,
+  deleteSelectedButtonColor: PropTypes.string,
+  editDataRowsAPICall: PropTypes.func,
+  headers: PropTypes.array,
+  selectedRowColor: PropTypes.string,
+  selectedRowFontColor: PropTypes.string,
+  size: PropTypes.string,
+  stickyHeader: PropTypes.bool,
+  tableBodyColor: PropTypes.string,
 };
 
 export const TableHolder = styled.div({

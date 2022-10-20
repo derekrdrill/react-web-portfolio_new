@@ -1,9 +1,11 @@
 import React, { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
+
 import { listingsReducer } from './ListingsReducer';
 
 export const ListingsContext = createContext();
 
-export const ListingsProvider = ({ children }) => {
+const ListingsProvider = ({ children }) => {
   const initialState = {
     isConfirmingDelete: false,
     isDeleting: false,
@@ -26,3 +28,9 @@ export const ListingsProvider = ({ children }) => {
     </ListingsContext.Provider>
   );
 };
+
+ListingsProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+export default ListingsProvider;

@@ -11,7 +11,7 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 import { PROJECTS } from '../constants/PROJECTS';
 import bitmojiLaptop from '../../../assets/bitmoji_laptop.png';
 
-export const Projects = ({ id }) => {
+const Projects = ({ id }) => {
   const projectsTitle = 'P,R,O,J,E,C,T,S'.split(',');
 
   const { darkMode } = React.useContext(DarkLightModeContext);
@@ -65,6 +65,8 @@ export const Projects = ({ id }) => {
 Projects.propTypes = {
   id: PropTypes.string,
 };
+
+export default Projects;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

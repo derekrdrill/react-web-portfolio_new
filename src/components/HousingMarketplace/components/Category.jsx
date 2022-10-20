@@ -8,7 +8,7 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
-export const Category = () => {
+const Category = () => {
   const pathName = history.location.pathname;
   const listingType = pathName.slice(-4, pathName.length);
 
@@ -17,7 +17,7 @@ export const Category = () => {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchListings = async () => {
+  const fetchListings = React.useCallback(async () => {
     const response = await fetch(`../../get-listings/${listingType}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -27,12 +27,16 @@ export const Category = () => {
       const { listings } = await response.json();
       setListings(listings);
     }
-  };
+  }, [listingType]);
 
-  useEffect(() => {
-    fetchListings();
-    setLoading(false);
-  }, []);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      fetchListings();
+      setLoading(false);
+    },
+    [fetchListings],
+  );
 
   return (
     <>
@@ -58,6 +62,8 @@ export const Category = () => {
     </>
   );
 };
+
+export default Category;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

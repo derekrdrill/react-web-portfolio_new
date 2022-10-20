@@ -7,7 +7,7 @@ import { LoaderSpinner } from '../../../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../../../DarkLightMode/context/DarkLightModeContext';
 
-export const JobApplicationsPage = () => {
+const JobApplicationsPage = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   const [appType, setAppType] = useState('basic');
@@ -54,6 +54,8 @@ export const JobApplicationsPage = () => {
     </>
   );
 };
+
+export default JobApplicationsPage;
 
 export const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {
