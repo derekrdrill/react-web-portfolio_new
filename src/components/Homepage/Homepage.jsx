@@ -12,7 +12,7 @@ import qcLogoWhite from '../../assets/crown-white.png';
 export const getQCLogo = (darkMode, qcLogoWhite, qcLogoBlue) =>
   darkMode ? qcLogoWhite : qcLogoBlue;
 
-export const Homepage = ({ id }) => {
+const Homepage = ({ id }) => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
@@ -60,6 +60,8 @@ export const Homepage = ({ id }) => {
 Homepage.propTypes = {
   id: PropTypes.string,
 };
+
+export default Homepage;
 
 export const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

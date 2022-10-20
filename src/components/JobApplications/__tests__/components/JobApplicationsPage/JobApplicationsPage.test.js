@@ -5,8 +5,7 @@ import { shallow } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-import {
-  JobApplicationsPage,
+import JobApplicationsPage, {
   JobApplicationSelectLabelText,
   JobApplicationsSelectRow,
 } from '../../../components/JobApplicationPage/JobApplicationsPage';
@@ -34,22 +33,6 @@ describe('Job Applications Page tests', () => {
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
-
-  // it('renders type of job app type correctly', () => {
-  //   const jobAppTypeTests = [
-  //     { appType: 'basic', result: 'BasicJobApplication()' },
-  //     { appType: 'advanced', result: 'AdvancedJobApplication()' },
-  //     { appType: 'multi', result: 'MultiPageJobApplication()' },
-  //   ];
-
-  //   jobAppTypeTests.forEach(({ appType, result }) => {
-  //     renderer.render(<JobApplicationType appType={appType} />);
-  //     const render = renderer.getRenderOutput();
-  //     const renderedAppType = render.type.toString();
-
-  //     expect(renderedAppType).toContain(result);
-  //   });
-  // });
 
   it('renders JobApplicationSelectLabelText styled component correctly', () => {
     const jobApplicationSelectLabelText = shallow(<JobApplicationSelectLabelText />);

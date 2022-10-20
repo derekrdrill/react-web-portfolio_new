@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 import { Modal } from '@mui/material';
 import { Container, Row, Col } from 'react-bootstrap';
+
 import bitmojiLoading from '../../assets/bitmoji_loading.png';
 
 export const LoaderSpinner = ({ open }) => (
@@ -17,6 +19,10 @@ export const LoaderSpinner = ({ open }) => (
     </Container>
   </Modal>
 );
+
+LoaderSpinner.propTypes = {
+  open: PropTypes.bool,
+};
 
 const spinning = keyframes({
   from: { transform: 'rotate(0deg)' },

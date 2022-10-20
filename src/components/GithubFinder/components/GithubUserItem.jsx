@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
+
 import { GithubContext } from '../context/GithubContext';
+
 import { getUserAndRepos } from '../context/GithubActions';
 
 export const GithubUserItem = ({ user: { login, avatar_url } }) => {
@@ -29,6 +32,10 @@ export const GithubUserItem = ({ user: { login, avatar_url } }) => {
       </div>
     </UserItemContainer>
   );
+};
+
+GithubUserItem.propTypes = {
+  user: PropTypes.object,
 };
 
 const UserItemContainer = styled.div({

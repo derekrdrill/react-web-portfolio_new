@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { UserAuthenticationProvider } from '../../context/UserAuthenticationContext';
+import UserAuthenticationProvider from '../../context/UserAuthenticationContext';
 
 const renderer = new ShallowRenderer();
 

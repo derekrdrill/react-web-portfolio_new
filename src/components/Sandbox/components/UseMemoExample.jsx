@@ -16,7 +16,7 @@ export const UseMemoExample = () => {
 
     // console.log('Expensive function called');
     return Math.sqrt(number);
-  };;
+  };
 
   const sqRt = useMemo(() => getSqRt(number), [number]);
 
@@ -27,9 +27,12 @@ export const UseMemoExample = () => {
     });
   };
 
-  useEffect(() => {
-    renders.current = renders.current + 1;
-  });
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      renders.current = renders.current + 1;
+    },
+  );
 
   return (
     <div>

@@ -44,12 +44,16 @@ export const FeedbackForm = ({ maxRank }) => {
     setReview('');
   };
 
-  useEffect(() => {
-    if (feedbackEdit.edit) {
-      setReview(feedbackEdit.item.text);
-      setRating(feedbackEdit.item.rating);
-    }
-  }, [feedbackEdit]);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      if (feedbackEdit.edit) {
+        setReview(feedbackEdit.item.text);
+        setRating(feedbackEdit.item.rating);
+      }
+    },
+    [feedbackEdit],
+  );
 
   return (
     <Card>

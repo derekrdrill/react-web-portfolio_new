@@ -1,10 +1,17 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
-import { history } from '../../../index';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Grid, IconButton, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBath, faBed, faParking, faPaw, faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
+import {
+  faBath,
+  faBed,
+  faParking,
+  faPaw,
+  faPencilAlt,
+  faTrash,
+} from '@fortawesome/fontawesome-free-solid';
 
 import { BasicModal as Modal } from '../../Modals/BasicModal';
 
@@ -13,6 +20,8 @@ import { AlertContext } from '../../Alert/context/AlertContext';
 import { ListingsContext } from '../context/ListingsContext';
 
 import { handleAlert } from '../../Alert/context/AlertActions';
+
+import { history } from '../../../index';
 
 export const goToListingItemPage = id => {
   history.push(`/housing-marketplace/listing/${id}`);
@@ -71,7 +80,8 @@ export const ListingItem = ({ listing, profile }) => {
 
   const { darkMode } = useContext(DarkLightModeContext);
   const { alertDispatch } = useContext(AlertContext);
-  const { isConfirmingDelete, listingsDispatch, modalLocation, modalName } = useContext(ListingsContext);
+  const { isConfirmingDelete, listingsDispatch, modalLocation, modalName } =
+    useContext(ListingsContext);
 
   const {
     _id,
@@ -88,7 +98,9 @@ export const ListingItem = ({ listing, profile }) => {
     type,
   } = listing;
 
-  const price = (offer ? discountedPrice : regularPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const price = (offer ? discountedPrice : regularPrice)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   return (
     <>
@@ -186,12 +198,18 @@ export const ListingItem = ({ listing, profile }) => {
       <Modal
         backdropOpacity={0.6}
         buttonVariant={darkMode ? 'contained' : 'outlined'}
-        handleClose={() => {
-          toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, '', '');
-        }}
-        handleSubmit={() => {
-          deleteListingItem(_id, alertDispatch, listingsDispatch);
-        }}
+        handleClose={
+          /* istanbul ignore next */
+          () => {
+            toggleIsConfirmingDelete(isConfirmingDelete, listingsDispatch, '', '');
+          }
+        }
+        handleSubmit={
+          /* istanbul ignore next */
+          () => {
+            deleteListingItem(_id, alertDispatch, listingsDispatch);
+          }
+        }
         open={isConfirmingDelete}
       >
         <Grid container>
@@ -210,6 +228,11 @@ export const ListingItem = ({ listing, profile }) => {
       </Modal>
     </>
   );
+};
+
+ListingItem.propTypes = {
+  listing: PropTypes.object,
+  profile: PropTypes.object,
 };
 
 const LisitingItemContainer = styled(Grid)(({ darkMode }) => ({

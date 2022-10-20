@@ -102,10 +102,14 @@ export const LowesChallenge = () => {
 
   const handleSetModalClose = () => setModalOpen(false);
 
-  useEffect(() => {
-    setUpdateName(updateRow[0].name || '');
-    setUpdateAge(updateRow[0].age || 0);
-  }, [updateRow]);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      setUpdateName(updateRow[0].name || '');
+      setUpdateAge(updateRow[0].age || 0);
+    },
+    [updateRow],
+  );
 
   return (
     <div>

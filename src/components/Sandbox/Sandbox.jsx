@@ -8,11 +8,13 @@ import styled from 'styled-components';
 // import { CustomHookExample1 } from './components/CustomHookExample1';
 import { CustomHookExample2 } from './components/CustomHookExample2';
 
-export const Sandbox = () => (
+const Sandbox = () => (
   <SandboxContainer>
     <CustomHookExample2 />
   </SandboxContainer>
 );
+
+export default Sandbox;
 
 export const SandboxContainer = styled.div({
   padding: 20,

@@ -28,7 +28,7 @@ const inputs = [
   },
 ];
 
-export const ListingInfo = () => {
+const ListingInfo = () => {
   const pathName = history.location.pathname;
   const listingID = pathName.slice(pathName.indexOf('listing/') + 8, pathName.length);
 
@@ -40,13 +40,16 @@ export const ListingInfo = () => {
 
   const [form, setForm] = useState(formInputsGenerator(inputs));
 
-  const discountedPrice = listingInfo.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? '';
+  const discountedPrice =
+    listingInfo.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? '';
   const discount =
-    (listingInfo.regularPrice - listingInfo.discountedPrice)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? 0;
+    (listingInfo.regularPrice - listingInfo.discountedPrice)
+      ?.toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? 0;
 
   const toggleContactModalOpen = () => setContactModalOpen(!contactModalOpen);
 
-  const getListingInfo = async () => {
+  const getListingInfo = React.useCallback(async () => {
     const response =
       listingInfo &&
       (await axios
@@ -62,9 +65,9 @@ export const ListingInfo = () => {
 
       setListingInfo(listingData);
     }
-  };
+  }, [listingID, listingInfo]);
 
-  const getContactInfo = async () => {
+  const getContactInfo = React.useCallback(async () => {
     const response = await axios
       .get(`../../get-contact-info/${listingInfo.userID}`, {
         headers: {
@@ -76,17 +79,25 @@ export const ListingInfo = () => {
     if (response.status === 200) {
       setContactInfo(response.data.userData);
     }
-  };
-
-  useEffect(() => {
-    getListingInfo();
-  }, []);
-
-  useEffect(() => {
-    if (listingInfo.userID) {
-      getContactInfo();
-    }
   }, [listingInfo]);
+
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      getListingInfo();
+    },
+    [getListingInfo],
+  );
+
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      if (listingInfo.userID) {
+        getContactInfo();
+      }
+    },
+    [getContactInfo, listingInfo],
+  );
 
   return (
     <>
@@ -119,7 +130,8 @@ export const ListingInfo = () => {
                 {
                   breakpoint: 1575,
                   settings: {
-                    slidesToShow: listingInfo.imageUrls.length < 3 ? listingInfo.imageUrls.length : 3,
+                    slidesToShow:
+                      listingInfo.imageUrls.length < 3 ? listingInfo.imageUrls.length : 3,
                   },
                 },
                 {
@@ -127,13 +139,15 @@ export const ListingInfo = () => {
                   settings: {
                     centerMode: listingInfo.imageUrls.length > 2 ? true : false,
                     centerPadding: 100,
-                    slidesToShow: listingInfo.imageUrls.length < 2 ? listingInfo.imageUrls.length : 2,
+                    slidesToShow:
+                      listingInfo.imageUrls.length < 2 ? listingInfo.imageUrls.length : 2,
                   },
                 },
                 {
                   breakpoint: 945,
                   settings: {
-                    slidesToShow: listingInfo.imageUrls.length < 2 ? listingInfo.imageUrls.length : 2,
+                    slidesToShow:
+                      listingInfo.imageUrls.length < 2 ? listingInfo.imageUrls.length : 2,
                   },
                 },
                 {
@@ -214,10 +228,18 @@ export const ListingInfo = () => {
               defaultZoom={13}
               options={{
                 minZoom: 9,
-                styles: [{ stylers: [{ saturation: darkMode ? 70 : 40 }, { gamma: darkMode ? 0.8 : 0.5 }] }],
+                styles: [
+                  {
+                    stylers: [{ saturation: darkMode ? 70 : 40 }, { gamma: darkMode ? 0.8 : 0.5 }],
+                  },
+                ],
               }}
             >
-              <MapLocationIcon color='primary' lat={listingInfo.latitude} lng={listingInfo.longitude}>
+              <MapLocationIcon
+                color='primary'
+                lat={listingInfo.latitude}
+                lng={listingInfo.longitude}
+              >
                 <LocationOnIcon />
               </MapLocationIcon>
             </GoogleMapReact>
@@ -230,6 +252,8 @@ export const ListingInfo = () => {
     </>
   );
 };
+
+export default ListingInfo;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

@@ -60,7 +60,11 @@ export const DynamicColumnsList = ({ columns, initialList = false, buttonClick }
   </ColumnsListContainer>
 );
 
-DynamicColumnsList.propTypes = {};
+DynamicColumnsList.propTypes = {
+  buttonClick: PropTypes.func,
+  columns: PropTypes.array,
+  initialList: PropTypes.bool,
+};
 
 const ColumnsListContainer = styled.div({
   height: 250,

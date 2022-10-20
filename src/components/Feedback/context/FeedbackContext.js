@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const FeedbackContext = createContext();
 
@@ -67,7 +68,10 @@ export const FeedbackProvider = ({ children }) => {
       setFeedbackItems(
         feedbackItems.map(feedbackItem =>
           feedbackItem._id === feedbackDataId
-            ? Object.assign({}, feedbackItem, { rating: feedbackData.rating, text: feedbackData.text })
+            ? Object.assign({}, feedbackItem, {
+                rating: feedbackData.rating,
+                text: feedbackData.text,
+              })
             : feedbackItem,
         ),
       );
@@ -78,7 +82,11 @@ export const FeedbackProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => getFeedbackItems(), []);
+  useEffect(
+    /* istanbul ignore next */
+    () => getFeedbackItems(),
+    [],
+  );
 
   return (
     <FeedbackContext.Provider
@@ -94,4 +102,8 @@ export const FeedbackProvider = ({ children }) => {
       {children}
     </FeedbackContext.Provider>
   );
+};
+
+FeedbackProvider.propTypes = {
+  children: PropTypes.node,
 };

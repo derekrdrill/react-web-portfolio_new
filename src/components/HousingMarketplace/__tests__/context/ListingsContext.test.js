@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { ListingsProvider } from '../../context/ListingsContext';
+import ListingsProvider from '../../context/ListingsContext';
 
 const renderer = new ShallowRenderer();
 

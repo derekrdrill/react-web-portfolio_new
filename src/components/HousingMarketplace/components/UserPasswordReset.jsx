@@ -31,7 +31,7 @@ const inputs = [
   },
 ];
 
-export const UserPasswordReset = () => {
+const UserPasswordReset = () => {
   const pathName = history.location.pathname;
   const token = pathName.slice(pathName.indexOf('/token=') + 7, pathName.length);
 
@@ -83,9 +83,13 @@ export const UserPasswordReset = () => {
     }
   }, [token]);
 
-  useEffect(() => {
-    checkForUserAndToken();
-  }, [checkForUserAndToken]);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      checkForUserAndToken();
+    },
+    [checkForUserAndToken],
+  );
 
   return (
     <>
@@ -93,7 +97,8 @@ export const UserPasswordReset = () => {
       <UserPasswordResetContainer>
         {passwordIsReset ? (
           <Typography paragraph>
-            Your password has been reset successfully. Click <a href='/housing-marketplace/auth'>here</a> to sign in
+            Your password has been reset successfully. Click{' '}
+            <a href='/housing-marketplace/auth'>here</a> to sign in
           </Typography>
         ) : userFound ? (
           <>
@@ -124,6 +129,8 @@ export const UserPasswordReset = () => {
     </>
   );
 };
+
+export default UserPasswordReset;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

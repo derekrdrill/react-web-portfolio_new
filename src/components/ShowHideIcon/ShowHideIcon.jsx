@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { EyeIcon } from './components/EyeIcon';
 
 export const ShowHideIcon = ({ onClick }) => {
@@ -8,12 +10,19 @@ export const ShowHideIcon = ({ onClick }) => {
   return (
     <EyeIcon
       locked={locked}
-      onClick={() => {
-        handleSetLocked();
-        onClick && onClick();
-      }}
+      onClick={
+        /* istanbul ignore next */
+        () => {
+          handleSetLocked();
+          onClick && onClick();
+        }
+      }
     />
   );
+};
+
+ShowHideIcon.propTypes = {
+  onClick: PropTypes.func,
 };
 
 

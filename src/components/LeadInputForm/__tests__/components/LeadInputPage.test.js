@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { LeadInputPage } from '../../components/LeadInputPage';
+import LeadInputPage from '../../components/LeadInputPage';
 
 const renderer = new ShallowRenderer();
 

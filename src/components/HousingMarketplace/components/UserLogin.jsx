@@ -15,8 +15,9 @@ import { formInputsGenerator } from '../../../utils/formInputsGenerator';
 
 import { USER_LOGIN_INPUTS } from '../constants/USER_LOGIN_INPUTS';
 
-export const UserLogin = () => {
-  const { isRegistering, forgotPassword, userAuthenticationDispatch } = useContext(UserAuthenticationContext);
+const UserLogin = () => {
+  const { isRegistering, forgotPassword, userAuthenticationDispatch } =
+    useContext(UserAuthenticationContext);
   const { alertDispatch } = useContext(AlertContext);
   const { darkMode } = useContext(DarkLightModeContext);
 
@@ -63,7 +64,9 @@ export const UserLogin = () => {
   return (
     <>
       <PageBodyStyle darkMode={darkMode} />
-      {(isRegistering || forgotPassword) && <Button onClick={handleBackToSignIn}>Back to sign in</Button>}
+      {(isRegistering || forgotPassword) && (
+        <Button onClick={handleBackToSignIn}>Back to sign in</Button>
+      )}
       <UserLoginContainer isRegistering={isRegistering}>
         {isRegistering ? (
           <UserRegister />
@@ -101,6 +104,8 @@ export const UserLogin = () => {
     </>
   );
 };
+
+export default UserLogin;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

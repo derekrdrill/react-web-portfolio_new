@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-import { DarkLightMode, DarkLightModeIcon } from '../components/DarkLightMode';
+import DarkLightMode, { DarkLightModeIcon } from '../components/DarkLightMode';
 import { getIcon } from '../components/DarkLightMode';
 
 import { faSun, faMoon } from '@fortawesome/fontawesome-free-solid';

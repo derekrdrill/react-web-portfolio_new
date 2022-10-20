@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Button, TextField } from '@mui/material';
-import { FaTimes } from 'react-icons/fa';
 
 import { AlertContext } from '../../Alert/context/AlertContext';
 import { GithubContext } from '../context/GithubContext';
@@ -64,9 +63,12 @@ export const GithubUserSearch = () => {
         <SearchInput
           fullWidth
           label='Type a user name'
-          onChange={e => {
-            handleChange(e, githubDispatch, handleClearUsers, searchInput, setText);
-          }}
+          onChange={
+            /* istanbul ignore next */
+            e => {
+              handleChange(e, githubDispatch, handleClearUsers, searchInput, setText);
+            }
+          }
           inputRef={searchInput}
           value={text}
           variant='outlined'
@@ -130,14 +132,4 @@ const SearchInput = styled(TextField)({
 const SearchButton = styled(Button)({
   borderRadius: 0,
   transform: 'translateX(-15px)',
-});
-
-const ClearSearch = styled(FaTimes)({
-  ':hover': {
-    fill: '#cb1515',
-  },
-  cursor: 'pointer',
-  fill: '#4e0909',
-  marginTop: 20,
-  transform: 'translateX(-25px)',
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { LinearProgress, Grid, Typography } from '@mui/material';
 
@@ -21,6 +22,11 @@ export const ProgressBar = ({ progress, percentageDecimals }) => {
       </ProgressPercentageContainer>
     </StyledProgressBarContainer>
   );
+};
+
+ProgressBar.propTypes = {
+  percentageDecimals: PropTypes.number,
+  progress: PropTypes.number,
 };
 
 const StyledProgressBarContainer = styled(Grid)({

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import styled from 'styled-components';
@@ -37,6 +38,15 @@ export const HeaderMenuOptions = ({
       {menuIcon}
     </StyledRouterLink>
   );
+};
+
+HeaderMenuOptions.propTypes = {
+  menuTitle: PropTypes.string,
+  menuIcon: PropTypes.node,
+  mainTo: PropTypes.string,
+  secondaryTo: PropTypes.string,
+  headerType: PropTypes.string,
+  menuType: PropTypes.string,
 };
 
 // TODO: revisit condensing the two types of links with css instead of styled components

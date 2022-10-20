@@ -5,7 +5,7 @@ import { FeedbackStats } from './components/FeebackStats';
 import { FeedbackForm } from './components/FeedbackForm';
 import { FeedbackProvider } from './context/FeedbackContext';
 
-export const Feedback = () => (
+const Feedback = () => (
   <>
     <PageBodyStyle />
     <FeedbackProvider>
@@ -17,6 +17,8 @@ export const Feedback = () => (
     </FeedbackProvider>
   </>
 );
+
+export default Feedback;
 
 const PageBodyStyle = createGlobalStyle({
   body: {

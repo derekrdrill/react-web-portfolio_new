@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Modal } from '@mui/material';
 
@@ -57,6 +58,18 @@ export const BasicModal = ({
       </ModalContainer>
     </Modal>
   );
+};
+
+BasicModal.propTypes = {
+  backdropOpacity: PropTypes.number,
+  buttonVariant: PropTypes.string,
+  cancelButtonText: PropTypes.string,
+  children: PropTypes.node,
+  handleClose: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  hideBackdrop: PropTypes.bool,
+  open: PropTypes.bool,
+  submitButtonText: PropTypes.string,
 };
 
 export const ActionButtonsContainer = styled.div({

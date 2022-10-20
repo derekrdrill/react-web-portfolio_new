@@ -87,7 +87,23 @@ export const TableBodyComponent = ({
   );
 };
 
-TableBody.propTypes = {};
+TableBodyComponent.propTypes = {
+  checkOneColor: PropTypes.string,
+  checkedRows: PropTypes.array,
+  darkMode: PropTypes.bool,
+  dataRows: PropTypes.array,
+  editingID: PropTypes.string,
+  filterColumn: PropTypes.string,
+  filterValue: PropTypes.string,
+  handleCheckOneRow: PropTypes.func,
+  handleEditRow: PropTypes.func,
+  handleRowInputChange: PropTypes.func,
+  handleSaveEdits: PropTypes.func,
+  handleSetDeleteRow: PropTypes.func,
+  selectedRowColor: PropTypes.string,
+  selectedRowFontColor: PropTypes.string,
+  tableBodyColor: PropTypes.string,
+};
 
 export const EditRecordIcon = styled(IconButton)(({ darkMode }) => ({
   color: darkMode ? '#1a1a1a' : '#2B7494',

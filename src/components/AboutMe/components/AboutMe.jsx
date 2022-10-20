@@ -9,7 +9,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 import { ABOUT_ME_TEXT } from '../constants/ABOUT_ME_TEXT';
 import bitmojiChillinWithBirds from '../../../assets/bitmoji_chillinWithBirds1.png';
 
-export const AboutMe = ({ id }) => {
+const AboutMe = ({ id }) => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
@@ -63,6 +63,8 @@ export const AboutMe = ({ id }) => {
 AboutMe.propTypes = {
   id: PropTypes.string,
 };
+
+export default AboutMe;
 
 const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   body: {

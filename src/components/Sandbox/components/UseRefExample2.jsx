@@ -7,10 +7,14 @@ export const UseRefExample2 = () => {
   const prevText = useRef('');
   const handleSetInpuText = e => setInputText(e.currentTarget.value);
 
-  useEffect(() => {
-    renders.current = renders.current + 1;
-    prevText.current = inputText;
-  }, [inputText]);
+  useEffect(
+    /* istanbul ignore next */
+    () => {
+      renders.current = renders.current + 1;
+      prevText.current = inputText;
+    },
+    [inputText],
+  );
 
   return (
     <>
