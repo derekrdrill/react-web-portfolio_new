@@ -33,13 +33,8 @@ exports[`Lead Input Page tests renders correctly 1`] = `
       </ForwardRef(Tooltip)>
     </Styled(Component)>
   </ForwardRef(Grid)>
-  <ForwardRef(Grid)
+  <Styled(Component)
     container={true}
-    style={
-      Object {
-        "paddingTop": 75,
-      }
-    }
   />
 </React.Fragment>
 `;

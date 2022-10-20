@@ -1,13 +1,13 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { ShowHideIcon, EyeIcon } from './ShowHideIcon';
+import { EyeIcon } from '../../components/EyeIcon';
 
 const renderer = new ShallowRenderer();
 
-describe('Show Hide Icon tests', () => {
+describe('EyeIcon tests', () => {
   it('renders correctly', () => {
-    renderer.render(<ShowHideIcon />);
+    renderer.render(<EyeIcon />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
