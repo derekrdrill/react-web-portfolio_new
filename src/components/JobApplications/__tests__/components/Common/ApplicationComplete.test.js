@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { ApplicationComplete } from '../../../components/Common/ApplicationComplete';
+import ApplicationComplete from '../../../components/Common/ApplicationComplete';
 
 const renderer = new ShallowRenderer();
 

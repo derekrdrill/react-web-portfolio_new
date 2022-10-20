@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-import { Homepage, HomePageText } from './Homepage';
+import Homepage, { HomePageText } from './Homepage';
 import { getQCLogo } from './Homepage';
 
 import qcLogoBlue from '../../assets/crown-blue.png';

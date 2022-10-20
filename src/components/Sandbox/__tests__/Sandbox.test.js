@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { Sandbox } from '../Sandbox';
+import Sandbox from '../Sandbox';
 
 const renderer = new ShallowRenderer();
 

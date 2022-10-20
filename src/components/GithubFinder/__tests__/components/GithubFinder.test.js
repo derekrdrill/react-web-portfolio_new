@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { GithubFinder } from '../../components/GithubFinder';
+import GithubFinder from '../../components/GithubFinder';
 
 const renderer = new ShallowRenderer();
 

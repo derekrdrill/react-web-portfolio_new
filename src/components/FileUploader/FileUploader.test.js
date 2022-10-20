@@ -2,7 +2,7 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { FileUploader } from './FileUploader';
+import FileUploader from './FileUploader';
 
 const renderer = new ShallowRenderer();
 
