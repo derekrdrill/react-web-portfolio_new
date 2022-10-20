@@ -1,3 +1,0 @@
-{
-  "buildCommand": "yarn run jest && yarn run build"
-}
