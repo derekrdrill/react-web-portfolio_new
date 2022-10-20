@@ -1,10 +1,11 @@
 import React from 'react';
-import { Homepage } from './Homepage/Homepage';
-import { Projects } from './Projects/components/Projects';
-import { ConnectWithMe } from './ConnectWithMe/components/ConnectWithMe';
-import { AboutMe } from './AboutMe/components/AboutMe';
 
-export const App = () => (
+const AboutMe = React.lazy(() => import('./AboutMe/components/AboutMe'));
+const ConnectWithMe = React.lazy(() => import('./ConnectWithMe/components/ConnectWithMe'));
+const Homepage = React.lazy(() => import('./Homepage/Homepage'));
+const Projects = React.lazy(() => import('./Projects/components/Projects'));
+
+const App = () => (
   <div className='App'>
     <Homepage id='home' />
     <AboutMe id='about-me' />
@@ -12,3 +13,5 @@ export const App = () => (
     <ConnectWithMe id='connect-with-me' />
   </div>
 );
+
+export default App;

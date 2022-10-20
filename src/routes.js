@@ -1,31 +1,31 @@
 import React from 'react';
 
-import { App } from './components/App';
+const App = React.lazy(() => import('./components/App'));
 
-import { AboutMe } from './components/AboutMe/components/AboutMe';
-import { ApplicationComplete } from './components/JobApplications/components/Common/ApplicationComplete';
-import { JobApplicationsPage } from './components/JobApplications/components/JobApplicationPage/JobApplicationsPage';
-import { Category } from './components/HousingMarketplace/components/Category';
-import { ConnectWithMe } from './components/ConnectWithMe/components/ConnectWithMe';
-import { CreateListing } from './components/HousingMarketplace/components/CreateListing';
-import { DarkLightMode } from './components/DarkLightMode/components/DarkLightMode';
-import { DataReportingTool } from './components/DataReportingTool/components/DataReportingTool';
-import { Explore } from './components/HousingMarketplace/components/Explore';
-import { Feedback } from './components/Feedback/Feedback';
-import { FileUploader } from './components/FileUploader/FileUploader';
-import { GithubFinder } from './components/GithubFinder/components/GithubFinder';
-import { LeadInputPage } from './components/LeadInputForm/components/LeadInputPage';
-import { LeadInputProvider } from './components/LeadInputForm/context/LeadInputContext';
-import { ListingsProvider } from './components/HousingMarketplace/context/ListingsContext';
-import { ListingInfo } from './components/HousingMarketplace/components/ListingInfo';
-import { Navbar } from './components/HousingMarketplace/components/Navbar';
-import { Offer } from './components/HousingMarketplace/components/Offer';
-import { Profile } from './components/HousingMarketplace/components/Profile';
-import { Projects } from './components/Projects/components/Projects';
-import { Sandbox } from './components/Sandbox/Sandbox';
-import { UserAuthenticationProvider } from './components/HousingMarketplace/context/UserAuthenticationContext';
-import { UserLogin } from './components/HousingMarketplace/components/UserLogin';
-import { UserPasswordReset } from './components/HousingMarketplace/components/UserPasswordReset';
+const AboutMe = React.lazy(() => import('./components/AboutMe/components/AboutMe'));
+const ApplicationComplete = React.lazy(() => import('./components/JobApplications/components/Common/ApplicationComplete'));
+const Category = React.lazy(() => import('./components/HousingMarketplace/components/Category'));
+const ConnectWithMe = React.lazy(() => import('./components/ConnectWithMe/components/ConnectWithMe'));
+const CreateListing = React.lazy(() => import('./components/HousingMarketplace/components/CreateListing'));
+const DarkLightMode = React.lazy(() => import('./components/DarkLightMode/components/DarkLightMode'));
+const DataReportingTool = React.lazy(() => import('./components/DataReportingTool/components/DataReportingTool'));
+const Explore = React.lazy(() => import('./components/HousingMarketplace/components/Explore'));
+const Feedback = React.lazy(() => import('./components/Feedback/Feedback'));
+const FileUploader = React.lazy(() => import('./components/FileUploader/FileUploader'));
+const GithubFinder = React.lazy(() => import('./components/GithubFinder/components/GithubFinder'));
+const JobApplicationsPage = React.lazy(() => import('./components/JobApplications/components/JobApplicationPage/JobApplicationsPage'));
+const LeadInputPage = React.lazy(() => import('./components/LeadInputForm/components/LeadInputPage'));
+const LeadInputProvider = React.lazy(() => import('./components/LeadInputForm/context/LeadInputContext'));
+const ListingInfo = React.lazy(() => import('./components/HousingMarketplace/components/ListingInfo'));
+const ListingsProvider = React.lazy(() => import('./components/HousingMarketplace/context/ListingsContext'));
+const Navbar = React.lazy(() => import('./components/HousingMarketplace/components/Navbar'));
+const Offer = React.lazy(() => import('./components/HousingMarketplace/components/Offer'));
+const Profile = React.lazy(() => import('./components/HousingMarketplace/components/Profile'));
+const Projects = React.lazy(() => import('./components/Projects/components/Projects'));
+const Sandbox = React.lazy(() => import('./components/Sandbox/Sandbox'));
+const UserAuthenticationProvider = React.lazy(() => import('./components/HousingMarketplace/context/UserAuthenticationContext'));
+const UserLogin = React.lazy(() => import('./components/HousingMarketplace/components/UserLogin'));
+const UserPasswordReset = React.lazy(() => import('./components/HousingMarketplace/components/UserPasswordReset'));
 
 export const routes = [
   {
