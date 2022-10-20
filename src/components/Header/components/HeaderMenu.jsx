@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { HeaderMenuOptions } from './HeaderMenuOptions';
 import { HEADER_MENU_OPTIONS } from '../constants/HEADER_MENU_OPTIONS';
@@ -8,31 +9,30 @@ export const HeaderMenu = ({ headerType, menuType }) => (
   <HeaderMenuContainer>
     {menuType === 'list' ? (
       <>
-        {HEADER_MENU_OPTIONS.map(OPTION => (
-          <ListItem className='list-item' style={{ padding: 0, margin: 0 }}>
+        {HEADER_MENU_OPTIONS.map(menuOption => (
+          <HeaderListItem key={menuOption.id} className='list-item'>
             <HeaderMenuOptions
-              key={OPTION.id}
-              menuTitle={OPTION.menuTitle}
-              menuOptions={OPTION.menuOptions}
-              menuIcon={OPTION.menuIcon}
-              mainTo={OPTION.mainTo}
-              secondaryTo={OPTION.secondaryTo}
+              menuTitle={menuOption.menuTitle}
+              menuOptions={menuOption.menuOptions}
+              menuIcon={menuOption.menuIcon}
+              mainTo={menuOption.mainTo}
+              secondaryTo={menuOption.secondaryTo}
               headerType={headerType}
               menuType={menuType}
             />
-          </ListItem>
+          </HeaderListItem>
         ))}
       </>
     ) : (
       <>
-        {HEADER_MENU_OPTIONS.map(OPTION => (
+        {HEADER_MENU_OPTIONS.map(menuOption => (
           <HeaderMenuOptions
-            key={OPTION.id}
-            menuTitle={OPTION.menuTitle}
-            menuOptions={OPTION.menuOptions}
-            menuIcon={OPTION.menuIcon}
-            mainTo={OPTION.mainTo}
-            secondaryTo={OPTION.secondaryTo}
+            key={menuOption.id}
+            menuTitle={menuOption.menuTitle}
+            menuOptions={menuOption.menuOptions}
+            menuIcon={menuOption.menuIcon}
+            mainTo={menuOption.mainTo}
+            secondaryTo={menuOption.secondaryTo}
             headerType={headerType}
             menuType={menuType}
           />
@@ -41,8 +41,17 @@ export const HeaderMenu = ({ headerType, menuType }) => (
     )}
   </HeaderMenuContainer>
 );
-export default HeaderMenu;
 
-const HeaderMenuContainer = styled.div({
+HeaderMenu.propTypes = {
+  headerType: PropTypes.string,
+  menuType: PropTypes.string,
+};
+
+export const HeaderMenuContainer = styled.div({
   margin: '0 auto',
+});
+
+export const HeaderListItem = styled(ListItem)({
+  padding: 0,
+  margin: 0,
 });

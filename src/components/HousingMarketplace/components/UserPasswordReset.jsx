@@ -64,7 +64,7 @@ export const UserPasswordReset = () => {
     }
   };
 
-  const checkForUserAndToken = async () => {
+  const checkForUserAndToken = React.useCallback(async () => {
     const response = await fetch(`../../../../../../find-user-with-token/${token}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -79,14 +79,13 @@ export const UserPasswordReset = () => {
       if (!userFound) {
         alert('The password reset link you are trying to navigate to is dead 💀');
         history.push('/housing-marketplace/auth');
-      } else {
       }
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     checkForUserAndToken();
-  }, []);
+  }, [checkForUserAndToken]);
 
   return (
     <>

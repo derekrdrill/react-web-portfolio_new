@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import {
   TableContainer,
   Table,
-  TableBody,
   TableCell,
   TableHead,
   TableRow,
@@ -268,9 +267,13 @@ export const DynamicDataTable = ({
                     <Grid container justifyContent='center'>
                       <SearchButton
                         darkMode={darkMode}
-                        children={<SearchButtonIcon filtersDisplay={filtersDisplay} />}
-                        onClick={() => setFilterDisplay(!filtersDisplay)}
-                      />
+                        onClick={
+                          /* istanbul ignore next */
+                          () => setFilterDisplay(!filtersDisplay)
+                        }
+                      >
+                        <SearchButtonIcon filtersDisplay={filtersDisplay} />
+                      </SearchButton>
                     </Grid>
                   </Grid>
                   <Grid item xs={3}>
@@ -280,11 +283,9 @@ export const DynamicDataTable = ({
                       </TableToolsText>
                     </Grid>
                     <Grid container justifyContent='center'>
-                      <ResetButton
-                        darkMode={darkMode}
-                        children={<RotateLeftIcon />}
-                        onClick={handleTableReset}
-                      />
+                      <ResetButton darkMode={darkMode} onClick={handleTableReset}>
+                        <RotateLeftIcon />
+                      </ResetButton>
                     </Grid>
                   </Grid>
                   <Grid item xs={3}>

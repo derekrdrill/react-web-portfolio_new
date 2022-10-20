@@ -27,11 +27,9 @@ export const BasicJobApplication = () => {
       <FileUploadContainer darkMode={darkMode} item xs={12}>
         <Typography component='h5'>Upload supporting documents</Typography>
         <FileUploadScrollContainer container darkMode={darkMode}>
-          <DynamicList
-            addColor='forestgreen'
-            removeColor='maroon'
-            children={<FileUpload darkMode={darkMode} type='file' />}
-          />
+          <DynamicList addColor='forestgreen' removeColor='maroon'>
+            <FileUpload darkMode={darkMode} type='file' />
+          </DynamicList>
         </FileUploadScrollContainer>
       </FileUploadContainer>
       <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} form={form} setForm={setForm} />

@@ -75,12 +75,6 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           spin={false}
           spinPulse={false}
           spinReverse={false}
-          style={
-            Object {
-              "height": "1.5em",
-              "width": "1.5em",
-            }
-          }
           swapOpacity={false}
           symbol={false}
           title=""
@@ -155,12 +149,6 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           spin={false}
           spinPulse={false}
           spinReverse={false}
-          style={
-            Object {
-              "height": "1.5em",
-              "width": "1.5em",
-            }
-          }
           swapOpacity={false}
           symbol={false}
           title=""
@@ -235,12 +223,6 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           spin={false}
           spinPulse={false}
           spinReverse={false}
-          style={
-            Object {
-              "height": "1.5em",
-              "width": "1.5em",
-            }
-          }
           swapOpacity={false}
           symbol={false}
           title=""
@@ -315,12 +297,6 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           spin={false}
           spinPulse={false}
           spinReverse={false}
-          style={
-            Object {
-              "height": "1.5em",
-              "width": "1.5em",
-            }
-          }
           swapOpacity={false}
           symbol={false}
           title=""

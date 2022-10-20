@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Breadcrumbs, Typography } from '@mui/material';
 
@@ -52,6 +53,19 @@ export const Breadcrumb = ({
       )}
     </StyledBreadcrumbs>
   );
+};
+
+Breadcrumb.propTypes = {
+  activePageColor: PropTypes.string,
+  breadcrumbs: PropTypes.array,
+  breadcrumbClick: PropTypes.func,
+  endCrumb: PropTypes.string,
+  maxPage: PropTypes.number,
+  nextPagesColor: PropTypes.string,
+  page: PropTypes.number,
+  prevPagesColor: PropTypes.string,
+  prevPagesHoverColor: PropTypes.string,
+  separator: PropTypes.string,
 };
 
 export const BreadcrumbText = styled(Typography)(

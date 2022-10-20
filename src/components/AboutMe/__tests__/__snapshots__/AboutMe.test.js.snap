@@ -75,13 +75,7 @@ exports[`About Me tests renders correctly 1`] = `
         values, that I enstilled early on, through my career. 5 years in, and I am now
         a Front End Developer, and have accomplished things like:
         </Styled(Component)>
-        <ForwardRef(List)
-          style={
-            Object {
-              "color": "white",
-            }
-          }
-        >
+        <Styled(Component)>
           <Styled(Component)
             darkMode={true}
           >
@@ -114,7 +108,7 @@ exports[`About Me tests renders correctly 1`] = `
         a powerful economic analysis software tool
         
           </Styled(Component)>
-        </ForwardRef(List)>
+        </Styled(Component)>
         <Styled(Component)
           component="p"
           darkMode={true}

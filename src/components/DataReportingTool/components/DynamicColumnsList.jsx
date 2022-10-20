@@ -20,21 +20,37 @@ export const DynamicColumnsList = ({ columns, initialList = false, buttonClick }
         <ColumnsListItem key={column.id} draggable='true'>
           <Grid container>
             <Grid item xs={10} order={{ xs: 1, lg: getFirstGridItemOrderLG(initialList) }}>
-              <Grid container justifyContent={{ xs: 'flex-start', lg: getFirstGridContainerJustifyLG(initialList) }}>
+              <Grid
+                container
+                justifyContent={{
+                  xs: 'flex-start',
+                  lg: getFirstGridContainerJustifyLG(initialList),
+                }}
+              >
                 <Typography variant='subtitle1' component='h3'>
                   {getColumnName(column.columnName)}
                 </Typography>
               </Grid>
             </Grid>
             <Grid item xs={2} order={{ xs: 2, lg: getSecondGridItemOrderLG(initialList) }}>
-              <Grid container justifyContent={{ xs: 'flex-end', lg: getSecondGridContainerJustifyLG(initialList) }}>
+              <Grid
+                container
+                justifyContent={{
+                  xs: 'flex-end',
+                  lg: getSecondGridContainerJustifyLG(initialList),
+                }}
+              >
                 <IconButton
                   id={column.id}
                   color={getIconButtonColor(initialList)}
-                  children={getIconButtonChildren(initialList)}
-                  onClick={e => buttonClick(e, initialList)}
+                  onClick={
+                    /* istanbul ignore next */
+                    e => buttonClick(e, initialList)
+                  }
                   variant='contained'
-                />
+                >
+                  {getIconButtonChildren(initialList)}
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>

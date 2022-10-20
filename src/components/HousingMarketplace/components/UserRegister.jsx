@@ -33,7 +33,10 @@ export const UserRegister = () => {
           disabled={allFieldsFilled(form)}
           color='info'
           fullWidth
-          onClick={() => handleSubmit(form, alertDispatch, userAuthenticationDispatch)}
+          onClick={
+            /* istanbul ignore next */
+            () => handleSubmit(form, alertDispatch, userAuthenticationDispatch)
+          }
           variant='contained'
         >
           Submit

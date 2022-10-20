@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
@@ -30,7 +31,7 @@ export const Homepage = ({ id }) => {
                 <QCLogo alt='qc-logo' src={getQCLogo(darkMode, qcLogoWhite, qcLogoBlue)} />
               </Grid>
               <HomePageText darkMode={darkMode} variant='h2' component='h1'>
-                Welcome from the Queen City
+                {`Welcome from the Queen City`}
               </HomePageText>
             </Grid>
             <Grid item sm={9} md={5} lg={6} xl={7} display={{ xs: 'none', md: 'block' }}>
@@ -38,22 +39,26 @@ export const Homepage = ({ id }) => {
             </Grid>
             <Grid item xs={12} justifyContent={{ xs: 'center', sm: 'flex-start' }}>
               <HomePageText darkMode={darkMode} variant='h4' component='h1'>
-                I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
-                Charlotte Metro area
+                {`I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
+                Charlotte Metro area`}
               </HomePageText>
               <HomePageText darkMode={darkMode} variant='h6' component='h1'>
-                I strive to elegantly code user-friendly web apps that utilize React, Material UI
-                and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end
+                {`I strive to elegantly code user-friendly web apps that utilize React, Material UI
+                  and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end`}
               </HomePageText>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item md={3} order={{ xs: 1, md: 2 }} style={{ paddingBottom: 50 }}>
+        <HomePageImageContainer item md={3} order={{ xs: 1, md: 2 }}>
           <HomePageImage src={homepagePhoto} alt='Me and George' />
-        </Grid>
+        </HomePageImageContainer>
       </HomepageContainer>
     </>
   );
+};
+
+Homepage.propTypes = {
+  id: PropTypes.string,
 };
 
 export const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
@@ -77,6 +82,10 @@ export const HomePageImage = styled.img({
   height: 350,
   borderRadius: 250,
   border: '2px royalblue dotted',
+});
+
+export const HomePageImageContainer = styled(Grid)({
+  paddingBottom: 50,
 });
 
 export const QCLogo = styled.img({

@@ -59,8 +59,8 @@ describe('About Me tests', () => {
     const aboutMeListItem = shallow(<AboutMeListItem />);
     const aboutMeListItemDark = shallow(<AboutMeListItem darkMode />);
 
-    expect(aboutMeListItem.props().className).toEqual('sc-jSUZER eGtSul');
-    expect(aboutMeListItemDark.props().className).toEqual('sc-jSUZER hMuKSQ');
+    expect(aboutMeListItem.props().className).toEqual('sc-gKPRtg dJTXGx');
+    expect(aboutMeListItemDark.props().className).toEqual('sc-gKPRtg fWbSfI');
   });
 
   it('renders AboutMeTitle styled component correctly', () => {

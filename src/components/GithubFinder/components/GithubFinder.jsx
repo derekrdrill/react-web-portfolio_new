@@ -5,17 +5,16 @@ import { GithubUserSearch } from './GithubUserSearch';
 import { GithubProvider } from '../context/GithubContext';
 import { AlertProvider } from '../../Alert/context/AlertContext';
 
-export const GithubFinder = ({}) => {
-  return (
-    <GithubProvider>
-      <AlertProvider>
-        <PageStyle />
-        <GithubUserSearch />
-        <GithubUsersContainer />
-      </AlertProvider>
-    </GithubProvider>
-  );
-};
+export const GithubFinder = () => (
+  <GithubProvider>
+    <AlertProvider>
+      <PageStyle />
+      <GithubUserSearch />
+      <GithubUsersContainer />
+    </AlertProvider>
+  </GithubProvider>
+);
+  
 
 const PageStyle = createGlobalStyle({
   body: {

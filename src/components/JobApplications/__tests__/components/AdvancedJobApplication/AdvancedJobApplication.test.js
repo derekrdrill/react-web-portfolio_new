@@ -47,7 +47,7 @@ describe('Advanced Job Application tests', () => {
     const jobAppHeaderContainer = shallow(<JobAppHeaderContainer />);
     const jobAppHeaderContainerDark = shallow(<JobAppHeaderContainer darkMode />);
 
-    expect(jobAppHeaderContainer.props().className).toEqual('sc-kDvujY cNOVKB');
-    expect(jobAppHeaderContainerDark.props().className).toEqual('sc-kDvujY kbQfsu');
+    expect(jobAppHeaderContainer.props().className).toEqual('sc-ipEyDJ jBLIhd');
+    expect(jobAppHeaderContainerDark.props().className).toEqual('sc-ipEyDJ bsZghm');
   });
 });

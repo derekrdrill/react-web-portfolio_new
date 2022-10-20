@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Select, InputLabel, FormControl, Typography, MenuItem, List, ListItem, Grid, Button } from '@mui/material';
+import { Select, InputLabel, FormControl, Typography, MenuItem, Grid, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/fontawesome-free-solid';
 
@@ -13,7 +13,6 @@ export const DataReportingTool = () => {
   const [collectionKeys, setCollectionKeys] = useState([]);
   const [availableColumns, setAvailableColumns] = useState([]);
   const [associatedColumns, setAssociatedColumns] = useState([]);
-  const [sortedColumns, setSortedColumns] = useState([]);
 
   const handleGetAllCollections = () => {
     fetch('http://localhost:3001/listCollections')
@@ -21,11 +20,11 @@ export const DataReportingTool = () => {
       .then(json => setCollections(json));
   };
 
-  const handleGetCollectionKeys = () => {
+  const handleGetCollectionKeys = React.useCallback(() => {
     fetch(`http://localhost:3001/listCollectionKeys/${dataSet}`)
       .then(response => response.json())
       .then(json => setCollectionKeys(json));
-  };
+  }, [dataSet]);
 
   const handleColumnState = (e, initialList) => {
     let columnID = Number(e.currentTarget.id);
@@ -56,7 +55,7 @@ export const DataReportingTool = () => {
   };
 
   useEffect(() => handleGetAllCollections(), []);
-  useEffect(() => handleGetCollectionKeys(), [dataSet]);
+  useEffect(() => handleGetCollectionKeys(), [dataSet, handleGetCollectionKeys]);
   useEffect(() => setAvailableColumns(collectionKeys), [collectionKeys]);
 
   return (
@@ -91,32 +90,38 @@ export const DataReportingTool = () => {
           <Typography variant='h5' component='h2'>
             Available Columns
           </Typography>
-          <DynamicColumnsList columns={availableColumns} buttonClick={handleColumnState} initialList />
+          <DynamicColumnsList
+            columns={availableColumns}
+            buttonClick={handleColumnState}
+            initialList
+          />
         </Grid>
         <MoveAllColumnsButtonContainer item xs={12} lg={2}>
           <Grid container justifyContent='center' spacing={{ xs: 1, lg: 2 }}>
             <Grid item xs={6} lg={7} order={{ xs: 2, lg: 1 }}>
               <Grid item display={{ xs: 'none', lg: 'block' }}>
-                <MoveAllColumnsButton children='>' onClick={handleAssociateAll} />
+                <MoveAllColumnsButton onClick={handleAssociateAll}>{`>`}</MoveAllColumnsButton>
               </Grid>
               <Grid item display={{ xs: 'block', lg: 'none' }}>
                 <MoveAllColumnsButton
-                  children='ASSOCIATE ALL'
                   endIcon={<FontAwesomeIcon icon={faLongArrowAltDown} />}
                   onClick={handleAssociateAll}
-                />
+                >
+                  {`ASSOCIATE ALL`}
+                </MoveAllColumnsButton>
               </Grid>
             </Grid>
             <Grid item xs={6} lg={7} order={{ xs: 1, lg: 2 }}>
               <Grid item display={{ xs: 'none', lg: 'block' }}>
-                <MoveAllColumnsButton children='<' onClick={handleDeassociateAll} />
+                <MoveAllColumnsButton onClick={handleDeassociateAll}>{`<`}</MoveAllColumnsButton>
               </Grid>
               <Grid item display={{ xs: 'block', lg: 'none' }}>
                 <MoveAllColumnsButton
-                  children='DEASSOCIATE ALL'
                   endIcon={<FontAwesomeIcon icon={faLongArrowAltUp} />}
                   onClick={handleDeassociateAll}
-                />
+                >
+                  {`DEASSOCIATE ALL`}
+                </MoveAllColumnsButton>
               </Grid>
             </Grid>
           </Grid>
@@ -131,7 +136,7 @@ export const DataReportingTool = () => {
       <hr />
       <Grid container justifyContent='center'>
         <Grid item xs={12} lg={4}>
-          <Button color='info' variant='contained' children={'Create Report'} fullWidth />
+          <Button color='info' variant='contained' fullWidth>{`Create Report`}</Button>
         </Grid>
       </Grid>
     </div>
@@ -146,7 +151,7 @@ const PageBodyStyle = createGlobalStyle({
 
 const DataSetSelectContainer = styled(Grid)({
   backgroundColor: 'grey',
-  position: '-webkit-sticky',
+  // position: '-webkit-sticky',
   position: 'sticky',
   top: 80,
   padding: '10px 0 15px 0',
@@ -164,26 +169,26 @@ const ColumnsSelectContainer = styled(Grid)({
   padding: 20,
 });
 
-const ColumnsListContainer = styled.div({
-  height: 250,
-  overflowY: 'auto',
-  overflowX: 'none',
-  border: '1px solid grey',
-  borderRadius: 5,
-  boxShadow: '0 0 3px darkslategray',
-  backgroundColor: '#EDE9E1',
-});
+// const ColumnsListContainer = styled.div({
+//   height: 250,
+//   overflowY: 'auto',
+//   overflowX: 'none',
+//   border: '1px solid grey',
+//   borderRadius: 5,
+//   boxShadow: '0 0 3px darkslategray',
+//   backgroundColor: '#EDE9E1',
+// });
 
-const ColumnsList = styled(List)({
-  padding: 0,
-});
+// const ColumnsList = styled(List)({
+//   padding: 0,
+// });
 
-const ColumnsListItem = styled(ListItem)({
-  backgroundColor: 'darkgrey',
-  borderBottom: '1px dashed grey',
-  cursor: 'all-scroll',
-  padding: 10,
-});
+// const ColumnsListItem = styled(ListItem)({
+//   backgroundColor: 'darkgrey',
+//   borderBottom: '1px dashed grey',
+//   cursor: 'all-scroll',
+//   padding: 10,
+// });
 
 const MoveAllColumnsButtonContainer = styled(Grid)({
   margin: '7% 0 4% 0',

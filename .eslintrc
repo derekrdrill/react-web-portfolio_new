@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/jsx-runtime",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "ignorePatterns": ["**/*test.js"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 2018,
+    "requireConfigFile": false,
+    "sourceType": "module"
+  },
+  "plugins": ["eslint-plugin-no-inline-styles"],
+  "root": true,
+  "rules": {
+    "no-console": "off",
+    "no-debugger": "off",
+    "no-inline-styles/no-inline-styles": 2,    
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "React" }],
+    "react/prop-types": "warn",
+    "react/no-multi-comp": ["error", { "ignoreStateless": false }],
+    "react/no-unstable-nested-components": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".native.js"]
+      }
+    }
+  }
+}

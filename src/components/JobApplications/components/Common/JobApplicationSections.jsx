@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
@@ -27,9 +28,13 @@ export const JobApplicationSection = ({ section }) => {
           {section.instructions}
         </JobAppSectionHeader>
       </Grid>
-      {section.dynamicList ? <DynamicList children={inputs} /> : inputs}
+      {section.dynamicList ? <DynamicList>{inputs}</DynamicList> : inputs}
     </JobAppSectionContainer>
   );
+};
+
+JobApplicationSection.propTypes = {
+  section: PropTypes.object,
 };
 
 export const JobAppSectionContainer = styled(Grid)({

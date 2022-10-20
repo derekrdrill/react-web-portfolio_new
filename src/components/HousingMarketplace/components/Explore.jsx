@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import { history } from '../../../index';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Chip, Grid, Typography } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/fontawesome-free-regular';
-
-import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
+import { ChangeSlideArrow } from './ChangeSlideArrow';
+import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
+
 import rentCategoryImg from '../../../assets/rentCategoryImage.jpeg';
 import sellCategoryImg from '../../../assets/sellCategoryImage.jpeg';
+
+import { history } from '../../../index';
 
 export const Explore = () => {
   const token = sessionStorage.getItem('token');
@@ -41,24 +41,6 @@ export const Explore = () => {
     setLoading(false);
   }, []);
 
-  const NextSlide = ({ currentSlide, slideCount, ...props }) => (
-    <QuickLinksSliderButton
-      {...props}
-      darkMode={darkMode}
-      className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')}
-      icon={faArrowAltCircleRight}
-    />
-  );
-
-  const PrevSlide = ({ currentSlide, slideCount, ...props }) => (
-    <QuickLinksSliderButton
-      {...props}
-      darkMode={darkMode}
-      className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')}
-      icon={faArrowAltCircleLeft}
-    />
-  );
-
   return (
     <>
       <PageBodyStyle darkMode={darkMode} />
@@ -82,9 +64,9 @@ export const Explore = () => {
                       autoplaySpeed={2500}
                       dots
                       lazyLoad
-                      nextArrow={<NextSlide />}
+                      nextArrow={<ChangeSlideArrow arrowType='next' darkMode={darkMode} />}
                       pauseOnHover
-                      prevArrow={<PrevSlide />}
+                      prevArrow={<ChangeSlideArrow arrowType='prev' darkMode={darkMode} />}
                       responsive={[
                         {
                           breakpoint: 1024,
@@ -119,7 +101,9 @@ export const Explore = () => {
                             </QuickLinksNameContainer>
                             <QuickLinksPriceContainer>
                               <QuickLinksPriceChip
-                                label={`$${listing.discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${
+                                label={`$${listing.discountedPrice
+                                  .toString()
+                                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${
                                   listing.type === 'rent' ? ' / month' : ''
                                 }`}
                               />
@@ -199,17 +183,6 @@ const QuickLinksSlider = styled(Slider)({
   },
   margin: 10,
 });
-
-const QuickLinksSliderButton = styled(FontAwesomeIcon)(({ darkMode }) => ({
-  ':hover': {
-    path: {
-      fill: darkMode ? 'gainsboro' : '#878787',
-    },
-  },
-  path: {
-    fill: darkMode ? 'lightgrey' : 'black',
-  },
-}));
 
 const QuickLinksPriceContainer = styled.div({
   margin: '40px 0px 0px 5px',

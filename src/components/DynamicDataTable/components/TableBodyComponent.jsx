@@ -48,23 +48,23 @@ export const TableBodyComponent = ({
                 className='edit-delete-icon'
                 id={dataRow._id}
                 darkMode={darkMode}
-                children={<DeleteForeverIcon />}
                 onClick={handleSetDeleteRow}
-              />
+              >
+                <DeleteForeverIcon />
+              </RemoveRecordIcon>
               {editingID != dataRow._id ? (
                 <EditRecordIcon
                   className='edit-delete-icon'
                   id={dataRow._id}
                   darkMode={darkMode}
-                  children={<DriveFileRenameOutlineIcon />}
                   onClick={handleEditRow}
-                />
+                >
+                  <DriveFileRenameOutlineIcon />
+                </EditRecordIcon>
               ) : (
-                <SaveRecordIcon
-                  id={dataRow._id}
-                  children={<SaveIcon />}
-                  onClick={handleSaveEdits}
-                />
+                <SaveRecordIcon id={dataRow._id} onClick={handleSaveEdits}>
+                  <SaveIcon />
+                </SaveRecordIcon>
               )}
             </TableCell>
             {Object.entries(dataRow)

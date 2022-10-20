@@ -106,30 +106,27 @@ exports[`Homepage tests renders correctly 1`] = `
             darkMode={true}
             variant="h4"
           >
-            I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater Charlotte Metro area
+            I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
+                Charlotte Metro area
           </Styled(Component)>
           <Styled(Component)
             component="h1"
             darkMode={true}
             variant="h6"
           >
-            I strive to elegantly code user-friendly web apps that utilize React, Material UI and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end
+            I strive to elegantly code user-friendly web apps that utilize React, Material UI
+                  and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end
           </Styled(Component)>
         </ForwardRef(Grid)>
       </ForwardRef(Grid)>
     </ForwardRef(Grid)>
-    <ForwardRef(Grid)
+    <Styled(Component)
       item={true}
       md={3}
       order={
         Object {
           "md": 2,
           "xs": 1,
-        }
-      }
-      style={
-        Object {
-          "paddingBottom": 50,
         }
       }
     >
@@ -141,7 +138,7 @@ exports[`Homepage tests renders correctly 1`] = `
           }
         }
       />
-    </ForwardRef(Grid)>
+    </Styled(Component)>
   </Styled(Component)>
 </React.Fragment>
 `;

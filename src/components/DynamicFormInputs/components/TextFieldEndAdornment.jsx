@@ -10,7 +10,12 @@ export const handleSetPasswordHidden = (passwordHidden, setPasswordHidden) => {
 
 export const TextFieldEndAdornment = ({ passwordHidden, setPasswordHidden, type }) =>
   type === 'password' && (
-    <ShowHideIcon onClick={() => handleSetPasswordHidden(passwordHidden, setPasswordHidden)} />
+    <ShowHideIcon
+      onClick={
+        /* istanbul ignore next */
+        () => handleSetPasswordHidden(passwordHidden, setPasswordHidden)
+      }
+    />
   );
 
 TextFieldEndAdornment.propTypes = {

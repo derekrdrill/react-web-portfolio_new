@@ -75,14 +75,7 @@ exports[`Advanced Job Application tests renders correctly 1`] = `
       </ForwardRef(Typography)>
     </ForwardRef(Grid)>
   </Styled(Component)>
-  <div
-    style={
-      Object {
-        "borderLeft": "1px dashed black",
-        "borderRight": "1px dashed black",
-      }
-    }
-  >
+  <styled.div>
     <JobApplicationSection
       section={
         Object {
@@ -392,6 +385,6 @@ exports[`Advanced Job Application tests renders correctly 1`] = `
         </Link>
       </Styled(Component)>
     </ForwardRef(Grid)>
-  </div>
+  </styled.div>
 </Styled(Component)>
 `;

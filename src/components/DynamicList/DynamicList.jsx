@@ -37,14 +37,20 @@ export const DynamicList = ({ addColor, children, maxRows, minRows, removeColor,
           <Grid item xs={12} sm={2} md={1}>
             <DynamicListButton
               darkMode={darkMode}
-              onClick={() => addRow(rowCount, setRowCount)}
+              onClick={
+                /* istanbul ignore next */
+                () => addRow(rowCount, setRowCount)
+              }
               disabled={rowCount.length === (maxRows || 5)}
               iconcolor={addColor}
             >
               <FontAwesomeIcon icon={faPlus} />
             </DynamicListButton>
             <DynamicListButton
-              onClick={() => removeRow(row.id, rowCount, setRowCount)}
+              onClick={
+                /* istanbul ignore next */
+                () => removeRow(row.id, rowCount, setRowCount)
+              }
               darkMode={darkMode}
               disabled={rowCount.length === (minRows || 1)}
               iconcolor={removeColor}
