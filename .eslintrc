@@ -21,10 +21,12 @@
     "requireConfigFile": false,
     "sourceType": "module"
   },
+  "plugins": ["eslint-plugin-no-inline-styles"],
   "root": true,
   "rules": {
     "no-console": "off",
     "no-debugger": "off",
+    "no-inline-styles/no-inline-styles": 2,    
     "no-unused-vars": ["warn", { "varsIgnorePattern": "React" }],
     "react/prop-types": "warn",
     "react/no-multi-comp": ["error", { "ignoreStateless": false }],

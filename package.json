@@ -7,14 +7,13 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
-    "build": "yarn run jest && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "format": "npx prettier --write .",
     "jest": "jest",
     "jest:update": "jest -u",
     "lint": "eslint src"
   },
-  "keywords": [],
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -52,7 +51,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^28.1.2",
+    "babel-jest": "^29.2.1",
     "enzyme": "^3.11.0",
     "eslint": "^8.25.0",
     "eslint-plugin-import": "^2.26.0",
@@ -60,9 +59,9 @@
     "eslint-plugin-prefer-arrow-functions": "^3.1.4",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-native": "^4.0.0",
     "husky": "^7.0.4",
     "jest": "^28.1.2",
+    "jest-css-modules": "^2.1.0",
     "jest-environment-jsdom": "^28.1.1",
     "jest-transform-stub": "^2.0.0",
     "prettier": "^2.6.2",
@@ -84,8 +83,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "pre-push": "npm run jest"
+      "pre-commit": "npx pretty-quick --staged",
+      "pre-push": "yarn run build"
     }
   }
 }
