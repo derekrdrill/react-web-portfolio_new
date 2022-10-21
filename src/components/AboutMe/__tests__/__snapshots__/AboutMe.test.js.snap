@@ -140,7 +140,7 @@ exports[`About Me tests renders correctly 1`] = `
         lg={6}
         xs={12}
       >
-        <img
+        <styled.img
           alt="Chillin with birds"
           src={
             Object {
