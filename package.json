@@ -1,10 +1,11 @@
 {
   "name": "web-portfolio",
   "author": "Derek Drill",
-  "version": "0.1.0",
   "description": "Web Portfolio",
+  "license": "UNLICENSED",
   "main": "index.js",
   "proxy": "http://localhost:3001",
+  "version": "0.1.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
