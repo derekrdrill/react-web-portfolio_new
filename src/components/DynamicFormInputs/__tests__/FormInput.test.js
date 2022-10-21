@@ -178,8 +178,9 @@ describe('FormInput tests', () => {
   });
 
   it('runs getVariant', () => {
-    expect(getVariant(true, 'contained')).toEqual('filled');
-    expect(getVariant(true, 'filled')).toEqual('filled');
+    expect(getVariant(true, 'contained')).toEqual('outlined');
+    expect(getVariant(true, 'filled')).toEqual('outlined');
+    expect(getVariant(false, 'contained')).toEqual('contained');
     expect(getVariant(false, 'filled')).toEqual('filled');
     expect(getVariant(false, 'outlined')).toEqual('outlined');
   });
