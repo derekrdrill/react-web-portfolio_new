@@ -5,7 +5,7 @@ import { Grid, Typography } from '@mui/material';
 
 import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
-import homepagePhoto from '../../assets/homepagePhoto.jpeg';
+import meNGeorge from '../../assets/meNGeorge.jpg';
 import qcLogoBlue from '../../assets/crown-blue.png';
 import qcLogoWhite from '../../assets/crown-white.png';
 
@@ -52,7 +52,7 @@ const Homepage = ({ id }) => {
           </Grid>
         </Grid>
         <HomePageImageContainer item md={3} order={{ xs: 1, md: 2 }}>
-          <HomePageImage src={homepagePhoto} alt='Me and George' />
+          <HomePageImage src={meNGeorge} alt='Me and George' />
         </HomePageImageContainer>
       </HomepageContainer>
     </>
