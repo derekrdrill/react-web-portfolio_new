@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Grid, Typography, Button } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 import { DynamicFormInputs } from '../../DynamicFormInputs/components/DynamicFormInputs';
@@ -72,8 +73,8 @@ const ConnectWithMe = ({ id }) => {
             {connectTypes.map(connect => (
               <Grid key={connect.id} item xs={4} lg={12}>
                 <Grid container justifyContent='center'>
-                  <StyledLink href={connect.href} target={connect.target} darkMode={darkMode}>
-                    {connect.icon}
+                  <StyledLink href={connect.href} target={connect.target}>
+                    <ContactIcon darkMode={darkMode} icon={connect.icon} />
                   </StyledLink>
                 </Grid>
               </Grid>
@@ -130,8 +131,22 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   },
 }));
 
+export const ContactIcon = styled(FontAwesomeIcon)(({ darkMode }) => ({
+  height: 100,
+  width: 100,
+  color: 'beige',
+  path: {
+    fill: darkMode ? '#36454F' : '#66abc7',
+  },
+  ':hover': {
+    path: {
+      fill: darkMode ? '#367993' : '#8fc2d6',
+    },
+  },
+}));
+
 export const ContactPageContainer = styled(Grid)(({ darkMode }) => ({
-  padding: 50,
+  padding: '50px 0',
   borderTop: '2px solid transparent',
   borderImage: darkMode
     ? 'linear-gradient(to right, rgba(248, 184, 255, 1), skyblue, gainsboro)'
@@ -161,22 +176,6 @@ export const DescriptionText = styled(Typography)(({ darkMode }) => ({
   color: darkMode ? 'beige' : '#759CC9',
 }));
 
-export const StyledLink = styled.a(({ darkMode }) => ({
-  svg: {
-    width: 110,
-    height: 150,
-    color: 'beige',
-    path: {
-      fill: darkMode ? '#36454F' : '#66abc7',
-    },
-    ':hover': {
-      path: {
-        fill: darkMode ? '#367993' : '#8fc2d6',
-      },
-    },
-  },
-}));
-
 export const DirectConnectContainer = styled(Grid)({
   padding: '2% 2% 0 2%',
 });
@@ -185,4 +184,8 @@ export const StyledBitmojiImage = styled.img({
   width: 225,
   height: 240,
   transform: 'translateY(-65px)',
+});
+
+export const StyledLink = styled.a({
+  padding: 15,
 });

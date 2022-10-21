@@ -52,7 +52,7 @@ const AboutMe = ({ id }) => {
             </AboutMeText>
           </AboutMeTextContainer>
           <AboutMeBitmojiContainer xs={12} lg={6}>
-            <img src={bitmojiChillinWithBirds} alt='Chillin with birds' />
+            <AboutMeBitmoji src={bitmojiChillinWithBirds} alt='Chillin with birds' />
           </AboutMeBitmojiContainer>
         </Row>
       </AboutMeContainer>
@@ -73,7 +73,8 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
 }));
 
 export const AboutMeContainer = styled(Container)(({ darkMode }) => ({
-  padding: '30px 50px 200px 50px',
+  paddingBottom: 200,
+  paddingTop: 30,
   borderTop: '2px solid transparent',
   borderImage: darkMode
     ? 'linear-gradient(to right, rgba(248, 184, 255, 1), skyblue, gainsboro)'
@@ -88,13 +89,18 @@ export const AboutMeTitle = styled(Typography)(({ darkMode }) => ({
 }));
 
 export const AboutMeTextContainer = styled(Col)(({ darkMode }) => ({
-  padding: 40,
+  padding: 20,
   height: 550,
   overflowY: 'auto',
   border: '1px dashed #383838',
   borderRadius: 2,
   backgroundColor: darkMode ? '#303030' : '#eee5c1',
 }));
+
+export const AboutMeBitmoji = styled.img({
+  height: 300,
+  width: 325,
+});
 
 export const AboutMeBitmojiContainer = styled(Col)({
   textAlign: 'center',

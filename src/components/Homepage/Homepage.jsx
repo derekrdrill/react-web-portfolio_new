@@ -70,7 +70,7 @@ export const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
 }));
 
 export const HomepageContainer = styled(Grid)({
-  padding: '200px 50px 500px 50px',
+  padding: '15% 50px 20% 50px',
 });
 
 export const HomePageText = styled(Typography)(({ darkMode }) => ({
