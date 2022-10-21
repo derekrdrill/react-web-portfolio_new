@@ -68,6 +68,7 @@ exports[`Homepage tests renders correctly 1`] = `
           >
             Welcome from the Queen City
           </Styled(Component)>
+          <br />
         </ForwardRef(Grid)>
         <ForwardRef(Grid)
           display={
@@ -109,6 +110,7 @@ exports[`Homepage tests renders correctly 1`] = `
             I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
                 Charlotte Metro area
           </Styled(Component)>
+          <br />
           <Styled(Component)
             component="h1"
             darkMode={true}
