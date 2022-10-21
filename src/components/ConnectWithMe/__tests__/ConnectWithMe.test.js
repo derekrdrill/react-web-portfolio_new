@@ -40,31 +40,31 @@ describe('Connect with me tests', () => {
     const contactPageContainer = shallow(<ContactPageContainer />);
     const contactPageContainerDark = shallow(<ContactPageContainer darkMode />);
 
-    expect(contactPageContainer.props().className).toEqual('sc-jSUZER etWjkx');
-    expect(contactPageContainerDark.props().className).toEqual('sc-jSUZER dhraLa');
+    expect(contactPageContainer.props().className).toEqual('sc-gKPRtg cKOUyd');
+    expect(contactPageContainerDark.props().className).toEqual('sc-gKPRtg iFNBZC');
   });
 
   it('renders DescriptionText styled component correctly', () => {
     const descriptionText = shallow(<DescriptionText />);
     const descriptionTextDark = shallow(<DescriptionText darkMode />);
 
-    expect(descriptionText.props().className).toEqual('sc-pyfCe gWHlsz');
-    expect(descriptionTextDark.props().className).toEqual('sc-pyfCe gVLgRa');
+    expect(descriptionText.props().className).toEqual('sc-jrcTuL rBgKE');
+    expect(descriptionTextDark.props().className).toEqual('sc-jrcTuL eunPTV');
   });
 
   it('renders StyledLink styled component correctly', () => {
     const styledLink = shallow(<StyledLink />);
     const styledLinkDark = shallow(<StyledLink darkMode />);
 
-    expect(styledLink.props().className).toEqual('sc-jrcTuL gyIEkV');
-    expect(styledLinkDark.props().className).toEqual('sc-jrcTuL cBRVgc');
+    expect(styledLink.props().className).toEqual('sc-csuSiG gPwGRG');
+    expect(styledLinkDark.props().className).toEqual('sc-csuSiG gPwGRG');
   });
 
   it('renders TitleText styled component correctly', () => {
     const titleText = shallow(<TitleText />);
     const titleTextDark = shallow(<TitleText darkMode />);
 
-    expect(titleText.props().className).toEqual('sc-ftTHYK fNMHTq');
-    expect(titleTextDark.props().className).toEqual('sc-ftTHYK irRXRt');
+    expect(titleText.props().className).toEqual('sc-pyfCe bdDjoP');
+    expect(titleTextDark.props().className).toEqual('sc-pyfCe gSQzss');
   });
 });

@@ -26,18 +26,18 @@ const Projects = ({ id }) => {
           <StyledBitmojiImage src={bitmojiLaptop} />
         </Grid>
         <Grid container>
-          <Grid item xs={12} sm={1}>
-            <Grid container>
+          <Grid item xs={12} md={1}>
+            <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }}>
               {projectsTitle.map((letter, letterCount) => (
-                <Grid key={letterCount} item xs={1} sm={12}>
-                  <ProjectsTitleText variant='h3' component='h1'>
+                <Grid key={letterCount} item xs={1} md={12}>
+                  <ProjectsTitleText variant='h3' component='h1' textAlign='center'>
                     {letter}
                   </ProjectsTitleText>
                 </Grid>
               ))}
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={11}>
+          <Grid item xs={12} md={11}>
             <Grid container>
               <TitleContainer item xs={12}>
                 <TextFont variant='subtitle1' component='h3'>
@@ -47,9 +47,9 @@ const Projects = ({ id }) => {
               <Grid item xs={12}>
                 <Grid container>
                   {PROJECTS.map(project => (
-                    <Grid key={project.id} item xs={12} md={6}>
+                    <ProjectContainer key={project.id} item xs={12} md={6}>
                       <Project darkMode={darkMode} project={project} setLoading={setLoading} />
-                    </Grid>
+                    </ProjectContainer>
                   ))}
                 </Grid>
               </Grid>
@@ -74,8 +74,13 @@ const PageBodyStyle = createGlobalStyle(({ darkMode }) => ({
   },
 }));
 
+const ProjectContainer = styled(Grid)({
+  padding: 15,
+});
+
 const ProjectsContainer = styled.div(({ darkMode }) => ({
-  padding: '35px 50px 200px 50px',
+  paddingBottom: 200,
+  paddingTop: 35,
   borderTop: '2px solid transparent',
   borderImage: darkMode
     ? 'linear-gradient(to right, rgba(248, 184, 255, 1), skyblue, gainsboro)'
