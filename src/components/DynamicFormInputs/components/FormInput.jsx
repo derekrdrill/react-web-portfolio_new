@@ -7,7 +7,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 
 import { TextFieldEndAdornment } from '../components/TextFieldEndAdornment';
 
-export const getVariant = (darkMode, variant) => (darkMode ? 'filled' : variant);
+export const getVariant = (darkMode, variant) => (darkMode ? 'outlined' : variant);
 export const getTextFieldType = (passwordHidden, type) =>
   type === 'password' ? (passwordHidden ? 'password' : 'text') : type;
 
@@ -43,7 +43,7 @@ export const FormInput = ({ input, form, setForm, value }) => {
             variant={getVariant(darkMode, input.variant)}
             fullWidth={input.fullWidth || true}
             onChange={selectChange}
-            color={input.color || 'secondary'}
+            color={input.color || 'primary'}
             inputbackgroundcolor={input.inputBackgroundColor}
             inputborderradius={input.inputborderRadius}
             inputpaddingbottom={input.inputPaddingBottom}
@@ -77,7 +77,7 @@ export const FormInput = ({ input, form, setForm, value }) => {
           value={value}
           size={input.size || 'medium'}
           type={getTextFieldType(passwordHidden, input.type)}
-          color={input.color || 'secondary'}
+          color={input.color || 'primary'}
           inputbackgroundcolor={input.inputBackgroundColor}
           inputborderradius={input.inputborderRadius}
           inputpaddingbottom={input.inputPaddingBottom}

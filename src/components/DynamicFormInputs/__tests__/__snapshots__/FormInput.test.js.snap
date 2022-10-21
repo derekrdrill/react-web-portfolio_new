@@ -15,7 +15,7 @@ exports[`FormInput tests renders correctly 1`] = `
       }
     }
     className="text"
-    color="secondary"
+    color="primary"
     darkMode={true}
     fullWidth={true}
     id="firstName"
@@ -23,7 +23,7 @@ exports[`FormInput tests renders correctly 1`] = `
     onChange={[Function]}
     size="medium"
     value="firstName"
-    variant="filled"
+    variant="outlined"
   />
 </ForwardRef(Grid)>
 `;
