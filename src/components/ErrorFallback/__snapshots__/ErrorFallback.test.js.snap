@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorFallback tests renders correctly 1`] = `
+<Styled(Component)
+  container={true}
+>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Typography)
+      textAlign="center"
+      variant="h5"
+    >
+      Oh no! Looks like an error has been encountered!!
+    </ForwardRef(Typography)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Typography)
+      textAlign="center"
+      variant="body1"
+    >
+      This has been logged, and is actively being fixed
+    </ForwardRef(Typography)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Typography)
+      textAlign="center"
+      variant="body1"
+    >
+      Until then, try 
+      <a
+        href="/"
+      >
+        going home
+      </a>
+       and continue browsing
+    </ForwardRef(Typography)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="center"
+    >
+      <styled.img
+        src={
+          Object {
+            "process": [Function],
+          }
+        }
+      />
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+</Styled(Component)>
+`;
