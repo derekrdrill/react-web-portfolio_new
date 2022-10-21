@@ -33,6 +33,7 @@ const Homepage = ({ id }) => {
               <HomePageText darkMode={darkMode} variant='h2' component='h1'>
                 {`Welcome from the Queen City`}
               </HomePageText>
+              <br />
             </Grid>
             <Grid item sm={9} md={5} lg={6} xl={7} display={{ xs: 'none', md: 'block' }}>
               <QCLogo src={getQCLogo(darkMode, qcLogoWhite, qcLogoBlue)} alt='qc-logo' />
@@ -42,6 +43,7 @@ const Homepage = ({ id }) => {
                 {`I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
                 Charlotte Metro area`}
               </HomePageText>
+              <br />
               <HomePageText darkMode={darkMode} variant='h6' component='h1'>
                 {`I strive to elegantly code user-friendly web apps that utilize React, Material UI
                   and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end`}
@@ -74,7 +76,7 @@ export const HomepageContainer = styled(Grid)({
 });
 
 export const HomePageText = styled(Typography)(({ darkMode }) => ({
-  marginBottom: 15,
+  margin: 10,
   fontFamily: 'Roboto Slab',
   color: darkMode ? 'white' : '#759CC9',
 }));
