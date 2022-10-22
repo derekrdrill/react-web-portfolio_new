@@ -16,6 +16,8 @@ import { routes } from './routes';
 
 export const history = createBrowserHistory();
 
+// harmless change
+
 ReactDOM.render(
   <Router history={history}>
     <Switch>
