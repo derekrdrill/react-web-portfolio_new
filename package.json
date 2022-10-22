@@ -13,9 +13,7 @@
     "format": "npx prettier --write .",
     "jest": "jest",
     "jest:update": "jest -u",
-    "lint": "eslint src",
-    "postinstall": "husky install",
-    "prepare": "husky install"
+    "lint": "eslint src"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
