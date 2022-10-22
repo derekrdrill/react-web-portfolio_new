@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# husky
+/.husky
+
 # production
 /build
 
