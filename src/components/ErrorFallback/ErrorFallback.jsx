@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
-import derekWorking from '../../assets/derekWorking.png';
+import derekBroken from '../../assets/derekBroken.png';
 
 const ErrorFallback = () => {
   return (
     <ErrorFallbackContainer container>
       <Grid item xs={12}>
         <Typography variant='h5' textAlign='center'>
-          Oh no! Looks like an error has been encountered!!
+          Uh oh.. looks like something broke 😭💔
         </Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container justifyContent='center'>
+          <ErrorFallbackImage src={derekBroken} />
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Typography variant='body1' textAlign='center'>
@@ -22,11 +27,6 @@ const ErrorFallback = () => {
         <Typography variant='body1' textAlign='center'>
           Until then, try <a href='/'>going home</a> and continue browsing
         </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container justifyContent='center'>
-          <ErrorFallbackImage src={derekWorking} />
-        </Grid>
       </Grid>
     </ErrorFallbackContainer>
   );
