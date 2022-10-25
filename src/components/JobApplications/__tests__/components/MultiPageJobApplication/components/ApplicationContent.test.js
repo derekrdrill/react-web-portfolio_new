@@ -76,8 +76,8 @@ describe('ApplicationContent tests', () => {
     advAppInputsContainerTests.forEach(({ darkMode, page, maxPage, editing, result }) => {
       renderer.render(
         <AdvancedAppInputsContainer
+          $editing={editing}
           darkMode={darkMode}
-          editing={editing}
           maxpage={maxPage}
           page={page}
         />,
@@ -91,14 +91,15 @@ describe('ApplicationContent tests', () => {
 
   it('renders JobAppSectionContainer styled component correctly', () => {
     const jobAppSectionContainerTests = [
-      { page: 1, maxPage: 3, sectionid: 2, result: 'sc-csuSiG fLvtKr' },
-      { page: 3, maxPage: 3, sectionid: 3, result: 'sc-csuSiG bbCrbn' },
-      { page: 1, maxPage: 3, sectionid: 1, result: 'sc-csuSiG hxtmON' },
+      { $isOnPage: true, $isOnLastPage: true, result: 'sc-csuSiG cDYkvs' },
+      { $isOnPage: true, $isOnLastPage: false, result: 'sc-csuSiG cDYkvs' },
+      { $isOnPage: false, $isOnLastPage: true, result: 'sc-csuSiG cDYkvs' },
+      { $isOnPage: false, $isOnLastPage: false, result: 'sc-csuSiG fLvtKr' },
     ];
 
-    jobAppSectionContainerTests.forEach(({ page, maxPage, sectionid, result }) => {
+    jobAppSectionContainerTests.forEach(({ $isOnPage, $isOnLastPage, result }) => {
       renderer.render(
-        <JobApplicationSectionContainer page={page} maxpage={maxPage} sectionid={sectionid} />,
+        <JobApplicationSectionContainer $isOnLastPage={$isOnLastPage} $isOnPage={$isOnPage} />,
       );
       const render = renderer.getRenderOutput();
       const className = render.props.className;

@@ -24,4 +24,19 @@ describe('ApplicationButtons tests', () => {
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
+
+  it('renders ApplicationButtons styled component correctly', () => {
+    const applicationButtonsTests = [
+      { page: 0, result: null },
+      { page: 1, result: 'app-buttons-container' },
+    ];
+
+    applicationButtonsTests.forEach(({ page, result }) => {
+      renderer.render(<ApplicationButtons page={page} />);
+      const render = renderer.getRenderOutput();
+      const className = render.props ? render.props.className : null;
+
+      expect(className).toEqual(result);
+    });
+  });
 });

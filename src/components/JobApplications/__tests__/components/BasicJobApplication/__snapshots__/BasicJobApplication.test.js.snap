@@ -46,68 +46,73 @@ exports[`Basic Job Application tests renders correctly 1`] = `
       </DynamicList>
     </Styled(Component)>
   </Styled(Component)>
-  <DynamicFormInputs
-    form={
-      Object {
-        "email": "",
-        "job": "",
-        "name": "",
-        "phone": "",
-        "summary": "",
+  <Styled(Component)
+    item={true}
+    xs={12}
+  >
+    <DynamicFormInputs
+      form={
+        Object {
+          "email": "",
+          "job": "",
+          "name": "",
+          "phone": "",
+          "summary": "",
+        }
       }
-    }
-    inputs={
-      Array [
-        Object {
-          "fullWidth": true,
-          "id": "name",
-          "label": "Name",
-          "md": 3,
-          "sm": 6,
-          "variant": "standard",
-          "xs": 12,
-        },
-        Object {
-          "fullWidth": true,
-          "id": "email",
-          "label": "Email",
-          "md": 3,
-          "sm": 6,
-          "type": "email",
-          "variant": "standard",
-          "xs": 12,
-        },
-        Object {
-          "fullWidth": true,
-          "id": "phone",
-          "label": "Phone",
-          "md": 3,
-          "sm": 6,
-          "variant": "standard",
-          "xs": 12,
-        },
-        Object {
-          "fullWidth": true,
-          "id": "job",
-          "label": "What job are you applying for?",
-          "md": 3,
-          "sm": 6,
-          "variant": "standard",
-          "xs": 12,
-        },
-        Object {
-          "fullWidth": true,
-          "id": "summary",
-          "label": "Write a short summary about yourself",
-          "minRows": 3,
-          "multiline": true,
-          "variant": "standard",
-          "xs": 12,
-        },
-      ]
-    }
-    setForm={[Function]}
-  />
+      inputs={
+        Array [
+          Object {
+            "fullWidth": true,
+            "id": "name",
+            "label": "Name",
+            "md": 3,
+            "sm": 6,
+            "variant": "standard",
+            "xs": 12,
+          },
+          Object {
+            "fullWidth": true,
+            "id": "email",
+            "label": "Email",
+            "md": 3,
+            "sm": 6,
+            "type": "email",
+            "variant": "standard",
+            "xs": 12,
+          },
+          Object {
+            "fullWidth": true,
+            "id": "phone",
+            "label": "Phone",
+            "md": 3,
+            "sm": 6,
+            "variant": "standard",
+            "xs": 12,
+          },
+          Object {
+            "fullWidth": true,
+            "id": "job",
+            "label": "What job are you applying for?",
+            "md": 3,
+            "sm": 6,
+            "variant": "standard",
+            "xs": 12,
+          },
+          Object {
+            "fullWidth": true,
+            "id": "summary",
+            "label": "Write a short summary about yourself",
+            "minRows": 3,
+            "multiline": true,
+            "variant": "standard",
+            "xs": 12,
+          },
+        ]
+      }
+      setForm={[Function]}
+    />
+  </Styled(Component)>
   <ForwardRef(Grid)
     container={true}
     justifyContent="flex-end"

@@ -7,7 +7,7 @@ import { ApplicationForwardButton } from './ApplicationForwardButton';
 
 export const ApplicationButtons = ({ goBackward, goForward, inputs, maxPage, page }) =>
   page > 0 && (
-    <Grid container>
+    <Grid container className='app-buttons-container'>
       <Grid item xs={6}>
         <ApplicationBackButton inputs={inputs} goBackward={goBackward} page={page} />
       </Grid>

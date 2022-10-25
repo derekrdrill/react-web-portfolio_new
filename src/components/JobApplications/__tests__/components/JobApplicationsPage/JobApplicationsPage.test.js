@@ -38,15 +38,15 @@ describe('Job Applications Page tests', () => {
     const jobApplicationSelectLabelText = shallow(<JobApplicationSelectLabelText />);
     const jobApplicationSelectLabelTextDark = shallow(<JobApplicationSelectLabelText darkMode />);
 
-    expect(jobApplicationSelectLabelText.props().className).toEqual('sc-cCjUiG cIOuKe');
-    expect(jobApplicationSelectLabelTextDark.props().className).toEqual('sc-cCjUiG UkrsH');
+    expect(jobApplicationSelectLabelText.props().className).toEqual('sc-cjibBx dehaBH');
+    expect(jobApplicationSelectLabelTextDark.props().className).toEqual('sc-cjibBx dfHXNu');
   });
 
   it('renders JobApplicationsSelectRow styled component correctly', () => {
     const jobApplicationsSelectRow = shallow(<JobApplicationsSelectRow />);
     const jobApplicationsSelectRowDark = shallow(<JobApplicationsSelectRow darkMode />);
 
-    expect(jobApplicationsSelectRow.props().className).toEqual('sc-hhOBVt jbPqYe');
-    expect(jobApplicationsSelectRowDark.props().className).toEqual('sc-hhOBVt llLgqq');
+    expect(jobApplicationsSelectRow.props().className).toEqual('sc-gYbzsP hFPmTc');
+    expect(jobApplicationsSelectRowDark.props().className).toEqual('sc-gYbzsP ETCVU');
   });
 });
