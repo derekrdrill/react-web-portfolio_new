@@ -5,96 +5,166 @@ exports[`More Options Modal tests renders correctly 1`] = `
   open={true}
 >
   <Styled(Component)
+    container={true}
     darkMode={true}
+    spacing={2}
   >
-    <ForwardRef(Typography)
-      component="h2"
-      variant="h6"
+    <ForwardRef(Grid)
+      container={true}
     >
-      Resume options
-    </ForwardRef(Typography)>
-    <ForwardRef(Typography)
-      sx={
-        Object {
-          "mt": 2,
-        }
-      }
-    >
-      Select one of the following:
-    </ForwardRef(Typography)>
-    <styled.a
-      download={true}
-      href={
-        Object {
-          "process": [Function],
-        }
-      }
-    >
-      <Styled(Component)>
-        Download a Copy
-        <Styled(FontAwesomeIcon)
-          icon={
-            Object {
-              "icon": Array [
-                384,
-                512,
-                Array [],
-                "f1c1",
-                "M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z",
-              ],
-              "iconName": "file-pdf",
-              "prefix": "fas",
-            }
-          }
-        />
-      </Styled(Component)>
-    </styled.a>
-    <styled.a
-      href="https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true"
-      target="_blank"
-    >
-      <Styled(Component)>
-        Go to Google Doc
-        <Styled(FontAwesomeIcon)
-          icon={
-            Object {
-              "icon": Array [
-                512,
-                512,
-                Array [],
-                "f3aa",
-                "M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z",
-              ],
-              "iconName": "google-drive",
-              "prefix": "fab",
-            }
-          }
-        />
-      </Styled(Component)>
-    </styled.a>
-    <Styled(Component)>
-      Quick View
-      <Styled(FontAwesomeIcon)
-        icon={
-          Object {
-            "icon": Array [
-              576,
-              512,
-              Array [],
-              "f06e",
-              "M569.354 231.631C512.969 135.949 407.81 72 288 72 168.14 72 63.004 135.994 6.646 231.631a47.999 47.999 0 0 0 0 48.739C63.031 376.051 168.19 440 288 440c119.86 0 224.996-63.994 281.354-159.631a47.997 47.997 0 0 0 0-48.738zM288 392c-75.162 0-136-60.827-136-136 0-75.162 60.826-136 136-136 75.162 0 136 60.826 136 136 0 75.162-60.826 136-136 136zm104-136c0 57.438-46.562 104-104 104s-104-46.562-104-104c0-17.708 4.431-34.379 12.236-48.973l-.001.032c0 23.651 19.173 42.823 42.824 42.823s42.824-19.173 42.824-42.823c0-23.651-19.173-42.824-42.824-42.824l-.032.001C253.621 156.431 270.292 152 288 152c57.438 0 104 46.562 104 104z",
-            ],
-            "iconName": "eye",
-            "prefix": "fas",
-          }
-        }
-      />
-    </Styled(Component)>
-    <Styled(Component)
-      cancelbutton="true"
-    >
-      Cancel
-    </Styled(Component)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <Styled(Component)
+          component="h2"
+          darkMode={true}
+          variant="h6"
+        >
+          Resume options
+        </Styled(Component)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Grid)
+          container={true}
+          spacing={1}
+        >
+          <ForwardRef(Grid)
+            item={true}
+            xs={12}
+          >
+            <Styled(Component)
+              darkMode={true}
+              sx={
+                Object {
+                  "mt": 2,
+                }
+              }
+            >
+              Select one of the following:
+            </Styled(Component)>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            lg={3}
+            md={4}
+            xs={12}
+          >
+            <styled.a
+              download={true}
+              href={
+                Object {
+                  "process": [Function],
+                }
+              }
+            >
+              <ForwardRef(Button)
+                color="info"
+                fullWidth={true}
+                variant="outlined"
+              >
+                Download PDF
+                <Styled(FontAwesomeIcon)
+                  icon={
+                    Object {
+                      "icon": Array [
+                        384,
+                        512,
+                        Array [],
+                        "f1c1",
+                        "M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z",
+                      ],
+                      "iconName": "file-pdf",
+                      "prefix": "fas",
+                    }
+                  }
+                />
+              </ForwardRef(Button)>
+            </styled.a>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            lg={4}
+            md={4}
+            xs={12}
+          >
+            <styled.a
+              href="https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true"
+              target="_blank"
+            >
+              <ForwardRef(Button)
+                color="info"
+                fullWidth={true}
+                variant="outlined"
+              >
+                Open Google Doc
+                <Styled(FontAwesomeIcon)
+                  icon={
+                    Object {
+                      "icon": Array [
+                        512,
+                        512,
+                        Array [],
+                        "f3aa",
+                        "M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z",
+                      ],
+                      "iconName": "google-drive",
+                      "prefix": "fab",
+                    }
+                  }
+                />
+              </ForwardRef(Button)>
+            </styled.a>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            lg={3}
+            md={4}
+            xs={12}
+          >
+            <ForwardRef(Button)
+              color="info"
+              fullWidth={true}
+              variant="outlined"
+            >
+              Quick View
+              <Styled(FontAwesomeIcon)
+                icon={
+                  Object {
+                    "icon": Array [
+                      576,
+                      512,
+                      Array [],
+                      "f06e",
+                      "M569.354 231.631C512.969 135.949 407.81 72 288 72 168.14 72 63.004 135.994 6.646 231.631a47.999 47.999 0 0 0 0 48.739C63.031 376.051 168.19 440 288 440c119.86 0 224.996-63.994 281.354-159.631a47.997 47.997 0 0 0 0-48.738zM288 392c-75.162 0-136-60.827-136-136 0-75.162 60.826-136 136-136 75.162 0 136 60.826 136 136 0 75.162-60.826 136-136 136zm104-136c0 57.438-46.562 104-104 104s-104-46.562-104-104c0-17.708 4.431-34.379 12.236-48.973l-.001.032c0 23.651 19.173 42.823 42.824 42.823s42.824-19.173 42.824-42.823c0-23.651-19.173-42.824-42.824-42.824l-.032.001C253.621 156.431 270.292 152 288 152c57.438 0 104 46.562 104 104z",
+                    ],
+                    "iconName": "eye",
+                    "prefix": "fas",
+                  }
+                }
+              />
+            </ForwardRef(Button)>
+          </ForwardRef(Grid)>
+          <ForwardRef(Grid)
+            item={true}
+            lg={2}
+            md={12}
+            xs={12}
+          >
+            <ForwardRef(Button)
+              color="error"
+              fullWidth={true}
+              variant="contained"
+            >
+              Cancel
+            </ForwardRef(Button)>
+          </ForwardRef(Grid)>
+        </ForwardRef(Grid)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
   </Styled(Component)>
 </ForwardRef(Modal)>
 `;

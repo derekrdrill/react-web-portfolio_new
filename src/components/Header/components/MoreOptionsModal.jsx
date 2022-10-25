@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Button, Modal, Typography } from '@mui/material/';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faFilePdf } from '@fortawesome/fontawesome-free-solid';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
@@ -15,33 +15,53 @@ export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
 
   return (
     <Modal open={open} onClose={handleModalClose}>
-      <StyledBox darkMode={darkMode}>
-        <Typography variant='h6' component='h2'>
-          Resume options
-        </Typography>
-        <Typography sx={{ mt: 2 }}>Select one of the following:</Typography>
-        <StyledLink href={resume} download>
-          <ResumeOptionButtons>
-            Download a Copy
-            <ResumeOptionsButtonIcon icon={faFilePdf} />
-          </ResumeOptionButtons>
-        </StyledLink>
-        <StyledLink
-          href='https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true'
-          target='_blank'
-        >
-          <ResumeOptionButtons>
-            Go to Google Doc
-            <ResumeOptionsButtonIcon icon={faGoogleDrive} />
-          </ResumeOptionButtons>
-        </StyledLink>
-        <ResumeOptionButtons onClick={quickViewOpen}>
-          Quick View
-          <ResumeOptionsButtonIcon icon={faEye} />
-        </ResumeOptionButtons>
-        <ResumeOptionButtons cancelbutton='true' onClick={handleModalClose}>
-          Cancel
-        </ResumeOptionButtons>
+      <StyledBox container darkMode={darkMode} spacing={2}>
+        <Grid container>
+          <Grid item xs={12}>
+            <ModalTypography darkMode={darkMode} variant='h6' component='h2'>
+              Resume options
+            </ModalTypography>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <ModalTypography darkMode={darkMode} sx={{ mt: 2 }}>
+                  Select one of the following:
+                </ModalTypography>
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+                <StyledLink href={resume} download>
+                  <Button color='info' fullWidth variant='outlined'>
+                    Download PDF
+                    <ResumeOptionsButtonIcon icon={faFilePdf} />
+                  </Button>
+                </StyledLink>
+              </Grid>
+              <Grid item xs={12} md={4} lg={4}>
+                <StyledLink
+                  href='https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true'
+                  target='_blank'
+                >
+                  <Button color='info' fullWidth variant='outlined'>
+                    Open Google Doc
+                    <ResumeOptionsButtonIcon icon={faGoogleDrive} />
+                  </Button>
+                </StyledLink>
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+                <Button color='info' fullWidth variant='outlined' onClick={quickViewOpen}>
+                  Quick View
+                  <ResumeOptionsButtonIcon icon={faEye} />
+                </Button>
+              </Grid>
+              <Grid item xs={12} md={12} lg={2}>
+                <Button color='error' fullWidth variant='contained' onClick={handleModalClose}>
+                  Cancel
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </StyledBox>
     </Modal>
   );
@@ -54,23 +74,12 @@ MoreOptionsModal.propTypes = {
 };
 
 export const StyledBox = styled(Box)(({ darkMode }) => ({
-  'h1, h2, h3, h4, h5, h6, p': { color: darkMode && '#c4c4c4' },
   backgroundColor: darkMode ? '#545454' : 'white',
-  marginLeft: '25%',
+  marginLeft: '22%',
   marginTop: '18%',
-  maxWidth: '50%',
+  maxWidth: '60%',
   padding: 20,
   borderRadius: 5,
-}));
-
-export const ResumeOptionButtons = styled(Button)(({ cancelbutton }) => ({
-  backgroundColor: cancelbutton ? 'gainsboro' : '#311b92',
-  color: cancelbutton ? 'black' : 'white',
-  marginRight: 4,
-  marginTop: 5,
-  ':hover': {
-    backgroundColor: cancelbutton ? 'gray' : '#6200ea',
-  },
 }));
 
 export const ResumeOptionsButtonIcon = styled(FontAwesomeIcon)({
@@ -80,3 +89,7 @@ export const ResumeOptionsButtonIcon = styled(FontAwesomeIcon)({
 export const StyledLink = styled.a({
   textDecoration: 'none',
 });
+
+export const ModalTypography = styled(Typography)(({ darkMode }) => ({
+  color: darkMode && '#c4c4c4',
+}));
