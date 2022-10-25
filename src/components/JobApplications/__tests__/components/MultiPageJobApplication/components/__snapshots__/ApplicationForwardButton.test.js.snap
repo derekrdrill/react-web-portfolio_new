@@ -5,6 +5,7 @@ exports[`ApplicationForwardButton tests renders correctly 1`] = `
   to="/app-complete"
 >
   <Styled(Component)
+    color="info"
     darkMode={true}
   >
     SUBMIT APPLICATION  

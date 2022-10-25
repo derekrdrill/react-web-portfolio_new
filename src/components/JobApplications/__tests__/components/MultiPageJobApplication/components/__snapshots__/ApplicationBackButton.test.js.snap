@@ -2,6 +2,7 @@
 
 exports[`ApplicationBackButton tests renders correctly 1`] = `
 <Styled(Component)
+  color="info"
   darkMode={true}
 >
   <FontAwesomeIcon
@@ -44,6 +45,6 @@ exports[`ApplicationBackButton tests renders correctly 1`] = `
     titleId={null}
     transform={null}
   />
-    BACK TO LANDING PAGE
+    LANDING PAGE
 </Styled(Component)>
 `;

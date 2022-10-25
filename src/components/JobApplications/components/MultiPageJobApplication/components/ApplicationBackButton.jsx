@@ -8,13 +8,13 @@ import { faChevronLeft } from '@fortawesome/fontawesome-free-solid';
 import { DarkLightModeContext } from '../../../../DarkLightMode/context/DarkLightModeContext';
 
 export const getBackButtonTitle = (inputs, page) =>
-  `\u00A0\u00A0BACK TO ${page > 1 ? inputs[page - 2].title : 'LANDING PAGE'}`;
+  `\u00A0\u00A0${page > 1 ? inputs[page - 2].title : 'LANDING PAGE'}`;
 
 export const ApplicationBackButton = ({ goBackward, inputs, page }) => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
-    <StyledButton darkMode={darkMode} onClick={goBackward}>
+    <StyledButton color='info' darkMode={darkMode} onClick={goBackward}>
       <FontAwesomeIcon icon={faChevronLeft} />
       {getBackButtonTitle(inputs, page)}
     </StyledButton>
@@ -31,6 +31,5 @@ export const StyledButton = styled(Button)(({ darkMode }) => ({
   ':hover': {
     color: darkMode && 'white',
   },
-  color: darkMode && '#cfcfcf',
   marginTop: 15,
 }));

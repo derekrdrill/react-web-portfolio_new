@@ -42,7 +42,7 @@ describe('ApplicationForwardButton tests', () => {
     const styledButtonDark = shallow(<StyledButton darkMode />);
 
     expect(styledButton.props().className).toEqual('sc-bcXHqe jcTuIk');
-    expect(styledButtonDark.props().className).toEqual('sc-bcXHqe wrsjF');
+    expect(styledButtonDark.props().className).toEqual('sc-bcXHqe cUMtqz');
   });
 
   it('renders forward or submit button', () => {
@@ -65,8 +65,8 @@ describe('ApplicationForwardButton tests', () => {
 
   it('runs getForwardButtonTitle', () => {
     const forwardButtonTests = [
-      { page: 1, maxPage: 3, result: `GO TO ${ADVANCED_JOB_APP_INPUTS[1].title}\u00A0\u00A0` },
-      { page: 9, maxPage: 10, result: `GO TO REVIEW\u00A0\u00A0` },
+      { page: 1, maxPage: 3, result: `${ADVANCED_JOB_APP_INPUTS[1].title}\u00A0\u00A0` },
+      { page: 9, maxPage: 10, result: `REVIEW\u00A0\u00A0` },
     ];
 
     forwardButtonTests.forEach(({ maxPage, page, result }) => {

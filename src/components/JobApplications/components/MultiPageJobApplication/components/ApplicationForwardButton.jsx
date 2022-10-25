@@ -9,20 +9,20 @@ import { faChevronRight } from '@fortawesome/fontawesome-free-solid';
 import { DarkLightModeContext } from '../../../../DarkLightMode/context/DarkLightModeContext';
 
 export const getForwardButtonTitle = (inputs, maxPage, page) =>
-  `${page < maxPage - 1 ? `GO TO ${inputs[page].title}` : 'GO TO REVIEW'}\u00A0\u00A0`;
+  `${page < maxPage - 1 ? inputs[page].title : 'REVIEW'}\u00A0\u00A0`;
 
 export const ApplicationForwardButton = ({ page, maxPage, inputs, goForward }) => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   return page === maxPage ? (
     <StyledLink to='/app-complete'>
-      <StyledButton darkMode={darkMode}>
+      <StyledButton color='info' darkMode={darkMode}>
         {`${'SUBMIT APPLICATION'}\u00A0\u00A0`}
         <FontAwesomeIcon icon={faChevronRight} />
       </StyledButton>
     </StyledLink>
   ) : (
-    <StyledButton darkMode={darkMode} onClick={goForward}>
+    <StyledButton color='info' darkMode={darkMode} onClick={goForward}>
       {getForwardButtonTitle(inputs, maxPage, page)}
       <FontAwesomeIcon icon={faChevronRight} />
     </StyledButton>
@@ -40,7 +40,6 @@ export const StyledButton = styled(Button)(({ darkMode }) => ({
   ':hover': {
     color: darkMode && 'white',
   },
-  color: darkMode && '#cfcfcf',
   marginTop: 15,
 }));
 

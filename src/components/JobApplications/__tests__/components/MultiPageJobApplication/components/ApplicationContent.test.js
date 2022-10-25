@@ -51,8 +51,8 @@ describe('ApplicationContent tests', () => {
   it('renders ApplicationContentContainer styled component correctly', () => {
     const appContainerTests = [
       { page: 0, maxPage: 1, result: 'sc-kDvujY jRMoMP' },
-      { page: 1, maxPage: 2, result: 'sc-kDvujY bCgLEt' },
-      { page: 2, maxPage: 2, result: 'sc-kDvujY dAZMHM' },
+      { page: 1, maxPage: 2, result: 'sc-kDvujY fzCqLV' },
+      { page: 2, maxPage: 2, result: 'sc-kDvujY caykwj' },
     ];
 
     appContainerTests.forEach(({ page, maxPage, result }) => {
