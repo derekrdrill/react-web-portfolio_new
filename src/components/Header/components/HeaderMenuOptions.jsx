@@ -23,9 +23,9 @@ export const HeaderMenuOptions = ({
     <StyledScrollLink
       activeClass='active'
       darkMode={darkMode}
-      duration={500}
+      duration={1500}
       menuType={menuType}
-      offset={-70}
+      offset={-80}
       spy={true}
       to={mainTo}
     >
