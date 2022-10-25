@@ -2,12 +2,12 @@
 
 exports[`Option tests renders correctly 1`] = `
 <React.Fragment>
-  <Styled(Component)>
-    <styled.a
-      className="link"
-      href="www.fake.com"
-      target="_blank"
-    >
+  <styled.a
+    className="link"
+    href="www.fake.com"
+    target="_blank"
+  >
+    <Styled(Component)>
       <ForwardRef(Grid)
         className="menu-item"
         container={true}
@@ -26,8 +26,8 @@ exports[`Option tests renders correctly 1`] = `
           test
         </ForwardRef(Grid)>
       </ForwardRef(Grid)>
-    </styled.a>
-  </Styled(Component)>
+    </Styled(Component)>
+  </styled.a>
   <ForwardRef(Divider) />
 </React.Fragment>
 `;

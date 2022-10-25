@@ -7,27 +7,27 @@ export const Option = ({ darkMode, handleModalOpen, handleClose, option }) => {
   const { title, icon, href, target, divider, modal } = option;
 
   const menuItem = (
-    <Grid className='menu-item' container spacing={3}>
-      <Grid item xs={2}>
-        {icon}
+    <StyledMenuItem darkMode={darkMode} onClick={modal ? handleModalOpen : handleClose}>
+      <Grid className='menu-item' container spacing={3}>
+        <Grid item xs={2}>
+          {icon}
+        </Grid>
+        <Grid item xs={9}>
+          {title}
+        </Grid>
       </Grid>
-      <Grid item xs={9}>
-        {title}
-      </Grid>
-    </Grid>
+    </StyledMenuItem>
   );
 
   return (
     <>
-      <StyledMenuItem darkMode={darkMode} onClick={modal ? handleModalOpen : handleClose}>
-        {href ? (
-          <StyledMenuLink className='link' href={href} target={target}>
-            {menuItem}
-          </StyledMenuLink>
-        ) : (
-          menuItem
-        )}
-      </StyledMenuItem>
+      {href ? (
+        <StyledMenuLink className='link' darkMode={darkMode} href={href} target={target}>
+          {menuItem}
+        </StyledMenuLink>
+      ) : (
+        menuItem
+      )}
       {divider && <Divider />}
     </>
   );
@@ -43,9 +43,9 @@ Option.propTypes = {
 export const StyledMenuItem = styled(MenuItem)(({ darkMode }) => ({
   ':hover': {
     backgroundColor: darkMode ? 'black' : 'slategrey',
-    color: 'white',
+    color: darkMode ? 'white' : 'slategrey',
     a: {
-      color: 'white',
+      color: darkMode ? 'white' : 'slategrey',
     },
   },
 }));
@@ -53,7 +53,4 @@ export const StyledMenuItem = styled(MenuItem)(({ darkMode }) => ({
 export const StyledMenuLink = styled.a({
   color: 'black',
   textDecoration: 'none',
-  ':hover': {
-    color: 'white',
-  },
 });
