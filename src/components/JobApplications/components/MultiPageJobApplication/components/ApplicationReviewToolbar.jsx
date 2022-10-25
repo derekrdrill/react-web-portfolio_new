@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { IconButton, Toolbar } from '@mui/material';
+import { IconButton, Toolbar, Typography } from '@mui/material';
 
 import { DarkLightModeContext } from '../../../../DarkLightMode/context/DarkLightModeContext';
 
@@ -16,6 +16,9 @@ export const ApplicationReviewToolbar = ({ editMode, maxPage, page, toggleEditMo
         <EditIcon onClick={toggleEditMode}>
           <ApplicationReviewToolbarIcon editMode={editMode} />
         </EditIcon>
+        <EditIconTypography variant='body1'>
+          {!editMode ? 'Edit App' : 'Lock App'}
+        </EditIconTypography>
       </StyledToolbar>
     )
   );
@@ -37,4 +40,9 @@ export const EditIcon = styled(IconButton)({
     fill: 'darkslategrey',
     borderRadius: 5,
   },
+});
+
+export const EditIconTypography = styled(Typography)({
+  // marginLeft: 20,
+  transform: 'translateX(10px)',
 });

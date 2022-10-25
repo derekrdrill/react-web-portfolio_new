@@ -7,5 +7,10 @@ exports[`ApplicationReviewToolbarIcon tests renders correctly 1`] = `
   <Styled(Component)>
     <ApplicationReviewToolbarIcon />
   </Styled(Component)>
+  <Styled(Component)
+    variant="body1"
+  >
+    Edit App
+  </Styled(Component)>
 </Styled(Component)>
 `;
