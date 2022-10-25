@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { MoreOptionsModal, ResumeOptionButtons, StyledBox } from '../components/MoreOptionsModal';
+import { ModalTypography, MoreOptionsModal, StyledBox } from '../components/MoreOptionsModal';
 
 const renderer = new ShallowRenderer();
 
@@ -26,14 +26,14 @@ describe('More Options Modal tests', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('renders Resume Option Buttons correctly', () => {
-    const resumeOptionTests = [
-      { cancelbutton: false, result: 'sc-gswNZR gJKnQu' },
-      { cancelbutton: true, result: 'sc-gswNZR hNQAuP' },
+  it('renders ModalTypography correctly', () => {
+    const modalTypographyTests = [
+      { darkMode: false, result: 'sc-hLBbgP' },
+      { darkMode: true, result: 'sc-hLBbgP gEpqt' },
     ];
 
-    resumeOptionTests.forEach(({ cancelbutton, result }) => {
-      renderer.render(<ResumeOptionButtons cancelbutton={cancelbutton} />);
+    modalTypographyTests.forEach(({ darkMode, result }) => {
+      renderer.render(<ModalTypography darkMode={darkMode} />);
       const render = renderer.getRenderOutput();
       expect(render.props.className).toEqual(result);
     });
@@ -41,8 +41,8 @@ describe('More Options Modal tests', () => {
 
   it('renders StyledBox correctly', () => {
     const styledBoxTests = [
-      { darkMode: false, result: 'sc-bcXHqe keFXPN' },
-      { darkMode: true, result: 'sc-bcXHqe fbsAPY' },
+      { darkMode: false, result: 'sc-bcXHqe hPBECo' },
+      { darkMode: true, result: 'sc-bcXHqe flUyxp' },
     ];
 
     styledBoxTests.forEach(({ darkMode, result }) => {
