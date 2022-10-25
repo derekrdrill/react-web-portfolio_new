@@ -83,8 +83,9 @@ ApplicationContent.propTypes = {
 };
 
 export const ApplicationContentGrid = styled(Grid)(({ page, maxpage }) => ({
-  paddingTop: page < 1 ? 200 : page === maxpage ? 30 : 75,
-  paddingLeft: page < 1 && 40,
+  paddingTop: page < 1 ? 200 : page === maxpage ? 30 : 0,
+  paddingLeft: page < 1 ? 40 : page === maxpage ? '5%' : '1%',
+  paddingRight: page === maxpage && '5%',
 }));
 
 export const AdvancedAppInputsContainer = styled(Grid)(({ darkMode, page, maxpage, $editing }) => [
