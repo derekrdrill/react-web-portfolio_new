@@ -16,7 +16,7 @@ export const ApplicationForwardButton = ({ page, maxPage, inputs, goForward }) =
 
   return page === maxPage ? (
     <StyledLink to='/app-complete'>
-      <StyledButton color='info' darkMode={darkMode}>
+      <StyledButton color='success' variant='contained' darkMode={darkMode}>
         {`${'SUBMIT APPLICATION'}\u00A0\u00A0`}
         <FontAwesomeIcon icon={faChevronRight} />
       </StyledButton>
