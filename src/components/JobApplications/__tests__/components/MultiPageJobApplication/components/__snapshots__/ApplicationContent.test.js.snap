@@ -12,8 +12,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
   >
     <ApplicationReviewToolbar />
     <Styled(Component)
-      container={true}
-      sectionid={1}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -60,8 +60,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={2}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -102,8 +102,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={3}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -188,8 +188,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={4}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -240,8 +240,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={5}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -262,8 +262,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={6}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={
@@ -307,8 +307,8 @@ exports[`ApplicationContent tests renders correctly 1`] = `
       />
     </Styled(Component)>
     <Styled(Component)
-      container={true}
-      sectionid={7}
+      $isOnLastPage={true}
+      $isOnPage={false}
     >
       <JobApplicationSection
         section={

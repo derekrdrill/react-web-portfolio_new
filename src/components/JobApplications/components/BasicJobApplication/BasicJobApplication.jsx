@@ -32,7 +32,9 @@ export const BasicJobApplication = () => {
           </DynamicList>
         </FileUploadScrollContainer>
       </FileUploadContainer>
-      <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} form={form} setForm={setForm} />
+      <JobAppInputsContainer item xs={12}>
+        <DynamicFormInputs inputs={BASIC_JOB_APP_INPUTS} form={form} setForm={setForm} />
+      </JobAppInputsContainer>
       <Grid container justifyContent='flex-end'>
         <Grid item xs={12} md={6} lg={4}>
           <Link to='/app-complete'>
@@ -51,12 +53,16 @@ export const JobAppContainer = styled(Grid)(({ darkMode }) => ({
   border: darkMode ? 'none' : '1px solid lightgrey',
   borderRadius: 10,
   boxShadow: darkMode ? '5px 3px 3px lightgrey' : '5px 3px 3px grey',
-  marginLeft: '9%',
-  marginTop: 25,
-  padding: 60,
+  height: '100vh',
+  marginTop: 35,
+  padding: '20px 20px 10px 30px',
   textAlign: 'center',
   width: '80%',
 }));
+
+export const JobAppInputsContainer = styled(Grid)({
+  marginTop: 20,
+});
 
 export const JobAppTitleContainer = styled(Grid)({
   marginBottom: 30,
@@ -78,7 +84,6 @@ export const FileUploadContainer = styled(Grid)(({ darkMode }) => ({
   border: darkMode ? 'none' : '1px dashed gainsboro',
   borderRadius: 6,
   boxShadow: darkMode ? '3px 2px 5px lightgrey' : '1px 1px 2px grey',
-  marginBottom: 30,
   padding: 20,
 }));
 

@@ -200,7 +200,8 @@ export const ADVANCED_JOB_APP_INPUTS = [
     inputs: [
       {
         id: 'specialSkills',
-        label: 'Please list any skills you feel would help you in the position you are applying for',
+        label:
+          'Please list any skills you feel would help you in the position you are applying for',
         multiline: true,
         minRows: 3,
         xs: 12,
@@ -248,7 +249,8 @@ export const ADVANCED_JOB_APP_INPUTS = [
     title: 'Supporting Documents',
     instructions: (
       <div>
-        These documents could include Resume CV, Cover Letter, Letter of Recomendation, Transcript, etc
+        These documents could include Resume CV, Cover Letter, Letter of Recomendation, Transcript,
+        etc
         <br />
         <i>This is not required, but information in these documents could impact our decision</i>
       </div>
