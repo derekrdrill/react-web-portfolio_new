@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ProgressBar } from '../../../../ProgressBar/ProgressBar';
 
 export const ApplicationProgressBar = ({ page, maxPage, progress }) =>
-  page <= maxPage && <ProgressBar progress={progress} page={page} />;
+  page <= maxPage && page > 0 && <ProgressBar progress={progress} page={page} />;
 
 ApplicationProgressBar.propTypes = {
   maxPage: PropTypes.number,

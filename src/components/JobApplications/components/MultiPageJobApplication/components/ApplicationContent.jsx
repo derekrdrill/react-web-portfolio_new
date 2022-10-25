@@ -48,7 +48,7 @@ export const ApplicationContent = ({
           darkMode={darkMode}
           item
           xs={12}
-          editing={editMode}
+          $editing={editMode}
           page={page}
           maxpage={maxPage}
         >
@@ -58,19 +58,15 @@ export const ApplicationContent = ({
             page={page}
             toggleEditMode={toggleEditMode}
           />
-          {inputs.map(section => {
-            return (
-              <JobApplicationSectionContainer
-                container
-                key={section.id}
-                page={page}
-                sectionid={section.id}
-                maxpage={maxPage}
-              >
-                <JobApplicationSection section={section} />
-              </JobApplicationSectionContainer>
-            );
-          })}
+          {inputs.map(section => (
+            <JobApplicationSectionContainer
+              key={section.id}
+              $isOnLastPage={maxPage === page}
+              $isOnPage={section.id === page}
+            >
+              <JobApplicationSection section={section} />
+            </JobApplicationSectionContainer>
+          ))}
         </AdvancedAppInputsContainer>
       )}
     </ApplicationContentGrid>
@@ -91,7 +87,7 @@ export const ApplicationContentGrid = styled(Grid)(({ page, maxpage }) => ({
   paddingLeft: page < 1 && 40,
 }));
 
-export const AdvancedAppInputsContainer = styled(Grid)(({ darkMode, page, maxpage, editing }) => [
+export const AdvancedAppInputsContainer = styled(Grid)(({ darkMode, page, maxpage, $editing }) => [
   page === maxpage && {
     borderColor: darkMode ? 'transparent' : 'lightgrey',
     borderRadius: 5,
@@ -99,27 +95,19 @@ export const AdvancedAppInputsContainer = styled(Grid)(({ darkMode, page, maxpag
     boxShadow: '5px 3px 3px grey',
     margin: '10px 30px 10px 30px',
     '.MuiButton-root': {
-      pointerEvents: !editing && 'none',
-      color: !editing && 'lightgrey',
+      pointerEvents: !$editing && 'none',
+      color: !$editing && 'lightgrey',
     },
     '.MuiInputBase-input, .MuiInputBase-root': {
-      backgroundColor: !editing && (darkMode ? 'darkgrey' : 'gainsboro'),
-      pointerEvents: !editing && 'none',
+      backgroundColor: !$editing && (darkMode ? 'darkgrey' : 'gainsboro'),
+      pointerEvents: !$editing && 'none',
     },
   },
 ]);
 
-export const JobApplicationSectionContainer = styled(Grid)(({ page, sectionid, maxpage }) => [
-  {
-    display: 'none',
-  },
-  page === sectionid && {
-    display: 'inline-block',
-  },
-  page === maxpage && {
-    display: 'inline-block',
-  },
-]);
+export const JobApplicationSectionContainer = styled(Grid)(({ $isOnPage, $isOnLastPage }) => ({
+  display: $isOnPage || $isOnLastPage ? 'inline-block' : 'none',
+}));
 
 export const StartApplicationButton = styled(Button)({
   backgroundColor: '#357960',
