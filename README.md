@@ -82,6 +82,17 @@ Here is the breakdown of completed and pending work on this app:
   
 <h2>Pending</h2>
 <ul>
+<li>
+    Unit Testing
+    <ul>
+      <li>
+        Jest and enzyme are utilized to unit test all aspects of this project. This repo is at about 50% of coverage, with a goal of getting the unit test coverage threshold above 90%
+      </li> 
+      <li>
+        Status: <em>In Progress</em>
+      </li> 
+    </ul>
+  </li>
   <li>
     Data Reporting Tool
     <ul>
