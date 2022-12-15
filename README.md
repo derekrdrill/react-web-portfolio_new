@@ -2,13 +2,15 @@
 
 This is the repository for the front end source code for my web portfolio. The main purpose of this project is to modernize my legacy portfolio.
 
-This app is heavily dependent on React JS, while also relying on the following libraries and technologies to enhace code and UI capabilities:
+This app is heavily dependent on React JS, while also relying on the following libraries and technologies to enhace code quality, the overall UI and the development lifecycle:
 
 <ul>
   <li>Material UI</li>
   <li>Styled Components</li>
-  <li>React Bootstrap</li>
   <li>Font Awesome</li>
+  <li>Axios</li>
+  <li>Prettier</li>
+  <li>ES Lint</li>
 </ul>
 
 This application is currently comprised of 24 total components that are thoughtfully created to handle the many states a user may experience throughout the app.
