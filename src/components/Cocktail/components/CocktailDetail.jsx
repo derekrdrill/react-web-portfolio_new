@@ -11,33 +11,80 @@ const CocktailDetail = () => {
     searchResults &&
     searchResults.map((searchResult, searchResultKey) => (
       <CocktailDetailContainer key={searchResultKey} container>
-        <Grid item xs={2} lg={2} />
-        <Grid item xs={10} lg={3}>
+        <Grid item xs={1} sm={3} md={2} />
+        <Grid item xs={10} sm={8} md={3}>
           <CocktailImage src={searchResult.strDrinkThumb} />
         </Grid>
-        <Grid item xs={2} lg={1} />
-        <Grid item xs={8} lg={4}>
-          <Typography variant='h3'>{searchResult.strDrink}</Typography>
+        <Grid item xs={1} sm={2} md={2} />
+        <Grid item xs={11} md={4}>
+          <Typography
+            variant='h3'
+            sx={{
+              textAlign: {
+                xs: 'center',
+                md: 'left',
+              },
+            }}
+          >
+            {searchResult.strDrink}
+          </Typography>
           <br />
-          <Typography variant='h5'>Ingredients</Typography>
-          <ul>
-            {Object.keys(searchResult)
-              .filter(result => result.includes('strIngredient'))
-              .map(
-                (ingredient, ingredientKey) =>
-                  searchResult[ingredient] && (
-                    <li key={`${searchResult.idDrink}${ingredientKey}`}>
-                      <Typography variant='body1'>
-                        {`${searchResult[`strMeasure${ingredientKey + 1}`] ?? ''} ${
-                          searchResult[ingredient]
-                        }`}
-                      </Typography>
-                    </li>
-                  ),
-              )}
-          </ul>
-          <Typography variant='h5'>Instructions</Typography>
-          <Typography variant='body2'>{searchResult.strInstructions}</Typography>
+          <Typography
+            variant='h5'
+            sx={{
+              textAlign: {
+                xs: 'center',
+                md: 'left',
+              },
+            }}
+          >
+            Ingredients
+          </Typography>
+          {/* <ul> */}
+          {Object.keys(searchResult)
+            .filter(result => result.includes('strIngredient'))
+            .map(
+              (ingredient, ingredientKey) =>
+                searchResult[ingredient] && (
+                  <Typography
+                    key={`${searchResult.idDrink}${ingredientKey}`}
+                    variant='subtitle2'
+                    sx={{
+                      textAlign: {
+                        xs: 'center',
+                        md: 'left',
+                      },
+                    }}
+                  >
+                    {`${searchResult[`strMeasure${ingredientKey + 1}`] ?? ''} ${
+                      searchResult[ingredient]
+                    }`}
+                  </Typography>
+                ),
+            )}
+          <br />
+          <Typography
+            variant='h5'
+            sx={{
+              textAlign: {
+                xs: 'center',
+                md: 'left',
+              },
+            }}
+          >
+            Instructions
+          </Typography>
+          <Typography
+            variant='body2'
+            sx={{
+              textAlign: {
+                xs: 'center',
+                md: 'left',
+              },
+            }}
+          >
+            {searchResult.strInstructions}
+          </Typography>
         </Grid>
       </CocktailDetailContainer>
     ))
@@ -54,6 +101,6 @@ export const CocktailDetailContainer = styled(Grid)({
 
 export const CocktailImage = styled.img({
   borderRadius: 30,
-  height: 300,
-  width: 350,
+  height: 275,
+  width: 320,
 });
