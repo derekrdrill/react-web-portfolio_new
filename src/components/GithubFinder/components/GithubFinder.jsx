@@ -2,28 +2,30 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { GithubUsersContainer } from './GithubUsersContainer';
 import { GithubUserSearch } from './GithubUserSearch';
-import { GithubProvider } from '../context/GithubContext';
 import { AlertProvider } from '../../Alert/context/AlertContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
-const GithubFinder = () => (
-  <GithubProvider>
+const GithubFinder = () => {
+  const { darkMode } = React.useContext(DarkLightModeContext);
+
+  return (
     <AlertProvider>
-      <PageStyle />
+      <PageStyle darkMode={darkMode} />
       <GithubUserSearch />
       <GithubUsersContainer />
     </AlertProvider>
-  </GithubProvider>
-);
-  
+  );
+};
+
 export default GithubFinder;
 
-const PageStyle = createGlobalStyle({
+const PageStyle = createGlobalStyle(({ darkMode }) => ({
   body: {
-    backgroundColor: '#202142',
+    backgroundColor: darkMode ? '#202142' : 'beige',
   },
   'h1, h2, h3, h4, h5, h6, p': {
     fontFamily: 'Trebuchet MS, sans-serif',
     fontWeight: 'bold',
-    color: 'beige',
+    color: darkMode ? 'beige' : '#464646',
   },
-});
+}));

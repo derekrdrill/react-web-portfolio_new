@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, TextField } from '@mui/material';
 
 import { AlertContext } from '../../Alert/context/AlertContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { GithubContext } from '../context/GithubContext';
 
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
@@ -33,8 +34,15 @@ export const handleClearUsers = (githubDispatch, searchInput, setText) => {
 export const GithubUserSearch = () => {
   const searchInput = useRef(null);
   const [text, setText] = useState('');
-  const { githubDispatch } = React.useContext(GithubContext);
   const { alertDispatch } = React.useContext(AlertContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
+  const { githubDispatch } = React.useContext(GithubContext);
+
+  const handleEnterKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
 
   const handleSubmit = async () => {
     if (text === '') {
@@ -61,17 +69,19 @@ export const GithubUserSearch = () => {
     <GithubUserSearchContainer>
       <SearchInputContainer>
         <SearchInput
+          darkMode={darkMode}
           fullWidth
-          label='Type a user name'
+          inputRef={searchInput}
+          label='Search for a GitHub user by name or username'
           onChange={
             /* istanbul ignore next */
             e => {
               handleChange(e, githubDispatch, handleClearUsers, searchInput, setText);
             }
           }
-          inputRef={searchInput}
+          onKeyDown={handleEnterKeyPress}
           value={text}
-          variant='outlined'
+          variant={darkMode ? 'filled' : 'outlined'}
         />
         <GithubUserSearchClear
           githubDispatch={githubDispatch}
@@ -107,27 +117,27 @@ const AlertContainer = styled.div({
   transform: 'translateX(-15px)',
 });
 
-const SearchInput = styled(TextField)({
+const SearchInput = styled(TextField)(({ darkMode }) => ({
   '&.MuiFormControl-root': {
     ':hover': {
-      backgroundColor: '#607080',
+      backgroundColor: darkMode ? '#607080' : 'grey',
     },
-    backgroundColor: '#4f5c69',
+    backgroundColor: darkMode ? '#4f5c69' : 'lightgrey',
   },
   '.MuiInputBase-root': {
     borderRadius: 0,
-    color: '#75baff',
+    color: darkMode ? '#75baff' : 'black',
   },
   '.MuiInputLabel-root': {
-    color: '#75baff',
+    color: darkMode ? '#75baff' : 'black',
   },
   '.Mui-focused': {
-    color: '#bddeff',
     '&.MuiInputBase-root': {
-      backgroundColor: '#607080',
+      backgroundColor: 'white',
+      color: darkMode ? '#75baff' : 'black',
     },
   },
-});
+}));
 
 const SearchButton = styled(Button)({
   borderRadius: 0,

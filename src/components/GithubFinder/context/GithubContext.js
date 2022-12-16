@@ -5,7 +5,7 @@ import { githubReducer } from './GithubReducer';
 
 export const GithubContext = createContext();
 
-export const GithubProvider = ({ children }) => {
+const GithubProvider = ({ children }) => {
   const initialState = {
     loading: false,
     repos: [],
@@ -30,3 +30,5 @@ export const GithubProvider = ({ children }) => {
 GithubProvider.propTypes = {
   children: PropTypes.node,
 };
+
+export default GithubProvider;

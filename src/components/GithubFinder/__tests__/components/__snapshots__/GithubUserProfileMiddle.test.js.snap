@@ -9,6 +9,7 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
       "md": "center",
     }
   }
+  spacing={2}
 >
   <Styled(Component)
     item={true}
@@ -46,7 +47,7 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           border={false}
           bounce={false}
           className=""
-          color="lightgrey"
+          color="grey"
           fade={false}
           fixedWidth={false}
           flip={false}
@@ -120,7 +121,7 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           border={false}
           bounce={false}
           className=""
-          color="lightgrey"
+          color="grey"
           fade={false}
           fixedWidth={false}
           flip={false}
@@ -194,7 +195,7 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           border={false}
           bounce={false}
           className=""
-          color="lightgrey"
+          color="grey"
           fade={false}
           fixedWidth={false}
           flip={false}
@@ -268,7 +269,7 @@ exports[`GithubUserProfileMiddle tests renders correctly 1`] = `
           border={false}
           bounce={false}
           className=""
-          color="lightgrey"
+          color="grey"
           fade={false}
           fixedWidth={false}
           flip={false}

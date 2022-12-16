@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Chip, Grid, Tooltip, Typography } from '@mui/material';
+
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { GithubContext } from '../context/GithubContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLink,
@@ -13,6 +16,7 @@ import {
 } from '@fortawesome/fontawesome-free-solid';
 
 export const GithubUserRepos = () => {
+  const { darkMode } = React.useContext(DarkLightModeContext);
   const { repos } = React.useContext(GithubContext);
 
   return (
@@ -38,8 +42,10 @@ export const GithubUserRepos = () => {
           ];
 
           return (
-            <RepoContainer container key={repoKey} rowSpacing={2}>
-              <CopyLinkIcon icon={faLink} color='white' />
+            <RepoContainer container key={repoKey} darkMode={darkMode} rowSpacing={2}>
+              <CopyLink href={repo.html_url} rel='noreferrer' target='_blank'>
+                <CopyLinkIcon icon={faLink} color={darkMode ? 'white' : 'black'} />
+              </CopyLink>
               <RepoNameTitle component='h6' variant='subtitle1'>
                 {repo.name}
               </RepoNameTitle>
@@ -56,7 +62,7 @@ export const GithubUserRepos = () => {
                         label={item.value}
                         color={item.color}
                         icon={<FontAwesomeIcon icon={item.icon} />}
-                        variant='outlined'
+                        variant={darkMode ? 'outlined' : 'filled'}
                         size='small'
                       />
                     </Tooltip>
@@ -75,22 +81,27 @@ const GithubReposContainer = styled(Grid)({
   padding: 35,
 });
 
-const RepoContainer = styled(Grid)({
+const RepoContainer = styled(Grid)(({ darkMode }) => ({
   ':hover': {
-    backgroundColor: '#474a94',
-    boxShadow: '2px 1px 10px #33356b',
+    backgroundColor: darkMode && '#373975',
+    boxShadow: !darkMode && '2px 1px 10px royalblue',
   },
   boxShadow: '2px 1px 10px #121326',
   borderRadius: 10,
   padding: 35,
   marginBottom: 40,
-});
+}));
 
 const RepoStatsChip = styled(Chip)({
   '&&.MuiChip-root': {
+    margin: 5,
     minWidth: 90,
     padding: '12px 0px 12px 5px',
   },
+});
+
+const CopyLink = styled.a({
+  marginRight: 10,
 });
 
 const CopyLinkIcon = styled(FontAwesomeIcon)({
