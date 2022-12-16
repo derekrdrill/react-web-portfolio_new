@@ -1,16 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 
-import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { CocktailContext } from '../../Cocktail/context/CocktailContext';
 
 const CocktailDetail = () => {
-  const { cocktailDispatch, searchResults, searchType } = React.useContext(CocktailContext);
-  const { darkMode } = React.useContext(DarkLightModeContext);
-
-  console.log(searchResults);
+  const { searchResults } = React.useContext(CocktailContext);
 
   return (
     searchResults &&
@@ -48,8 +43,6 @@ const CocktailDetail = () => {
     ))
   );
 };
-
-CocktailDetail.propTypes = {};
 
 export default CocktailDetail;
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 import { AlertProvider } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
@@ -20,7 +19,6 @@ const Cocktail = () => {
   );
 };
 
-Cocktail.propTypes = {};
 
 export default Cocktail;
 
