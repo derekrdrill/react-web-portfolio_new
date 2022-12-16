@@ -9,9 +9,12 @@ import {
   faProjectDiagram,
 } from '@fortawesome/fontawesome-free-solid';
 
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { GithubContext } from '../context/GithubContext';
 
 export const GithubUserProfileMiddle = () => {
+  const { darkMode } = React.useContext(DarkLightModeContext);
+
   const {
     user: { followers, following, public_gists, public_repos },
   } = React.useContext(GithubContext);
@@ -24,9 +27,9 @@ export const GithubUserProfileMiddle = () => {
   ];
 
   return (
-    <Grid container justifyContent={{ md: 'center', lg: 'flex-start' }}>
+    <Grid container justifyContent={{ md: 'center', lg: 'flex-start' }} spacing={2}>
       {data.map(item => (
-        <MiddleSectionItem key={item.id} item xs={12} md={6} lg={3}>
+        <MiddleSectionItem key={item.id} darkMode={darkMode} item xs={12} md={6} lg={3}>
           <Grid container>
             <Grid item xs={10}>
               <Typography component='h6' variant='subtitle2'>
@@ -37,7 +40,7 @@ export const GithubUserProfileMiddle = () => {
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              <FontAwesomeIcon color='lightgrey' icon={item.icon} />
+              <FontAwesomeIcon color={darkMode ? 'lightgrey' : 'grey'} icon={item.icon} />
             </Grid>
           </Grid>
         </MiddleSectionItem>
@@ -46,11 +49,12 @@ export const GithubUserProfileMiddle = () => {
   );
 };
 
-export const MiddleSectionItem = styled(Grid)({
+export const MiddleSectionItem = styled(Grid)(({ darkMode }) => ({
+  border: !darkMode && '2px darkgrey solid',
   borderRadius: 10,
-  boxShadow: '2px 1px 10px #121326',
+  boxShadow: darkMode && '2px 1px 10px #121326',
   padding: 15,
-});
+}));
 
 export const MiddleSectionItemIcon = styled(FontAwesomeIcon)({
   height: '1.5em',

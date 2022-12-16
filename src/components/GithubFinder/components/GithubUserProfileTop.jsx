@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Chip, Grid, Typography } from '@mui/material';
 
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { GithubContext } from '../context/GithubContext';
 
 import { GithubUserProfileBio } from './GithubUserProfileBio';
@@ -10,6 +11,8 @@ export const getBlog = blog => blog ?? 'N/A';
 export const getTwitterUsername = twitter_username => twitter_username ?? 'N/A';
 
 export const GithubUserProfileTop = () => {
+  const { darkMode } = React.useContext(DarkLightModeContext);
+
   const {
     user: { avatar_url, blog, hireable, html_url, location, login, name, twitter_username, type },
   } = React.useContext(GithubContext);
@@ -17,7 +20,7 @@ export const GithubUserProfileTop = () => {
   return (
     <Grid container spacing={1}>
       <Grid item sm={12} md={3} xl={2}>
-        <ProfileImage src={avatar_url} />
+        <ProfileImage darkMode={darkMode} src={avatar_url} />
         <ProfileNames component='h6' variant='subtitle1'>
           {name}
         </ProfileNames>
@@ -32,9 +35,21 @@ export const GithubUserProfileTop = () => {
               {name}
             </Typography>
             <ChipsContainer>
-              {type && <Chip label={type} color='success' variant='outlined' size='small' />}
+              {type && (
+                <Chip
+                  label={type}
+                  color='success'
+                  variant={darkMode ? 'outlined' : 'filled'}
+                  size='small'
+                />
+              )}
               {hireable && (
-                <Chip label='Hireable' color='secondary' variant='outlined' size='small' />
+                <Chip
+                  label='Hireable'
+                  color='secondary'
+                  variant={darkMode ? 'outlined' : 'filled'}
+                  size='small'
+                />
               )}
             </ChipsContainer>
           </Grid>
@@ -44,9 +59,16 @@ export const GithubUserProfileTop = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button size='large' color='info' variant='outlined' href={html_url} target='_blank'>
+            <VisitProfileButton
+              color='info'
+              darkMode={darkMode}
+              href={html_url}
+              size='large'
+              target='_blank'
+              variant={darkMode ? 'outlined' : 'contained'}
+            >
               Visit Profile
-            </Button>
+            </VisitProfileButton>
           </Grid>
           <Grid item xs={12}>
             <Grid container>
@@ -97,14 +119,23 @@ export const ChipsContainer = styled.div({
   gridTemplateColumns: '100px 100px',
 });
 
-export const ProfileImage = styled.img({
+export const ProfileImage = styled.img(({ darkMode }) => ({
   background: 'black',
   maxHeight: 189,
   maxWidth: 189,
-  opacity: 0.7,
-});
+  opacity: darkMode ? 0.7 : 0.9,
+}));
 
 export const ProfileNames = styled(Typography)({
   color: 'beige',
   transform: 'translate(10px, -50px)',
 });
+
+export const VisitProfileButton = styled(Button)(({ darkMode }) => [
+  !darkMode && {
+    ':hover': {
+      textDecoration: 'none',
+      color: 'white',
+    },
+  },
+]);
