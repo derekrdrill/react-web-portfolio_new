@@ -10,8 +10,9 @@ exports[`GithubUserSearch tests renders correctly 1`] = `
           "current": null,
         }
       }
-      label="Type a user name"
+      label="Search for a GitHub user by name or username"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value=""
       variant="outlined"
     />

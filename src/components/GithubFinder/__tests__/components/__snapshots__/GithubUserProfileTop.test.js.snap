@@ -52,13 +52,13 @@ exports[`GithubUserProfileTop tests renders correctly 1`] = `
             color="success"
             label="test type"
             size="small"
-            variant="outlined"
+            variant="filled"
           />
           <ForwardRef(Chip)
             color="secondary"
             label="Hireable"
             size="small"
-            variant="outlined"
+            variant="filled"
           />
         </styled.div>
       </ForwardRef(Grid)>
@@ -77,15 +77,15 @@ exports[`GithubUserProfileTop tests renders correctly 1`] = `
         item={true}
         xs={12}
       >
-        <ForwardRef(Button)
+        <Styled(Component)
           color="info"
           href="www.github.com/fake"
           size="large"
           target="_blank"
-          variant="outlined"
+          variant="contained"
         >
           Visit Profile
-        </ForwardRef(Button)>
+        </Styled(Component)>
       </ForwardRef(Grid)>
       <ForwardRef(Grid)
         item={true}

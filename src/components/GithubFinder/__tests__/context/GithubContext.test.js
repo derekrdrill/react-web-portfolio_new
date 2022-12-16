@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { GithubProvider } from '../../context/GithubContext';
+import GithubProvider from '../../context/GithubContext';
 
 const renderer = new ShallowRenderer();
 
