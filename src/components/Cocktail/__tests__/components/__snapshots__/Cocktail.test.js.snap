@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cocktail tests renders correctly 1`] = `
+<AlertProvider>
+  <Memo(l)
+    darkMode={true}
+  />
+  <CocktailSearch />
+  <CocktailDetail />
+</AlertProvider>
+`;
