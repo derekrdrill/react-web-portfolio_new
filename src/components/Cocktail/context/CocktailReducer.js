@@ -9,6 +9,7 @@ export const cocktailReducer = (state, action) => {
       return {
         ...state,
         searchResults: action.searchResults,
+        searchResultsLength: action.searchResultsLength,
       };
     case 'SET_SELECTED_INGREDIENTS':
       return {

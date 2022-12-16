@@ -76,6 +76,7 @@ export const getCocktailByName = async (name, cocktailDispatch) => {
     cocktailDispatch({
       type: 'SET_SEARCH_RESULTS',
       searchResults: null,
+      searchResultsLength: 0,
     });
   } else {
     axios
@@ -84,6 +85,7 @@ export const getCocktailByName = async (name, cocktailDispatch) => {
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS',
           searchResults: response.data.drinks,
+          searchResultsLength: response.data.drinks.length,
         });
       })
       .catch(function (error) {
@@ -136,6 +138,7 @@ export const getCocktailsByIngredient = async (selectedIngredients, cocktailDisp
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS',
           searchResults: newReturnedData,
+          searchResultsLength: newReturnedData.length,
         });
       });
     })
@@ -169,6 +172,7 @@ export const setSearchType = (e, cocktailDispatch) => {
   cocktailDispatch({
     type: 'SET_SEARCH_RESULTS',
     searchResults: null,
+    searchResultsLength: 0,
   });
 
   cocktailDispatch({

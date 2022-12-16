@@ -13,6 +13,7 @@ const CocktailProvider = ({ children }) => {
     ingredients: [],
     searchType: 'name',
     searchResults: null,
+    searchResultsLength: 0,
     selectedIngredients: [],
   };
 
