@@ -1,4 +1,9 @@
-import { faFileAlt, faDatabase, faBuilding } from '@fortawesome/fontawesome-free-solid';
+import {
+  faFileAlt,
+  faDatabase,
+  faBuilding,
+  faGlassMartini,
+} from '@fortawesome/fontawesome-free-solid';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 
 export const PROJECTS = [
@@ -12,7 +17,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: 'Lead Input App',
-    description: `A simple input form that writes to a MongoDB. 
+    description: `A simple input form that writes to a MongoDB.
                       Included is a dynamic reporting table to track the input data.`,
     icon: faDatabase,
     to: '/lead-input-page',
@@ -30,5 +35,12 @@ export const PROJECTS = [
     description: `An app that shows listings, current offers on listings and allows to create new listings. All data is pulled from a MongoDB via an Express backend.`,
     icon: faBuilding,
     to: '/housing-marketplace/auth',
+  },
+  {
+    id: 5,
+    title: 'Cocktail App',
+    description: `Users can search by drink name or ingredients to return data on over 635 different cocktails! 🥂🍻`,
+    icon: faGlassMartini,
+    to: '/drink-up',
   },
 ];

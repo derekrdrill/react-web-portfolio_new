@@ -5,6 +5,8 @@ const App = React.lazy(() => import('./components/App'));
 const AboutMe = React.lazy(() => import('./components/AboutMe/components/AboutMe'));
 const ApplicationComplete = React.lazy(() => import('./components/JobApplications/components/Common/ApplicationComplete'));
 const Category = React.lazy(() => import('./components/HousingMarketplace/components/Category'));
+const Cocktail = React.lazy(()=> import('./components/Cocktail/components/Cocktail'));
+const CocktailProvider = React.lazy(()=> import('./components/Cocktail/context/CocktailContext'));
 const ConnectWithMe = React.lazy(() => import('./components/ConnectWithMe/components/ConnectWithMe'));
 const CreateListing = React.lazy(() => import('./components/HousingMarketplace/components/CreateListing'));
 const DarkLightMode = React.lazy(() => import('./components/DarkLightMode/components/DarkLightMode'));
@@ -221,5 +223,10 @@ export const routes = [
     id: 24,
     path: '/dark-light-mode',
     render: <DarkLightMode />,
+  },
+    {
+    id: 25,
+    path: '/drink-up',
+    render: <CocktailProvider><Cocktail /></CocktailProvider>,
   },
 ];
