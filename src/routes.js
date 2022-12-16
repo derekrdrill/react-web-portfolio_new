@@ -13,6 +13,7 @@ const Explore = React.lazy(() => import('./components/HousingMarketplace/compone
 const Feedback = React.lazy(() => import('./components/Feedback/Feedback'));
 const FileUploader = React.lazy(() => import('./components/FileUploader/FileUploader'));
 const GithubFinder = React.lazy(() => import('./components/GithubFinder/components/GithubFinder'));
+const GithubProvider = React.lazy(() => import('./components/GithubFinder/context/GithubContext'));
 const JobApplicationsPage = React.lazy(() => import('./components/JobApplications/components/JobApplicationPage/JobApplicationsPage'));
 const LeadInputPage = React.lazy(() => import('./components/LeadInputForm/components/LeadInputPage'));
 const LeadInputProvider = React.lazy(() => import('./components/LeadInputForm/context/LeadInputContext'));
@@ -86,7 +87,7 @@ export const routes = [
   {
     id: 11,
     path: '/github-finder',
-    render: <GithubFinder />,
+    render: <GithubProvider><GithubFinder /></GithubProvider>,
   },
   {
     id: 12,
