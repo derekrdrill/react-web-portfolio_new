@@ -46,7 +46,7 @@ export const getAllCocktails = async cocktailDispatch => {
     .then(function (response) {
       cocktailDispatch({
         type: 'SET_COCKTAILS',
-        cocktails: response.data.drinks,
+        cocktails: response.data.drinks.filter(drink => !drink.strDrink.includes('1-900-FUK')),
       });
     })
     .catch(function (error) {
