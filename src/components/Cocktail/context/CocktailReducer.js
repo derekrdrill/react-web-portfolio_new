@@ -10,6 +10,11 @@ export const cocktailReducer = (state, action) => {
         ...state,
         searchResults: action.searchResults,
       };
+    case 'SET_SEARCH_RESULTS_LENGTH':
+      return {
+        ...state,
+        searchResultsLength: action.searchResultsLength,
+      };
     case 'SET_SELECTED_INGREDIENTS':
       return {
         ...state,
@@ -28,7 +33,7 @@ export const cocktailReducer = (state, action) => {
     case 'SET_LOADING':
       return {
         ...state,
-        loading: true,
+        loading: action.loading,
       };
     default:
       return state;
