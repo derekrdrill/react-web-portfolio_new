@@ -76,16 +76,26 @@ export const getCocktailByName = async (name, cocktailDispatch) => {
     cocktailDispatch({
       type: 'SET_SEARCH_RESULTS',
       searchResults: null,
+    });
+
+    cocktailDispatch({
+      type: 'SET_SEARCH_RESULTS_LENGTH',
       searchResultsLength: 0,
     });
   } else {
     axios
       .request(options)
       .then(function (response) {
+        const drinks = response.data.drinks;
+
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS',
-          searchResults: response.data.drinks,
-          searchResultsLength: response.data.drinks.length,
+          searchResults: drinks,
+        });
+
+        cocktailDispatch({
+          type: 'SET_SEARCH_RESULTS_LENGTH',
+          searchResultsLength: drinks.length,
         });
       })
       .catch(function (error) {
@@ -97,6 +107,11 @@ export const getCocktailByName = async (name, cocktailDispatch) => {
 export const getCocktailsByIngredient = async (selectedIngredients, cocktailDispatch) => {
   const formattedIngredients = selectedIngredients.map(ingredient => ingredient.replace(/ /g, '_'));
   const ingredientsString = await formattedIngredients.join(',');
+
+  await cocktailDispatch({
+    type: 'SET_LOADING',
+    loading: true,
+  });
 
   const options1 = {
     method: 'GET',
@@ -110,10 +125,10 @@ export const getCocktailsByIngredient = async (selectedIngredients, cocktailDisp
 
   axios
     .request(options1)
-    .then(function (response) {
+    .then(async response => {
       let newReturnedData = [];
 
-      response.data.drinks.forEach(async drink => {
+      await response.data.drinks.forEach(async drink => {
         const options2 = {
           method: 'GET',
           url: COCKTAIL_SEARCH_URL,
@@ -127,8 +142,6 @@ export const getCocktailsByIngredient = async (selectedIngredients, cocktailDisp
         await axios
           .request(options2)
           .then(function (response) {
-            console.log(response);
-
             newReturnedData = [...newReturnedData, ...response.data.drinks];
           })
           .catch(function (error) {
@@ -137,9 +150,20 @@ export const getCocktailsByIngredient = async (selectedIngredients, cocktailDisp
 
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS',
-          searchResults: newReturnedData,
+          searchResults: newReturnedData.sort((a, b) =>
+            a.strDrink < b.strDrink ? -1 : a.strDrink > b.strDrink ? 1 : 0,
+          ),
+        });
+
+        cocktailDispatch({
+          type: 'SET_SEARCH_RESULTS_LENGTH',
           searchResultsLength: newReturnedData.length,
         });
+      });
+
+      cocktailDispatch({
+        type: 'SET_LOADING',
+        loading: false,
       });
     })
     .catch(function (error) {
@@ -172,6 +196,10 @@ export const setSearchType = (e, cocktailDispatch) => {
   cocktailDispatch({
     type: 'SET_SEARCH_RESULTS',
     searchResults: null,
+  });
+
+  cocktailDispatch({
+    type: 'SET_SEARCH_RESULTS_LENGTH',
     searchResultsLength: 0,
   });
 
