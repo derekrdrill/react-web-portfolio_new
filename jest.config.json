@@ -8,7 +8,7 @@
       "branches": 46,
       "functions": 39,
       "lines": 50,
-      "statements": 49
+      "statements": 48
     }
   },
   "moduleDirectories": ["node_modules", "src"],
