@@ -5,6 +5,6 @@ export const handleAlert = (msg, title, type, alertDispatch) => {
     payload: { msg: msg, title: title, type: type },
   });
 
-  setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2000);
-  setTimeout(() => alertDispatch({ type: 'REMOVE_ALERT' }), 2400);
+  setTimeout(() => alertDispatch({ type: 'FADE_ALERT', fadeOut: true }), 2300);
+  setTimeout(() => alertDispatch({ type: 'REMOVE_ALERT' }), 2700);
 };

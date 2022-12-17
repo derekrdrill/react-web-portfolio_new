@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { handleAlert } from '../../Alert/context/AlertActions';
+
 const COCKTAIL_FILTER_URL = process.env.REACT_APP_COCKTAIL_FILTER_URL;
 const COCKTAIL_SEARCH_URL = process.env.REACT_APP_COCKTAIL_SEARCH_URL;
 const COCKTAIL_INGREDIENTS_LIST_URL = process.env.REACT_APP_COCKTAIL_INGREDIENTS_LIST_URL;
@@ -104,7 +106,11 @@ export const getCocktailByName = async (name, cocktailDispatch) => {
   }
 };
 
-export const getCocktailsByIngredient = async (selectedIngredients, cocktailDispatch) => {
+export const getCocktailsByIngredient = async (
+  selectedIngredients,
+  cocktailDispatch,
+  alertDispatch,
+) => {
   const formattedIngredients = selectedIngredients.map(ingredient => ingredient.replace(/ /g, '_'));
   const ingredientsString = await formattedIngredients.join(',');
 
@@ -123,48 +129,72 @@ export const getCocktailsByIngredient = async (selectedIngredients, cocktailDisp
     },
   };
 
-  axios
+  await axios
     .request(options1)
     .then(async response => {
       let newReturnedData = [];
 
-      await response.data.drinks.forEach(async drink => {
-        const options2 = {
-          method: 'GET',
-          url: COCKTAIL_SEARCH_URL,
-          params: { s: drink.strDrink },
-          headers: {
-            'X-RapidAPI-Key': COCKTAIL_KEY,
-            'X-RapidAPI-Host': COCKTAIL_HOST,
-          },
-        };
+      if (response.data.drinks !== 'None Found') {
+        await response.data.drinks.forEach(async drink => {
+          const options2 = {
+            method: 'GET',
+            url: COCKTAIL_SEARCH_URL,
+            params: { s: drink.strDrink },
+            headers: {
+              'X-RapidAPI-Key': COCKTAIL_KEY,
+              'X-RapidAPI-Host': COCKTAIL_HOST,
+            },
+          };
 
-        await axios
-          .request(options2)
-          .then(function (response) {
-            newReturnedData = [...newReturnedData, ...response.data.drinks];
-          })
-          .catch(function (error) {
-            console.error(error);
+          await axios
+            .request(options2)
+            .then(function (response) {
+              newReturnedData = [...newReturnedData, ...response.data.drinks];
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+
+          cocktailDispatch({
+            type: 'SET_SEARCH_RESULTS',
+            searchResults: newReturnedData.sort((a, b) =>
+              a.strDrink < b.strDrink ? -1 : a.strDrink > b.strDrink ? 1 : 0,
+            ),
           });
+
+          cocktailDispatch({
+            type: 'SET_SEARCH_RESULTS_LENGTH',
+            searchResultsLength: newReturnedData.length,
+          });
+        });
+
+        cocktailDispatch({
+          type: 'SET_LOADING',
+          loading: false,
+        });
+      } else {
+        handleAlert(
+          'No drinks found with those indredients',
+          'Try again',
+          'warning',
+          alertDispatch,
+        );
+
+        cocktailDispatch({
+          type: 'SET_LOADING',
+          loading: false,
+        });
 
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS',
-          searchResults: newReturnedData.sort((a, b) =>
-            a.strDrink < b.strDrink ? -1 : a.strDrink > b.strDrink ? 1 : 0,
-          ),
+          searchResults: [],
         });
 
         cocktailDispatch({
           type: 'SET_SEARCH_RESULTS_LENGTH',
-          searchResultsLength: newReturnedData.length,
+          searchResultsLength: 0,
         });
-      });
-
-      cocktailDispatch({
-        type: 'SET_LOADING',
-        loading: false,
-      });
+      }
     })
     .catch(function (error) {
       console.error(error);

@@ -13,7 +13,7 @@ const CocktailDetail = () => {
   return (
     <>
       {loading && <LoaderSpinner open />}
-      {!loading && searchResults && (
+      {!loading && searchResults && searchResults.length > 0 && (
         <CocktailDetailContainer container>
           <Grid item xs={2} />
           <Grid item xs={10}>

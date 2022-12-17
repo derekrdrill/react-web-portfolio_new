@@ -13,8 +13,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/fontawesome-free-solid';
 
+import { AlertContext } from '../../Alert/context/AlertContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { CocktailContext } from '../../Cocktail/context/CocktailContext';
+
+import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
 import {
   getAllCocktails,
@@ -26,6 +29,8 @@ import {
 } from '../context/CocktailActions';
 
 const CocktailSearch = () => {
+  const { alertDispatch } = React.useContext(AlertContext);
+
   const {
     cocktailDispatch,
     cocktails,
@@ -101,7 +106,11 @@ const CocktailSearch = () => {
                     endAdornment: (
                       <SearchInputIconButton
                         onClick={() => {
-                          getCocktailsByIngredient(selectedIngredients, cocktailDispatch);
+                          getCocktailsByIngredient(
+                            selectedIngredients,
+                            cocktailDispatch,
+                            alertDispatch,
+                          );
                         }}
                       >
                         <FontAwesomeIcon icon={faSearch} />
@@ -115,10 +124,9 @@ const CocktailSearch = () => {
             />
           )}
         </CocktailSearchBarContainer>
-        {/* <AlertContainer>
-        <Alert />
-      </AlertContainer> */}
-        {/* </GithubUserSearchContainer> */}
+        <AlertContainer>
+          <Alert />
+        </AlertContainer>
       </CocktailSearchBarGridItem>
     </Grid>
   );
@@ -152,7 +160,6 @@ const AlertContainer = styled.div({
   display: 'flex',
   justifyContent: 'flex-end',
   marginTop: 10,
-  transform: 'translateX(-15px)',
 });
 
 const SearchInput = styled(TextField)(({ darkMode }) => ({
