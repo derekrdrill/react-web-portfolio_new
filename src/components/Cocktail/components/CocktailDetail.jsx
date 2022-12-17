@@ -36,6 +36,8 @@ const CocktailDetail = () => {
                 {searchResult.strDrink}
               </Typography>
               <br />
+                  <Grid container>
+                    <Grid item xs={6}>
               <Typography
                 variant='h5'
                 sx={{
@@ -47,7 +49,6 @@ const CocktailDetail = () => {
               >
                 Ingredients
               </Typography>
-              {/* <ul> */}
               {Object.keys(searchResult)
                 .filter(result => result.includes('strIngredient'))
                 .map(
@@ -70,6 +71,32 @@ const CocktailDetail = () => {
                     ),
                 )}
               <br />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        variant='h5'
+                        sx={{
+                          textAlign: {
+                            xs: 'center',
+                            md: 'left',
+                          },
+                        }}
+                      >
+                        Glass
+                      </Typography>
+                      <Typography
+                        variant='subtitle2'
+                        sx={{
+                          textAlign: {
+                            xs: 'center',
+                            md: 'left',
+                          },
+                        }}
+                      >
+                        {searchResult.strGlass}
+                      </Typography>
+                    </Grid>
+                  </Grid>
               <Typography
                 variant='h5'
                 sx={{
