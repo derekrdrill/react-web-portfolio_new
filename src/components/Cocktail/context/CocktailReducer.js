@@ -25,6 +25,11 @@ export const cocktailReducer = (state, action) => {
         ...state,
         cocktails: action.cocktails,
       };
+    case 'SET_GLASSES':
+      return {
+        ...state,
+        glasses: action.glasses,
+      };
     case 'SET_INGREDIENTS':
       return {
         ...state,
