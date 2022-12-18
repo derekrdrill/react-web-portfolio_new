@@ -21,8 +21,9 @@ import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
 import {
   getAllCocktails,
+  getAllGlasses,
   getAllIngredients,
-  getCocktailsByIngredient,
+  getCocktailsByIngredientOrGlass,
   getSearchOptions,
   handleSearchBarChange,
   setSearchType,
@@ -34,6 +35,7 @@ const CocktailSearch = () => {
   const {
     cocktailDispatch,
     cocktails,
+    glasses,
     ingredients,
     searchResults,
     searchType,
@@ -44,6 +46,7 @@ const CocktailSearch = () => {
 
   React.useEffect(() => {
     getAllCocktails(cocktailDispatch);
+    getAllGlasses(cocktailDispatch);
     getAllIngredients(cocktailDispatch);
   }, [cocktailDispatch]);
 
@@ -63,26 +66,39 @@ const CocktailSearch = () => {
               variant={darkMode ? 'outlined' : 'filled'}
             >
               <MenuItem value='name'>Drink Name</MenuItem>
+              <MenuItem value='glass'>Glass Type</MenuItem>
               <MenuItem value='ingredients'>Ingredients</MenuItem>
             </Select>
           </CocktailSearchBar>
-          {searchType === 'name' && (
+          {(searchType === 'glass' || searchType === 'name') && (
             <Autocomplete
               freeSolo
               fullWidth
               onChange={(e, searchData) => {
-                handleSearchBarChange(cocktailDispatch, searchData, searchType);
+                handleSearchBarChange(
+                  alertDispatch,
+                  cocktailDispatch,
+                  searchData,
+                  searchType,
+                  cocktails,
+                );
               }}
-              options={getSearchOptions(searchType, cocktails, ingredients)}
+              options={getSearchOptions(searchType, cocktails, ingredients, glasses)}
               renderInput={params => (
                 <SearchInput
                   {...params}
                   darkMode={darkMode}
-                  label='Search by a drink name'
+                  label={`Search by a ${searchType === 'name' ? 'drink name' : 'glass type'}`}
                   variant='filled'
                 />
               )}
-              value={searchResults ? searchResults[0].strDrink : ''}
+              value={
+                searchResults && searchResults.length > 0
+                  ? searchType === 'name'
+                    ? searchResults[0].strDrink
+                    : searchResults[0].strGlass
+                  : ''
+              }
             />
           )}
           {searchType == 'ingredients' && (
@@ -91,7 +107,13 @@ const CocktailSearch = () => {
               fullWidth
               multiple
               onChange={(e, searchData) => {
-                handleSearchBarChange(cocktailDispatch, searchData, searchType);
+                handleSearchBarChange(
+                  alertDispatch,
+                  cocktailDispatch,
+                  searchData,
+                  searchType,
+                  cocktails,
+                );
               }}
               options={getSearchOptions(searchType, cocktails, ingredients)}
               defaultValue={[]}
@@ -100,16 +122,18 @@ const CocktailSearch = () => {
                   {...params}
                   darkMode={darkMode}
                   label='Select up to 3 ingredients'
-                  inputProps={{ ...params.inputProps, maxLength: 3 }}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
                       <SearchInputIconButton
                         onClick={() => {
-                          getCocktailsByIngredient(
-                            selectedIngredients,
-                            cocktailDispatch,
+                          getCocktailsByIngredientOrGlass(
                             alertDispatch,
+                            cocktailDispatch,
+                            cocktails,
+                            searchType,
+                            selectedIngredients,
+                            true,
                           );
                         }}
                       >
@@ -132,7 +156,6 @@ const CocktailSearch = () => {
   );
 };
 
-CocktailSearch.propTypes = {};
 
 export default CocktailSearch;
 

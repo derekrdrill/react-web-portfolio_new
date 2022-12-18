@@ -9,9 +9,10 @@ const CocktailProvider = ({ children }) => {
   const initialState = {
     advancedSearch: false,
     cocktails: [],
+    glasses: [],
     ingredients: [],
     loading: false,
-    searchResults: null,
+    searchResults: [],
     searchResultsLength: 0,
     searchType: 'name',
     selectedIngredients: [],
