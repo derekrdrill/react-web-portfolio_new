@@ -1,59 +1,43 @@
 import React from 'react';
-import Slider from 'react-slick';
 import styled from 'styled-components';
-import { Divider, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { CocktailContext } from '../../Cocktail/context/CocktailContext';
+import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 
 import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 const CocktailDetail = () => {
   const { searchResults, searchResultsLength, loading } = React.useContext(CocktailContext);
+  const { darkMode } = React.useContext(DarkLightModeContext);
 
   return (
     <>
       {loading && <LoaderSpinner open />}
       {!loading && searchResults && searchResults.length > 0 && (
-        <CocktailDetailContainer container>
-          <Grid item xs={2} />
+        <CocktailDetailContainer container rowSpacing={2}>
+          <Grid item xs={1} md={2} />
           <Grid item xs={10}>
-            <Typography variant='h3'>{searchResultsLength} drinks listed</Typography>
+            <Typography variant='h5'>
+              {`${searchResultsLength} ${searchResultsLength === 1 ? 'drink' : 'drinks'} listed`}
+            </Typography>
           </Grid>
-          {/* <CocktailSlider autoplay autoplaySpeed={2500} dots infinite pauseOnHover slidesToShow={1}> */}
+          <Grid item xs={12} />
+          <Grid item xs={12} />
           {searchResults.map((searchResult, searchResultKey) => (
             <>
-              <CocktailResultsContainer key={searchResultKey} container>
-                <Grid item xs={1} sm={3} md={2} />
-                <Grid item xs={10} sm={8} md={3}>
+              <CocktailResultsContainer key={searchResultKey} container rowSpacing={4}>
+                <Grid item xs={1} md={2} />
+                <Grid item xs={11} md={3}>
                   <CocktailImage src={searchResult.strDrinkThumb} />
                 </Grid>
-                <Grid item xs={1} sm={2} md={2} />
-                <Grid item xs={11} md={4}>
-                  <Typography
-                    variant='h3'
-                    sx={{
-                      textAlign: {
-                        xs: 'center',
-                        md: 'left',
-                      },
-                    }}
-                  >
-                    {searchResult.strDrink}
-                  </Typography>
+                <Grid item xs={1} sm={1} />
+                <Grid item xs={10} md={5}>
+                  <Typography variant='h3'>{searchResult.strDrink}</Typography>
                   <br />
-                  <Grid container>
-                    <Grid item xs={6}>
-                      <Typography
-                        variant='h5'
-                        sx={{
-                          textAlign: {
-                            xs: 'center',
-                            md: 'left',
-                          },
-                        }}
-                      >
-                        Ingredients
-                      </Typography>
+                  <Grid container spacing={4}>
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant='h5'>Ingredients</Typography>
                       {Object.keys(searchResult)
                         .filter(result => result.includes('strIngredient'))
                         .map(
@@ -62,12 +46,6 @@ const CocktailDetail = () => {
                               <Typography
                                 key={`${searchResult.idDrink}${ingredientKey}`}
                                 variant='subtitle2'
-                                sx={{
-                                  textAlign: {
-                                    xs: 'center',
-                                    md: 'left',
-                                  },
-                                }}
                               >
                                 {`${searchResult[`strMeasure${ingredientKey + 1}`] ?? ''} ${
                                   searchResult[ingredient]
@@ -75,61 +53,28 @@ const CocktailDetail = () => {
                               </Typography>
                             ),
                         )}
-                      <br />
                     </Grid>
-                    <Grid item xs={6}>
-                      <Typography
-                        variant='h5'
-                        sx={{
-                          textAlign: {
-                            xs: 'center',
-                            md: 'left',
-                          },
-                        }}
-                      >
-                        Glass
-                      </Typography>
-                      <Typography
-                        variant='subtitle2'
-                        sx={{
-                          textAlign: {
-                            xs: 'center',
-                            md: 'left',
-                          },
-                        }}
-                      >
-                        {searchResult.strGlass}
-                      </Typography>
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant='h5'>Glass</Typography>
+                      <Typography variant='subtitle2'>{searchResult.strGlass}</Typography>
                     </Grid>
                   </Grid>
-                  <Typography
-                    variant='h5'
-                    sx={{
-                      textAlign: {
-                        xs: 'center',
-                        md: 'left',
-                      },
-                    }}
-                  >
-                    Instructions
-                  </Typography>
-                  <Typography
-                    variant='body2'
-                    sx={{
-                      textAlign: {
-                        xs: 'center',
-                        md: 'left',
-                      },
-                    }}
-                  >
-                    {searchResult.strInstructions}
-                  </Typography>
+                  <br />
+                  <Typography variant='h5'>Instructions</Typography>
+                  <Typography variant='body2'>{searchResult.strInstructions}</Typography>
                 </Grid>
+                <Grid xs={1} />
+                <Grid xs={1} />
+                <CocktailResultsDivider
+                  item
+                  xs={10}
+                  darkMode={darkMode}
+                  lastItem={searchResultKey + 1 === searchResultsLength}
+                />
+                <Grid xs={1} />
               </CocktailResultsContainer>
-              <Divider />
             </>
           ))}
-          {/* </CocktailSlider> */}
         </CocktailDetailContainer>
       )}
     </>
@@ -141,7 +86,7 @@ export default CocktailDetail;
 export const CocktailDetailContainer = styled(Grid)({
   marginBottom: 150,
   position: 'relative',
-  top: 125,
+  top: 100,
 });
 
 export const CocktailImage = styled.img({
@@ -151,12 +96,11 @@ export const CocktailImage = styled.img({
 });
 
 export const CocktailResultsContainer = styled(Grid)({
-  margin: '50px 0',
+  padding: '40px 0',
 });
 
-const CocktailSlider = styled(Slider)({
-  ':active': {
-    cursor: 'grabbing',
-  },
-  cursor: 'grab',
-});
+export const CocktailResultsDivider = styled(Grid)(({ darkMode, lastItem }) => ({
+  borderBottom: !lastItem && `solid 1px ${darkMode ? 'gainsboro' : 'grey'}`,
+  margin: '0 30px',
+  padding: '50px 0',
+}));
