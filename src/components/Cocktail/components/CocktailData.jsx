@@ -133,7 +133,7 @@ CocktailData.propTypes = {
 export default CocktailData;
 
 export const CocktailDataOverlay = styled(Grid)({
-  backgroundColor: 'rgba(142, 142, 141, 0.8)',
+  backgroundColor: 'rgba(142, 142, 141, 1.0)',
   borderRadius: 10,
   color: 'rgba(142, 142, 141, 0.8)',
   transform: 'translateY(20vh)',
