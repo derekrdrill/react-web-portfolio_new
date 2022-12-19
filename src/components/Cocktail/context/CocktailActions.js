@@ -91,6 +91,107 @@ export const getSearchOptions = (searchType, cocktails, ingredients, glasses) =>
     ? glasses.map(option => option.strGlass).sort()
     : [];
 
+export const getCocktails = async (
+  alertDispatch,
+  cocktailDispatch,
+  cocktails,
+  searchType,
+  selectedIngredients,
+  searchData,
+) => {
+  const newCocktails =
+    searchType === 'ingredients'
+      ? await getCocktailsByIngredient(cocktails, selectedIngredients)
+      : searchType === 'name'
+      ? await getCocktailsByName(cocktails, searchData)
+      : await getCocktailsByGlass(cocktails, searchData);
+
+  await newCocktails.forEach(async (cocktail, cocktailIndex, searchResults) => {
+    const youtubeData = await getCocktailsWithYoutubeData(
+      cocktail,
+      cocktailDispatch,
+      searchResults,
+    );
+
+    cocktail.youtubeData = youtubeData;
+    cocktail.imageLoading = true;
+
+    newCocktails[cocktailIndex] = cocktail;
+  });
+
+  const newCocktailsNoDups = newCocktails.filter(
+    (v, i, a) => a.findIndex(v2 => JSON.stringify(v) === JSON.stringify(v2)) === i,
+  );
+
+  if (newCocktailsNoDups.length > 0) {
+    cocktailDispatch({
+      type: 'SET_SEARCH_RESULTS',
+      searchResults: newCocktailsNoDups.sort((a, b) =>
+        a.strDrink < b.strDrink ? -1 : a.strDrink > b.strDrink ? 1 : 0,
+      ),
+    });
+
+    cocktailDispatch({
+      type: 'SET_SEARCH_RESULTS_LENGTH',
+      searchResultsLength: newCocktailsNoDups.length,
+    });
+  } else {
+    if (searchData) {
+      handleAlert('No drinks found with those indredients', 'Try again', 'warning', alertDispatch);
+    }
+
+    cocktailDispatch({
+      type: 'SET_SEARCH_RESULTS',
+      searchResults: [],
+    });
+
+    cocktailDispatch({
+      type: 'SET_SEARCH_RESULTS_LENGTH',
+      searchResultsLength: 0,
+    });
+  }
+};
+
+export const getCocktailsByGlass = async (cocktails, searchData) =>
+  cocktails.filter(cocktail => searchData === cocktail.strGlass);
+
+export const getCocktailsByName = async (cocktails, searchData) =>
+  cocktails.filter(cocktail => searchData === cocktail.strDrink);
+
+export const getCocktailsByIngredient = (cocktails, selectedIngredients) =>
+  cocktails.filter(cocktail => {
+    let foundIngredients = [];
+
+    selectedIngredients.forEach(selectedIngredient => {
+      for (let i = 1; i <= 15; i++) {
+        let ingredient =
+          cocktail[`strIngredient${i}`] && cocktail[`strIngredient${i}`].toUpperCase();
+
+        if (ingredient && ingredient.includes(selectedIngredient.toUpperCase())) {
+          foundIngredients = [...foundIngredients, ...[ingredient]];
+        }
+      }
+    });
+
+    if (foundIngredients.length >= selectedIngredients.length) {
+      let fullMatch = false;
+
+      foundIngredients.forEach(foundIngredient => {
+        selectedIngredients.forEach(selectedIngredient => {
+          if (foundIngredient.includes(selectedIngredient.toUpperCase())) {
+            fullMatch = true;
+          } else {
+            fullMatch = false;
+          }
+        });
+      });
+
+      if (fullMatch) {
+        return cocktail;
+      }
+    }
+  });
+
 export const getCocktailsWithYoutubeData = async (cocktail, cocktailDispatch) => {
   cocktailDispatch({
     type: 'SET_LOADING',
@@ -127,106 +228,6 @@ export const getCocktailsWithYoutubeData = async (cocktail, cocktailDispatch) =>
   });
 
   return result.data.items[0];
-};
-
-export const getCocktailsByIngredient = (cocktails, selectedIngredients) =>
-  cocktails.filter(cocktail => {
-    let foundIngredients = [];
-
-    selectedIngredients.forEach(selectedIngredient => {
-      for (let i = 1; i <= 15; i++) {
-        let ingredient =
-          cocktail[`strIngredient${i}`] && cocktail[`strIngredient${i}`].toUpperCase();
-
-        if (ingredient && ingredient.includes(selectedIngredient.toUpperCase())) {
-          foundIngredients = [...foundIngredients, ...[ingredient]];
-        }
-      }
-    });
-
-    if (foundIngredients.length >= selectedIngredients.length) {
-      let fullMatch = false;
-
-      foundIngredients.forEach(foundIngredient => {
-        selectedIngredients.forEach(selectedIngredient => {
-          if (foundIngredient.includes(selectedIngredient.toUpperCase())) {
-            fullMatch = true;
-          } else {
-            fullMatch = false;
-          }
-        });
-      });
-
-      if (fullMatch) {
-        return cocktail;
-      }
-    }
-  });
-
-export const getCocktailsByGlass = async (cocktails, searchData) =>
-  cocktails.filter(cocktail => searchData === cocktail.strGlass);
-
-export const getCocktailsByName = async (cocktails, searchData) =>
-  cocktails.filter(cocktail => searchData === cocktail.strDrink);
-
-export const getCocktails = async (
-  alertDispatch,
-  cocktailDispatch,
-  cocktails,
-  searchType,
-  selectedIngredients,
-  searchData,
-) => {
-  const newCocktails =
-    searchType === 'ingredients'
-      ? await getCocktailsByIngredient(cocktails, selectedIngredients)
-      : searchType === 'name'
-      ? await getCocktailsByName(cocktails, searchData)
-      : await getCocktailsByGlass(cocktails, searchData);
-
-  await newCocktails.forEach(async (cocktail, cocktailIndex, searchResults) => {
-    const youtubeData = await getCocktailsWithYoutubeData(
-      cocktail,
-      cocktailDispatch,
-      searchResults,
-    );
-
-    cocktail.youtubeData = youtubeData;
-
-    newCocktails[cocktailIndex] = cocktail;
-  });
-
-  const newCocktailsNoDups = newCocktails.filter(
-    (v, i, a) => a.findIndex(v2 => JSON.stringify(v) === JSON.stringify(v2)) === i,
-  );
-
-  if (newCocktailsNoDups.length > 0) {
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS',
-      searchResults: newCocktailsNoDups.sort((a, b) =>
-        a.strDrink < b.strDrink ? -1 : a.strDrink > b.strDrink ? 1 : 0,
-      ),
-    });
-
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS_LENGTH',
-      searchResultsLength: newCocktailsNoDups.length,
-    });
-  } else {
-    if (searchData) {
-      handleAlert('No drinks found with those indredients', 'Try again', 'warning', alertDispatch);
-    }
-
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS',
-      searchResults: [],
-    });
-
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS_LENGTH',
-      searchResultsLength: 0,
-    });
-  }
 };
 
 export const handleSearchBarChange = async (
