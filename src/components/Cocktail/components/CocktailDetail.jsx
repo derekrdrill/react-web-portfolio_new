@@ -140,9 +140,9 @@ export const CocktailVideoTutorialLinkContainer = styled(Grid)({
     '.youtube-img': {
       opacity: 0.4,
     },
-    '.youtube-title': {
-      visibility: 'visible',
-    },
+    // '.youtube-title': {
+    //   visibility: 'visible',
+    // },
   },
   height: 215,
   transform: 'translateY(20px)',
@@ -164,7 +164,7 @@ export const CocktailVideoTutorialText = styled(Typography)({
 export const CocktailVideoTutorialTitleContainer = styled.div({
   maxWidth: 300,
   transform: 'translate(10px, -250px)',
-  visibility: 'hidden',
+  // visibility: 'hidden',
 });
 
 export const CocktailVideoTutorialPlayButton = styled(FontAwesomeIcon)({
