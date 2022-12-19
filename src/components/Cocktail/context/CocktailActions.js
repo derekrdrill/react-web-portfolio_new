@@ -117,7 +117,6 @@ export const getCocktailsWithYoutubeData = async (cocktail, cocktailDispatch) =>
     },
   };
 
-  // result
   const result = await axios(options).catch(e => console.log(e));
 
   cocktail.youtubeData = result.data.items[0];
