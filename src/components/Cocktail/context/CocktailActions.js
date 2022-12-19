@@ -6,8 +6,11 @@ const COCKTAIL_SEARCH_URL = process.env.REACT_APP_COCKTAIL_SEARCH_URL;
 const COCKTAIL_LIST_URL = process.env.REACT_APP_COCKTAIL_LIST_URL;
 const COCKTAIL_KEY = process.env.REACT_APP_COCKTAIL_KEY;
 const COCKTAIL_HOST = process.env.REACT_APP_COCKTAIL_HOST;
+const YOUTUBE_API_URL = process.env.REACT_APP_YOUTUBE_API_URL;
+const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+const YOUTUBE_API_HOST = process.env.REACT_APP_YOUTUBE_API_HOST;
 
-export const getAllCocktails = async cocktailDispatch => {
+export const getAllCocktailNames = async cocktailDispatch => {
   const options = {
     method: 'GET',
     url: COCKTAIL_SEARCH_URL,
@@ -88,50 +91,85 @@ export const getSearchOptions = (searchType, cocktails, ingredients, glasses) =>
     ? glasses.map(option => option.strGlass).sort()
     : [];
 
-export const getCocktailByName = async (name, cocktailDispatch) => {
+export const getCocktailsWithYoutubeData = async (cocktail, cocktailDispatch) => {
+  cocktailDispatch({
+    type: 'SET_LOADING',
+    loading: true,
+  });
+
+  const cocktailSearchString = cocktail.strDrink
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+    .split('.')
+    .join('');
+
+  const youtubeQueryString = `how-to-make-a-${cocktailSearchString}-${
+    cocktail.strCategory === 'Shot' ? 'shot' : 'cocktail'
+  }`;
+
   const options = {
     method: 'GET',
-    url: COCKTAIL_SEARCH_URL,
-    params: { s: name },
+    url: YOUTUBE_API_URL,
+    params: { q: youtubeQueryString },
     headers: {
-      'X-RapidAPI-Key': COCKTAIL_KEY,
-      'X-RapidAPI-Host': COCKTAIL_HOST,
+      'X-RapidAPI-Key': YOUTUBE_API_KEY,
+      'X-RapidAPI-Host': YOUTUBE_API_HOST,
     },
   };
 
-  if (!name) {
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS',
-      searchResults: null,
-    });
+  const result = await axios(options).catch(e => console.log(e));
 
-    cocktailDispatch({
-      type: 'SET_SEARCH_RESULTS_LENGTH',
-      searchResultsLength: 0,
-    });
-  } else {
-    axios
-      .request(options)
-      .then(function (response) {
-        const drinks = response.data.drinks;
+  cocktail.youtubeData = result.data.items[0];
 
-        cocktailDispatch({
-          type: 'SET_SEARCH_RESULTS',
-          searchResults: drinks,
-        });
+  cocktailDispatch({
+    type: 'SET_LOADING',
+    loading: false,
+  });
 
-        cocktailDispatch({
-          type: 'SET_SEARCH_RESULTS_LENGTH',
-          searchResultsLength: drinks.length,
-        });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }
+  return result.data.items[0];
 };
 
-export const getCocktailsByIngredientOrGlass = async (
+export const getCocktailsByIngredient = (cocktails, selectedIngredients) =>
+  cocktails.filter(cocktail => {
+    let foundIngredients = [];
+
+    selectedIngredients.forEach(selectedIngredient => {
+      for (let i = 1; i <= 15; i++) {
+        let ingredient =
+          cocktail[`strIngredient${i}`] && cocktail[`strIngredient${i}`].toUpperCase();
+
+        if (ingredient && ingredient.includes(selectedIngredient.toUpperCase())) {
+          foundIngredients = [...foundIngredients, ...[ingredient]];
+        }
+      }
+    });
+
+    if (foundIngredients.length >= selectedIngredients.length) {
+      let fullMatch = false;
+
+      foundIngredients.forEach(foundIngredient => {
+        selectedIngredients.forEach(selectedIngredient => {
+          if (foundIngredient.includes(selectedIngredient.toUpperCase())) {
+            fullMatch = true;
+          } else {
+            fullMatch = false;
+          }
+        });
+      });
+
+      if (fullMatch) {
+        return cocktail;
+      }
+    }
+  });
+
+export const getCocktailsByGlass = async (cocktails, searchData) =>
+  cocktails.filter(cocktail => searchData === cocktail.strGlass);
+
+export const getCocktailsByName = async (cocktails, searchData) =>
+  cocktails.filter(cocktail => searchData === cocktail.strDrink);
+
+export const getCocktails = async (
   alertDispatch,
   cocktailDispatch,
   cocktails,
@@ -139,49 +177,26 @@ export const getCocktailsByIngredientOrGlass = async (
   selectedIngredients,
   searchData,
 ) => {
-  let newCocktails = [];
-  let newCocktailsNoDups = [];
+  const newCocktails =
+    searchType === 'ingredients'
+      ? await getCocktailsByIngredient(cocktails, selectedIngredients)
+      : searchType === 'name'
+      ? await getCocktailsByName(cocktails, searchData)
+      : await getCocktailsByGlass(cocktails, searchData);
 
-  await cocktails.forEach(cocktail => {
-    if (searchType === 'ingredients') {
-      let foundIngredients = [];
+  await newCocktails.forEach(async (cocktail, cocktailIndex, searchResults) => {
+    const youtubeData = await getCocktailsWithYoutubeData(
+      cocktail,
+      cocktailDispatch,
+      searchResults,
+    );
 
-      selectedIngredients.forEach(selectedIngredient => {
-        for (let i = 1; i <= 15; i++) {
-          let ingredient =
-            cocktail[`strIngredient${i}`] && cocktail[`strIngredient${i}`].toUpperCase();
+    cocktail.youtubeData = youtubeData;
 
-          if (ingredient && ingredient.includes(selectedIngredient.toUpperCase())) {
-            foundIngredients = [...foundIngredients, ...[ingredient]];
-          }
-        }
-      });
-
-      if (foundIngredients.length >= selectedIngredients.length) {
-        let fullMatch = false;
-
-        foundIngredients.forEach(foundIngredient => {
-          selectedIngredients.forEach(selectedIngredient => {
-            if (foundIngredient.includes(selectedIngredient.toUpperCase())) {
-              fullMatch = true;
-            } else {
-              fullMatch = false;
-            }
-          });
-        });
-
-        if (fullMatch) {
-          newCocktails = [...newCocktails, ...[cocktail]];
-        }
-      }
-    } else {
-      if (searchData === cocktail.strGlass) {
-        newCocktails = [...newCocktails, ...[cocktail]];
-      }
-    }
+    newCocktails[cocktailIndex] = cocktail;
   });
 
-  newCocktailsNoDups = newCocktails.filter(
+  const newCocktailsNoDups = newCocktails.filter(
     (v, i, a) => a.findIndex(v2 => JSON.stringify(v) === JSON.stringify(v2)) === i,
   );
 
@@ -220,17 +235,17 @@ export const handleSearchBarChange = async (
   searchData,
   searchType,
   cocktails,
+  searchResults,
 ) => {
-  if (searchType === 'name') {
-    getCocktailByName(searchData, cocktailDispatch);
-  } else if (searchType === 'glass') {
-    getCocktailsByIngredientOrGlass(
+  if (searchType === 'name' || searchType === 'glass') {
+    getCocktails(
       alertDispatch,
       cocktailDispatch,
       cocktails,
       searchType,
       null,
       searchData,
+      searchResults,
     );
   } else {
     let newSearchData =

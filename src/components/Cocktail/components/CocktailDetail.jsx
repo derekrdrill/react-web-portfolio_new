@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle } from '@fortawesome/fontawesome-free-solid';
 
 import { CocktailContext } from '../../Cocktail/context/CocktailContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
@@ -62,6 +64,29 @@ const CocktailDetail = () => {
                   <br />
                   <Typography variant='h5'>Instructions</Typography>
                   <Typography variant='body2'>{searchResult.strInstructions}</Typography>
+                  {searchResult.youtubeData && (
+                    <CocktailVideoTutorialLinkContainer item xs={12}>
+                      <CocktailVideoTutorialLink
+                        href={searchResult.youtubeData.url}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        <CocktailVideoTutorial
+                          className='youtube-img'
+                          src={searchResult.youtubeData.bestThumbnail.url}
+                        />
+                        <CocktailVideoTutorialPlayButton icon={faPlayCircle} />
+                        <CocktailVideoTutorialTitleContainer className='youtube-title'>
+                          <CocktailVideoTutorialText variant='body1'>
+                            {searchResult.youtubeData.title}
+                          </CocktailVideoTutorialText>
+                          <CocktailVideoTutorialText variant='subtitle2'>
+                            {searchResult.youtubeData.duration}
+                          </CocktailVideoTutorialText>
+                        </CocktailVideoTutorialTitleContainer>
+                      </CocktailVideoTutorialLink>
+                    </CocktailVideoTutorialLinkContainer>
+                  )}
                 </Grid>
                 <Grid xs={1} />
                 <Grid xs={1} />
@@ -104,3 +129,47 @@ export const CocktailResultsDivider = styled(Grid)(({ darkMode, lastItem }) => (
   margin: '0 30px',
   padding: '50px 0',
 }));
+
+export const CocktailVideoTutorial = styled.img({
+  height: 215,
+  width: 315,
+});
+
+export const CocktailVideoTutorialLinkContainer = styled(Grid)({
+  ':hover': {
+    '.youtube-img': {
+      opacity: 0.4,
+    },
+    '.youtube-title': {
+      visibility: 'visible',
+    },
+  },
+  height: 215,
+  transform: 'translateY(20px)',
+  width: 315,
+});
+
+export const CocktailVideoTutorialLink = styled.a({
+  cursor: 'pointer',
+  textDecoration: 'none',
+  zIndex: 2,
+});
+
+export const CocktailVideoTutorialText = styled(Typography)({
+  color: 'white',
+  fontWeigt: 'bold',
+  zIndex: 0,
+});
+
+export const CocktailVideoTutorialTitleContainer = styled.div({
+  maxWidth: 300,
+  transform: 'translate(10px, -250px)',
+  visibility: 'hidden',
+});
+
+export const CocktailVideoTutorialPlayButton = styled(FontAwesomeIcon)({
+  color: 'red',
+  height: 30,
+  transform: 'translate(145px, -130px)',
+  width: 30,
+});

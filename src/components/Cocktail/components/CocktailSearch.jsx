@@ -20,10 +20,10 @@ import { CocktailContext } from '../../Cocktail/context/CocktailContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
 import {
-  getAllCocktails,
+  getAllCocktailNames,
   getAllGlasses,
   getAllIngredients,
-  getCocktailsByIngredientOrGlass,
+  getCocktails,
   getSearchOptions,
   handleSearchBarChange,
   setSearchType,
@@ -45,7 +45,7 @@ const CocktailSearch = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   React.useEffect(() => {
-    getAllCocktails(cocktailDispatch);
+    getAllCocktailNames(cocktailDispatch);
     getAllGlasses(cocktailDispatch);
     getAllIngredients(cocktailDispatch);
   }, [cocktailDispatch]);
@@ -81,6 +81,7 @@ const CocktailSearch = () => {
                   searchData,
                   searchType,
                   cocktails,
+                  searchResults,
                 );
               }}
               options={getSearchOptions(searchType, cocktails, ingredients, glasses)}
@@ -127,7 +128,7 @@ const CocktailSearch = () => {
                     endAdornment: (
                       <SearchInputIconButton
                         onClick={() => {
-                          getCocktailsByIngredientOrGlass(
+                          getCocktails(
                             alertDispatch,
                             cocktailDispatch,
                             cocktails,
