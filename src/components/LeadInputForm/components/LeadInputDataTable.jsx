@@ -8,9 +8,17 @@ export const headers = [
   { headerID: 'phone', headerName: 'Phone Number' },
 ];
 
-const getLeadsAPICall = `${process.env.REACT_APP_BACKEND_URL}/leadInput`;
-const deleteLeadsAPICall = `${process.env.REACT_APP_BACKEND_URL}/deleteLeadInput`;
-const editLeadsAPICall = `${process.env.REACT_APP_BACKEND_URL}/replaceLeadInput`;
+const getLeadsAPICall = `${
+  process.env.REACT_APP_BACKEND_URL ?? process.env.REACT_APP_BACKEND_URL_TESTING
+}/leadInput`;
+
+const deleteLeadsAPICall = `${
+  process.env.REACT_APP_BACKEND_URL ?? process.env.REACT_APP_BACKEND_URL_TESTING
+}/deleteLeadInput`;
+
+const editLeadsAPICall = `${
+  process.env.REACT_APP_BACKEND_URL ?? process.env.REACT_APP_BACKEND_URL_TESTING
+}/replaceLeadInput`;
 
 export const LeadInputDataTable = () => (
   <DynamicDataTable
