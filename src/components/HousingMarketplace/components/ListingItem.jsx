@@ -36,7 +36,7 @@ export const deleteListingItem = async (id, alertDispatch, listingsDispatch) => 
 
   const response = await axios
     .post(
-      '../../delete-listing',
+      `${process.env.REACT_APP_BACKEND_URL}/delete-listing`,
       { id: id },
       {
         headers: {

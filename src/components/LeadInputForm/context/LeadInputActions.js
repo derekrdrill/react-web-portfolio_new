@@ -11,7 +11,7 @@
 // export const postLeadInput = async leads => await addLeadInput.post(leads);
 
 export const addLeadInput = async leads => {
-  await fetch('http://localhost:3001/addLeadInput', {
+  await fetch(`${process.env.REACT_APP_BACKEND_URL}/addLeadInput`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(leads),

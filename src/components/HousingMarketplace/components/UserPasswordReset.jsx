@@ -45,7 +45,7 @@ const UserPasswordReset = () => {
 
   const handlePasswordReset = async () => {
     if (form.password === form.confirmPassword) {
-      const response = await fetch(`../../../../../../updatePassword/`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/updatePassword/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: userID, password: form.password }),
@@ -65,10 +65,13 @@ const UserPasswordReset = () => {
   };
 
   const checkForUserAndToken = React.useCallback(async () => {
-    const response = await fetch(`../../../../../../find-user-with-token/${token}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).catch(e => console.warn(e));
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/find-user-with-token/${token}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    ).catch(e => console.warn(e));
 
     if (response.ok) {
       const { userFound, id } = await response.json();

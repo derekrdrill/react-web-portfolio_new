@@ -25,7 +25,7 @@ const Explore = () => {
   !token && history.push('/housing-marketplace/auth');
 
   const fetchListings = async () => {
-    const response = await fetch(`../../get-listings/both`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/get-listings/both`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).catch(e => console.warn(e));

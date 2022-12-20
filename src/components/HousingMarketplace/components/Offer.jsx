@@ -18,7 +18,7 @@ const Offer = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchListings = async () => {
-    const response = await fetch(`../../get-listings-with-offers`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/get-listings-with-offers`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).catch(e => console.warn(e));

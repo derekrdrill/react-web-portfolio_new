@@ -11,7 +11,9 @@ export const FeedbackProvider = ({ children }) => {
   });
 
   const getFeedbackItems = async () => {
-    const response = await fetch('feedbackItems').catch(e => console.warn(e));
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/feedbackItems`).catch(e =>
+      console.warn(e),
+    );
 
     if (response.ok) {
       const feedbackData = await response.json();
@@ -22,7 +24,7 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   const addFeedbackItem = async newFeedbackItem => {
-    const response = await fetch('addFeedbackItem', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/addFeedbackItem`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newFeedbackItem),
@@ -37,7 +39,7 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   const deleteFeedbackItem = async deleteID => {
-    const response = await fetch('deleteFeedbackItem', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/deleteFeedbackItem`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: deleteID }),
@@ -55,7 +57,7 @@ export const FeedbackProvider = ({ children }) => {
   const setFeedbackEditItems = (item, edit) => setFeedbackEdit({ item, edit: edit });
 
   const updateFeedbackItem = async updateItem => {
-    const response = await fetch('updateFeedbackItem', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/updateFeedbackItem`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updateItem),

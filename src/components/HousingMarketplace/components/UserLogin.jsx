@@ -28,10 +28,13 @@ const UserLogin = () => {
   const handleSignIn = async () => {
     const { username, password } = form;
 
-    const response = await fetch(`../sign-in/${username}/${password}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).catch(e => console.warn(e));
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/sign-in/${username}/${password}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    ).catch(e => console.warn(e));
 
     if (response.ok) {
       const { userNameExists, passwordMatch, token, userReturnData } = await response.json();

@@ -15,13 +15,13 @@ const DataReportingTool = () => {
   const [associatedColumns, setAssociatedColumns] = useState([]);
 
   const handleGetAllCollections = () => {
-    fetch('http://localhost:3001/listCollections')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/listCollections`)
       .then(response => response.json())
       .then(json => setCollections(json));
   };
 
   const handleGetCollectionKeys = React.useCallback(() => {
-    fetch(`http://localhost:3001/listCollectionKeys/${dataSet}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}listCollectionKeys/${dataSet}`)
       .then(response => response.json())
       .then(json => setCollectionKeys(json));
   }, [dataSet]);
