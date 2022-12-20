@@ -27,6 +27,7 @@
     "@mui/icons-material": "^5.4.1",
     "@mui/material": "^5.4.1",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.3",
     "font-awesome": "^4.7.0",
     "google-map-react": "^2.1.10",
     "history": "^4.7.2",

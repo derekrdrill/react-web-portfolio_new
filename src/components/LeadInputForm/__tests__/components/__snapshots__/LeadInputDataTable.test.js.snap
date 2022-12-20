@@ -11,9 +11,9 @@ exports[`Lead Input Data Table tests renders correctly 1`] = `
       "lastName",
     ]
   }
-  deleteDataRowsAPICall="undefined/deleteLeadInput"
-  editDataRowsAPICall="undefined/replaceLeadInput"
-  getDataRowsAPICall="undefined/leadInput"
+  deleteDataRowsAPICall="https://react-web-portfolio-backend.herokuapp.com/deleteLeadInput"
+  editDataRowsAPICall="https://react-web-portfolio-backend.herokuapp.com/replaceLeadInput"
+  getDataRowsAPICall="https://react-web-portfolio-backend.herokuapp.com/leadInput"
   headers={
     Array [
       Object {
