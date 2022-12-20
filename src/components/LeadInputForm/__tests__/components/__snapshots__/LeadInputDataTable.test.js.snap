@@ -11,9 +11,9 @@ exports[`Lead Input Data Table tests renders correctly 1`] = `
       "lastName",
     ]
   }
-  deleteDataRowsAPICall="http://localhost:3001/deleteLeadInput"
-  editDataRowsAPICall="http://localhost:3001/replaceLeadInput"
-  getDataRowsAPICall="http://localhost:3001/leadInput"
+  deleteDataRowsAPICall="undefined/deleteLeadInput"
+  editDataRowsAPICall="undefined/replaceLeadInput"
+  getDataRowsAPICall="undefined/leadInput"
   headers={
     Array [
       Object {
