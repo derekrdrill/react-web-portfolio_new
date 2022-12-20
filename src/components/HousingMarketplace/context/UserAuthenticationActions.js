@@ -15,7 +15,7 @@ export const allFieldsFilled = fields => {
 };
 
 export const addUserItem = async (userItem, alertDispatch, userAuthenticationDispatch) => {
-  const response = await fetch('../addUser', {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/addUser`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userItem),
@@ -41,10 +41,13 @@ export const validateUserItem = async userItem => {
   } else if (!validateEmail(email)) {
     return 'Email entered is not valid';
   } else {
-    const response = await fetch(`../checkForUser/${email}/${username}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).catch(e => console.warn(e));
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/checkForUser/${email}/${username}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    ).catch(e => console.warn(e));
 
     if (response.ok) {
       const { msg } = await response.json();
@@ -82,7 +85,7 @@ export const handleSubmit = async (userItem, alertDispatch, userAuthenticationDi
 
 export const handleSendResetEmail = async (email, alertDispatch, userAuthenticationDispatch) => {
   if (validateEmail(email)) {
-    const response = await fetch(`../forgot-password/${email}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/forgot-password/${email}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).catch(e => console.warn(e));
@@ -92,7 +95,12 @@ export const handleSendResetEmail = async (email, alertDispatch, userAuthenticat
 
       if (userFound) {
         userAuthenticationDispatch({ type: 'SIGN_IN' });
-        handleAlert('Password reset instructions have been sent', 'Check your email', 'success', alertDispatch);
+        handleAlert(
+          'Password reset instructions have been sent',
+          'Check your email',
+          'success',
+          alertDispatch,
+        );
       } else {
         handleAlert(
           'There is not an account associated with the email provided',

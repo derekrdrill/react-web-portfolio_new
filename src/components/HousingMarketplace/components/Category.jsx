@@ -18,10 +18,13 @@ const Category = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchListings = React.useCallback(async () => {
-    const response = await fetch(`../../get-listings/${listingType}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).catch(e => console.warn(e));
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/get-listings/${listingType}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    ).catch(e => console.warn(e));
 
     if (response.ok) {
       const { listings } = await response.json();

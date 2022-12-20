@@ -32,7 +32,7 @@ const Profile = () => {
 
   const getUserListings = React.useCallback(async () => {
     const response = await axios
-      .get(`../../get-listing-info-by-user/${username}`, {
+      .get(`${process.env.REACT_APP_BACKEND_URL}/get-listing-info-by-user/${username}`, {
         headers: { 'Content-Type': 'application/json' },
       })
       .catch(e => console.warn(e));

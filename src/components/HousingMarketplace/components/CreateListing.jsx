@@ -103,7 +103,7 @@ const CreateListing = () => {
     });
 
     const uploadImagesResponse = await axios
-      .post('../../upload-images', imageData, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/upload-images`, imageData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -115,7 +115,7 @@ const CreateListing = () => {
     if (data.uploadSuccess) {
       const insertFormDataResponse = await axios
         .post(
-          `../../create-listing`,
+          `${process.env.REACT_APP_BACKEND_URL}/create-listing`,
           { formData, username: username, images: data.filePaths },
           {
             headers: { 'Content-Type': 'application/json' },
@@ -143,7 +143,7 @@ const CreateListing = () => {
     });
 
     const uploadImagesResponse = await axios
-      .post('../../upload-images', imageData, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/upload-images`, imageData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -155,7 +155,7 @@ const CreateListing = () => {
     if (data.uploadSuccess) {
       const response = await axios
         .post(
-          `../../update-listing`,
+          `${process.env.REACT_APP_BACKEND_URL}/update-listing`,
           {
             formData,
             images: data.filePaths,
@@ -193,7 +193,7 @@ const CreateListing = () => {
     setLoading(true);
 
     const response = await axios
-      .get(`../../get-listing-info/${listingID}`, {
+      .get(`${process.env.REACT_APP_BACKEND_URL}/get-listing-info/${listingID}`, {
         headers: {
           'Content-Type': 'application/json',
         },

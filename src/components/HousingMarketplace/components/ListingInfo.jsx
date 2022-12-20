@@ -53,7 +53,7 @@ const ListingInfo = () => {
     const response =
       listingInfo &&
       (await axios
-        .get(`../../get-listing-info/${listingID}`, {
+        .get(`${process.env.REACT_APP_BACKEND_URL}/get-listing-info/${listingID}`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -69,7 +69,7 @@ const ListingInfo = () => {
 
   const getContactInfo = React.useCallback(async () => {
     const response = await axios
-      .get(`../../get-contact-info/${listingInfo.userID}`, {
+      .get(`${process.env.REACT_APP_BACKEND_URL}/get-contact-info/${listingInfo.userID}`, {
         headers: {
           'Content-Type': 'application/json',
         },

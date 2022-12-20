@@ -32,7 +32,7 @@ const ConnectWithMe = ({ id }) => {
 
     if (firstName && lastName && email && message) {
       const response = await fetch(
-        `../send-email/${email}/${firstName}/${lastName}/${message}/${phone}`,
+        `${process.env.REACT_APP_BACKEND_URL}/send-email/${email}/${firstName}/${lastName}/${message}/${phone}`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },

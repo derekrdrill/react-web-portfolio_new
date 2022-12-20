@@ -5,6 +5,8 @@ import { LeadInputDataTable } from '../../components/LeadInputDataTable';
 
 const renderer = new ShallowRenderer();
 
+require('dotenv').config();
+
 describe('Lead Input Data Table tests', () => {
   it('renders correctly', () => {
     renderer.render(<LeadInputDataTable />);
