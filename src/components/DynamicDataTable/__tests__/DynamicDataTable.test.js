@@ -9,7 +9,6 @@ import {
   DynamicDataTable,
   ResetButton,
   SearchButton,
-  TableHeadCell,
   TableToolsCell,
 } from '../components/DynamicDataTable';
 
@@ -41,36 +40,28 @@ describe('Dynamic data table tests', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('renders TableHeadCell styled component correctly', () => {
-    const tableHeadCell = shallow(<TableHeadCell />);
-    const tableHeadCellDark = shallow(<TableHeadCell darkMode />);
-
-    expect(tableHeadCell.props().className).toEqual('sc-eDWCr kweytw');
-    expect(tableHeadCellDark.props().className).toEqual('sc-eDWCr iPedVC');
-  });
-
   it('renders TableToolsCell styled component correctly', () => {
     const tableToolsCell = shallow(<TableToolsCell />);
     const tableToolsCellDark = shallow(<TableToolsCell darkMode />);
 
-    expect(tableToolsCell.props().className).toEqual('sc-bqWxrE kjeUoJ');
-    expect(tableToolsCellDark.props().className).toEqual('sc-bqWxrE eirfnK');
+    expect(tableToolsCell.props().className).toEqual('sc-fnGiBr ghNSZH');
+    expect(tableToolsCellDark.props().className).toEqual('sc-fnGiBr gJZtNI');
   });
 
   it('renders SearchButton styled component correctly', () => {
     const searchButton = shallow(<SearchButton />);
     const searchButtonDark = shallow(<SearchButton darkMode />);
 
-    expect(searchButton.props().className).toEqual('sc-fEXmlR hNDa-dI');
-    expect(searchButtonDark.props().className).toEqual('sc-fEXmlR bhDuDU');
+    expect(searchButton.props().className).toEqual('sc-dIfARi hKTTPJ');
+    expect(searchButtonDark.props().className).toEqual('sc-dIfARi kgyVCR');
   });
 
   it('renders ResetButton styled component correctly', () => {
     const resetButton = shallow(<ResetButton />);
     const resetButtonDark = shallow(<ResetButton darkMode />);
 
-    expect(resetButton.props().className).toEqual('sc-bjfHbI brHydv');
-    expect(resetButtonDark.props().className).toEqual('sc-bjfHbI nKeeT');
+    expect(resetButton.props().className).toEqual('sc-hHTYSt kOGhQE');
+    expect(resetButtonDark.props().className).toEqual('sc-hHTYSt juIRqk');
   });
 
   it('runs getSelectRowsLabel correctly', () => {
@@ -79,7 +70,7 @@ describe('Dynamic data table tests', () => {
   });
 
   it('runs getFiltersLabel correctly', () => {
-    expect(getFiltersLabel(true)).toEqual('Hide filters');
-    expect(getFiltersLabel(false)).toEqual('Show filters');
+    expect(getFiltersLabel(true)).toEqual('No filters');
+    expect(getFiltersLabel(false)).toEqual('Filters');
   });
 });
