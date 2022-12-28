@@ -3,7 +3,8 @@
 exports[`Dynamic data table tests renders correctly 1`] = `
 <styled.div>
   <Styled(Component)>
-    <ForwardRef(Table)
+    <Styled(Component)
+      darkMode={true}
       stickyHeader={true}
     >
       <ForwardRef(TableHead)>
@@ -16,14 +17,21 @@ exports[`Dynamic data table tests renders correctly 1`] = `
             >
               <ForwardRef(Grid)
                 item={true}
-                xs={3}
+                md={3}
+                xs={12}
               >
                 <ForwardRef(Grid)
                   container={true}
+                  display={
+                    Object {
+                      "lg": "inline-block",
+                      "xs": "none",
+                    }
+                  }
                 >
                   <Styled(Component)
                     component="h1"
-                    variant="subtitle2"
+                    variant="body2"
                   >
                     Select all
                   </Styled(Component)>
@@ -31,25 +39,34 @@ exports[`Dynamic data table tests renders correctly 1`] = `
                 <ForwardRef(Grid)
                   container={true}
                 >
-                  <ForwardRef(Checkbox)
+                  <Styled(Component)
                     checked={false}
+                    darkMode={true}
                     onChange={[Function]}
                   />
                 </ForwardRef(Grid)>
               </ForwardRef(Grid)>
               <ForwardRef(Grid)
                 item={true}
-                xs={3}
+                md={3}
+                xs={12}
               >
                 <ForwardRef(Grid)
                   container={true}
+                  display={
+                    Object {
+                      "lg": "inline-block",
+                      "xs": "none",
+                    }
+                  }
                   justifyContent="center"
                 >
                   <Styled(Component)
                     component="h1"
-                    variant="subtitle2"
+                    textAlign="center"
+                    variant="body2"
                   >
-                    Show filters
+                    Filters
                   </Styled(Component)>
                 </ForwardRef(Grid)>
                 <ForwardRef(Grid)
@@ -68,17 +85,25 @@ exports[`Dynamic data table tests renders correctly 1`] = `
               </ForwardRef(Grid)>
               <ForwardRef(Grid)
                 item={true}
-                xs={3}
+                md={3}
+                xs={12}
               >
                 <ForwardRef(Grid)
                   container={true}
+                  display={
+                    Object {
+                      "lg": "inline-block",
+                      "xs": "none",
+                    }
+                  }
                   justifyContent="center"
                 >
                   <Styled(Component)
                     component="h1"
-                    variant="subtitle2"
+                    textAlign="center"
+                    variant="body2"
                   >
-                    Reset Table
+                    Reset
                   </Styled(Component)>
                 </ForwardRef(Grid)>
                 <ForwardRef(Grid)
@@ -95,14 +120,22 @@ exports[`Dynamic data table tests renders correctly 1`] = `
               </ForwardRef(Grid)>
               <ForwardRef(Grid)
                 item={true}
-                xs={3}
+                md={3}
+                xs={12}
               >
                 <ForwardRef(Grid)
                   container={true}
+                  display={
+                    Object {
+                      "lg": "inline-block",
+                      "xs": "none",
+                    }
+                  }
                   justifyContent="center"
                 >
                   <Styled(Component)
                     component="h1"
+                    textAlign="center"
                     variant="subtitle2"
                   >
                     Selected
@@ -261,10 +294,10 @@ exports[`Dynamic data table tests renders correctly 1`] = `
         handleSaveEdits={[Function]}
         handleSetDeleteRow={[Function]}
         selectedRowColor="lightcoral"
-        selectedRowFontColor="white"
+        selectedRowFontColor="black"
         tableBodyColor="beige"
       />
-    </ForwardRef(Table)>
+    </Styled(Component)>
   </Styled(Component)>
   <ForwardRef(Button)
     color="warning"
