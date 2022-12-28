@@ -30,7 +30,7 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 export const getSelectRowsLabel = allRowsSelected =>
   allRowsSelected ? 'Deselect all' : 'Select all';
 
-export const getFiltersLabel = filtersDisplay => (filtersDisplay ? 'Hide filters' : 'Show filters');
+export const getFiltersLabel = filtersDisplay => (filtersDisplay ? 'No filters' : 'Filters');
 
 export const DynamicDataTable = ({
   checkAllColor,
@@ -42,7 +42,7 @@ export const DynamicDataTable = ({
   editDataRowsAPICall,
   headers,
   selectedRowColor = 'lightcoral',
-  selectedRowFontColor = 'white',
+  selectedRowFontColor = 'black',
   size,
   stickyHeader = true,
   tableBodyColor = 'beige',
@@ -178,12 +178,13 @@ export const DynamicDataTable = ({
     setEditingID(e.currentTarget.id);
   };
 
-  const handleSaveEdits = () => {
+  const handleSaveEdits = async () => {
     if (editingRow) {
+      await handleEditDataRowsAPICall();
       setEditAlertOpen(true);
+      setEditingID(null);
     }
 
-    handleEditDataRowsAPICall();
     setEditingID(null);
   };
 
@@ -244,28 +245,33 @@ export const DynamicDataTable = ({
   return (
     <TableHolder>
       <TableContainerStyled>
-        <Table size={size} stickyHeader={stickyHeader}>
+        <TableStyled darkMode={darkMode} size={size} stickyHeader={stickyHeader}>
           <TableHead>
             <TableRow>
               <TableToolsCell darkMode={darkMode}>
                 <Grid container>
-                  <Grid item xs={3}>
-                    <Grid container>
-                      <TableToolsText variant='subtitle2' component='h1'>
+                  <Grid item xs={12} md={3}>
+                    <Grid container display={{ xs: 'none', lg: 'inline-block' }}>
+                      <TableToolsText variant='body2' component='h1'>
                         {getSelectRowsLabel(allRowsSelected)}
                       </TableToolsText>
                     </Grid>
                     <Grid container>
-                      <Checkbox
-                        color={checkAllColor}
-                        onChange={handleCheckAllRows}
+                      <CheckboxStyled
                         checked={allRowsSelected}
+                        color={checkAllColor}
+                        darkMode={darkMode}
+                        onChange={handleCheckAllRows}
                       />
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
-                    <Grid container justifyContent='center'>
-                      <TableToolsText variant='subtitle2' component='h1'>
+                  <Grid item xs={12} md={3}>
+                    <Grid
+                      container
+                      justifyContent='center'
+                      display={{ xs: 'none', lg: 'inline-block' }}
+                    >
+                      <TableToolsText variant='body2' component='h1' textAlign='center'>
                         {getFiltersLabel(filtersDisplay)}
                       </TableToolsText>
                     </Grid>
@@ -281,10 +287,14 @@ export const DynamicDataTable = ({
                       </SearchButton>
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
-                    <Grid container justifyContent='center'>
-                      <TableToolsText variant='subtitle2' component='h1'>
-                        Reset Table
+                  <Grid item xs={12} md={3}>
+                    <Grid
+                      container
+                      justifyContent='center'
+                      display={{ xs: 'none', lg: 'inline-block' }}
+                    >
+                      <TableToolsText variant='body2' component='h1' textAlign='center'>
+                        Reset
                       </TableToolsText>
                     </Grid>
                     <Grid container justifyContent='center'>
@@ -293,9 +303,13 @@ export const DynamicDataTable = ({
                       </ResetButton>
                     </Grid>
                   </Grid>
-                  <Grid item xs={3}>
-                    <Grid container justifyContent='center'>
-                      <TableToolsText variant='subtitle2' component='h1'>
+                  <Grid item xs={12} md={3}>
+                    <Grid
+                      container
+                      justifyContent='center'
+                      display={{ xs: 'none', lg: 'inline-block' }}
+                    >
+                      <TableToolsText variant='subtitle2' component='h1' textAlign='center'>
                         Selected
                       </TableToolsText>
                     </Grid>
@@ -308,7 +322,7 @@ export const DynamicDataTable = ({
                 </Grid>
               </TableToolsCell>
               {headers.map(header => (
-                <TableHeadCell darkMode={darkMode} key={header.headerID}>
+                <TableCellStyled key={header.headerID} darkMode={darkMode}>
                   <Grid container>
                     <TableHeadCellText
                       id={header.headerID}
@@ -332,7 +346,7 @@ export const DynamicDataTable = ({
                       headerID={header.headerID}
                     />
                   </Grid>
-                </TableHeadCell>
+                </TableCellStyled>
               ))}
             </TableRow>
           </TableHead>
@@ -353,7 +367,7 @@ export const DynamicDataTable = ({
             selectedRowFontColor={selectedRowFontColor}
             tableBodyColor={tableBodyColor}
           />
-        </Table>
+        </TableStyled>
       </TableContainerStyled>
       <Button
         color={deleteSelectedButtonColor || 'warning'}
@@ -410,6 +424,16 @@ DynamicDataTable.propTypes = {
   tableBodyColor: PropTypes.string,
 };
 
+export const CheckboxStyled = styled(Checkbox)(({ darkMode }) => ({
+  svg: { color: darkMode && 'grey' },
+}));
+
+export const TableStyled = styled(Table)(({ darkMode }) => ({
+  th: {
+    backgroundColor: darkMode ? '#060619' : 'white',
+  },
+}));
+
 export const TableHolder = styled.div({
   width: '86%',
   marginLeft: '7%',
@@ -423,13 +447,19 @@ export const TableContainerStyled = styled(TableContainer)({
   marginBottom: 15,
 });
 
-export const TableHeadCell = styled(TableCell)(({ darkMode }) => ({
+export const TableHeadStyled = styled(TableHead)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#292929' : 'gainsboro',
+  borderLeft: 'dashed gray 1px',
+}));
+
+export const TableCellStyled = styled(TableCell)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#3d3d3d' : 'gainsboro',
   borderLeft: 'dashed gray 1px',
 }));
 
 export const TableToolsCell = styled(TableCell)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#3d3d3d' : 'lightgrey',
+  width: 325,
 }));
 
 export const TableHeadCellText = styled(Typography)({
