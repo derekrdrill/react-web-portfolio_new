@@ -1,24 +1,43 @@
 # Derek Drill's React web portfolio
 
-This is the repository for the front end source code for my web portfolio. The main purpose of this project is to modernize my legacy portfolio.
+This is the repository for the front end source code for my web portfolio.
 
 This app is heavily dependent on React JS, while also relying on the following libraries and technologies to enhace code quality, the overall UI and the development lifecycle:
 
-<ul>
-  <li>Material UI</li>
-  <li>Styled Components</li>
-  <li>Font Awesome</li>
-  <li>Axios</li>
-  <li>Prettier</li>
-  <li>ES Lint</li>
-</ul>
+  * Material UI
+  * Styled Components
+  * Font Awesome
+  * Axios
+  * Prettier
+  * ES Lint
+  * Jest
+  * Enzyme
+  * Vercel
+  * Yarn
 
-This application is currently comprised of 24 total components that are thoughtfully created to handle the many states a user may experience throughout the app.
-This initiative is still in progress, but this repository can be downloaded locally, and then 'npm start' can be run from the terminal to fire up this app in its current state
+This application is currently comprised of 27 total components that are thoughtfully created to handle the many states a user may experience within the app. React Context is utilized to handle the global state of this app.
 
-Here is the breakdown of completed and pending work on this app:
+<br />
 
-<h2>Completed</h2>
+## Access
+
+### Website
+
+To see this app, navigate to <a href='https://derekdrill.com'>derekdrill.com</a>
+
+### Running locally
+If you would like to run this repository locally, it can be cloned, but be sure to run ```yarn install``` before running ```yarn start```
+
+* You will need the backend to be running locally for some functionality, which is detailed below
+
+<br />
+
+
+## Features
+
+Here is the breakdown of completed and pending features:
+
+### Completed
 <ul>
   <li>
     Homepage
@@ -29,10 +48,13 @@ Here is the breakdown of completed and pending work on this app:
     </ul>
   </li>
   <li>
-    Job Application prototypes
+    Job Applications
     <ul>
       <li>
         A basic, advanced and multi-page job applications to display skills in building React components
+      </li> 
+      <li>
+        This feature only displays the ability to build simple, but effective React apps
       </li> 
     </ul>
   </li>
@@ -48,10 +70,10 @@ Here is the breakdown of completed and pending work on this app:
     Lead Input form
     <ul>
       <li>
-        A simple web-form that allows users to enter their information, as if they were giving that info to a company looking to obtain leads
+        A simple web-form that allows users to enter their information, as if they were looking to store the data and retain leads
       </li> 
       <li>
-        This lead data is stored in a MongoDB collection, and a reporting table tool is included to dynamically report, update and delete the data entered
+        This lead data is stored in a MongoDB collection, and a reporting table tool is included to dynamically report, update and delete the lead data 
       </li>
     </ul>
   </li>
@@ -59,7 +81,7 @@ Here is the breakdown of completed and pending work on this app:
     Github Finder Project
     <ul>
       <li>
-        A tool that pulls data from the Github API and cleanly presents it in a user-friendly React UI
+        A tool that pulls data from the Github API and cleanly presents it in a user-friendly UI
       </li> 
     </ul>
   </li>
@@ -67,8 +89,16 @@ Here is the breakdown of completed and pending work on this app:
     Housing marketplace app
     <ul>
       <li>
-        An app that allows users to see current listings, current offers on listings and create new listings.
-        This app pull asll dat a from a MongoDB via an Express backend.
+        An app that allows users to see current listings, current offers on listings and create new listings
+        This app pulls all data from a MongoDB via an Express backend
+      </li> 
+    </ul>
+  </li>
+  <li>
+    Cocktail app
+    <ul>
+      <li>
+        An app that retrieves data from <a href='https://rapidapi.com/thecocktaildb/api/the-cocktail-db/'>The Cocktail DB API<a/>, and presents it in a clean, simple manner for an easy user experience. Users can search by drink names, glass type or upt to 3 ingredients to quickly find awesome drink options!
       </li> 
     </ul>
   </li>
@@ -82,13 +112,16 @@ Here is the breakdown of completed and pending work on this app:
   </li>
 </ul>
   
-<h2>Pending</h2>
+### Pending
 <ul>
 <li>
-    Unit Testing
+    NBA Everything
     <ul>
       <li>
-        Jest and enzyme are utilized to unit test all aspects of this project. This repo is at about 50% of coverage, with a goal of getting the unit test coverage threshold above 90%
+        An app that will display current and historical data of the NBA, in a dynamic reporting data table with simple and advanced filtering capabilities
+      </li> 
+      <li>
+        The <a href='https://www.balldontlie.io/#introduction'>Ball Don't Lie API</a> is leveraged for all data
       </li> 
       <li>
         Status: <em>In Progress</em>
@@ -107,19 +140,6 @@ Here is the breakdown of completed and pending work on this app:
       </li> 
     </ul>
   </li>
-  <!-- <li>
-    Housing marketplace app
-    <ul>
-      <li>
-        An app that allows users to see current listings, current offers on listings and create new listings.
-        This app pull asll dat a from a MongoDB via an Express backend.
-      </li> 
-      <li>
-        Status: <em>In Progress</em>
-      </li> 
-    </ul>
-  </li>
-  <li> -->
   <li>
     The George App
     <ul>
@@ -135,32 +155,28 @@ Here is the breakdown of completed and pending work on this app:
 </ul>
 
 While the above breakdown of these projects is very simple and to-the-point, there are several dynamic, powerful components that needed to be developed
-to support the overall functionality and enhance the UX of these projects.
-Some of these examples include:
+to support the overall functionality and enhance the UX of these
+features. Some of these components include:
 
-  <ul>
-    <li>
-      Modals
-    </li>
-    <li>
-      Spinner loaders
-    </li>
-    <li>
-      Progress bars
-    </li>
-    <li>
-      Breadcrumbs
-    </li>
-    <li>
-      Dynamic header to handle all navigation about the app
-    </li>
-    <li>
-      Dynamic form input generator
-    </li>
-    <li>
-      Dynamic data table
-    </li>
-    <li>
-      Dynamic list (allows users to add and delete options to a visual list)
-    </li>
-  </ul>
+  * Modals
+  * Spinner loaders
+  * Progress bars
+  * Breadcrumbs
+  * Dynamic header to handle all navigation about the app
+  * Dynamic form input generator
+  * Dynamic data table
+  * Dynamic list (allows users to add and delete options to a visual list)
+
+
+<br />
+
+## Testing
+
+Jest, Enzyme and the React testing library are all utilized to unit this application. The goal will be to maintain a coverage threshold above 85%. Currently, the overall threshold is a little below 50%, and the initiative to improve this is currently in progress.
+
+<br />
+
+## Backend
+
+This application relies on an Express backend to handle any heavy lifting. This backend points to a MongoDB to handle any data manipulation that can occur within this app. <a href='https://github.com/derekrdrill/react-web-portfolio-backend'>Click here</a> to navigate to the backend repository.
+
