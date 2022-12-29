@@ -23,7 +23,7 @@ This application is currently comprised of 27 total components that are thoughtf
 
 ### Website
 
-To see this app, navigate to <a href='https://derekdrill.com'>derekdrill.com</a>
+To see this app, navigate to <a href='https://derekdrill.com' target='_blank'>derekdrill.com</a>
 
 ### Running locally
 If you would like to run this repository locally, it can be cloned, but be sure to run ```yarn install``` before running ```yarn start```
@@ -98,7 +98,7 @@ Here is the breakdown of completed and pending features:
     Cocktail app
     <ul>
       <li>
-        An app that retrieves data from <a href='https://rapidapi.com/thecocktaildb/api/the-cocktail-db/'>The Cocktail DB API<a/>, and presents it in a clean, simple manner for an easy user experience. Users can search by drink names, glass type or upt to 3 ingredients to quickly find awesome drink options!
+        An app that retrieves data from <a href='https://rapidapi.com/thecocktaildb/api/the-cocktail-db/' target='_blank'>The Cocktail DB API<a/>, and presents it in a clean, simple manner for an easy user experience. Users can search by drink names, glass type or upt to 3 ingredients to quickly find awesome drink options!
       </li> 
     </ul>
   </li>
@@ -121,7 +121,7 @@ Here is the breakdown of completed and pending features:
         An app that will display current and historical data of the NBA, in a dynamic reporting data table with simple and advanced filtering capabilities
       </li> 
       <li>
-        The <a href='https://www.balldontlie.io/#introduction'>Ball Don't Lie API</a> is leveraged for all data
+        The <a href='https://www.balldontlie.io/#introduction' target='_blank'>Ball Don't Lie API</a> is leveraged for all data
       </li> 
       <li>
         Status: <em>In Progress</em>
@@ -178,5 +178,5 @@ Jest, Enzyme and the React testing library are all utilized to unit this applica
 
 ## Backend
 
-This application relies on an Express backend to handle any heavy lifting. This backend points to a MongoDB to handle any data manipulation that can occur within this app. <a href='https://github.com/derekrdrill/react-web-portfolio-backend'>Click here</a> to navigate to the backend repository.
+This application relies on an Express backend to handle any heavy lifting. This backend points to a MongoDB to handle any data manipulation that can occur within this app. <a href='https://github.com/derekrdrill/react-web-portfolio-backend' target='_blank'>Click here</a> to navigate to the backend repository.
 
