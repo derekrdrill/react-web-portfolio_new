@@ -40,15 +40,16 @@ const AboutMe = ({ id }) => {
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[4].text}</AboutMeListItem>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[5].text}</AboutMeListItem>
               <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[6].text}</AboutMeListItem>
+              <AboutMeListItem darkMode={darkMode}>{ABOUT_ME_TEXT[7].text}</AboutMeListItem>
             </AboutMeList>
-            <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
-              {ABOUT_ME_TEXT[7].text}
-            </AboutMeText>
-            <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
+            <AboutMeText darkMode={darkMode} variant='h6' component='p'>
               {ABOUT_ME_TEXT[8].text}
             </AboutMeText>
             <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
               {ABOUT_ME_TEXT[9].text}
+            </AboutMeText>
+            <AboutMeText darkMode={darkMode} variant='subtitle1' component='p'>
+              {ABOUT_ME_TEXT[10].text}
             </AboutMeText>
           </AboutMeTextContainer>
           <AboutMeBitmojiContainer xs={12} lg={6}>
