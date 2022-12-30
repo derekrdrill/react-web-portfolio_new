@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const ABOUT_ME_TEXT = [
   {
     id: 'paragraph1',
@@ -22,17 +20,19 @@ export const ABOUT_ME_TEXT = [
   {
     id: 'paragraph3',
     text: `After undergrad, I accepted a role as a level 1 programmer,
-        working for a very small IT team, assigned to maintaining 
+        working for a small IT team, assigned to maintaining 
         and building onto their ERP software. This was very much an introduction
         to what it was like to be a professional developer, and was perfect
         for me to organically build a strong foundation of development principles.
         However, I knew I had to continue to sharpen my skills in my freetime.
-        By taking online course after course, I continued to advance my skills
+        Through continual education, I continued to advance my skills
         in technologies like HTML, CSS, JavaScript, JQuery, Bootstrap and SQL,
         but also teaching myself more modern technologies and libraries, such as,
-        Knockout.js, Node.js, React JS and MongoDB. I've carried those hard-working
-        values, that I enstilled early on, through my career. 5 years in, and I am now
-        a Front End Developer, and have accomplished things like:`,
+        React JS, Node.js,  and MongoDB. I've carried those hard-working
+        values that I enstilled early on through my career, and strive to constantly improve. 
+        5 years in amd I am a Software Engineer specializing in building apps with the MERN stack, 
+        which I display throughout this portfolio. Along with anything displayed here,
+        I have also accomplished things like:`,
   },
   {
     id: 'accolade1',
@@ -42,11 +42,10 @@ export const ABOUT_ME_TEXT = [
   },
   {
     id: 'accolade2',
-    text: `- Worked with clients at academic offices
-        of education institutions to completely 
-        automate their paper-processes by building
-        workflows that comprised of powerful 
-        web forms that integrated with their live ERP data`,
+    text: `- Worked with clients' academic offices (such as Eastern Washington Univeristy, 
+        Santa Barbara City College, Georgia Board of Education, etc) to completely 
+        automate their paper-processes by building automated and powerful
+        workflows and web forms, integrated with their live ERP data`,
   },
   {
     id: 'accolade3',
@@ -57,17 +56,18 @@ export const ABOUT_ME_TEXT = [
   },
   {
     id: 'accolade4',
-    text: `- Work as a React developer on a dev team 
-        that is building and maintaining the IMPLAN App,
-        a powerful economic analysis software tool
-        `,
+    text: `- Lead the charge in quality component development, 
+          ensuring code quality and that consistent standards are followed, 
+          and unit testing on a team responsible 
+          for delivering a multi-faceted financial-data analytics tool for internal teams at Lowe's`,
   },
   {
-    id: 'paragraph4',
-    text: `The last bullet is my current role, a Front End developer
-        for the IMPLAN Group, and even after several years of hard work and continual education
-        to get to this point, I continue to push the limits of my knowledge daily, in and out of the office, 
-        to continue to grow as a professional front end developer`,
+    id: 'accolade5',
+    text: `- Work as a Software Engineer, specializing in React, Front-End development, 
+          for teams at companies like BAE Systems, IMPLAN and Lowe's,
+          building, maintaining and resolving defects of many 
+          different specialized, powerful applications
+        `,
   },
   {
     id: 'paragraph5',
@@ -78,5 +78,9 @@ export const ABOUT_ME_TEXT = [
     text: `I love to write code because it fulfills the burning desire within me
         to work hard and solve intricate problems for others, and as an admitted nerd who 
         is not the most artistic, it's the best avenue to flexing my creativity muscles 💪🏼`,
+  },
+  {
+    id: 'paragraph6',
+    text: `I hope you enjoy my portfolio!!`,
   },
 ];
