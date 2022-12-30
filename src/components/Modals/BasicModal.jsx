@@ -109,9 +109,9 @@ export const ModalContainer = styled.div(({ darkMode }) => ({
     color: darkMode && 'black',
   },
   backgroundColor: darkMode ? 'grey' : 'white',
-  marginLeft: '25%',
-  marginTop: '18%',
-  maxWidth: '50%',
+  marginLeft: '15%',
+  marginRight: '15%',
+  marginTop: 150,
   padding: 15,
   borderRadius: 5,
 }));
