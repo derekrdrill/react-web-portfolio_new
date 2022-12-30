@@ -20,9 +20,7 @@ import { CocktailContext } from '../../Cocktail/context/CocktailContext';
 import { AlertComponent as Alert } from '../../Alert/components/AlertComponent';
 
 import {
-  getAllCocktailNames,
-  getAllGlasses,
-  getAllIngredients,
+  getAllCocktailData,
   getCocktails,
   getSearchOptions,
   handleSearchBarChange,
@@ -34,6 +32,7 @@ const CocktailSearch = () => {
 
   const {
     cocktailDispatch,
+    cocktailNames,
     cocktails,
     glasses,
     ingredients,
@@ -45,9 +44,7 @@ const CocktailSearch = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
   React.useEffect(() => {
-    getAllCocktailNames(cocktailDispatch);
-    getAllGlasses(cocktailDispatch);
-    getAllIngredients(cocktailDispatch);
+    getAllCocktailData(cocktailDispatch);
   }, [cocktailDispatch]);
 
   return (
@@ -84,7 +81,7 @@ const CocktailSearch = () => {
                   searchResults,
                 );
               }}
-              options={getSearchOptions(searchType, cocktails, ingredients, glasses)}
+              options={getSearchOptions(searchType, cocktails, ingredients, glasses, cocktailNames)}
               renderInput={params => (
                 <SearchInput
                   {...params}
