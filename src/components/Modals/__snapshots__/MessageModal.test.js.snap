@@ -23,6 +23,12 @@ exports[`Message Modal tests renders correctly 1`] = `
     </Styled(Row)>
     <Styled(Row)>
       <Styled(Col)
+        sm={
+          Object {
+            "offset": 3,
+            "span": 3,
+          }
+        }
         xs={6}
       >
         <ForwardRef(Button)
@@ -32,6 +38,11 @@ exports[`Message Modal tests renders correctly 1`] = `
         />
       </Styled(Col)>
       <Styled(Col)
+        sm={
+          Object {
+            "span": 3,
+          }
+        }
         xs={6}
       >
         <ForwardRef(Button)

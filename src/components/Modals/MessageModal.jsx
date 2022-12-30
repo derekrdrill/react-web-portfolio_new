@@ -39,7 +39,7 @@ export const MessageModal = ({
           </Typography>
         </ModalRow>
         <ModalRow>
-          <ModalButtonCol xs={6}>
+          <ModalButtonCol xs={6} sm={{ span: 3, offset: 3 }}>
             <Button
               color={getCancelButtonColor(cancelButtonColor, darkMode)}
               variant='contained'
@@ -49,7 +49,7 @@ export const MessageModal = ({
               {cancelButtonText}
             </Button>
           </ModalButtonCol>
-          <ModalButtonCol xs={6}>
+          <ModalButtonCol xs={6} sm={{ span: 3 }}>
             <Button
               color={getConfirmButtonColor(confirmButtonColor, darkMode)}
               variant='contained'
@@ -82,11 +82,10 @@ export const ModalContainer = styled(Container)(({ darkMode }) => ({
     color: darkMode && 'black',
   },
   backgroundColor: darkMode ? 'grey' : 'white',
-  marginLeft: '32%',
-  marginTop: '18%',
-  maxWidth: '35%',
-  padding: 30,
+  marginTop: 220,
+  padding: 20,
   borderRadius: 5,
+  maxWidth: 800,
 }));
 
 export const ModalRow = styled(Row)({
