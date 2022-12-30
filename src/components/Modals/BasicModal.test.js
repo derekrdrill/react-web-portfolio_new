@@ -36,8 +36,8 @@ describe('Basic Modal tests', () => {
     const modalContainer = shallow(<ModalContainer />);
     const modalContainerDark = shallow(<ModalContainer darkMode />);
 
-    expect(modalContainer.props().className).toEqual('sc-jSUZER YDiyj');
-    expect(modalContainerDark.props().className).toEqual('sc-jSUZER bjkrFG');
+    expect(modalContainer.props().className).toEqual('sc-jSUZER ImGmh');
+    expect(modalContainerDark.props().className).toEqual('sc-jSUZER juhDhM');
   });
 
   it('renders CancelButton styled component correctly', () => {
