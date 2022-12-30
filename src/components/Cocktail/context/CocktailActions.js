@@ -90,7 +90,7 @@ export const getCocktails = async (
 };
 
 export const getCocktailsByGlass = async (cocktails, searchData) =>
-  cocktails.filter(cocktail => searchData === cocktail.strGlass);
+  cocktails.filter(cocktail => searchData === cocktail.strGlass.toUpperCase());
 
 export const getCocktailsByName = async (cocktails, searchData) =>
   cocktails.filter(cocktail => searchData === cocktail.strDrink);
