@@ -8,6 +8,7 @@ export const CocktailContext = createContext();
 const CocktailProvider = ({ children }) => {
   const initialState = {
     advancedSearch: false,
+    cocktailNames: [],
     cocktails: [],
     glasses: [],
     ingredients: [],

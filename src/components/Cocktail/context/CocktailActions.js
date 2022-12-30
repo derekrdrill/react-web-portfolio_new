@@ -2,93 +2,30 @@ import axios from 'axios';
 
 import { handleAlert } from '../../Alert/context/AlertActions';
 
-const COCKTAIL_SEARCH_URL = process.env.REACT_APP_COCKTAIL_SEARCH_URL;
-const COCKTAIL_LIST_URL = process.env.REACT_APP_COCKTAIL_LIST_URL;
-const COCKTAIL_KEY = process.env.REACT_APP_COCKTAIL_KEY;
-const COCKTAIL_HOST = process.env.REACT_APP_COCKTAIL_HOST;
 const YOUTUBE_API_URL = process.env.REACT_APP_YOUTUBE_API_URL;
 const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 const YOUTUBE_API_HOST = process.env.REACT_APP_YOUTUBE_API_HOST;
 
-export const getAllCocktailNames = async cocktailDispatch => {
-  const options = {
-    method: 'GET',
-    url: COCKTAIL_SEARCH_URL,
-    params: { s: '' },
-    headers: {
-      'X-RapidAPI-Key': COCKTAIL_KEY,
-      'X-RapidAPI-Host': COCKTAIL_HOST,
-    },
-  };
-
+export const getAllCocktailData = async cocktailDispatch => {
   axios
-    .request(options)
-    .then(function (response) {
-      cocktailDispatch({
-        type: 'SET_COCKTAILS',
-        cocktails: response.data.drinks.filter(drink => !drink.strDrink.includes('1-900-FUK')),
-      });
-    })
-    .catch(function (error) {
-      console.error(error);
+    .get(`${process.env.REACT_APP_BACKEND_URL}/get-cocktail-names-glasses-ingredients`)
+    .then(async response => {
+      let data = response.data;
+
+      await cocktailDispatch({ type: 'SET_COCKTAILS', cocktails: data.cocktailData });
+      await cocktailDispatch({ type: 'SET_COCKTAIL_NAMES', cocktailNames: data.cocktailNames });
+      await cocktailDispatch({ type: 'SET_GLASSES', glasses: data.glassTypes });
+      await cocktailDispatch({ type: 'SET_INGREDIENTS', ingredients: data.ingredients });
     });
 };
 
-export const getAllGlasses = async cocktailDispatch => {
-  const options = {
-    method: 'GET',
-    url: COCKTAIL_LIST_URL,
-    params: { g: 'list' },
-    headers: {
-      'X-RapidAPI-Key': COCKTAIL_KEY,
-      'X-RapidAPI-Host': COCKTAIL_HOST,
-    },
-  };
-
-  axios
-    .request(options)
-    .then(function (response) {
-      cocktailDispatch({
-        type: 'SET_GLASSES',
-        glasses: response.data.drinks,
-      });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-};
-
-export const getAllIngredients = cocktailDispatch => {
-  const options = {
-    method: 'GET',
-    url: COCKTAIL_LIST_URL,
-    params: { i: 'list' },
-    headers: {
-      'X-RapidAPI-Key': COCKTAIL_KEY,
-      'X-RapidAPI-Host': COCKTAIL_HOST,
-    },
-  };
-
-  axios
-    .request(options)
-    .then(function (response) {
-      cocktailDispatch({
-        type: 'SET_INGREDIENTS',
-        ingredients: response.data.drinks,
-      });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-};
-
-export const getSearchOptions = (searchType, cocktails, ingredients, glasses) =>
+export const getSearchOptions = (searchType, cocktails, ingredients, glasses, cocktailNames) =>
   searchType === 'name' && cocktails.length > 0
-    ? cocktails.map(option => option.strDrink).sort()
+    ? cocktailNames
     : searchType === 'ingredients' && ingredients.length > 0
-    ? ingredients.map(option => option.strIngredient1).sort()
+    ? ingredients
     : searchType === 'glass' && glasses.length > 0
-    ? glasses.map(option => option.strGlass).sort()
+    ? glasses
     : [];
 
 export const getCocktails = async (
