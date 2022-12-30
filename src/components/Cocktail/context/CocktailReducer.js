@@ -20,6 +20,11 @@ export const cocktailReducer = (state, action) => {
         ...state,
         selectedIngredients: action.selectedIngredients,
       };
+    case 'SET_COCKTAIL_NAMES':
+      return {
+        ...state,
+        cocktailNames: action.cocktailNames,
+      };
     case 'SET_COCKTAILS':
       return {
         ...state,
