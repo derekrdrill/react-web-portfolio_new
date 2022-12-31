@@ -6,9 +6,9 @@
   "coverageThreshold": {
     "global": {
       "branches": 42,
-      "functions": 37,
-      "lines": 49,
-      "statements": 47
+      "functions": 36,
+      "lines": 48,
+      "statements": 46
     }
   },
   "moduleDirectories": ["node_modules", "src"],

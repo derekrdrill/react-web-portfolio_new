@@ -3,30 +3,43 @@ import styled from 'styled-components';
 import { Autocomplete, Grid, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 
+import { NBAEverythingContext } from '../context/NBAEverythingContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+
+import {
+  getNBASeasons,
+  getTeams,
+  getTeamGameDataByTeamAndSeason,
+  setSelectedNBASeason,
+  setSelectedNBATeam,
+} from '../context/NBAEverythingActions';
 
 const NBAEverythingSearch = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
+  const { nbaTeams, nbaEverythingDispatch, selectedNBASeason, selectedNBATeam } =
+    React.useContext(NBAEverythingContext);
+
+  React.useEffect(() => {
+    getTeams(nbaEverythingDispatch);
+  }, [nbaEverythingDispatch]);
+
+  React.useEffect(() => {
+    getTeamGameDataByTeamAndSeason(selectedNBATeam.id, selectedNBASeason.year);
+  }, [selectedNBASeason, selectedNBATeam]);
 
   return (
     <NBAEverythingSearchRootContainer container>
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
         <Autocomplete
+          defaultValue={{ full_name: 'Atlanta Hawks' }}
           freeSolo
           fullWidth
-          //   onChange={(e, searchData) => {
-          //     handleSearchBarChange(
-          //       alertDispatch,
-          //       cocktailDispatch,
-          //       searchData,
-          //       searchType,
-          //       cocktails,
-          //     );
-          //   }}
-          //   options={getSearchOptions(searchType, cocktails, ingredients)}
-          options={['Hawks', 'Heats', 'Hornets']}
-          defaultValue={'Hawks'}
+          getOptionLabel={option => `${option.full_name}`}
+          onChange={(e, selectedNBATeam) => {
+            setSelectedNBATeam(nbaEverythingDispatch, selectedNBATeam);
+          }}
+          options={nbaTeams}
           renderInput={params => (
             <SearchInput
               {...params}
@@ -35,7 +48,7 @@ const NBAEverythingSearch = () => {
               variant={darkMode ? 'filled' : 'outlined'}
             />
           )}
-          //   value={selectedIngredients}
+          value={selectedNBATeam}
         />
       </NBAEverythingAutocompleteContainer>
       <Grid item xs={1} />
@@ -43,18 +56,12 @@ const NBAEverythingSearch = () => {
         <Autocomplete
           freeSolo
           fullWidth
-          //   onChange={(e, searchData) => {
-          //     handleSearchBarChange(
-          //       alertDispatch,
-          //       cocktailDispatch,
-          //       searchData,
-          //       searchType,
-          //       cocktails,
-          //     );
-          //   }}
-          //   options={getSearchOptions(searchType, cocktails, ingredients)}
-          options={['2022-2023', '2021-2022', '2020-2021']}
-          defaultValue={'2022-2023'}
+          onChange={(e, selectedNBASeason) => {
+            setSelectedNBASeason(nbaEverythingDispatch, selectedNBASeason);
+          }}
+          getOptionLabel={option => `${option.display_year}`}
+          options={getNBASeasons()}
+          defaultValue={{ display_year: '2022-2023' }}
           renderInput={params => (
             <SearchInput
               {...params}
@@ -63,7 +70,7 @@ const NBAEverythingSearch = () => {
               variant={darkMode ? 'filled' : 'outlined'}
             />
           )}
-          //   value={selectedIngredients}
+          value={selectedNBASeason}
         />
       </NBAEverythingAutocompleteContainer>
     </NBAEverythingSearchRootContainer>
