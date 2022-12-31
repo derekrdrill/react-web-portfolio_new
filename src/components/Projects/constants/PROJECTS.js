@@ -3,8 +3,10 @@ import {
   faDatabase,
   faBuilding,
   faGlassMartini,
+  faBasketballBall,
 } from '@fortawesome/fontawesome-free-solid';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
+import nbaSVG from '../../../assets/nba2.svg';
 
 export const PROJECTS = [
   {
@@ -42,5 +44,12 @@ export const PROJECTS = [
     description: `Users can search by drink name or ingredients to return data on over 635 different cocktails! 🥂🍻`,
     icon: faGlassMartini,
     to: '/drink-up',
+  },
+  {
+    id: 6,
+    title: 'NBA Everything',
+    description: `An all things NBA data, sourced from the Ball Don't Lie API`,
+    icon: faBasketballBall,
+    to: '/nba-everything',
   },
 ];

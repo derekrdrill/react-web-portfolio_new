@@ -22,6 +22,8 @@ const LeadInputProvider = React.lazy(() => import('./components/LeadInputForm/co
 const ListingInfo = React.lazy(() => import('./components/HousingMarketplace/components/ListingInfo'));
 const ListingsProvider = React.lazy(() => import('./components/HousingMarketplace/context/ListingsContext'));
 const Navbar = React.lazy(() => import('./components/HousingMarketplace/components/Navbar'));
+const NBAEverything = React.lazy(() => import('./components/NBAEverything/components/NBAEverything'));
+const NBAEverythingProvider = React.lazy(()=> import('./components/NBAEverything/context/NBAEverythingContext'));
 const Offer = React.lazy(() => import('./components/HousingMarketplace/components/Offer'));
 const Profile = React.lazy(() => import('./components/HousingMarketplace/components/Profile'));
 const Projects = React.lazy(() => import('./components/Projects/components/Projects'));
@@ -224,9 +226,14 @@ export const routes = [
     path: '/dark-light-mode',
     render: <DarkLightMode />,
   },
-    {
+  {
     id: 25,
     path: '/drink-up',
     render: <CocktailProvider><Cocktail /></CocktailProvider>,
+  },
+  {
+    id: 26,
+    path: '/nba-everything',
+    render: <NBAEverythingProvider><NBAEverything /></NBAEverythingProvider>,
   },
 ];
