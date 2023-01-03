@@ -23,6 +23,7 @@ const NBAEverythingPlayerDataTable = () => {
   let tableDataRows = [];
 
   const { selectedNBATeamPlayerStats } = React.useContext(NBAEverythingContext);
+
   selectedNBATeamPlayerStats.forEach(playerStat => {
     let statLine = {};
 
@@ -51,22 +52,25 @@ const NBAEverythingPlayerDataTable = () => {
   });
 
   return (
-    <NBAEverythingPlayerDataTableRootContainer container>
-      <Grid item xs={1} />
-      <Grid item xs={10}>
-        <Typography variant='h5'>Team stats</Typography>
-      </Grid>
-      <Grid item xs={1} />
-      <Grid item xs={12}>
-        <DynamicDataTable
-          checkAllColor='primary'
-          checkOneColor='secondary'
-          headers={headers}
-          loadedDataRows={tableDataRows}
-          size='small'
-        />
-      </Grid>
-    </NBAEverythingPlayerDataTableRootContainer>
+    selectedNBATeamPlayerStats &&
+    selectedNBATeamPlayerStats.length > 0 && (
+      <NBAEverythingPlayerDataTableRootContainer container>
+        <Grid item xs={1} />
+        <Grid item xs={10}>
+          <Typography variant='h5'>Team stats</Typography>
+        </Grid>
+        <Grid item xs={1} />
+        <Grid item xs={12}>
+          <DynamicDataTable
+            checkAllColor='primary'
+            checkOneColor='secondary'
+            headers={headers}
+            loadedDataRows={tableDataRows}
+            size='small'
+          />
+        </Grid>
+      </NBAEverythingPlayerDataTableRootContainer>
+    )
   );
 };
 
