@@ -5,8 +5,7 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 
 import NBAEverythingHeader from './NBAEverythingHeader';
 import NBAEverythingSearch from './NBAEverythingSearch';
-
-import PropTypes from 'prop-types';
+import NBAEverythingTeamDetail from './NBAEverythingTeamDetail';
 
 const NBAEverything = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
@@ -16,11 +15,10 @@ const NBAEverything = () => {
       <PageStyle darkMode={darkMode} />
       <NBAEverythingHeader />
       <NBAEverythingSearch />
+      <NBAEverythingTeamDetail />
     </div>
   );
 };
-
-NBAEverything.propTypes = {};
 
 export default NBAEverything;
 

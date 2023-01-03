@@ -24,15 +24,19 @@ const NBAEverythingSearch = () => {
   }, [nbaEverythingDispatch]);
 
   React.useEffect(() => {
-    getTeamGameDataByTeamAndSeason(selectedNBATeam.id, selectedNBASeason.year);
-  }, [selectedNBASeason, selectedNBATeam]);
+    getTeamGameDataByTeamAndSeason(
+      nbaEverythingDispatch,
+      selectedNBATeam.id,
+      selectedNBASeason.year,
+    );
+  }, [nbaEverythingDispatch, selectedNBASeason, selectedNBATeam]);
 
   return (
     <NBAEverythingSearchRootContainer container>
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
         <Autocomplete
-          defaultValue={{ full_name: 'Atlanta Hawks' }}
+          defaultValue={{ full_name: 'Atlanta Hawks', id: 1 }}
           freeSolo
           fullWidth
           getOptionLabel={option => `${option.full_name}`}
@@ -82,7 +86,7 @@ NBAEverythingSearch.propTypes = {};
 export default NBAEverythingSearch;
 
 export const NBAEverythingSearchRootContainer = styled(Grid)({
-  marginTop: 45,
+  marginTop: 20,
 });
 
 export const NBAEverythingAutocompleteContainer = styled(Grid)({
@@ -100,6 +104,7 @@ const SearchInput = styled(TextField)(({ darkMode }) => ({
   '.MuiInputBase-root': {
     borderRadius: 10,
     color: darkMode ? '#75baff' : 'black',
+    height: 53,
   },
   '.MuiInputLabel-root': {
     color: darkMode ? 'beige' : 'royalblue',
