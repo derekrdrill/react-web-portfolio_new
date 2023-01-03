@@ -149,8 +149,7 @@ const NBAEverythingTeamDetail = () => {
 export default NBAEverythingTeamDetail;
 
 export const TeamDetailRootContainer = styled(Grid)({
-  marginTop: 20,
-  paddingTop: 50,
+  paddingTop: 25,
 });
 
 export const TeamLogo = styled.img(({ darkMode }) => ({
