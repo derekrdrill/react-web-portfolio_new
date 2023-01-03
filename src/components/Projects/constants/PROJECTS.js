@@ -6,7 +6,7 @@ import {
   faBasketballBall,
 } from '@fortawesome/fontawesome-free-solid';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
-import nbaSVG from '../../../assets/nba2.svg';
+// import nbaSVG from '../../../assets/nba2.svg';
 
 export const PROJECTS = [
   {
