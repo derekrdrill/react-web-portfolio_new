@@ -148,12 +148,9 @@ const NBAEverythingTeamDetail = () => {
 
 export default NBAEverythingTeamDetail;
 
-export const TeamDetailRootContainer = styled(Grid)(({ darkMode }) => ({
-  // backgroundColor: darkMode ? '#363636' : 'whitesmoke',
-  // backgroundColor: darkMode ? '#030200' : '',
-  marginTop: 20,
-  paddingTop: 50,
-}));
+export const TeamDetailRootContainer = styled(Grid)({
+  paddingTop: 25,
+});
 
 export const TeamLogo = styled.img(({ darkMode }) => ({
   display: 'block',

@@ -133,6 +133,7 @@ export default NBAEverythingTeamDetailScores;
 
 const TeamDataScoresContainer = styled(Grid)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#757575' : '#f0f0e0',
+  border: '1px dotted black',
   height: 300,
   marginBottom: 10,
   overflowY: 'scroll',
@@ -143,7 +144,8 @@ const GameScoresContainer = styled(Grid)({
 });
 
 const GameScoreContainer = styled(Grid)({
-  border: '1px dotted black',
+  borderBottom: '1px dotted black',
+  borderRight: '1px dotted black',
   padding: 10,
 });
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Autocomplete, Grid, TextField } from '@mui/material';
-import PropTypes from 'prop-types';
 
 import { NBAEverythingContext } from '../context/NBAEverythingContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
@@ -81,8 +80,6 @@ const NBAEverythingSearch = () => {
   );
 };
 
-NBAEverythingSearch.propTypes = {};
-
 export default NBAEverythingSearch;
 
 export const NBAEverythingSearchRootContainer = styled(Grid)({
@@ -104,7 +101,8 @@ const SearchInput = styled(TextField)(({ darkMode }) => ({
   '.MuiInputBase-root': {
     borderRadius: 10,
     color: darkMode ? '#75baff' : 'black',
-    height: 53,
+    fontSize: 12,
+    height: darkMode ? 48 : 42,
   },
   '.MuiInputLabel-root': {
     color: darkMode ? 'beige' : 'royalblue',
