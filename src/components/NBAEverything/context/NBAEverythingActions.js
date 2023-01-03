@@ -62,6 +62,7 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
     .then(async response => response);
 
   const totalsAndStats = await totalsAndStatsRequest.data;
+  console.log(totalsAndStats);
 
   nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM_TOTALS',

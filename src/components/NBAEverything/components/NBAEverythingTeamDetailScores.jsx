@@ -14,9 +14,9 @@ const NBAEverythingTeamDetailScores = ({ logos }) => {
     React.useContext(NBAEverythingContext);
 
   return (
-    <GameScoresContainer item xs={12} md={5} lg={4}>
+    <NBAEverythingTeamDetailScoresRootContainer item xs={12} md={5} lg={4}>
       <Typography variant='h6'>Game Scores</Typography>
-      <TeamDataScoresContainer container darkMode={darkMode} justifyContent='space-between'>
+      <GameScoresContainer container darkMode={darkMode} justifyContent='space-between'>
         {selectedNBATeamGameData &&
           selectedNBATeamGameData.teamGameData &&
           selectedNBATeamGameData.teamGameData.length > 0 &&
@@ -120,8 +120,8 @@ const NBAEverythingTeamDetailScores = ({ logos }) => {
               </GameScoreLogoContainer>
             </GameScoreContainer>
           ))}
-      </TeamDataScoresContainer>
-    </GameScoresContainer>
+      </GameScoresContainer>
+    </NBAEverythingTeamDetailScoresRootContainer>
   );
 };
 
@@ -131,15 +131,7 @@ NBAEverythingTeamDetailScores.propTypes = {
 
 export default NBAEverythingTeamDetailScores;
 
-const TeamDataScoresContainer = styled(Grid)(({ darkMode }) => ({
-  backgroundColor: darkMode ? '#757575' : '#f0f0e0',
-  border: '1px dotted black',
-  height: 300,
-  marginBottom: 10,
-  overflowY: 'scroll',
-}));
-
-const GameScoresContainer = styled(Grid)({
+const NBAEverythingTeamDetailScoresRootContainer = styled(Grid)({
   padding: '0px 9px',
 });
 
@@ -148,6 +140,14 @@ const GameScoreContainer = styled(Grid)({
   borderRight: '1px dotted black',
   padding: 10,
 });
+
+const GameScoresContainer = styled(Grid)(({ darkMode }) => ({
+  backgroundColor: darkMode ? '#757575' : '#f0f0e0',
+  border: '1px dotted black',
+  height: 300,
+  marginBottom: 10,
+  overflowY: 'scroll',
+}));
 
 const GameScoreLogo = styled.img({
   borderRadius: 5,
@@ -174,3 +174,7 @@ const GameScoreText = styled(Typography)(({ darkMode, result }) => ({
         : 'red'
       : 'inherit',
 }));
+
+
+
+

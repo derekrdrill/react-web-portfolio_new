@@ -17,11 +17,13 @@ const NBAEverythingHeader = () => (
 
 export default NBAEverythingHeader;
 
+export const NBAEverythingTitleText = styled(Typography)({
+  transform: 'translateY(39%)',
+});
+
 export const NBALogoImage = styled.img({
   height: 105,
   width: 155,
 });
 
-export const NBAEverythingTitleText = styled(Typography)({
-  transform: 'translateY(39%)',
-});
+
