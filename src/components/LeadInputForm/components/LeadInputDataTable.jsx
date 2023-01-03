@@ -35,6 +35,10 @@ export const LeadInputDataTable = () => (
     editDataRowsAPICall={editLeadsAPICall}
     getDataRowsAPICall={getLeadsAPICall}
     headers={headers}
+    isDeletable
+    isEditable
+    isFilterable
+    isResetable
     size='small'
   />
 );

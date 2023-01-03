@@ -35,12 +35,17 @@ export const getFiltersLabel = filtersDisplay => (filtersDisplay ? 'No filters' 
 export const DynamicDataTable = ({
   checkAllColor,
   checkOneColor,
-  getDataRowsAPICall,
   deleteDataRowsAPICall,
   deleteDataRowNameItems,
   deleteSelectedButtonColor,
   editDataRowsAPICall,
+  getDataRowsAPICall,
+  isDeletable,
+  isEditable,
+  isFilterable,
+  isResetable,
   headers,
+  loadedDataRows,
   selectedRowColor = 'lightcoral',
   selectedRowFontColor = 'black',
   size,
@@ -118,8 +123,9 @@ export const DynamicDataTable = ({
 
     const sortColumn = () => {
       dataRows.sort((a, b) => {
-        let sortItemA = a[columnID].toUpperCase();
-        let sortItemB = b[columnID].toUpperCase();
+        let isANumber = typeof a[columnID] === 'number';
+        let sortItemA = isANumber ? a[columnID] : a[columnID].toUpperCase();
+        let sortItemB = isANumber ? b[columnID] : b[columnID].toUpperCase();
 
         if (sortType === 'asc') {
           return sortItemA > sortItemB ? -1 : 1;
@@ -242,85 +248,101 @@ export const DynamicDataTable = ({
     [handleGetDataRowsAPICall],
   );
 
+  useEffect(() => {
+    if (loadedDataRows && loadedDataRows.length > 0) {
+      setDataRows(loadedDataRows);
+    }
+  }, [loadedDataRows]);
+
   return (
     <TableHolder>
       <TableContainerStyled>
         <TableStyled darkMode={darkMode} size={size} stickyHeader={stickyHeader}>
           <TableHead>
             <TableRow>
-              <TableToolsCell darkMode={darkMode}>
-                <Grid container>
-                  <Grid item xs={12} md={3}>
-                    <Grid container display={{ xs: 'none', lg: 'inline-block' }}>
-                      <TableToolsText variant='body2' component='h1'>
-                        {getSelectRowsLabel(allRowsSelected)}
-                      </TableToolsText>
-                    </Grid>
-                    <Grid container>
-                      <CheckboxStyled
-                        checked={allRowsSelected}
-                        color={checkAllColor}
-                        darkMode={darkMode}
-                        onChange={handleCheckAllRows}
-                      />
-                    </Grid>
+              {(isDeletable || isEditable || isFilterable || isResetable) && (
+                <TableToolsCell darkMode={darkMode}>
+                  <Grid container>
+                    {isDeletable && (
+                      <Grid item xs={12} md={3}>
+                        <Grid container display={{ xs: 'none', lg: 'inline-block' }}>
+                          <TableToolsText variant='body2' component='h1'>
+                            {getSelectRowsLabel(allRowsSelected)}
+                          </TableToolsText>
+                        </Grid>
+                        <Grid container>
+                          <CheckboxStyled
+                            checked={allRowsSelected}
+                            color={checkAllColor}
+                            darkMode={darkMode}
+                            onChange={handleCheckAllRows}
+                          />
+                        </Grid>
+                      </Grid>
+                    )}
+                    {isFilterable && (
+                      <Grid item xs={12} md={3}>
+                        <Grid
+                          container
+                          justifyContent='center'
+                          display={{ xs: 'none', lg: 'inline-block' }}
+                        >
+                          <TableToolsText variant='body2' component='h1' textAlign='center'>
+                            {getFiltersLabel(filtersDisplay)}
+                          </TableToolsText>
+                        </Grid>
+                        <Grid container justifyContent='center'>
+                          <SearchButton
+                            darkMode={darkMode}
+                            onClick={
+                              /* istanbul ignore next */
+                              () => setFilterDisplay(!filtersDisplay)
+                            }
+                          >
+                            <SearchButtonIcon filtersDisplay={filtersDisplay} />
+                          </SearchButton>
+                        </Grid>
+                      </Grid>
+                    )}
+                    {isResetable && (
+                      <Grid item xs={12} md={3}>
+                        <Grid
+                          container
+                          justifyContent='center'
+                          display={{ xs: 'none', lg: 'inline-block' }}
+                        >
+                          <TableToolsText variant='body2' component='h1' textAlign='center'>
+                            Reset
+                          </TableToolsText>
+                        </Grid>
+                        <Grid container justifyContent='center'>
+                          <ResetButton darkMode={darkMode} onClick={handleTableReset}>
+                            <RotateLeftIcon />
+                          </ResetButton>
+                        </Grid>
+                      </Grid>
+                    )}
+                    {isDeletable && (
+                      <Grid item xs={12} md={3}>
+                        <Grid
+                          container
+                          justifyContent='center'
+                          display={{ xs: 'none', lg: 'inline-block' }}
+                        >
+                          <TableToolsText variant='subtitle2' component='h1' textAlign='center'>
+                            Selected
+                          </TableToolsText>
+                        </Grid>
+                        <Grid container justifyContent='center'>
+                          <SelectedRowsText variant='h6' component='h1'>
+                            {checkedRows.length}
+                          </SelectedRowsText>
+                        </Grid>
+                      </Grid>
+                    )}
                   </Grid>
-                  <Grid item xs={12} md={3}>
-                    <Grid
-                      container
-                      justifyContent='center'
-                      display={{ xs: 'none', lg: 'inline-block' }}
-                    >
-                      <TableToolsText variant='body2' component='h1' textAlign='center'>
-                        {getFiltersLabel(filtersDisplay)}
-                      </TableToolsText>
-                    </Grid>
-                    <Grid container justifyContent='center'>
-                      <SearchButton
-                        darkMode={darkMode}
-                        onClick={
-                          /* istanbul ignore next */
-                          () => setFilterDisplay(!filtersDisplay)
-                        }
-                      >
-                        <SearchButtonIcon filtersDisplay={filtersDisplay} />
-                      </SearchButton>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12} md={3}>
-                    <Grid
-                      container
-                      justifyContent='center'
-                      display={{ xs: 'none', lg: 'inline-block' }}
-                    >
-                      <TableToolsText variant='body2' component='h1' textAlign='center'>
-                        Reset
-                      </TableToolsText>
-                    </Grid>
-                    <Grid container justifyContent='center'>
-                      <ResetButton darkMode={darkMode} onClick={handleTableReset}>
-                        <RotateLeftIcon />
-                      </ResetButton>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12} md={3}>
-                    <Grid
-                      container
-                      justifyContent='center'
-                      display={{ xs: 'none', lg: 'inline-block' }}
-                    >
-                      <TableToolsText variant='subtitle2' component='h1' textAlign='center'>
-                        Selected
-                      </TableToolsText>
-                    </Grid>
-                    <Grid container justifyContent='center'>
-                      <SelectedRowsText variant='h6' component='h1'>
-                        {checkedRows.length}
-                      </SelectedRowsText>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </TableToolsCell>
+                </TableToolsCell>
+              )}
               {headers.map(header => (
                 <TableCellStyled key={header.headerID} darkMode={darkMode}>
                   <Grid container>
@@ -363,19 +385,24 @@ export const DynamicDataTable = ({
             handleRowInputChange={handleRowInputChange}
             handleSaveEdits={handleSaveEdits}
             handleSetDeleteRow={handleSetDeleteRow}
+            isDeletable={isDeletable}
+            isEditable={isEditable}
+            isFilterable={isFilterable}
             selectedRowColor={selectedRowColor}
             selectedRowFontColor={selectedRowFontColor}
             tableBodyColor={tableBodyColor}
           />
         </TableStyled>
       </TableContainerStyled>
-      <Button
-        color={deleteSelectedButtonColor || 'warning'}
-        variant='contained'
-        onClick={handleDeleteModalOpen}
-      >
-        Delete Selected
-      </Button>
+      {isDeletable && (
+        <Button
+          color={deleteSelectedButtonColor || 'warning'}
+          variant='contained'
+          onClick={handleDeleteModalOpen}
+        >
+          Delete Selected
+        </Button>
+      )}
       <MessageModal
         open={deleteModalOpen}
         onClose={handleDeleteModalClose}
@@ -417,6 +444,11 @@ DynamicDataTable.propTypes = {
   deleteSelectedButtonColor: PropTypes.string,
   editDataRowsAPICall: PropTypes.func,
   headers: PropTypes.array,
+  isDeletable: PropTypes.bool,
+  isEditable: PropTypes.bool,
+  isFilterable: PropTypes.bool,
+  isResetable: PropTypes.bool,
+  loadedDataRows: PropTypes.array,
   selectedRowColor: PropTypes.string,
   selectedRowFontColor: PropTypes.string,
   size: PropTypes.string,
@@ -435,8 +467,8 @@ export const TableStyled = styled(Table)(({ darkMode }) => ({
 }));
 
 export const TableHolder = styled.div({
-  width: '86%',
-  marginLeft: '7%',
+  width: '90%',
+  marginLeft: '5%',
 });
 
 export const TableContainerStyled = styled(TableContainer)({
@@ -454,7 +486,6 @@ export const TableHeadStyled = styled(TableHead)(({ darkMode }) => ({
 
 export const TableCellStyled = styled(TableCell)(({ darkMode }) => ({
   backgroundColor: darkMode ? '#3d3d3d' : 'gainsboro',
-  borderLeft: 'dashed gray 1px',
 }));
 
 export const TableToolsCell = styled(TableCell)(({ darkMode }) => ({
@@ -464,6 +495,7 @@ export const TableToolsCell = styled(TableCell)(({ darkMode }) => ({
 
 export const TableHeadCellText = styled(Typography)({
   cursor: 'pointer',
+  textDecoration: 'underline',
   ':hover': {
     opacity: 0.6,
   },

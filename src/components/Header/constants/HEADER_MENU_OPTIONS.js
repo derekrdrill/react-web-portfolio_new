@@ -26,11 +26,11 @@ export const HEADER_MENU_OPTIONS = [
     mainTo: 'connect-with-me',
     secondaryTo: '/connect-with-me',
   },
-  {
-    id: 4,
-    menuTitle: 'George',
-    menuIcon: <PetsIcon />,
-    mainTo: 'home',
-    secondaryTo: '/',
-  },
+  // {
+  //   id: 4,
+  //   menuTitle: 'George',
+  //   menuIcon: <PetsIcon />,
+  //   mainTo: 'home',
+  //   secondaryTo: '/',
+  // },
 ];

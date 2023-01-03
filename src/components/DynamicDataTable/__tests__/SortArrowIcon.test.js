@@ -31,8 +31,8 @@ describe('SortArrowIcon tests', () => {
     );
 
     expect(sortArrowIcon.props().className).toEqual(undefined);
-    expect(sortArrowIcon2.props().className).toEqual('arrow-up');
-    expect(sortArrowIcon3.props().className).toEqual('arrow-down');
+    expect(sortArrowIcon2.props().className).toEqual('arrow-down');
+    expect(sortArrowIcon3.props().className).toEqual('arrow-up');
     expect(sortArrowIcon4.props().className).toEqual(undefined);
   });
 });

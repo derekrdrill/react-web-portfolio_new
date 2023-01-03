@@ -24,7 +24,7 @@ const nbaSeasons = [
   { year: 2017, display_year: '2017-2018' },
   { year: 2018, display_year: '2018-2019' },
   { year: 2019, display_year: '2019-2020' },
-  { year: 2020, display_year: '2022-2021' },
+  { year: 2020, display_year: '2020-2021' },
   { year: 2021, display_year: '2021-2022' },
   { year: 2022, display_year: '2022-2023' },
 ];
@@ -62,6 +62,7 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
     .then(async response => response);
 
   const totalsAndStats = await totalsAndStatsRequest.data;
+  console.log(totalsAndStats);
 
   nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM_TOTALS',

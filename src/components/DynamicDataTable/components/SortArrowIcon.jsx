@@ -7,9 +7,9 @@ import { faLongArrowAltDown, faLongArrowAltUp } from '@fortawesome/fontawesome-f
 export const SortArrowIcon = ({ headerID, sortColumn, sortType }) =>
   headerID === sortColumn ? (
     sortType === 'asc' ? (
-      <FontAwesomeIcon className='arrow-down' icon={faLongArrowAltDown} />
-    ) : sortType === 'desc' ? (
       <FontAwesomeIcon className='arrow-up' icon={faLongArrowAltUp} />
+    ) : sortType === 'desc' ? (
+      <FontAwesomeIcon className='arrow-down' icon={faLongArrowAltDown} />
     ) : null
   ) : null;
 

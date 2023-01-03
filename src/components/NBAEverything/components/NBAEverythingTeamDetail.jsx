@@ -4,16 +4,13 @@ import { Grid, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/fontawesome-free-solid';
 
-import { NBAEverythingContext } from '../context/NBAEverythingContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
+import { NBAEverythingContext } from '../context/NBAEverythingContext';
 
 import NBAEverythingTeamDetailScores from './NBAEverythingTeamDetailScores';
 import NBAEverythingTeamDetailStats from './NBAEverythingTeamDetailStats';
 
-import {
-  getSelectedTeamAndPlayerTotalsAndStats,
-  setLogoType,
-} from '../context/NBAEverythingActions';
+import { setLogoType } from '../context/NBAEverythingActions';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const NBA_EVERYTHING_LOGOS_LOCATION = process.env.REACT_APP_NBA_EVERYTHING_LOGOS_LOCATION;
@@ -23,7 +20,6 @@ const NBAEverythingTeamDetail = () => {
   const {
     logoType,
     nbaEverythingDispatch,
-    selectedNBASeason,
     selectedNBATeam,
     selectedNBATeamGameData,
     selectedNBATeamTotals,
@@ -45,16 +41,8 @@ const NBAEverythingTeamDetail = () => {
     },
   ];
 
-  React.useEffect(() => {
-    getSelectedTeamAndPlayerTotalsAndStats(
-      nbaEverythingDispatch,
-      selectedNBATeam.id,
-      selectedNBASeason.year,
-    );
-  }, [nbaEverythingDispatch, selectedNBASeason, selectedNBATeam]);
-
   return (
-    <TeamDetailRootContainer container darkMode={darkMode} spacing={2}>
+    <NBAEverythingTeamDetailRootContainer container darkMode={darkMode} spacing={2}>
       <Grid item xs={1} />
       <Grid item xs={12} sm={5} md={2}>
         <TeamLogoContainer container darkMode={darkMode}>
@@ -142,13 +130,13 @@ const NBAEverythingTeamDetail = () => {
         </Grid>
       </Grid>
       <NBAEverythingTeamDetailScores logos={logos} />
-    </TeamDetailRootContainer>
+    </NBAEverythingTeamDetailRootContainer>
   );
 };
 
 export default NBAEverythingTeamDetail;
 
-export const TeamDetailRootContainer = styled(Grid)({
+export const NBAEverythingTeamDetailRootContainer = styled(Grid)({
   paddingTop: 25,
 });
 
@@ -167,10 +155,6 @@ export const TeamLogoContainer = styled(Grid)(({ darkMode }) => ({
   height: 155,
 }));
 
-export const TeamLogoToggleButtonsContainer = styled(Grid)({
-  padding: 15,
-});
-
 export const TeamLogoToggleButton = styled(ToggleButton)({
   '&&.MuiToggleButton-root': {
     ':hover': {
@@ -187,4 +171,8 @@ export const TeamLogoToggleButton = styled(ToggleButton)({
     color: 'beige',
     padding: '3px 12px',
   },
+});
+
+export const TeamLogoToggleButtonsContainer = styled(Grid)({
+  padding: 15,
 });
