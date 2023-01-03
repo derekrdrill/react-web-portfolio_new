@@ -21,12 +21,6 @@ exports[`Header Menu tests renders correctly 1`] = `
       menuTitle="Connect With Me"
       secondaryTo="/connect-with-me"
     />
-    <HeaderMenuOptions
-      mainTo="home"
-      menuIcon={<Memo />}
-      menuTitle="George"
-      secondaryTo="/"
-    />
   </React.Fragment>
 </styled.div>
 `;
