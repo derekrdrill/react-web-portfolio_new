@@ -34,6 +34,10 @@ exports[`Lead Input Data Table tests renders correctly 1`] = `
       },
     ]
   }
+  isDeletable={true}
+  isEditable={true}
+  isFilterable={true}
+  isResetable={true}
   size="small"
 />
 `;

@@ -3,5 +3,52 @@
 exports[`TableBodyComponent tests renders correctly 1`] = `
 <Styled(Component)
   darkMode={true}
-/>
+>
+  <Styled(Component)
+    darkMode={true}
+    selected={false}
+    selectedcolor="blue"
+    selectedfontcolor="gainsboro"
+    tablebodycolor="white"
+  >
+    <ForwardRef(TableCell)>
+      derekrdrill@gmail.com
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      Derek
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      Drill
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      3014817288
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      62339b5780ab1b2c776e5e6f
+    </ForwardRef(TableCell)>
+  </Styled(Component)>
+  <Styled(Component)
+    darkMode={true}
+    selected={true}
+    selectedcolor="blue"
+    selectedfontcolor="gainsboro"
+    tablebodycolor="white"
+  >
+    <ForwardRef(TableCell)>
+      woof@bark.com
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      George
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      Drill
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      8388387474
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)>
+      62339b6c80ab1b2c776e5e70
+    </ForwardRef(TableCell)>
+  </Styled(Component)>
+</Styled(Component)>
 `;
