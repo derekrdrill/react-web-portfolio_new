@@ -24,7 +24,7 @@ const NBAEverythingProvider = ({ children }) => {
     },
     selectedNBATeamGameData: {},
     selectedNBATeamTotals: {},
-    selectedNBATeamPlayerStats: {},
+    selectedNBATeamPlayerStats: [],
   };
 
   const [state, nbaEverythingDispatch] = useReducer(nbaEverythingReducer, initialState);

@@ -7,6 +7,7 @@ import { NBAEverythingContext } from '../../NBAEverything/context/NBAEverythingC
 import NBAEverythingHeader from './NBAEverythingHeader';
 import NBAEverythingSearch from './NBAEverythingSearch';
 import NBAEverythingTeamDetail from './NBAEverythingTeamDetail';
+import NBAEverythingPlayerDataTable from './NBAEverythingPlayerDataTable';
 
 import { getSelectedTeamAndPlayerTotalsAndStats } from '../context/NBAEverythingActions';
 
@@ -30,6 +31,7 @@ const NBAEverything = () => {
       <NBAEverythingHeader />
       <NBAEverythingSearch />
       <NBAEverythingTeamDetail />
+      <NBAEverythingPlayerDataTable />
     </div>
   );
 };

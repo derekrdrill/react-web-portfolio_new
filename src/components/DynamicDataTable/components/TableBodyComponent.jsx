@@ -15,6 +15,9 @@ export const TableBodyComponent = ({
   editingID,
   filterColumn,
   filterValue,
+  isDeletable,
+  isEditable,
+  isFilterable,
   handleCheckOneRow,
   handleEditRow,
   handleRowInputChange,
@@ -24,53 +27,70 @@ export const TableBodyComponent = ({
   selectedRowFontColor,
   tableBodyColor,
 }) => {
+  const filteredDataRows = dataRows =>
+    dataRows.filter(dataRow => dataRow[filterColumn].toUpperCase().startsWith(filterValue));
+
+  const tableDataRows = isFilterable ? filteredDataRows(dataRows) : dataRows;
+
   return (
     <TableBodyStyled darkMode={darkMode}>
-      {dataRows
-        .filter(dataRow => dataRow[filterColumn].toUpperCase().startsWith(filterValue))
-        .map(dataRow => (
+      {tableDataRows.map(dataRow => {
+        const dataRowObjectEnrties = isDeletable
+          ? Object.entries(dataRow).slice(1)
+          : Object.entries(dataRow);
+
+        return (
           <TableBodyRow
-            key={dataRow._id}
+            key={dataRow._id ?? dataRow.id}
             darkMode={darkMode}
-            selected={checkedRows.includes(dataRow._id)}
+            selected={checkedRows.includes(dataRow._id ?? dataRow.id)}
             selectedcolor={selectedRowColor}
             selectedfontcolor={selectedRowFontColor}
             tablebodycolor={tableBodyColor}
           >
-            <TableCell>
-              <Checkbox
-                id={dataRow._id}
-                color={darkMode ? 'primary' : checkOneColor}
-                onChange={handleCheckOneRow}
-                checked={checkedRows.includes(dataRow._id)}
-              />
-              <RemoveRecordIcon
-                className='edit-delete-icon'
-                id={dataRow._id}
-                darkMode={darkMode}
-                onClick={handleSetDeleteRow}
-              >
-                <DeleteForeverIcon />
-              </RemoveRecordIcon>
-              {editingID != dataRow._id ? (
-                <EditRecordIcon
-                  className='edit-delete-icon'
-                  id={dataRow._id}
-                  darkMode={darkMode}
-                  onClick={handleEditRow}
-                >
-                  <DriveFileRenameOutlineIcon />
-                </EditRecordIcon>
-              ) : (
-                <SaveRecordIcon id={dataRow._id} onClick={handleSaveEdits}>
-                  <SaveIcon />
-                </SaveRecordIcon>
-              )}
-            </TableCell>
-            {Object.entries(dataRow)
-              .slice(1)
-              .map(dataRowInfo => (
-                <TableCell key={dataRowInfo[0]}>
+            {(isDeletable || isEditable) && (
+              <TableCell>
+                {isDeletable && (
+                  <>
+                    <Checkbox
+                      id={dataRow._id}
+                      color={darkMode ? 'primary' : checkOneColor}
+                      onChange={handleCheckOneRow}
+                      checked={checkedRows.includes(dataRow._id ?? dataRow.id)}
+                    />
+
+                    <RemoveRecordIcon
+                      className='edit-delete-icon'
+                      id={dataRow._id}
+                      darkMode={darkMode}
+                      onClick={handleSetDeleteRow}
+                    >
+                      <DeleteForeverIcon />
+                    </RemoveRecordIcon>
+                  </>
+                )}
+                {isEditable &&
+                  (editingID != dataRow._id ? (
+                    <EditRecordIcon
+                      className='edit-delete-icon'
+                      id={dataRow._id}
+                      darkMode={darkMode}
+                      onClick={handleEditRow}
+                    >
+                      <DriveFileRenameOutlineIcon />
+                    </EditRecordIcon>
+                  ) : (
+                    <SaveRecordIcon id={dataRow._id} onClick={handleSaveEdits}>
+                      <SaveIcon />
+                    </SaveRecordIcon>
+                  ))}
+              </TableCell>
+            )}
+            {dataRowObjectEnrties.map(dataRowInfo => (
+              <TableCell key={dataRowInfo[0]}>
+                {!isEditable ? (
+                  dataRowInfo[1]
+                ) : (
                   <TableBodyCellInput
                     id={dataRowInfo[0]}
                     darkMode={darkMode}
@@ -79,10 +99,12 @@ export const TableBodyComponent = ({
                     disabled={dataRow._id !== editingID}
                     onChange={handleRowInputChange}
                   />
-                </TableCell>
-              ))}
+                )}
+              </TableCell>
+            ))}
           </TableBodyRow>
-        ))}
+        );
+      })}
     </TableBodyStyled>
   );
 };
@@ -100,6 +122,9 @@ TableBodyComponent.propTypes = {
   handleRowInputChange: PropTypes.func,
   handleSaveEdits: PropTypes.func,
   handleSetDeleteRow: PropTypes.func,
+  isDeletable: PropTypes.bool,
+  isEditable: PropTypes.bool,
+  isFilterable: PropTypes.bool,
   selectedRowColor: PropTypes.string,
   selectedRowFontColor: PropTypes.string,
   tableBodyColor: PropTypes.string,
