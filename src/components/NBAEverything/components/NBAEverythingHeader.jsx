@@ -6,10 +6,10 @@ import NBALogo from '../../../assets/nba.png';
 
 const NBAEverythingHeader = () => (
   <Grid container>
-    <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+    <Grid item xs={11} sm={9} md={6} lg={4} xl={3}>
       <Grid container justifyContent='space-around'>
         <NBALogoImage src={NBALogo} />
-        <NBAEverythingTitleText variant='h2'>...everything</NBAEverythingTitleText>
+        <NBAEverythingTitleText variant='h3'>...everything</NBAEverythingTitleText>
       </Grid>
     </Grid>
   </Grid>
@@ -18,10 +18,10 @@ const NBAEverythingHeader = () => (
 export default NBAEverythingHeader;
 
 export const NBALogoImage = styled.img({
-  height: 185,
-  width: 235,
+  height: 105,
+  width: 155,
 });
 
 export const NBAEverythingTitleText = styled(Typography)({
-  transform: 'translateY(45%)',
+  transform: 'translateY(39%)',
 });

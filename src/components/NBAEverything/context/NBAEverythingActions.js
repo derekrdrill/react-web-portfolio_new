@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const NBA_EVERYTHING_LOGOS_LOCATION = process.env.REACT_APP_NBA_EVERYTHING_LOGOS_LOCATION;
+
 const nbaSeasons = [
   { year: 2000, display_year: '2000-2001' },
-  { year: 2001, display_year: '2001-2001' },
+  { year: 2001, display_year: '2001-2002' },
   { year: 2002, display_year: '2002-2003' },
   { year: 2003, display_year: '2003-2004' },
   { year: 2004, display_year: '2004-2005' },
@@ -26,6 +29,15 @@ const nbaSeasons = [
   { year: 2022, display_year: '2022-2023' },
 ];
 
+export const setScoreLogo = (selectedTeamName, scoreName, currentLogo, retroLogo, logoType) =>
+  logoType === 'current'
+    ? selectedTeamName === scoreName
+      ? currentLogo
+      : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}.png`
+    : selectedTeamName === scoreName
+    ? retroLogo
+    : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}Retro.png`;
+
 export const getNBASeasons = () =>
   nbaSeasons.sort((a, b) => (a.year < b.year ? 1 : a.year > b.year ? -1 : 0));
 
@@ -44,7 +56,39 @@ export const getTeams = async nbaEverythingDispatch => {
   });
 };
 
-export const getTeamGameDataByTeamAndSeason = async (teamID, season) => {
+export const getSelectedTeamAndPlayerTotalsAndStats = async (
+  nbaEverythingDispatch,
+  teamID,
+  season,
+) => {
+  const totalsAndStatsDataOptions = {
+    method: 'GET',
+    url: `${process.env.REACT_APP_BACKEND_URL}/get-player-and-team-totals-by-team-and-season/${teamID}/${season}`,
+  };
+
+  const totalsAndStatsRequest = await axios
+    .request(totalsAndStatsDataOptions)
+    .then(async response => response);
+
+  const totalsAndStats = await totalsAndStatsRequest.data;
+
+  nbaEverythingDispatch({
+    type: 'SET_SELECTED_NBA_TEAM_TOTALS',
+    selectedNBATeamTotals: {
+      apg: totalsAndStats.apg,
+      rpg: totalsAndStats.rpg,
+      spg: totalsAndStats.spg,
+      bpg: totalsAndStats.bpg,
+    },
+  });
+
+  nbaEverythingDispatch({
+    type: 'SET_SELECTED_NBA_TEAM_PLAYER_STATS',
+    selectedNBATeamPlayerStats: await totalsAndStats.playerData,
+  });
+};
+
+export const getTeamGameDataByTeamAndSeason = async (nbaEverythingDispatch, teamID, season) => {
   const teamGameDataOptions = {
     method: 'GET',
     url: `${process.env.REACT_APP_BACKEND_URL}/get-team-game-data-by-team-and-season/${teamID}/${season}`,
@@ -56,10 +100,18 @@ export const getTeamGameDataByTeamAndSeason = async (teamID, season) => {
 
   const teamGameData = await teamGameDataRequest.data;
 
-  console.log(teamGameData);
+  nbaEverythingDispatch({
+    type: 'SET_SELECTED_NBA_TEAM_GAME_DATA',
+    selectedNBATeamGameData: await teamGameData,
+  });
 };
 
 export const setSelectedNBATeam = async (nbaEverythingDispatch, selectedNBATeam) => {
+  await nbaEverythingDispatch({
+    type: 'SET_LOGO_TYPE',
+    logoType: 'current',
+  });
+
   await nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM',
     selectedNBATeam: selectedNBATeam,
@@ -70,5 +122,12 @@ export const setSelectedNBASeason = async (nbaEverythingDispatch, selectedNBASea
   await nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_SEASON',
     selectedNBASeason: selectedNBASeason,
+  });
+};
+
+export const setLogoType = async (nbaEverythingDispatch, logoType) => {
+  await nbaEverythingDispatch({
+    type: 'SET_LOGO_TYPE',
+    logoType: logoType,
   });
 };

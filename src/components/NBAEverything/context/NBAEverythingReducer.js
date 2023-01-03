@@ -15,10 +15,35 @@ export const nbaEverythingReducer = (state, action) => {
         ...state,
         selectedNBATeam: action.selectedNBATeam,
       };
+    case 'SET_SELECTED_NBA_TEAM_TOTALS':
+      return {
+        ...state,
+        selectedNBATeamTotals: action.selectedNBATeamTotals,
+      };
+    case 'SET_SELECTED_NBA_TEAM_PLAYER_STATS':
+      return {
+        ...state,
+        selectedNBATeamPlayerStats: action.selectedNBATeamPlayerStats,
+      };
+    case 'SET_SELECTED_NBA_TEAM_GAME_DATA':
+      return {
+        ...state,
+        selectedNBATeamGameData: action.selectedNBATeamGameData,
+      };
     case 'SET_SELECTED_NBA_SEASON':
       return {
         ...state,
         selectedNBASeason: action.selectedNBASeason,
+      };
+    case 'SET_HOME_SCORE_LOGO':
+      return {
+        ...state,
+        homeScoreLogo: action.homeScoreLogo,
+      };
+    case 'SET_LOGO_TYPE':
+      return {
+        ...state,
+        logoType: action.logoType,
       };
     default:
       return state;
