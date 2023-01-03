@@ -29,15 +29,6 @@ const nbaSeasons = [
   { year: 2022, display_year: '2022-2023' },
 ];
 
-export const setScoreLogo = (selectedTeamName, scoreName, currentLogo, retroLogo, logoType) =>
-  logoType === 'current'
-    ? selectedTeamName === scoreName
-      ? currentLogo
-      : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}.png`
-    : selectedTeamName === scoreName
-    ? retroLogo
-    : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}Retro.png`;
-
 export const getNBASeasons = () =>
   nbaSeasons.sort((a, b) => (a.year < b.year ? 1 : a.year > b.year ? -1 : 0));
 
@@ -106,6 +97,13 @@ export const getTeamGameDataByTeamAndSeason = async (nbaEverythingDispatch, team
   });
 };
 
+export const setLogoType = async (nbaEverythingDispatch, logoType) => {
+  await nbaEverythingDispatch({
+    type: 'SET_LOGO_TYPE',
+    logoType: logoType,
+  });
+};
+
 export const setSelectedNBATeam = async (nbaEverythingDispatch, selectedNBATeam) => {
   await nbaEverythingDispatch({
     type: 'SET_LOGO_TYPE',
@@ -125,9 +123,13 @@ export const setSelectedNBASeason = async (nbaEverythingDispatch, selectedNBASea
   });
 };
 
-export const setLogoType = async (nbaEverythingDispatch, logoType) => {
-  await nbaEverythingDispatch({
-    type: 'SET_LOGO_TYPE',
-    logoType: logoType,
-  });
-};
+export const setScoreLogo = (selectedTeamName, scoreName, currentLogo, retroLogo, logoType) =>
+  logoType === 'current'
+    ? selectedTeamName === scoreName
+      ? currentLogo
+      : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}.png`
+    : selectedTeamName === scoreName
+    ? retroLogo
+    : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}Retro.png`;
+
+
