@@ -55,11 +55,9 @@ const NBAEverythingPlayerDataTable = () => {
     selectedNBATeamPlayerStats &&
     selectedNBATeamPlayerStats.length > 0 && (
       <NBAEverythingPlayerDataTableRootContainer container>
-        <Grid item xs={1} />
-        <Grid item xs={10}>
+        <TeamStatsTitleGridItem item xs={10}>
           <Typography variant='h5'>Team stats</Typography>
-        </Grid>
-        <Grid item xs={1} />
+        </TeamStatsTitleGridItem>
         <Grid item xs={12}>
           <DynamicDataTable
             checkAllColor='primary'
@@ -78,4 +76,8 @@ export default NBAEverythingPlayerDataTable;
 
 export const NBAEverythingPlayerDataTableRootContainer = styled(Grid)({
   marginTop: 15,
+});
+
+export const TeamStatsTitleGridItem = styled(Grid)({
+  paddingLeft: '5%',
 });
