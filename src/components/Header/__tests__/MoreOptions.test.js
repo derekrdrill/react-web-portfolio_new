@@ -40,16 +40,16 @@ describe('More Options tests', () => {
     const styledIcon = shallow(<StyledIcon />);
     const styledIconDark = shallow(<StyledIcon darkMode />);
 
-    expect(styledIcon.props().className).toEqual('sc-eDWCr khSxtX');
-    expect(styledIconDark.props().className).toEqual('sc-eDWCr jwSbsr');
+    expect(styledIcon.props().className).toEqual('sc-eTNep cfOQeU');
+    expect(styledIconDark.props().className).toEqual('sc-eTNep kxgBQs');
   });
 
   it('renders StyledMenu styled component correctly', () => {
     const styledMenu = shallow(<StyledMenu />);
     const styledMenuDark = shallow(<StyledMenu darkMode />);
 
-    expect(styledMenu.props().className).toEqual('sc-csuSiG blXTdk');
-    expect(styledMenuDark.props().className).toEqual('sc-csuSiG bHvttm');
+    expect(styledMenu.props().className).toEqual('sc-csKIKE gahzPy');
+    expect(styledMenuDark.props().className).toEqual('sc-csKIKE cPgamI');
   });
 });
 

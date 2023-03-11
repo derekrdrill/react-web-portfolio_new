@@ -38,8 +38,8 @@ describe('DarkLightMode with me tests', () => {
     const darkLightModeIcon = shallow(<DarkLightModeIcon />);
     const darkLightModeIconDark = shallow(<DarkLightModeIcon darkMode />);
 
-    expect(darkLightModeIcon.props().className).toEqual('sc-bcXHqe ggDynt');
-    expect(darkLightModeIconDark.props().className).toEqual('sc-bcXHqe fPAlfJ');
+    expect(darkLightModeIcon.props().className).toEqual('sc-beySbM bRiytI');
+    expect(darkLightModeIconDark.props().className).toEqual('sc-beySbM iWAqVs');
   });
 
   it('runs getIcon correctly', () => {

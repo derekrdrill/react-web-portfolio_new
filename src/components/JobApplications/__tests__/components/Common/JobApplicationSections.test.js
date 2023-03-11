@@ -60,7 +60,7 @@ describe('Job Application Section tests', () => {
     const jobAppSectionHeader = shallow(<JobAppSectionHeader />);
     const jobAppSectionHeaderDark = shallow(<JobAppSectionHeader darkMode />);
 
-    expect(jobAppSectionHeader.props().className).toEqual('sc-ftTHYK jqMrDY');
-    expect(jobAppSectionHeaderDark.props().className).toEqual('sc-ftTHYK ckrMlR');
+    expect(jobAppSectionHeader.props().className).toEqual('sc-fsYeqs kzFOxZ');
+    expect(jobAppSectionHeaderDark.props().className).toEqual('sc-fsYeqs cuNkxY');
   });
 });

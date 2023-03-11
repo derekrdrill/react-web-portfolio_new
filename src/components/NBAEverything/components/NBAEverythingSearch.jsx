@@ -36,6 +36,7 @@ const NBAEverythingSearch = () => {
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
         <Autocomplete
           defaultValue={{ full_name: 'Atlanta Hawks', id: 1 }}
+          disableClearable
           freeSolo
           fullWidth
           getOptionLabel={option => `${option.full_name}`}
@@ -43,12 +44,13 @@ const NBAEverythingSearch = () => {
             setSelectedNBATeam(nbaEverythingDispatch, selectedNBATeam);
           }}
           options={nbaTeams}
-          renderInput={params => (
+          renderInput={({ inputProps, ...params }) => (
             <SearchInput
               {...params}
               darkMode={darkMode}
               label='Select a team'
               variant={darkMode ? 'filled' : 'outlined'}
+              inputProps={{ ...inputProps, readOnly: true }}
             />
           )}
           value={selectedNBATeam}
@@ -57,20 +59,22 @@ const NBAEverythingSearch = () => {
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
         <Autocomplete
+          defaultValue={{ display_year: '2022-2023' }}
+          disableClearable
           freeSolo
           fullWidth
+          getOptionLabel={option => `${option.display_year}`}
           onChange={(e, selectedNBASeason) => {
             setSelectedNBASeason(nbaEverythingDispatch, selectedNBASeason);
           }}
-          getOptionLabel={option => `${option.display_year}`}
           options={getNBASeasons()}
-          defaultValue={{ display_year: '2022-2023' }}
-          renderInput={params => (
+          renderInput={({ inputProps, ...params }) => (
             <SearchInput
               {...params}
               darkMode={darkMode}
               label='Select a season'
               variant={darkMode ? 'filled' : 'outlined'}
+              inputProps={{ ...inputProps, readOnly: true }}
             />
           )}
           value={selectedNBASeason}

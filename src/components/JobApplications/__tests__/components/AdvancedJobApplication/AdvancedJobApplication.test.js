@@ -39,15 +39,15 @@ describe('Advanced Job Application tests', () => {
     const jobAppContainer = shallow(<JobAppContainer />);
     const jobAppContainerDark = shallow(<JobAppContainer darkMode />);
 
-    expect(jobAppContainer.props().className).toEqual('sc-pyfCe cYgTxY');
-    expect(jobAppContainerDark.props().className).toEqual('sc-pyfCe cXnDiB');
+    expect(jobAppContainer.props().className).toEqual('sc-qZqnM fAUqXC');
+    expect(jobAppContainerDark.props().className).toEqual('sc-qZqnM gYedMn');
   });
 
   it('renders JobAppHeaderContainer styled component correctly', () => {
     const jobAppHeaderContainer = shallow(<JobAppHeaderContainer />);
     const jobAppHeaderContainerDark = shallow(<JobAppHeaderContainer darkMode />);
 
-    expect(jobAppHeaderContainer.props().className).toEqual('sc-ipEyDJ jBLIhd');
-    expect(jobAppHeaderContainerDark.props().className).toEqual('sc-ipEyDJ bsZghm');
+    expect(jobAppHeaderContainer.props().className).toEqual('sc-irLwvL eqQJZe');
+    expect(jobAppHeaderContainerDark.props().className).toEqual('sc-irLwvL cfqsUV');
   });
 });
