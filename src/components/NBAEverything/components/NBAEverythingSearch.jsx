@@ -35,7 +35,11 @@ const NBAEverythingSearch = () => {
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
         <InputLabel>
-          <Typography component='span' variant='label'>
+          <Typography
+            color={darkMode ? 'AppWorkspace' : 'MenuText'}
+            component='span'
+            variant='label'
+          >
             Select team
           </Typography>
         </InputLabel>
@@ -63,7 +67,7 @@ const NBAEverythingSearch = () => {
       </NBAEverythingAutocompleteContainer>
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
-        <Typography component='span' variant='label'>
+        <Typography color={darkMode ? 'AppWorkspace' : 'MenuText'} component='span' variant='label'>
           Select season
         </Typography>
         <Autocomplete
