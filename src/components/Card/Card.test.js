@@ -18,32 +18,32 @@ describe('Card tests', () => {
 
   it('renders StyledDiv correctly', () => {
     const styledDivTests = [
-      { darkMode: true, result: 'sc-bcXHqe iwypgQ' },
-      { darkMode: true, hasSpacing: true, result: 'sc-bcXHqe JXwwT' },
-      { darkMode: true, hasSpacing: true, hoverable: true, result: 'sc-bcXHqe jFUMGv' },
+      { darkMode: true, result: 'sc-beySbM kFxfOR' },
+      { darkMode: true, hasSpacing: true, result: 'sc-beySbM PfYMu' },
+      { darkMode: true, hasSpacing: true, hoverable: true, result: 'sc-beySbM hKAySS' },
       {
         backgroundColor: 'yellow',
         darkMode: false,
         hasSpacing: true,
         hoverable: true,
-        result: 'sc-bcXHqe iFaTdj',
+        result: 'sc-beySbM kEogny',
       },
       {
         backgroundColor: 'yellow',
         darkMode: false,
         hasSpacing: true,
         hoverable: true,
-        result: 'sc-bcXHqe idyuSL',
+        result: 'sc-beySbM ONXPy',
         textColor: 'grey',
       },
       {
         darkMode: false,
         hasSpacing: true,
         hoverable: true,
-        result: 'sc-bcXHqe hePocT',
+        result: 'sc-beySbM XmePi',
         textColor: 'grey',
       },
-      { darkMode: false, hasSpacing: true, hoverable: true, result: 'sc-bcXHqe eHpWfr' },
+      { darkMode: false, hasSpacing: true, hoverable: true, result: 'sc-beySbM iboDJq' },
     ];
 
     styledDivTests.forEach(({ backgroundColor, darkMode, hasSpacing, hoverable, result, textColor }) => {

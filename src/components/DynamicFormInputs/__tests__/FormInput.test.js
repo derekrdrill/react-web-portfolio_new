@@ -131,18 +131,18 @@ describe('FormInput tests', () => {
       />,
     );
 
-    expect(styledSelect.props().className).toEqual('sc-hLBbgP fJdIrt');
-    expect(styledSelectDark.props().className).toEqual('sc-hLBbgP jqgstf');
-    expect(styledSelectCustom.props().className).toEqual('sc-hLBbgP hbJFcI');
-    expect(styledSelectCustomDark.props().className).toEqual('sc-hLBbgP iTKrhJ');
+    expect(styledSelect.props().className).toEqual('sc-hLQRIN ekzoho');
+    expect(styledSelectDark.props().className).toEqual('sc-hLQRIN ighNni');
+    expect(styledSelectCustom.props().className).toEqual('sc-hLQRIN fWwuyh');
+    expect(styledSelectCustomDark.props().className).toEqual('sc-hLQRIN iXlOyI');
   });
 
   it('renders StyledSelectLabel styled component correctly', () => {
     const styledSelectLabel = shallow(<StyledSelectLabel />);
     const styledSelectLabelDark = shallow(<StyledSelectLabel darkMode />);
 
-    expect(styledSelectLabel.props().className).toEqual('sc-dkrFOg');
-    expect(styledSelectLabelDark.props().className).toEqual('sc-dkrFOg hDPTFu');
+    expect(styledSelectLabel.props().className).toEqual('sc-dmyDGi');
+    expect(styledSelectLabelDark.props().className).toEqual('sc-dmyDGi lczLZR');
   });
 
   it('renders StyledTextField styled component correctly', () => {
@@ -171,10 +171,10 @@ describe('FormInput tests', () => {
       />,
     );
 
-    expect(styledTextField.props().className).toEqual('sc-gswNZR nsIYp');
-    expect(styledTextFieldDark.props().className).toEqual('sc-gswNZR ijTkaA');
-    expect(styledTextFieldCustom.props().className).toEqual('sc-gswNZR itwiQc');
-    expect(styledTextFieldCustomDark.props().className).toEqual('sc-gswNZR ivXtrG');
+    expect(styledTextField.props().className).toEqual('sc-guDLRT hrLuSW');
+    expect(styledTextFieldDark.props().className).toEqual('sc-guDLRT iGwUAf');
+    expect(styledTextFieldCustom.props().className).toEqual('sc-guDLRT bKWkPP');
+    expect(styledTextFieldCustomDark.props().className).toEqual('sc-guDLRT bemTsB');
   });
 
   it('runs getVariant', () => {

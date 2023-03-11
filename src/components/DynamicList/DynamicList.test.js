@@ -38,9 +38,9 @@ describe('DynamicList tests', () => {
     const dynamicListButtonlIconColor = shallow(<DynamicListButton iconcolor='white' />);
     const dynamicListButtonDark = shallow(<DynamicListButton darkMode />);
 
-    expect(dynamicListButton.props().className).toEqual('sc-gswNZR ixilmf');
-    expect(dynamicListButtonlIconColor.props().className).toEqual('sc-gswNZR hvzelI');
-    expect(dynamicListButtonDark.props().className).toEqual('sc-gswNZR vCNwj');
+    expect(dynamicListButton.props().className).toEqual('sc-guDLRT RCnwQ');
+    expect(dynamicListButtonlIconColor.props().className).toEqual('sc-guDLRT jvHKYH');
+    expect(dynamicListButtonDark.props().className).toEqual('sc-guDLRT jXbTCM');
   });
 
   it('runs addRow', () => {

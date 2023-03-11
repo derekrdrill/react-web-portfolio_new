@@ -36,15 +36,15 @@ describe('Basic Modal tests', () => {
     const modalContainer = shallow(<ModalContainer />);
     const modalContainerDark = shallow(<ModalContainer darkMode />);
 
-    expect(modalContainer.props().className).toEqual('sc-jSUZER ImGmh');
-    expect(modalContainerDark.props().className).toEqual('sc-jSUZER juhDhM');
+    expect(modalContainer.props().className).toEqual('sc-jTQDnj ekzRzt');
+    expect(modalContainerDark.props().className).toEqual('sc-jTQDnj iwKlhM');
   });
 
   it('renders CancelButton styled component correctly', () => {
     const cancelButton = shallow(<CancelButton />);
     const cancelButtonOutlined = shallow(<CancelButton variant='outlined' />);
 
-    expect(cancelButton.props().className).toEqual('sc-dkrFOg bVFKSk');
-    expect(cancelButtonOutlined.props().className).toEqual('sc-dkrFOg ggdilL');
+    expect(cancelButton.props().className).toEqual('sc-dmyDGi jnAowf');
+    expect(cancelButtonOutlined.props().className).toEqual('sc-dmyDGi duaBlA');
   });
 });

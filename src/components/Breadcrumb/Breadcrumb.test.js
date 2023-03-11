@@ -15,9 +15,9 @@ describe('Breadcrumb tests', () => {
 
   it('renders BreadcrumbText styled component', () => {
     const breadcrumbTextTests = [
-      { id: 1, page: 2, endcrumb: true, className: 'sc-bcXHqe iDaCRO' },
-      { id: 2, page: 2, endcrumb: true, className: 'sc-bcXHqe BDNpy' },
-      { id: 2, page: 1, endcrumb: true, className: 'sc-bcXHqe hSfWjg' },
+      { id: 1, page: 2, endcrumb: true, className: 'sc-beySbM dwYuNb' },
+      { id: 2, page: 2, endcrumb: true, className: 'sc-beySbM idYaMf' },
+      { id: 2, page: 1, endcrumb: true, className: 'sc-beySbM gGjJRN' },
     ];
 
     breadcrumbTextTests.forEach(test => {

@@ -28,8 +28,8 @@ describe('More Options Modal tests', () => {
 
   it('renders ModalTypography correctly', () => {
     const modalTypographyTests = [
-      { darkMode: false, result: 'sc-hLBbgP' },
-      { darkMode: true, result: 'sc-hLBbgP gEpqt' },
+      { darkMode: false, result: 'sc-hLQRIN' },
+      { darkMode: true, result: 'sc-hLQRIN iOgMeo' },
     ];
 
     modalTypographyTests.forEach(({ darkMode, result }) => {
@@ -41,8 +41,8 @@ describe('More Options Modal tests', () => {
 
   it('renders StyledBox correctly', () => {
     const styledBoxTests = [
-      { darkMode: false, result: 'sc-bcXHqe hPBECo' },
-      { darkMode: true, result: 'sc-bcXHqe flUyxp' },
+      { darkMode: false, result: 'sc-beySbM bszYVR' },
+      { darkMode: true, result: 'sc-beySbM jeLhhw' },
     ];
 
     styledBoxTests.forEach(({ darkMode, result }) => {
