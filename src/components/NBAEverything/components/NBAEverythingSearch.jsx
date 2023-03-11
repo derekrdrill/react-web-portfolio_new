@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Autocomplete, Grid, TextField } from '@mui/material';
+import { Autocomplete, Grid, InputLabel, TextField, Typography } from '@mui/material';
 
 import { NBAEverythingContext } from '../context/NBAEverythingContext';
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
@@ -34,6 +34,11 @@ const NBAEverythingSearch = () => {
     <NBAEverythingSearchRootContainer container>
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
+        <InputLabel>
+          <Typography component='span' variant='label'>
+            Select team
+          </Typography>
+        </InputLabel>
         <Autocomplete
           defaultValue={{ full_name: 'Atlanta Hawks', id: 1 }}
           disableClearable
@@ -48,7 +53,7 @@ const NBAEverythingSearch = () => {
             <SearchInput
               {...params}
               darkMode={darkMode}
-              label='Select a team'
+              // label='Select a team'
               variant={darkMode ? 'filled' : 'outlined'}
               inputProps={{ ...inputProps, readOnly: true }}
             />
@@ -58,6 +63,9 @@ const NBAEverythingSearch = () => {
       </NBAEverythingAutocompleteContainer>
       <Grid item xs={1} />
       <NBAEverythingAutocompleteContainer item xs={12} md={4}>
+        <Typography component='span' variant='label'>
+          Select season
+        </Typography>
         <Autocomplete
           defaultValue={{ display_year: '2022-2023' }}
           disableClearable
@@ -72,7 +80,6 @@ const NBAEverythingSearch = () => {
             <SearchInput
               {...params}
               darkMode={darkMode}
-              label='Select a season'
               variant={darkMode ? 'filled' : 'outlined'}
               inputProps={{ ...inputProps, readOnly: true }}
             />
@@ -107,6 +114,7 @@ const SearchInput = styled(TextField)(({ darkMode }) => ({
     color: darkMode ? '#75baff' : 'black',
     fontSize: 12,
     height: darkMode ? 48 : 42,
+    padding: '0px 5px !important',
   },
   '.MuiInputLabel-root': {
     color: darkMode ? 'beige' : 'royalblue',
