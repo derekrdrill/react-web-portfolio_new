@@ -39,7 +39,7 @@ describe('Feedback Item tests', () => {
     const numberDisplay = shallow(<NumberDisplay />);
     const numberDisplayRed = shallow(<NumberDisplay bgColor='red' />);
 
-    expect(numberDisplay.props().className).toEqual('sc-fsYeqs dXprMN');
-    expect(numberDisplayRed.props().className).toEqual('sc-fsYeqs jEDRyt');
+    expect(numberDisplay.props().className).toEqual('sc-fsQiph lmhAaW');
+    expect(numberDisplayRed.props().className).toEqual('sc-fsQiph iDZWzi');
   });
 });
