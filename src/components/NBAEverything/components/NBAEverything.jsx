@@ -1,20 +1,23 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Grid } from '@mui/material';
 
 import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeContext';
 import { NBAEverythingContext } from '../../NBAEverything/context/NBAEverythingContext';
 
+import NBAEverythingGameDetailModal from './NBAEverythingGameDetailModal';
 import NBAEverythingHeader from './NBAEverythingHeader';
+import NBAEverythingLoading from './NBAEverythingLoading';
+import NBAEverythingPlayerDataTable from './NBAEverythingPlayerDataTable';
 import NBAEverythingSearch from './NBAEverythingSearch';
 import NBAEverythingTeamDetail from './NBAEverythingTeamDetail';
-import NBAEverythingPlayerDataTable from './NBAEverythingPlayerDataTable';
 
 import { getSelectedTeamAndPlayerTotalsAndStats } from '../context/NBAEverythingActions';
 
 const NBAEverything = () => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
-  const { nbaEverythingDispatch, selectedNBASeason, selectedNBATeam } =
+  const { nbaEverythingDispatch, nbaEverythingLoading, selectedNBASeason, selectedNBATeam } =
     React.useContext(NBAEverythingContext);
 
   React.useEffect(() => {
@@ -28,10 +31,14 @@ const NBAEverything = () => {
   return (
     <div>
       <PageStyle darkMode={darkMode} />
-      <NBAEverythingHeader />
-      <NBAEverythingSearch />
-      <NBAEverythingTeamDetail />
-      <NBAEverythingPlayerDataTable />
+      {nbaEverythingLoading && <NBAEverythingLoading />}
+      <NBAEverythingMainContainer container>
+        <NBAEverythingHeader />
+        <NBAEverythingSearch />
+        <NBAEverythingTeamDetail />
+        {!nbaEverythingLoading && <NBAEverythingPlayerDataTable />}
+        <NBAEverythingGameDetailModal />
+      </NBAEverythingMainContainer>
     </div>
   );
 };
@@ -48,3 +55,11 @@ const PageStyle = createGlobalStyle(({ darkMode }) => ({
     color: darkMode ? 'beige' : '#464646',
   },
 }));
+
+export const NBAEverythingMainContainer = styled(Grid)({
+  margin: 0,
+  overflowY: 'hidden',
+  position: 'absolute',
+  top: 80,
+  zIndex: 0,
+});

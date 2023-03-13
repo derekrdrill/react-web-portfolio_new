@@ -65,6 +65,7 @@ const NBAEverythingPlayerDataTable = () => {
             headers={headers}
             loadedDataRows={tableDataRows}
             size='small'
+            tableBodyColorDark='gainsboro'
           />
         </Grid>
       </NBAEverythingPlayerDataTableRootContainer>
