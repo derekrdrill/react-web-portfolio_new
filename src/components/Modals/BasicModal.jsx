@@ -10,9 +10,15 @@ export const BasicModal = ({
   buttonVariant,
   cancelButtonText,
   children,
+  exitButtonText,
   handleClose,
   handleSubmit,
   hideBackdrop,
+  isActionButtonsHidden,
+  isBoxShadowHidden,
+  marginLeft,
+  marginRight,
+  marginTop,
   open,
   submitButtonText,
 }) => {
@@ -25,36 +31,44 @@ export const BasicModal = ({
       open={open}
       BackdropProps={{ style: { opacity: backdropOpacity ?? 0.9 } }}
     >
-      <ModalContainer darkMode={darkMode}>
+      <ModalContainer
+        darkMode={darkMode}
+        isBoxShadowHidden={isBoxShadowHidden}
+        marginLeft={marginLeft}
+        marginRight={marginRight}
+        marginTop={marginTop}
+      >
         <ExitButtonContainer>
-          <Button color='error' onClick={handleClose} size='small' variant='contained'>
-            X
-          </Button>
+          <ExitButton color='error' onClick={handleClose} size='small' variant='contained'>
+            {exitButtonText ?? 'x'}
+          </ExitButton>
         </ExitButtonContainer>
         <ContentContainer>{children}</ContentContainer>
-        <ActionButtonsContainer>
-          <ButtonContainer>
-            <CancelButton fullWidth onClick={handleClose} variant={buttonVariant ?? 'contained'}>
-              {cancelButtonText ?? 'Cancel'}
-            </CancelButton>
-          </ButtonContainer>
-          <ButtonContainer>
-            <Button
-              color='info'
-              fullWidth
-              onClick={
-                /* istanbul ignore next */
-                () => {
-                  handleSubmit();
-                  handleClose();
+        {!isActionButtonsHidden && (
+          <ActionButtonsContainer>
+            <ButtonContainer>
+              <CancelButton fullWidth onClick={handleClose} variant={buttonVariant ?? 'contained'}>
+                {cancelButtonText ?? 'Cancel'}
+              </CancelButton>
+            </ButtonContainer>
+            <ButtonContainer>
+              <Button
+                color='info'
+                fullWidth
+                onClick={
+                  /* istanbul ignore next */
+                  () => {
+                    handleSubmit();
+                    handleClose();
+                  }
                 }
-              }
-              variant={buttonVariant ?? 'contained'}
-            >
-              {submitButtonText ?? 'Submit'}
-            </Button>
-          </ButtonContainer>
-        </ActionButtonsContainer>
+                variant={buttonVariant ?? 'contained'}
+              >
+                {submitButtonText ?? 'Submit'}
+              </Button>
+            </ButtonContainer>
+          </ActionButtonsContainer>
+        )}
       </ModalContainer>
     </Modal>
   );
@@ -65,9 +79,15 @@ BasicModal.propTypes = {
   buttonVariant: PropTypes.string,
   cancelButtonText: PropTypes.string,
   children: PropTypes.node,
+  exitButtonText: PropTypes.string,
   handleClose: PropTypes.func,
   handleSubmit: PropTypes.func,
   hideBackdrop: PropTypes.bool,
+  isActionButtonsHidden: PropTypes.bool,
+  isBoxShadowHidden: PropTypes.bool,
+  marginLeft: PropTypes.string || PropTypes.number,
+  marginRight: PropTypes.string || PropTypes.number,
+  marginTop: PropTypes.string || PropTypes.number,
   open: PropTypes.bool,
   submitButtonText: PropTypes.string,
 };
@@ -104,14 +124,21 @@ export const ExitButtonContainer = styled.div({
   justifyContent: 'flex-end',
 });
 
-export const ModalContainer = styled.div(({ darkMode }) => ({
-  'h1, h2, h3, h4, h5, h6, p': {
-    color: darkMode && 'black',
-  },
-  backgroundColor: darkMode ? 'grey' : 'white',
-  marginLeft: '15%',
-  marginRight: '15%',
-  marginTop: 150,
-  padding: 15,
-  borderRadius: 5,
-}));
+export const ExitButton = styled(Button)({
+  minWidth: '35px !important',
+});
+
+export const ModalContainer = styled.div(
+  ({ darkMode, isBoxShadowHidden, marginLeft, marginRight, marginTop }) => ({
+    'h1, h2, h3, h4, h5, h6, p': {
+      color: darkMode && 'black',
+    },
+    backgroundColor: darkMode ? '#8c8c8c' : 'white',
+    marginLeft: marginLeft ? marginLeft : '15%',
+    marginRight: marginRight ? marginRight : '15%',
+    marginTop: marginTop ? marginTop : 150,
+    padding: 15,
+    borderRadius: 5,
+    boxShadow: !isBoxShadowHidden && `4px 4px 8px ${darkMode ? '#6b6b6b' : '#545454'}`,
+  }),
+);
