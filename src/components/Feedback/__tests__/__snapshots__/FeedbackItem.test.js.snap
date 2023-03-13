@@ -45,6 +45,7 @@ exports[`Feedback Item tests renders correctly 1`] = `
     cancelButtonText="I changed my mind"
     handleClose={[Function]}
     handleSubmit={[Function]}
+    isBoxShadowHidden={true}
     open={false}
     submitButtonText="Yes, delete it"
   >

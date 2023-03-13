@@ -15,13 +15,13 @@ exports[`Basic Modal tests renders correctly 1`] = `
     darkMode={false}
   >
     <styled.div>
-      <ForwardRef(Button)
+      <Styled(Component)
         color="error"
         size="small"
         variant="contained"
       >
-        X
-      </ForwardRef(Button)>
+        x
+      </Styled(Component)>
     </styled.div>
     <styled.div />
     <styled.div>
