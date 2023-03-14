@@ -77,9 +77,13 @@ const NBAEverythingGameDetailModal = () => {
         handleNbaEverythingModalClose(setIsGameDetailModalOpen, setIsBoxScoreDataFull)
       }
       isActionButtonsHidden
-      marginLeft={'15%'}
-      marginRight={'15%'}
-      marginTop={75}
+      marginLeftXS={'8vw'}
+      marginLeftSM={'17vw'}
+      marginLeftMD={'20vw'}
+      marginRightXS={'8vw'}
+      marginRightSM={'17vw'}
+      marginRightMD={'20vw'}
+      marginTop={8}
       open={isGameDetailModalOpen}
     >
       {isGameDetailModalOpen && (

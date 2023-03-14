@@ -10,6 +10,28 @@ exports[`Basic Modal tests renders correctly 1`] = `
     }
   }
   open={true}
+  sx={
+    Object {
+      "marginLeft": Object {
+        "lg": undefined,
+        "md": undefined,
+        "sm": undefined,
+        "xs": undefined,
+      },
+      "marginRight": Object {
+        "lg": undefined,
+        "md": undefined,
+        "sm": undefined,
+        "xs": undefined,
+      },
+      "marginTop": Object {
+        "lg": undefined,
+        "md": undefined,
+        "sm": undefined,
+        "xs": undefined,
+      },
+    }
+  }
 >
   <styled.div
     darkMode={false}
