@@ -30,6 +30,11 @@ export const nbaEverythingReducer = (state, action) => {
         ...state,
         selectedNBATeamGameData: action.selectedNBATeamGameData,
       };
+    case 'SET_SELECTED_NBA_GAME_DETAIL_DATA':
+      return {
+        ...state,
+        selectedNBAGameDetailData: action.selectedNBAGameDetailData,
+      };
     case 'SET_SELECTED_NBA_SEASON':
       return {
         ...state,
@@ -44,6 +49,11 @@ export const nbaEverythingReducer = (state, action) => {
       return {
         ...state,
         logoType: action.logoType,
+      };
+    case 'SET_NBA_EVERYTHING_LOADING':
+      return {
+        ...state,
+        nbaEverythingLoading: action.nbaEverythingLoading,
       };
     default:
       return state;

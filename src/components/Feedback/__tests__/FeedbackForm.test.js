@@ -45,8 +45,8 @@ describe('Feedback Form tests', () => {
     const ratingRadioControl = shallow(<RatingRadioControl />);
     const ratingRadioControlChecked = shallow(<RatingRadioControl checked />);
 
-    expect(ratingRadioControl.props().className).toEqual('sc-hLQRIN kMmvGP');
-    expect(ratingRadioControlChecked.props().className).toEqual('sc-hLQRIN lhesYl');
+    expect(ratingRadioControl.props().className).toEqual('sc-hLseeU fKiklE');
+    expect(ratingRadioControlChecked.props().className).toEqual('sc-hLseeU zghXS');
   });
 
   it('runs getFeedbackReviewLabel correctly', () => {

@@ -52,6 +52,11 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
   teamID,
   season,
 ) => {
+  await nbaEverythingDispatch({
+    type: 'SET_NBA_EVERYTHING_LOADING',
+    nbaEverythingLoading: true,
+  });
+
   const totalsAndStatsDataOptions = {
     method: 'GET',
     url: `${process.env.REACT_APP_BACKEND_URL}/get-player-and-team-totals-by-team-and-season/${teamID}/${season}`,
@@ -62,7 +67,6 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
     .then(async response => response);
 
   const totalsAndStats = await totalsAndStatsRequest.data;
-  console.log(totalsAndStats);
 
   nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM_TOTALS',
@@ -77,6 +81,40 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
   nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM_PLAYER_STATS',
     selectedNBATeamPlayerStats: await totalsAndStats.playerData,
+  });
+
+  await nbaEverythingDispatch({
+    type: 'SET_NBA_EVERYTHING_LOADING',
+    nbaEverythingLoading: false,
+  });
+};
+
+export const getGameDetailDataByGameAndTeamID = async (gameID, nbaEverythingDispatch) => {
+  await nbaEverythingDispatch({
+    type: 'SET_NBA_EVERYTHING_LOADING',
+    nbaEverythingLoading: true,
+  });
+
+  const gameDetailDataOptions = {
+    method: 'GET',
+    url: `${process.env.REACT_APP_BACKEND_URL}/get-game-detail-date-by-game-id/${gameID}`,
+  };
+
+  const gameDetailDataRequest = await axios
+    .request(gameDetailDataOptions)
+    .then(async response => response)
+    .catch(e => console.error(e));
+
+  const gameDetailData = await gameDetailDataRequest.data;
+
+  nbaEverythingDispatch({
+    type: 'SET_SELECTED_NBA_GAME_DETAIL_DATA',
+    selectedNBAGameDetailData: gameDetailData,
+  });
+
+  await nbaEverythingDispatch({
+    type: 'SET_NBA_EVERYTHING_LOADING',
+    nbaEverythingLoading: false,
   });
 };
 
@@ -94,7 +132,12 @@ export const getTeamGameDataByTeamAndSeason = async (nbaEverythingDispatch, team
 
   nbaEverythingDispatch({
     type: 'SET_SELECTED_NBA_TEAM_GAME_DATA',
-    selectedNBATeamGameData: await teamGameData,
+    selectedNBATeamGameData: teamGameData,
+  });
+
+  nbaEverythingDispatch({
+    type: 'SET_SELECTED_NBA_TEAM_GAME_DETAIL',
+    selectedNBATeamGameDetail: teamGameData.teamGameData,
   });
 };
 

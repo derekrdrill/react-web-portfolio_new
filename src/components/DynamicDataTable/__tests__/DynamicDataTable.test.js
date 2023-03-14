@@ -44,24 +44,24 @@ describe('Dynamic data table tests', () => {
     const tableToolsCell = shallow(<TableToolsCell />);
     const tableToolsCellDark = shallow(<TableToolsCell darkMode />);
 
-    expect(tableToolsCell.props().className).toEqual('sc-fmKESZ kmqGbv');
-    expect(tableToolsCellDark.props().className).toEqual('sc-fmKESZ eSsaJU');
+    expect(tableToolsCell.props().className).toEqual('sc-fmSAUk EKqZN');
+    expect(tableToolsCellDark.props().className).toEqual('sc-fmSAUk kjdYrS');
   });
 
   it('renders SearchButton styled component correctly', () => {
     const searchButton = shallow(<SearchButton />);
     const searchButtonDark = shallow(<SearchButton darkMode />);
 
-    expect(searchButton.props().className).toEqual('sc-dJGLCQ kdsAyp');
-    expect(searchButtonDark.props().className).toEqual('sc-dJGLCQ llldCJ');
+    expect(searchButton.props().className).toEqual('sc-dKfzgJ gjEWlR');
+    expect(searchButtonDark.props().className).toEqual('sc-dKfzgJ lbPWJp');
   });
 
   it('renders ResetButton styled component correctly', () => {
     const resetButton = shallow(<ResetButton />);
     const resetButtonDark = shallow(<ResetButton darkMode />);
 
-    expect(resetButton.props().className).toEqual('sc-hIPCAL iSgyjz');
-    expect(resetButtonDark.props().className).toEqual('sc-hIPCAL gCnygP');
+    expect(resetButton.props().className).toEqual('sc-hIqOWS kYGzHe');
+    expect(resetButtonDark.props().className).toEqual('sc-hIqOWS eRUyMS');
   });
 
   it('runs getSelectRowsLabel correctly', () => {

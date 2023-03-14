@@ -349,6 +349,7 @@ export const DynamicDataTable = ({
                     <TableHeadCellText
                       id={header.headerID}
                       component='h1'
+                      darkMode={darkMode}
                       variant='body1'
                       onClick={handleTableSort}
                     >
@@ -493,13 +494,14 @@ export const TableToolsCell = styled(TableCell)(({ darkMode }) => ({
   width: 325,
 }));
 
-export const TableHeadCellText = styled(Typography)({
+export const TableHeadCellText = styled(Typography)(({ darkMode }) => ({
+  color: darkMode && 'beige !important',
   cursor: 'pointer',
   textDecoration: 'underline',
   ':hover': {
     opacity: 0.6,
   },
-});
+}));
 
 export const TableToolsText = styled(Typography)({
   fontSize: 8,

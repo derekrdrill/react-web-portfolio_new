@@ -41,14 +41,14 @@ describe('ApplicationForwardButton tests', () => {
     const styledButton = shallow(<StyledButton />);
     const styledButtonDark = shallow(<StyledButton darkMode />);
 
-    expect(styledButton.props().className).toEqual('sc-beySbM bBkEHh');
-    expect(styledButtonDark.props().className).toEqual('sc-beySbM lgPTdu');
+    expect(styledButton.props().className).toEqual('sc-beqWaB jTnAgI');
+    expect(styledButtonDark.props().className).toEqual('sc-beqWaB dDnDsj');
   });
 
   it('renders forward or submit button', () => {
     const forwardOrSubmitButtonTests = [
-      { page: 1, maxPage: 2, result: 'sc-beySbM' },
-      { page: 2, maxPage: 2, result: 'sc-guDLRT' },
+      { page: 1, maxPage: 2, result: 'sc-beqWaB' },
+      { page: 2, maxPage: 2, result: 'sc-gueYoa' },
     ];
 
     forwardOrSubmitButtonTests.forEach(({ page, maxPage, result }) => {

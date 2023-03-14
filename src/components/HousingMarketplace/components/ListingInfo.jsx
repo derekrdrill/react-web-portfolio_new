@@ -171,7 +171,7 @@ const ListingInfo = () => {
         </ImagesContainer>
       )}
       <MainContainer>
-        <BasicModal handleClose={toggleContactModalOpen} open={contactModalOpen}>
+        <BasicModal handleClose={toggleContactModalOpen} isBoxShadowHidden open={contactModalOpen}>
           <Grid container>
             <Grid item xs={12}>
               <Typography component='h4' variant='h5'>

@@ -10,6 +10,7 @@ const NBAEverythingProvider = ({ children }) => {
     logoType: 'current',
     homeScoreLogo: '',
     visitorScoreLogo: '',
+    nbaEverythingLoading: false,
     nbaTeams: [],
     selectedNBASeason: { display_year: '2022-2023', year: 2022 },
     selectedNBATeam: {
@@ -22,6 +23,7 @@ const NBAEverythingProvider = ({ children }) => {
         capacity: 21000,
       },
     },
+    selectedNBAGameDetailData: [],
     selectedNBATeamGameData: {},
     selectedNBATeamTotals: {},
     selectedNBATeamPlayerStats: [],

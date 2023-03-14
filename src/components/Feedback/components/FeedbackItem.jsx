@@ -59,6 +59,7 @@ export const FeedbackItem = ({ bgColorNumDisplay, id, rating, text }) => {
           /* istanbul ignore next */
           () => deleteFeedbackItem(id)
         }
+        isBoxShadowHidden
         open={modalOpen}
         submitButtonText='Yes, delete it'
       >

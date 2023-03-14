@@ -17,6 +17,7 @@ exports[`Dynamic data table tests renders correctly 1`] = `
             >
               <Styled(Component)
                 component="h1"
+                darkMode={true}
                 id="firstName"
                 onClick={[Function]}
                 variant="body1"
@@ -48,6 +49,7 @@ exports[`Dynamic data table tests renders correctly 1`] = `
             >
               <Styled(Component)
                 component="h1"
+                darkMode={true}
                 id="lastName"
                 onClick={[Function]}
                 variant="body1"
@@ -79,6 +81,7 @@ exports[`Dynamic data table tests renders correctly 1`] = `
             >
               <Styled(Component)
                 component="h1"
+                darkMode={true}
                 id="email"
                 onClick={[Function]}
                 variant="body1"
@@ -110,6 +113,7 @@ exports[`Dynamic data table tests renders correctly 1`] = `
             >
               <Styled(Component)
                 component="h1"
+                darkMode={true}
                 id="phone"
                 onClick={[Function]}
                 variant="body1"

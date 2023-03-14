@@ -210,6 +210,7 @@ export const ListingItem = ({ listing, profile }) => {
             deleteListingItem(_id, alertDispatch, listingsDispatch);
           }
         }
+        isBoxShadowHidden
         open={isConfirmingDelete}
       >
         <Grid container>

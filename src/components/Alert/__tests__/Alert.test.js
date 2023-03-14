@@ -35,7 +35,7 @@ describe('Alert tests', () => {
     const alert = shallow(<StyledAlert />);
     const alertFadeOut = shallow(<StyledAlert $fadeOut />);
 
-    expect(alert.props().className).toEqual('sc-beySbM hvFccf');
-    expect(alertFadeOut.props().className).toEqual('sc-beySbM dhleOK');
+    expect(alert.props().className).toEqual('sc-beqWaB cXplem');
+    expect(alertFadeOut.props().className).toEqual('sc-beqWaB bBayET');
   });
 });

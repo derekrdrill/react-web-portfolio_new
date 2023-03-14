@@ -63,7 +63,7 @@ describe('Option tests', () => {
     const styledMenuItem = shallow(<StyledMenuItem />);
     const styledMenuItemDark = shallow(<StyledMenuItem darkMode />);
 
-    expect(styledMenuItem.props().className).toEqual('sc-beySbM hgvZOG');
-    expect(styledMenuItemDark.props().className).toEqual('sc-beySbM kNrA-Dn');
+    expect(styledMenuItem.props().className).toEqual('sc-beqWaB ihyWmb');
+    expect(styledMenuItemDark.props().className).toEqual('sc-beqWaB VYzMi');
   });
 });
