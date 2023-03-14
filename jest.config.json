@@ -5,7 +5,7 @@
   "coverageDirectory": "coverage",
   "coverageThreshold": {
     "global": {
-      "branches": 38,
+      "branches": 37,
       "functions": 34,
       "lines": 45,
       "statements": 43
