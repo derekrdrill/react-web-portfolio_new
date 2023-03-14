@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Switch, Typography } from '@mui/material';
+import { Grid, Switch, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/fontawesome-free-solid';
 
-import { BasicModal } from '../../Modals/BasicModal';
+import { BasicModal as Modal } from '../../Modals/BasicModal';
 import { DynamicDataTable } from '../../DynamicDataTable/components/DynamicDataTable';
 
 import { NBAEverythingContext } from '../context/NBAEverythingContext';
@@ -35,6 +35,8 @@ const NBAEverythingGameDetailModal = () => {
     visitor: selectedNBAGameDetailData[1]?.boxScoreDataShort,
   });
 
+  const [gameDetailSelectedTeam, setGameDetailSelectedTeam] = React.useState('visitor');
+
   const [selectedBoxScoreData, setSelectedBoxScoreData] = React.useState(boxScoreDataShort);
 
   React.useEffect(() => {
@@ -43,6 +45,7 @@ const NBAEverythingGameDetailModal = () => {
 
   React.useEffect(() => {
     setIsGameDetailModalOpen(selectedNBAGameDetailData.length > 0);
+
     setBoxScoreData({
       home: selectedNBAGameDetailData[0]?.boxScoreData,
       visitor: selectedNBAGameDetailData[1]?.boxScoreData,
@@ -57,14 +60,19 @@ const NBAEverythingGameDetailModal = () => {
   const handleNbaEverythingModalClose = (setIsGameDetailModalOpen, setIsBoxScoreDataFull) => {
     setIsGameDetailModalOpen(false);
     setIsBoxScoreDataFull(false);
+    setGameDetailSelectedTeam('visitor');
   };
 
   const handleNbaEverythingBoxScoreToggle = (isBoxScoreDataFull, setIsBoxScoreDataFull) => {
     setIsBoxScoreDataFull(!isBoxScoreDataFull);
   };
 
+  const handleNbaEverythingSelectedDetailTeam = (e, setGameDetailSelectedTeam) => {
+    setGameDetailSelectedTeam(e.target.value);
+  };
+
   return (
-    <BasicModal
+    <Modal
       handleClose={() =>
         handleNbaEverythingModalClose(setIsGameDetailModalOpen, setIsBoxScoreDataFull)
       }
@@ -157,11 +165,29 @@ const NBAEverythingGameDetailModal = () => {
           </Grid>
           <NBAEverythingDetailStatsContainer item xs={12}>
             <Grid container justifyContent='center'>
+              <Grid item display={{ sm: 'inline-block', md: 'none' }}>
+                <ToggleButtonGroup
+                  color='standard'
+                  exclusive
+                  onChange={e =>
+                    handleNbaEverythingSelectedDetailTeam(e, setGameDetailSelectedTeam)
+                  }
+                  size='small'
+                  value={gameDetailSelectedTeam}
+                >
+                  <ToggleButton value='visitor'>
+                    {selectedNBAGameDetailData[1].abbrName}
+                  </ToggleButton>
+                  <ToggleButton value='home'>{selectedNBAGameDetailData[0].abbrName}</ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </Grid>
+            <Grid container justifyContent='center'>
               <Typography variant='h6'>Stat leaders</Typography>
             </Grid>
             <Grid container justifyContent='space-around' rowSpacing={2}>
-              <Grid item xs={1} />
-              <Grid item xs={4}>
+              <Grid item xs={2} md={1} display={{ xs: 'none', md: 'inline-block' }} />
+              <Grid item xs={3} md={4} display={{ xs: 'none', md: 'inline-block' }}>
                 {selectedNBAGameDetailData[1].statLeaders.map(stat => (
                   <Grid key={`home-${stat.type}`} container justifyContent='flex-start'>
                     <Typography variant='subtitle2'>
@@ -172,8 +198,8 @@ const NBAEverythingGameDetailModal = () => {
                   </Grid>
                 ))}
               </Grid>
-              <Grid item xs={2} />
-              <Grid item xs={4}>
+              <Grid item xs={1} md={2} display={{ xs: 'none', md: 'inline-block' }} />
+              <Grid item xs={3} md={4} display={{ xs: 'none', md: 'inline-block' }}>
                 {selectedNBAGameDetailData[0].statLeaders.map(stat => (
                   <Grid key={`visitor-${stat.type}`} container justifyContent='flex-end'>
                     <Typography variant='subtitle2'>
@@ -184,29 +210,44 @@ const NBAEverythingGameDetailModal = () => {
                   </Grid>
                 ))}
               </Grid>
-              <Grid item xs={1} />
+              <Grid item xs={2} sm={1} display={{ xs: 'none', md: 'inline-block' }} />
+              <Grid item xs={12} display={{ xs: 'inline-block', md: 'none' }}>
+                {selectedNBAGameDetailData[
+                  gameDetailSelectedTeam === 'home' ? 0 : 1
+                ].statLeaders.map(stat => (
+                  <Grid key={`visitor-${stat.type}`} container justifyContent='center'>
+                    <Typography variant='subtitle2'>
+                      {`${stat.player.first_name.substring(0, 1)}. ${stat.player.last_name} -  ${
+                        stat.total
+                      } ${stat.type === 'turnover' ? 'TO' : stat.type.toUpperCase()}`}
+                    </Typography>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
             <NBAEverythingDetailBoxScoreContainer container>
-              <Grid item xs={5} />
-              <Grid item xs={5}>
-                <Typography variant='h6'>Box score</Typography>
+              <Grid item xs={4} />
+              <Grid item xs={4}>
+                <Grid container justifyContent='center'>
+                  <Typography variant='h6'>Box score</Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={2}>
-                <Grid container>
+              <Grid item xs={4}>
+                <Grid container justifyContent='flex-end'>
                   <Typography variant='subtitle2' fontWeight='bold'>
                     Full box score
                   </Typography>
                   <Switch
-                    size='small'
                     onChange={() =>
                       handleNbaEverythingBoxScoreToggle(isBoxScoreDataFull, setIsBoxScoreDataFull)
                     }
+                    size='small'
                   />
                 </Grid>
               </Grid>
             </NBAEverythingDetailBoxScoreContainer>
             <Grid container>
-              <Grid item xs={6}>
+              <Grid item xs={6} display={{ xs: 'none', md: 'inline-block' }}>
                 <DynamicDataTable
                   checkAllColor='primary'
                   checkOneColor='secondary'
@@ -219,7 +260,7 @@ const NBAEverythingGameDetailModal = () => {
                   size='small'
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={6} display={{ xs: 'none', md: 'inline-block' }}>
                 <DynamicDataTable
                   checkAllColor='primary'
                   checkOneColor='secondary'
@@ -232,11 +273,28 @@ const NBAEverythingGameDetailModal = () => {
                   size='small'
                 />
               </Grid>
+              <Grid item xs={12} display={{ xs: 'inline-block', sm: 'inline-block', md: 'none' }}>
+                <DynamicDataTable
+                  checkAllColor='primary'
+                  checkOneColor='secondary'
+                  headers={
+                    isBoxScoreDataFull
+                      ? nbaEverythingGameDetailHeadersFull
+                      : nbaEverythingGameDetailHeadersShort
+                  }
+                  loadedDataRows={
+                    gameDetailSelectedTeam === 'home'
+                      ? selectedBoxScoreData.home
+                      : selectedBoxScoreData.visitor
+                  }
+                  size='small'
+                />
+              </Grid>
             </Grid>
           </NBAEverythingDetailStatsContainer>
         </Grid>
       )}
-    </BasicModal>
+    </Modal>
   );
 };
 
