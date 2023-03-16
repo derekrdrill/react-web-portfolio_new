@@ -77,12 +77,12 @@ const NBAEverythingGameDetailModal = () => {
         handleNbaEverythingModalClose(setIsGameDetailModalOpen, setIsBoxScoreDataFull)
       }
       isActionButtonsHidden
-      marginLeftXS={'8vw'}
-      marginLeftSM={'15vw'}
-      marginLeftMD={'18vw'}
-      marginRightXS={'8vw'}
-      marginRightSM={'15vw'}
-      marginRightMD={'18vw'}
+      marginLeftXS={'3vw'}
+      marginLeftSM={'12vw'}
+      marginLeftMD={'20vw'}
+      marginRightXS={'3vw'}
+      marginRightSM={'12vw'}
+      marginRightMD={'20vw'}
       marginTop={8}
       open={isGameDetailModalOpen}
     >
@@ -189,9 +189,9 @@ const NBAEverythingGameDetailModal = () => {
           </Grid>
           <Grid item xs={1} display={{ xs: 'none', md: 'inline-block' }} />
           <NBAEverythingDetailStatsContainer item xs={12}>
-            <Grid container justifyContent='center'>
-              <Typography variant='h6'>Stat leaders</Typography>
-            </Grid>
+            <Typography textAlign='center' variant='h6'>
+              Stat leaders
+            </Typography>
             <Grid container justifyContent='space-around' rowSpacing={2}>
               <Grid item xs={2} md={1} display={{ xs: 'none', md: 'inline-block' }} />
               <Grid item xs={3} md={4} display={{ xs: 'none', md: 'inline-block' }}>

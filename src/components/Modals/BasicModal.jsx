@@ -173,7 +173,7 @@ export const CancelButton = styled(Button)(({ variant }) => ({
 }));
 
 export const ContentContainer = styled.div({
-  padding: 30,
+  padding: 15,
   display: 'flex',
   justifyContent: 'center',
 });
