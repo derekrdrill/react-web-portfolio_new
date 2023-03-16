@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Switch, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Grid, Switch, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/fontawesome-free-solid';
 
@@ -78,114 +78,117 @@ const NBAEverythingGameDetailModal = () => {
       }
       isActionButtonsHidden
       marginLeftXS={'8vw'}
-      marginLeftSM={'17vw'}
-      marginLeftMD={'20vw'}
+      marginLeftSM={'15vw'}
+      marginLeftMD={'18vw'}
       marginRightXS={'8vw'}
-      marginRightSM={'17vw'}
-      marginRightMD={'20vw'}
+      marginRightSM={'15vw'}
+      marginRightMD={'18vw'}
       marginTop={8}
       open={isGameDetailModalOpen}
     >
       {isGameDetailModalOpen && (
         <Grid container>
-          <Grid item xs={12}>
-            <Grid container justifyContent='space-around'>
-              <Grid item>
-                <NBAEverythingGameDetailLogo
-                  src={setScoreLogo(
-                    '',
-                    selectedNBAGameDetailData[1].fullName,
-                    null,
-                    null,
-                    logoType,
-                  )}
-                />
-                <Grid container justifyContent='center'>
-                  <Typography variant='subtitle1'>
-                    {selectedNBAGameDetailData[1].abbrName}
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Typography
-                color={
-                  selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score
-                    ? 'black'
-                    : darkMode
-                    ? '#363636 !important'
-                    : '#737373 !important'
-                }
-                darkMode={darkMode}
-                fontWeight={
-                  selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score && 'bold'
-                }
-                variant='h5'
-              >
-                {selectedNBAGameDetailData[1].score}
-              </Typography>
-              <Grid item display={{ xs: 'none', md: 'inline-block' }}>
-                <Grid container justifyContent='space-around'>
-                  {selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score && (
-                    <NBAEverythingFinalArrowIcon color='black' icon={faArrowLeft} />
-                  )}
-                  <Typography fontWeight='bold' variant='subtitle1'>{`Final`}</Typography>
-                  {selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score && (
-                    <NBAEverythingFinalArrowIcon color='black' icon={faArrowRight} />
-                  )}
-                </Grid>
-              </Grid>
-              <Typography
-                color={
-                  selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score
-                    ? 'black'
-                    : darkMode
-                    ? '#363636 !important'
-                    : '#737373 !important'
-                }
-                darkMode={darkMode}
-                fontWeight={
-                  selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score && 'bold'
-                }
-                variant='h5'
-              >
-                {selectedNBAGameDetailData[0].score}
-              </Typography>
-              <Grid item>
-                <NBAEverythingGameDetailLogo
-                  src={setScoreLogo(
-                    '',
-                    selectedNBAGameDetailData[0].fullName,
-                    null,
-                    null,
-                    logoType,
-                  )}
-                />
-                <Grid container justifyContent='center'>
-                  <Typography variant='subtitle1'>
-                    {selectedNBAGameDetailData[0].abbrName}
-                  </Typography>
-                </Grid>
-              </Grid>
+          <Grid item xs={1} display={{ xs: 'none', md: 'inline-block' }} />
+          <Grid item xs={4} md={2}>
+            <NBAEverythingGameDetailLogo
+              src={setScoreLogo('', selectedNBAGameDetailData[1].fullName, null, null, logoType)}
+            />
+            <Grid container display={{ xs: 'none', md: 'inline-block' }}>
+              <Typography variant='subtitle1'>{selectedNBAGameDetailData[1].abbrName}</Typography>
             </Grid>
           </Grid>
-          <NBAEverythingDetailStatsContainer item xs={12}>
-            <Grid container justifyContent='center'>
-              <Grid item display={{ sm: 'inline-block', md: 'none' }}>
-                <ToggleButtonGroup
-                  color='standard'
-                  exclusive
-                  onChange={e =>
-                    handleNbaEverythingSelectedDetailTeam(e, setGameDetailSelectedTeam)
-                  }
-                  size='small'
-                  value={gameDetailSelectedTeam}
-                >
-                  <ToggleButton value='visitor'>
-                    {selectedNBAGameDetailData[1].abbrName}
-                  </ToggleButton>
-                  <ToggleButton value='home'>{selectedNBAGameDetailData[0].abbrName}</ToggleButton>
-                </ToggleButtonGroup>
+          <Grid item xs={1} display={{ xs: 'none', md: 'inline-block' }} />
+          <Grid item xs={2} md={1}>
+            <Typography
+              color={
+                selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score
+                  ? 'black'
+                  : darkMode
+                  ? '#363636 !important'
+                  : '#737373 !important'
+              }
+              darkMode={darkMode}
+              fontWeight={
+                selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score && 'bold'
+              }
+              variant='h5'
+            >
+              {selectedNBAGameDetailData[1].score}
+            </Typography>
+          </Grid>
+          <Grid item xs={2} display={{ xs: 'none', md: 'inline-flex' }}>
+            <Grid container>
+              <Grid item xs={1} md={2} lg={1} />
+              <Grid item xs={2} display={{ xs: 'none', lg: 'inline-flex' }}>
+                {selectedNBAGameDetailData[1].score > selectedNBAGameDetailData[0].score && (
+                  <NBAEverythingFinalArrowIcon color='black' icon={faArrowLeft} />
+                )}
               </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={4} md={6} lg={4}>
+                <Typography
+                  fontWeight='bold'
+                  textAlign='center'
+                  variant='subtitle1'
+                >{`Final`}</Typography>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={2} display={{ xs: 'none', lg: 'inline-flex' }}>
+                {selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score && (
+                  <NBAEverythingFinalArrowIcon color='black' icon={faArrowRight} />
+                )}
+              </Grid>
+              <Grid item xs={1} md={2} lg={1} />
             </Grid>
+          </Grid>
+          <Grid item xs={2} md={1}>
+            <Typography
+              color={
+                selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score
+                  ? 'black'
+                  : darkMode
+                  ? '#363636 !important'
+                  : '#737373 !important'
+              }
+              darkMode={darkMode}
+              fontWeight={
+                selectedNBAGameDetailData[1].score < selectedNBAGameDetailData[0].score && 'bold'
+              }
+              textAlign='right'
+              variant='h5'
+            >
+              {selectedNBAGameDetailData[0].score}
+            </Typography>
+          </Grid>
+          <Grid item xs={1} display={{ xs: 'none', md: 'inline-block' }} />
+          <Grid item xs={4} md={2}>
+            <Grid container justifyContent='flex-end'>
+              <NBAEverythingGameDetailLogo
+                src={setScoreLogo('', selectedNBAGameDetailData[0].fullName, null, null, logoType)}
+              />
+            </Grid>
+            <Grid container display={{ xs: 'none', md: 'inline-block' }}>
+              <Typography variant='subtitle1' textAlign='right'>
+                {selectedNBAGameDetailData[0].abbrName}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} display={{ sm: 'inline-block', md: 'none' }}>
+            <Grid container justifyContent='center'>
+              <ToggleButtonGroup
+                color='standard'
+                exclusive
+                onChange={e => handleNbaEverythingSelectedDetailTeam(e, setGameDetailSelectedTeam)}
+                size='small'
+                value={gameDetailSelectedTeam}
+              >
+                <ToggleButton value='visitor'>{selectedNBAGameDetailData[1].abbrName}</ToggleButton>
+                <ToggleButton value='home'>{selectedNBAGameDetailData[0].abbrName}</ToggleButton>
+              </ToggleButtonGroup>
+            </Grid>
+          </Grid>
+          <Grid item xs={1} display={{ xs: 'none', md: 'inline-block' }} />
+          <NBAEverythingDetailStatsContainer item xs={12}>
             <Grid container justifyContent='center'>
               <Typography variant='h6'>Stat leaders</Typography>
             </Grid>
@@ -305,8 +308,8 @@ const NBAEverythingGameDetailModal = () => {
 export default NBAEverythingGameDetailModal;
 
 export const NBAEverythingGameDetailLogo = styled.img({
-  height: 75,
-  minWidth: 60,
+  height: 65,
+  minWidth: 52,
 });
 
 export const NBAEverythingFinalArrowIcon = styled(FontAwesomeIcon)({
