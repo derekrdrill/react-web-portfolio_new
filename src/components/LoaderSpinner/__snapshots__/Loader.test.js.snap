@@ -5,9 +5,7 @@ exports[`Loader Spinner tests renders correctly 1`] = `
   disableAutoFocus={true}
   open={true}
 >
-  <Container
-    fluid={false}
-  >
+  <Container>
     <Row>
       <Col
         lg={
