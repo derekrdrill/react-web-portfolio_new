@@ -64,16 +64,16 @@ describe('TableBodyComponent tests', () => {
     const editRecordIcon = shallow(<EditRecordIcon />);
     const editRecordIconDark = shallow(<EditRecordIcon darkMode />);
 
-    expect(editRecordIcon.props().className).toEqual('sc-beqWaB PAbcE');
-    expect(editRecordIconDark.props().className).toEqual('sc-beqWaB lkMhhd');
+    expect(editRecordIcon.props().className).toEqual('sc-aXZVg fQRzUx');
+    expect(editRecordIconDark.props().className).toEqual('sc-aXZVg dswyKM');
   });
 
   it('renders RemoveRecordIcon styled component correctly', () => {
     const removeRecordIcon = shallow(<RemoveRecordIcon />);
     const removeRecordIconDark = shallow(<RemoveRecordIcon darkMode />);
 
-    expect(removeRecordIcon.props().className).toEqual('sc-gueYoa eRgIRj');
-    expect(removeRecordIconDark.props().className).toEqual('sc-gueYoa cjdgsg');
+    expect(removeRecordIcon.props().className).toEqual('sc-gEvEer jVPMlE');
+    expect(removeRecordIconDark.props().className).toEqual('sc-gEvEer cLJboP');
   });
 
   it('renders TableBodyRow styled component correctly', () => {
@@ -83,19 +83,19 @@ describe('TableBodyComponent tests', () => {
     const tableBodyRowColor = shallow(<TableBodyRow selectedcolor='black' />);
     const tableBodyRowTableColor = shallow(<TableBodyRow tablebodycolor='beige' />);
 
-    expect(tableBodyRow.props().className).toEqual('sc-hLseeU flmkqk');
-    expect(tableBodyRowDark.props().className).toEqual('sc-hLseeU fqBvHz');
-    expect(tableBodyRowFontColor.props().className).toEqual('sc-hLseeU jCQKpz');
-    expect(tableBodyRowColor.props().className).toEqual('sc-hLseeU koqTmQ');
-    expect(tableBodyRowTableColor.props().className).toEqual('sc-hLseeU hgKBor');
+    expect(tableBodyRow.props().className).toEqual('sc-fqkvVR kJHqxt');
+    expect(tableBodyRowDark.props().className).toEqual('sc-fqkvVR ksaqO');
+    expect(tableBodyRowFontColor.props().className).toEqual('sc-fqkvVR cYiuwy');
+    expect(tableBodyRowColor.props().className).toEqual('sc-fqkvVR fxzfNd');
+    expect(tableBodyRowTableColor.props().className).toEqual('sc-fqkvVR eSCYni');
   });
 
   it('renders TableBodyStyled styled component correctly', () => {
     const tableBodyStyled = shallow(<TableBodyStyled />);
     const tableBodyStyledDark = shallow(<TableBodyStyled darkMode />);
 
-    expect(tableBodyStyled.props().className).toEqual('sc-jTrPJq gecQqi');
-    expect(tableBodyStyledDark.props().className).toEqual('sc-jTrPJq bsFPhE');
+    expect(tableBodyStyled.props().className).toEqual('sc-iGgWBj cLtsIy');
+    expect(tableBodyStyledDark.props().className).toEqual('sc-iGgWBj lnfxQA');
   });
 
   it('renders TableBodyCellInput styled component correctly', () => {
@@ -103,8 +103,8 @@ describe('TableBodyComponent tests', () => {
     const tableBodyCellInputDark = shallow(<TableBodyCellInput darkMode />);
     const tableBodyCellInputEdit = shallow(<TableBodyCellInput isediting />);
 
-    expect(tableBodyCellInput.props().className).toEqual('sc-eDDNvR hsTSPj');
-    expect(tableBodyCellInputDark.props().className).toEqual('sc-eDDNvR loqTZt');
-    expect(tableBodyCellInputEdit.props().className).toEqual('sc-eDDNvR fwnseR');
+    expect(tableBodyCellInput.props().className).toEqual('sc-dcJsrY cMrFLk');
+    expect(tableBodyCellInputDark.props().className).toEqual('sc-dcJsrY dmzvAe');
+    expect(tableBodyCellInputEdit.props().className).toEqual('sc-dcJsrY gGJuuO');
   });
 });
