@@ -38,9 +38,9 @@ describe('Header Menu Options tests', () => {
 
   it('renders correctly based on header type', () => {
     const headerTests = [
-      { headerType: 'main', result: 'sc-beqWaB' },
-      { headerType: 'secondary', result: 'sc-gueYoa' },
-      { headerType: null, result: 'sc-gueYoa' },
+      { headerType: 'main', result: 'sc-aXZVg' },
+      { headerType: 'secondary', result: 'sc-gEvEer' },
+      { headerType: null, result: 'sc-gEvEer' },
     ];
 
     headerTests.forEach(({ headerType, result }) => {
@@ -58,11 +58,11 @@ describe('Header Menu Options tests', () => {
     const styledRouterLinkList = shallow(<StyledRouterLink menuType='list' />);
     const styledRouterLinkMain = shallow(<StyledRouterLink menuType='main' />);
 
-    expect(styledRouterLink.props().className).toEqual('sc-gueYoa cPGIOS');
-    expect(styledRouterLinkDark.props().className).toEqual('sc-gueYoa exrVrO');
-    expect(styledRouterLinkDarkList.props().className).toEqual('sc-gueYoa cKBpn');
-    expect(styledRouterLinkList.props().className).toEqual('sc-gueYoa isvEUr');
-    expect(styledRouterLinkMain.props().className).toEqual('sc-gueYoa bsrfLR');
+    expect(styledRouterLink.props().className).toEqual('sc-gEvEer jPsCNh');
+    expect(styledRouterLinkDark.props().className).toEqual('sc-gEvEer fIobTF');
+    expect(styledRouterLinkDarkList.props().className).toEqual('sc-gEvEer hVgPVA');
+    expect(styledRouterLinkList.props().className).toEqual('sc-gEvEer dBRWHc');
+    expect(styledRouterLinkMain.props().className).toEqual('sc-gEvEer eIpwzm');
   });
 
   it('renders StyledScrollLink styled component correctly', () => {
@@ -72,10 +72,10 @@ describe('Header Menu Options tests', () => {
     const styledScrollLinkList = shallow(<StyledScrollLink menuType='list' />);
     const styledScrollLinkMain = shallow(<StyledScrollLink menuType='main' />);
 
-    expect(styledScrollLink.props().className).toEqual('sc-beqWaB jCYfJI');
-    expect(styledScrollLinkDark.props().className).toEqual('sc-beqWaB fkvQDk');
-    expect(styledScrollLinkDarkList.props().className).toEqual('sc-beqWaB cUtwtp');
-    expect(styledScrollLinkList.props().className).toEqual('sc-beqWaB dqYBUd');
-    expect(styledScrollLinkMain.props().className).toEqual('sc-beqWaB cvVZeD');
+    expect(styledScrollLink.props().className).toEqual('sc-aXZVg bCNCrZ');
+    expect(styledScrollLinkDark.props().className).toEqual('sc-aXZVg cCHlmh');
+    expect(styledScrollLinkDarkList.props().className).toEqual('sc-aXZVg FlkfE');
+    expect(styledScrollLinkList.props().className).toEqual('sc-aXZVg iLDToA');
+    expect(styledScrollLinkMain.props().className).toEqual('sc-aXZVg kbBHZO');
   });
 });

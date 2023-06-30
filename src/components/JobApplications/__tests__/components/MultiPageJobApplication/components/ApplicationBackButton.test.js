@@ -41,8 +41,8 @@ describe('ApplicationBackButton tests', () => {
     const styledButton = shallow(<StyledButton />);
     const styledButtonDark = shallow(<StyledButton darkMode />);
 
-    expect(styledButton.props().className).toEqual('sc-beqWaB jTnAgI');
-    expect(styledButtonDark.props().className).toEqual('sc-beqWaB dDnDsj');
+    expect(styledButton.props().className).toEqual('sc-aXZVg fCwhcB');
+    expect(styledButtonDark.props().className).toEqual('sc-aXZVg bSWdCi');
   });
 
   it('runs getBackButtonTitle', () => {

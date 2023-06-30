@@ -36,8 +36,8 @@ describe('Message Modal tests', () => {
     const modalContainer = shallow(<ModalContainer />);
     const modalContainerDark = shallow(<ModalContainer darkMode />);
 
-    expect(modalContainer.props().className).toEqual('sc-beqWaB ZEzwe');
-    expect(modalContainerDark.props().className).toEqual('sc-beqWaB bbpDqj');
+    expect(modalContainer.props().className).toEqual('sc-aXZVg HIpBz');
+    expect(modalContainerDark.props().className).toEqual('sc-aXZVg TJZKq');
   });
 
   it('runs getCancelButtonColor', () => {
