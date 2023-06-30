@@ -50,9 +50,9 @@ describe('ApplicationContent tests', () => {
 
   it('renders ApplicationContentContainer styled component correctly', () => {
     const appContainerTests = [
-      { page: 0, maxPage: 1, result: 'sc-irTswW giQUAL' },
-      { page: 1, maxPage: 2, result: 'sc-irTswW lhrGNt' },
-      { page: 2, maxPage: 2, result: 'sc-irTswW gIUHz' },
+      { page: 0, maxPage: 1, result: 'sc-dAlyuH ehJUtP' },
+      { page: 1, maxPage: 2, result: 'sc-dAlyuH dFAunZ' },
+      { page: 2, maxPage: 2, result: 'sc-dAlyuH cTOwZj' },
     ];
 
     appContainerTests.forEach(({ page, maxPage, result }) => {
@@ -66,11 +66,11 @@ describe('ApplicationContent tests', () => {
 
   it('renders AdvancedAppInputsContainerstyled component correctly', () => {
     const advAppInputsContainerTests = [
-      { page: 1, maxPage: 1, editing: true, result: 'sc-csCMJt fgyFjz', darkMode: false },
-      { page: 1, maxPage: 1, editing: false, result: 'sc-csCMJt gBpmXx', darkMode: false },
-      { page: 1, maxPage: 2, editing: false, result: 'sc-csCMJt', darkMode: false },
-      { page: 1, maxPage: 1, editing: true, result: 'sc-csCMJt HrpCO', darkMode: true },
-      { page: 1, maxPage: 1, editing: false, result: 'sc-csCMJt cLrHxT', darkMode: true },
+      { page: 1, maxPage: 1, editing: true, result: 'sc-jlZhew gooTzE', darkMode: false },
+      { page: 1, maxPage: 1, editing: false, result: 'sc-jlZhew dpxyQS', darkMode: false },
+      { page: 1, maxPage: 2, editing: false, result: 'sc-jlZhew', darkMode: false },
+      { page: 1, maxPage: 1, editing: true, result: 'sc-jlZhew kIxwXd', darkMode: true },
+      { page: 1, maxPage: 1, editing: false, result: 'sc-jlZhew eKDMgE', darkMode: true },
     ];
 
     advAppInputsContainerTests.forEach(({ darkMode, page, maxPage, editing, result }) => {
@@ -91,10 +91,10 @@ describe('ApplicationContent tests', () => {
 
   it('renders JobAppSectionContainer styled component correctly', () => {
     const jobAppSectionContainerTests = [
-      { $isOnPage: true, $isOnLastPage: true, result: 'sc-fbJfA aGEMq' },
-      { $isOnPage: true, $isOnLastPage: false, result: 'sc-fbJfA aGEMq' },
-      { $isOnPage: false, $isOnLastPage: true, result: 'sc-fbJfA aGEMq' },
-      { $isOnPage: false, $isOnLastPage: false, result: 'sc-fbJfA jiDrCp' },
+      { $isOnPage: true, $isOnLastPage: true, result: 'sc-cwHptR iuWcKI' },
+      { $isOnPage: true, $isOnLastPage: false, result: 'sc-cwHptR iuWcKI' },
+      { $isOnPage: false, $isOnLastPage: true, result: 'sc-cwHptR iuWcKI' },
+      { $isOnPage: false, $isOnLastPage: false, result: 'sc-cwHptR efQFmv' },
     ];
 
     jobAppSectionContainerTests.forEach(({ $isOnPage, $isOnLastPage, result }) => {

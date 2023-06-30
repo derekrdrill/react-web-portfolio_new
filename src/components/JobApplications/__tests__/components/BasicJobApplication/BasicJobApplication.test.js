@@ -42,39 +42,39 @@ describe('Basic Job Application tests', () => {
     const jobAppContainer = shallow(<JobAppContainer />);
     const jobAppContainerDark = shallow(<JobAppContainer darkMode />);
 
-    expect(jobAppContainer.props().className).toEqual('sc-iAEyYk eEdOBx');
-    expect(jobAppContainerDark.props().className).toEqual('sc-iAEyYk kFsyZi');
+    expect(jobAppContainer.props().className).toEqual('sc-kAyceB doafsd');
+    expect(jobAppContainerDark.props().className).toEqual('sc-kAyceB IJaGm');
   });
 
   it('renders JobAppTitleText styled component correctly', () => {
     const jobAppTitleText = shallow(<JobAppTitleText />);
     const jobAppTitleTextDark = shallow(<JobAppTitleText darkMode />);
 
-    expect(jobAppTitleText.props().className).toEqual('sc-jsMahE gWYTBk');
-    expect(jobAppTitleTextDark.props().className).toEqual('sc-jsMahE lcxlMx');
+    expect(jobAppTitleText.props().className).toEqual('sc-dhKdcB fpgWkT');
+    expect(jobAppTitleTextDark.props().className).toEqual('sc-dhKdcB dRZqrO');
   });
 
   it('renders FileUploadContainer styled component correctly', () => {
     const fileUploadContainer = shallow(<FileUploadContainer />);
     const fileUploadContainerDark = shallow(<FileUploadContainer darkMode />);
 
-    expect(fileUploadContainer.props().className).toEqual('sc-irTswW cCshjj');
-    expect(fileUploadContainerDark.props().className).toEqual('sc-irTswW ceGkel');
+    expect(fileUploadContainer.props().className).toEqual('sc-dAlyuH iIPpoD');
+    expect(fileUploadContainerDark.props().className).toEqual('sc-dAlyuH gimdPp');
   });
 
   it('renders FileUploadScrollContainer styled component correctly', () => {
     const fileUploadScrollContainer = shallow(<FileUploadScrollContainer />);
     const fileUploadScrollContainerDark = shallow(<FileUploadScrollContainer darkMode />);
 
-    expect(fileUploadScrollContainer.props().className).toEqual('sc-csCMJt nXEPx');
-    expect(fileUploadScrollContainerDark.props().className).toEqual('sc-csCMJt kZAZh');
+    expect(fileUploadScrollContainer.props().className).toEqual('sc-jlZhew dCjMHG');
+    expect(fileUploadScrollContainerDark.props().className).toEqual('sc-jlZhew frRVZW');
   });
 
   it('renders FileUpload styled component correctly', () => {
     const fileUpload = shallow(<FileUpload />);
     const fileUploadDark = shallow(<FileUpload darkMode />);
 
-    expect(fileUpload.props().className).toEqual('sc-fbJfA byBINW');
-    expect(fileUploadDark.props().className).toEqual('sc-fbJfA bObXd');
+    expect(fileUpload.props().className).toEqual('sc-cwHptR ewrhgE');
+    expect(fileUploadDark.props().className).toEqual('sc-cwHptR hDlmlb');
   });
 });

@@ -39,7 +39,7 @@ describe('ApplicationReviewToolbarIcon tests', () => {
   it('renders ApplicationReviewToolbar correctly', () => {
     const reviewJobAppToolbarTests = [
       { page: 1, maxPage: 2, result: false },
-      { page: 2, maxPage: 2, result: 'sc-beqWaB' },
+      { page: 2, maxPage: 2, result: 'sc-aXZVg' },
     ];
 
     useContextMock.mockReturnValue({ darkMode: true });
@@ -63,7 +63,7 @@ describe('ApplicationReviewToolbarIcon tests', () => {
     const styledToolbar = shallow(<StyledToolbar />);
     const styledToolbarDark = shallow(<StyledToolbar darkMode />);
 
-    expect(styledToolbar.props().className).toEqual('sc-beqWaB ivMHeO');
-    expect(styledToolbarDark.props().className).toEqual('sc-beqWaB jTReFx');
+    expect(styledToolbar.props().className).toEqual('sc-aXZVg nJGMj');
+    expect(styledToolbarDark.props().className).toEqual('sc-aXZVg hgbceA');
   });
 });

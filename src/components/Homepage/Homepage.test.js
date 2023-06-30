@@ -40,8 +40,8 @@ describe('Homepage tests', () => {
     const homePageText = shallow(<HomePageText />);
     const homePageTextDark = shallow(<HomePageText darkMode />);
 
-    expect(homePageText.props().className).toEqual('sc-gueYoa eavQmY');
-    expect(homePageTextDark.props().className).toEqual('sc-gueYoa hkAgZO');
+    expect(homePageText.props().className).toEqual('sc-gEvEer eiQuRH');
+    expect(homePageTextDark.props().className).toEqual('sc-gEvEer jdjrfN');
   });
 
   it('runs getQCLogo', () => {
