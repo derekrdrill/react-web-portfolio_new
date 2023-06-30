@@ -10,6 +10,8 @@ import { DarkLightModeContext } from '../../DarkLightMode/context/DarkLightModeC
 
 import resume from '../../../assets/Resume_DRD.pdf';
 
+const resumeOnlineLink = process.env.REACT_APP_RESUME_LINK;
+
 export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
@@ -38,10 +40,7 @@ export const MoreOptionsModal = ({ open, handleModalClose, quickViewOpen }) => {
                 </StyledLink>
               </Grid>
               <Grid item xs={12} md={4} lg={4}>
-                <StyledLink
-                  href='https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true'
-                  target='_blank'
-                >
+                <StyledLink href={resumeOnlineLink} target='_blank'>
                   <Button color='info' fullWidth variant='outlined'>
                     Open Google Doc
                     <ResumeOptionsButtonIcon icon={faGoogleDrive} />

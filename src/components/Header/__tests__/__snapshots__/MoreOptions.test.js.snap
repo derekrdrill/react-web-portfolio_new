@@ -251,7 +251,7 @@ exports[`More Options tests renders correctly 1`] = `
     }
     fileType="pdf"
     onClose={[Function]}
-    onlineLink="https://drive.google.com/file/d/1S1MgI2aJGHlXGDBgNwIKs_78_BsnskzV/view?usp=sharing"
+    onlineLink="https://docs.google.com/document/d/1qJIlaZflsm-oBC34z5-z2aLWVnZJJZkz/edit?usp=sharing&ouid=111233393235096509511&rtpof=true&sd=true"
     open={false}
   />
   <LoaderSpinner

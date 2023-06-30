@@ -14,6 +14,8 @@ import { LoaderSpinner } from '../../LoaderSpinner/LoaderSpinner';
 
 import resumePDF from '../../../assets/Resume_DRD.pdf';
 
+const resumeOnlineLink = process.env.REACT_APP_RESUME_LINK;
+
 export const MoreOptions = MoreOptionsProps => {
   const { darkMode } = React.useContext(DarkLightModeContext);
 
@@ -75,7 +77,7 @@ export const MoreOptions = MoreOptionsProps => {
         onClose={handleQuickViewClose}
         fileType='pdf'
         filePath={resumePDF}
-        onlineLink='https://drive.google.com/file/d/1S1MgI2aJGHlXGDBgNwIKs_78_BsnskzV/view?usp=sharing'
+        onlineLink={resumeOnlineLink}
       />
       <LoaderSpinner open={loading} />
     </MoreOptionsButtonContainer>
