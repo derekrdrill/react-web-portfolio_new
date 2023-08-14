@@ -110,11 +110,7 @@ Here is the breakdown of completed and pending features:
       </li> 
     </ul>
   </li>
-</ul>
-  
-### Pending
-<ul>
-<li>
+  <li>
     NBA Everything
     <ul>
       <li>
@@ -123,11 +119,12 @@ Here is the breakdown of completed and pending features:
       <li>
         The <a href='https://www.balldontlie.io/#introduction' target='_blank'>Ball Don't Lie API</a> is leveraged for all data
       </li> 
-      <li>
-        Status: <em>In Progress</em>
-      </li> 
     </ul>
   </li>
+</ul>
+  
+### Pending
+<ul>
   <li>
     Data Reporting Tool
     <ul>
