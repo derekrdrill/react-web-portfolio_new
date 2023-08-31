@@ -39,6 +39,8 @@ const NBAEverythingGameDetailModal = () => {
 
   const [selectedBoxScoreData, setSelectedBoxScoreData] = React.useState(boxScoreDataShort);
 
+  console.log(selectedNBAGameDetailData);
+
   React.useEffect(() => {
     setSelectedBoxScoreData(isBoxScoreDataFull ? boxScoreData : boxScoreDataShort);
   }, [isBoxScoreDataFull, boxScoreData, boxScoreDataShort]);

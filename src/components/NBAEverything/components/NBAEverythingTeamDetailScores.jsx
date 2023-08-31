@@ -27,6 +27,7 @@ const NBAEverythingTeamDetailScores = ({ logos }) => {
     return `${mm}/${dd}/${yy}`;
   };
 
+
   return (
     <NBAEverythingTeamDetailScoresRootContainer item xs={12} md={5} lg={4}>
       <Typography variant='h6'>Game Scores</Typography>
