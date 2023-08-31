@@ -90,6 +90,8 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
 };
 
 export const getGameDetailDataByGameAndTeamID = async (gameID, nbaEverythingDispatch) => {
+  console.log(gameID);
+ 
   await nbaEverythingDispatch({
     type: 'SET_NBA_EVERYTHING_LOADING',
     nbaEverythingLoading: true,

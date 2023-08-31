@@ -4,29 +4,14 @@ import styled from 'styled-components';
 import { Grid, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { history } from '../../../index';
+import { Link } from 'react-router-dom';
 
-export const Project = ({ darkMode, project, setLoading }) => {
-  const handleClick = to => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(null);
-      history.push(to);
-    }, 2500);
-  };
-
-  return (
-    <ProjectContentContainer
-      darkMode={darkMode}
-      item
-      xs={12}
-      md={11}
-      lg={10}
-      onClick={
-        /* istanbul ignore next */
-        () => handleClick(project.to)
-      }
-    >
+export const Project = ({ darkMode, project }) => (
+  <ProjectLink
+    target={project.externalSrc && '_blank'}
+    to={project.externalSrc ? { pathname: project.to } : project.to}
+  >
+    <ProjectContentContainer darkMode={darkMode} item xs={12} md={11} lg={10}>
       <Grid container>
         <Grid item xs={12} sm={8} lg={9}>
           <ProjectCardText darkMode={darkMode} variant='h6' component='h2'>
@@ -45,17 +30,21 @@ export const Project = ({ darkMode, project, setLoading }) => {
         </Grid>
       </Grid>
     </ProjectContentContainer>
-  );
-};
+  </ProjectLink>
+);
 
 Project.propTypes = {
   darkMode: PropTypes.bool,
   project: PropTypes.object,
-  setLoading: PropTypes.func,
 };
+
+const ProjectLink = styled(Link)({
+  textDecoration: 'none !important',
+});
 
 const ProjectCardText = styled(Typography)(({ darkMode }) => ({
   color: darkMode ? 'beige' : '#a182ce',
+  textDecoration: 'none !important',
 }));
 
 const ProjectContentContainer = styled(Grid)(({ darkMode }) => ({
