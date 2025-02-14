@@ -5,7 +5,7 @@ import { Grid, Typography } from '@mui/material';
 
 import { DarkLightModeContext } from '../DarkLightMode/context/DarkLightModeContext';
 
-import meNGeorge from '../../assets/meNGeorge.jpg';
+import headshot from '../../assets/headshot.png';
 import qcLogoBlue from '../../assets/crown-blue.png';
 import qcLogoWhite from '../../assets/crown-white.png';
 
@@ -40,19 +40,18 @@ const Homepage = ({ id }) => {
             </Grid>
             <Grid item xs={12} justifyContent={{ xs: 'center', sm: 'flex-start' }}>
               <HomePageText darkMode={darkMode} variant='h4' component='h1'>
-                {`I'm Derek! A passionate web developer and the G.O.A.T. dog-dad of the Greater
-                Charlotte Metro area`}
+                {`I'm Derek! A passionate web developer from Charlotte, North Carolina`}
               </HomePageText>
               <br />
               <HomePageText darkMode={darkMode} variant='h6' component='h1'>
-                {`I strive to elegantly code user-friendly web apps that utilize React, Material UI
-                  and Styled-Components in the front-end, and MongoDB and ExpressJS in the back-end`}
+                {`I strive to elegantly code user-friendly web apps, primarily utilizing React, Typescript, Material UI/HeadlessUI,
+                  Tailwind/Styled-Components in the front-end, and ExpressJS back-ends connected to a Mongo or Postgres database.`}
               </HomePageText>
             </Grid>
           </Grid>
         </Grid>
         <HomePageImageContainer item md={3} order={{ xs: 1, md: 2 }}>
-          <HomePageImage src={meNGeorge} alt='Me and George' />
+          <HomePageImage src={headshot} alt='Headshot' />
         </HomePageImageContainer>
       </HomepageContainer>
     </>
