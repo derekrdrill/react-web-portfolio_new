@@ -48,7 +48,12 @@ const Projects = ({ id }) => {
                 <Grid container>
                   {PROJECTS.map(project => (
                     <ProjectContainer key={project.id} item xs={12} md={6}>
-                      <Project darkMode={darkMode} project={project} setLoading={setLoading} />
+                      <Project
+                        darkMode={darkMode}
+                        project={project}
+                        setLoading={setLoading}
+                        isDisabled={project.isDisabled}
+                      />
                     </ProjectContainer>
                   ))}
                 </Grid>
