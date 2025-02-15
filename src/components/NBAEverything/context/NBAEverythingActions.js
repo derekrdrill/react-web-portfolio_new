@@ -27,6 +27,8 @@ const nbaSeasons = [
   { year: 2020, display_year: '2020-2021' },
   { year: 2021, display_year: '2021-2022' },
   { year: 2022, display_year: '2022-2023' },
+  { year: 2023, display_year: '2023-2024' },
+  { year: 2024, display_year: '2024-2025' },
 ];
 
 export const getNBASeasons = () =>
@@ -57,31 +59,31 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
     nbaEverythingLoading: true,
   });
 
-  const totalsAndStatsDataOptions = {
-    method: 'GET',
-    url: `${process.env.REACT_APP_BACKEND_URL}/get-player-and-team-totals-by-team-and-season/${teamID}/${season}`,
-  };
+  // const totalsAndStatsDataOptions = {
+  //   method: 'GET',
+  //   url: `${process.env.REACT_APP_BACKEND_URL}/get-player-and-team-totals-by-team-and-season/${teamID}/${season}`,
+  // };
 
-  const totalsAndStatsRequest = await axios
-    .request(totalsAndStatsDataOptions)
-    .then(async response => response);
+  // const totalsAndStatsRequest = await axios
+  //   .request(totalsAndStatsDataOptions)
+  //   .then(async response => response);
 
-  const totalsAndStats = await totalsAndStatsRequest.data;
+  // const totalsAndStats = await totalsAndStatsRequest.data;
 
-  nbaEverythingDispatch({
-    type: 'SET_SELECTED_NBA_TEAM_TOTALS',
-    selectedNBATeamTotals: {
-      apg: totalsAndStats.apg,
-      rpg: totalsAndStats.rpg,
-      spg: totalsAndStats.spg,
-      bpg: totalsAndStats.bpg,
-    },
-  });
+  // nbaEverythingDispatch({
+  //   type: 'SET_SELECTED_NBA_TEAM_TOTALS',
+  //   selectedNBATeamTotals: {
+  //     apg: totalsAndStats.apg,
+  //     rpg: totalsAndStats.rpg,
+  //     spg: totalsAndStats.spg,
+  //     bpg: totalsAndStats.bpg,
+  //   },
+  // });
 
-  nbaEverythingDispatch({
-    type: 'SET_SELECTED_NBA_TEAM_PLAYER_STATS',
-    selectedNBATeamPlayerStats: await totalsAndStats.playerData,
-  });
+  // nbaEverythingDispatch({
+  //   type: 'SET_SELECTED_NBA_TEAM_PLAYER_STATS',
+  //   selectedNBATeamPlayerStats: await totalsAndStats.playerData,
+  // });
 
   await nbaEverythingDispatch({
     type: 'SET_NBA_EVERYTHING_LOADING',
@@ -91,7 +93,7 @@ export const getSelectedTeamAndPlayerTotalsAndStats = async (
 
 export const getGameDetailDataByGameAndTeamID = async (gameID, nbaEverythingDispatch) => {
   console.log(gameID);
- 
+
   await nbaEverythingDispatch({
     type: 'SET_NBA_EVERYTHING_LOADING',
     nbaEverythingLoading: true,
@@ -177,5 +179,3 @@ export const setScoreLogo = (selectedTeamName, scoreName, currentLogo, retroLogo
     : selectedTeamName === scoreName
     ? retroLogo
     : `${BACKEND_URL}${NBA_EVERYTHING_LOGOS_LOCATION}${scoreName.replaceAll(' ', '')}Retro.png`;
-
-
