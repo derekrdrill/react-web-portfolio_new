@@ -71,7 +71,7 @@ const NBAEverythingSearch = () => {
           Select season
         </Typography>
         <Autocomplete
-          defaultValue={{ display_year: '2022-2023' }}
+          defaultValue={{ display_year: '2024-2025' }}
           disableClearable
           freeSolo
           fullWidth

@@ -24,7 +24,6 @@ export const PROJECTS = [
     description: `An all things NBA data, sourced from the Ball Don't Lie API`,
     icon: faBasketballBall,
     to: '/nba-everything',
-    isDisabled: true,
   },
   {
     id: 5,
